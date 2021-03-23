@@ -1,4 +1,5 @@
 #include "Sketch.h"
+#include "Engine/Engine.h"
 #include <doodle/window.hpp>
 #include <exception>
 #include <iostream>
@@ -6,12 +7,13 @@
 int main(void)
 try
 {
-    Sketch sketch;
-    sketch.setup();
+    Engine& engine = Engine::Instance();
+    engine.Init("NetWorker");
+
     while (!doodle::is_window_closed())
     {
-        doodle::update_window();
-        sketch.draw();
+        //doodle::update_window();
+        //sketch.draw();
     }
     return 0;
 }
