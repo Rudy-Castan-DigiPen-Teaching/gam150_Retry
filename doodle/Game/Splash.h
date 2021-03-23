@@ -2,31 +2,10 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: Sprite.h
+File Name: Splash.cpp
 Project: GAM150_Networker
 Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 
 #pragma once
-
-#include <string>
-#include "Texture.h"
-
-namespace Retry 
-{
-	class Sprite
-	{
-	public:
-		Sprite();
-		void Load(const std::filesystem::path& texturePath);
-		void Load(const std::filesystem::path& texturePath, math::ivec2 hotspotPos);
-		void Draw(math::vec2 position);
-		math::ivec2 getTextureSize();
-	private:
-		Texture texture;
-		math::ivec2 hotSpot;
-	};
-
-
-}

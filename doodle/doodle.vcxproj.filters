@@ -19,6 +19,9 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{98c3d59e-65b8-40cb-804f-6df6e5b4dbcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{05cd7e5d-0575-46dd-bf4e-90bc8e93c088}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sketch.cpp">
@@ -43,6 +46,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Sprite.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SceneManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -70,6 +76,15 @@
     </ClInclude>
     <ClInclude Include="Engine\Vec2.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SceneManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Splash.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
