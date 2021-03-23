@@ -16,6 +16,9 @@
     <Filter Include="Source Files\main">
       <UniqueIdentifier>{41dfdc68-670a-4111-a501-8539b3f7f9a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{98c3d59e-65b8-40cb-804f-6df6e5b4dbcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sketch.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="WinMain.cpp">
       <Filter>Source Files\main</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sketch.h">
@@ -34,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
