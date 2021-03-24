@@ -19,7 +19,7 @@ void Splash::Update()
 		switch (doodle::Key)
 		{
 		case doodle::KeyboardButtons::Enter:
-			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Level1);
+			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
 			break;
 		default:
 			break;

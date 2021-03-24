@@ -9,8 +9,8 @@ Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Engine.h" // GetEngine
-#include "../Engine/Scene.h"
-#include "../Engine/Texture.h"
+#include "../Engine/Scene.h"    // Scene (Base class)
+#include "../Engine/Texture.h"  // Logo
 #include <doodle/input.hpp>
 
 class Splash : public Retry::Scene

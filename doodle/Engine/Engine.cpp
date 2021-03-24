@@ -34,5 +34,5 @@ void Engine::Update()
 
 bool Engine::hasGameEnded() 
 {
-	return false;
+	return sceneManager.HasGameEnded();
 }

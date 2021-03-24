@@ -20,12 +20,13 @@ try
     Engine& engine = Engine::Instance();
     engine.Init("NetWorker");
 
-    while (!doodle::is_window_closed())
+    while (engine.hasGameEnded() == false)
     {
         engine.Update();
         //doodle::update_window();
         //sketch.draw();
     }
+    engine.Shutdown();
     return 0;
 }
 catch (std::exception& e)

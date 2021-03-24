@@ -15,6 +15,7 @@
     <ProjectGuid>{CE9DFDD0-2049-4F77-909C-38FD0CA8F78E}</ProjectGuid>
     <RootNamespace>doodle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>RETRY_Networker</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -120,6 +121,9 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
     <ClCompile Include="Game\Splash.cpp" />
+    <ClCompile Include="Game\Stage1.cpp" />
+    <ClCompile Include="Game\Stage2.cpp" />
+    <ClCompile Include="Game\Stage3.cpp" />
     <ClCompile Include="Sketch.cpp" />
     <ClCompile Include="WinMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -135,6 +139,9 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
     <ClInclude Include="Game\Splash.h" />
+    <ClInclude Include="Game\Stage1.h" />
+    <ClInclude Include="Game\Stage2.h" />
+    <ClInclude Include="Game\Stage3.h" />
     <ClInclude Include="Sketch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
