@@ -17,11 +17,16 @@ namespace Retry
 	void Window::Init(std::string windowName)
 	{
 		doodle::create_window(windowName, 1440, 810);
+		windowSize = { 1440,810 };
 	}
 
 	void Window::Update() 
 	{
 		doodle::update_window();
 	}
-	
+
+	math::ivec2 Window::GetSize()
+	{
+		return windowSize;
+	}
 }

@@ -22,6 +22,7 @@ try
 
     while (!doodle::is_window_closed())
     {
+        engine.Update();
         //doodle::update_window();
         //sketch.draw();
     }

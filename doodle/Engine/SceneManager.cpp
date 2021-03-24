@@ -10,12 +10,13 @@ Creation date: 03/23/2021
 
 #include "Engine.h"
 #include "SceneManager.h"
+#include "../Game/Splash.h"
 
 namespace Retry 
 {
 	void SceneManager::Setup()
 	{
-		//scenes[GameScenes::Splash] = std::make_unique<>   ***클래스 만들기***
+		scenes[GameScenes::Splash] = std::make_unique<Splash>();
 
 		currentScene = scenes[GameScenes::Splash].get();
 		queuedScene = scenes[GameScenes::Splash].get();
@@ -28,7 +29,7 @@ namespace Retry
 		case State::START:
 			if(scenes.empty() == true)
 			{
-				Engine::GetLogger().LogError("Error");
+				Engine::GetLogger().LogError("Empty Scenes");
 			}
 			else
 			{
@@ -36,6 +37,7 @@ namespace Retry
 			}
 			break;
 		case State::LOAD:
+			Engine::GetLogger().LogDebug("Load " + currentScene->GetName());
 			currentScene->Load();
 			state = State::UPDATE;
 			break;
@@ -48,7 +50,9 @@ namespace Retry
 			}
 			break;
 		case State::UNLOAD:
+			Engine::GetLogger().LogDebug("Unload " + currentScene->GetName());
 			currentScene->Unload();
+
 			if (queuedScene == nullptr)
 			{
 				state = State::SHUTDOWN;

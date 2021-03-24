@@ -18,6 +18,7 @@ void Engine::Init(std::string windowName)
 {
 	logger.LogEvent("Engine Init");
 	window.Init(windowName);
+	sceneManager.Setup();
 }
 
 void Engine::Shutdown()
@@ -28,6 +29,7 @@ void Engine::Shutdown()
 void Engine::Update()
 {
 	window.Update();
+	sceneManager.Update();
 }
 
 bool Engine::hasGameEnded() 
