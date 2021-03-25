@@ -6,7 +6,7 @@
 class Stage3 : public Retry::Scene
 {
 private:
-    //Retry::Texture Logo;
+    Retry::InputKey StageNext;
 public:
     Stage3();
     void Load() override;

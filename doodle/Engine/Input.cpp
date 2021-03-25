@@ -14,17 +14,19 @@ Retry::InputKey::InputKey(Keyboard button) : button(button){}
 
 bool Retry::InputKey::IsKeyDown() const
 {
-   // return Engine::GetInput().IsKeyDown(button);
+   return Engine::GetInput().IsKeyDown(button);
 }
 
 bool Retry::InputKey::IsKeyReleased() const
 {
-    return false;
+    return Engine::GetInput().IsKeyReleased(button);
 }
 
 /*----------input class----------------------------------------------------------*/
 Retry::Input::Input()
 {
+    wasKeyDown.resize(static_cast<int>(InputKey::Keyboard::Count));
+    KeyDown.resize(static_cast<int>(InputKey::Keyboard::Count));
 }
 
 bool Retry::Input::IsKeyDown(InputKey::Keyboard key) const
@@ -34,13 +36,15 @@ bool Retry::Input::IsKeyDown(InputKey::Keyboard key) const
 
 bool Retry::Input::IsKeyReleased(InputKey::Keyboard key) const
 {
-    return false;
+    return wasKeyDown[static_cast<int>(key)] == true && KeyDown[static_cast<int>(key)] == false;
 }
 
 void Retry::Input::SetKeyDown(InputKey::Keyboard key, bool value)
 {
+    KeyDown[static_cast<int>(key)] = value;
 }
 
 void Retry::Input::Update()
 {
+    wasKeyDown = KeyDown;
 }

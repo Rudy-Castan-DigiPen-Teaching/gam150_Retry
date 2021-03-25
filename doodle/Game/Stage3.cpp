@@ -1,9 +1,7 @@
 #include "Stage3.h"
 #include <doodle/drawing.hpp>
 
-Stage3::Stage3()
-{
-}
+Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Escape){}
 
 void Stage3::Load()
 {
@@ -11,17 +9,9 @@ void Stage3::Load()
 
 void Stage3::Update()
 {
-	if (doodle::KeyIsPressed)
+	if (StageNext.IsKeyReleased() == true)
 	{
-		Engine::GetLogger().LogEvent("Key Pressed");
-		switch (doodle::Key)
-		{
-		case doodle::KeyboardButtons::_3:
-			Engine::GetSceneManager().Shutdown();
-			break;
-		default:
-			break;
-		}
+		Engine::GetSceneManager().Shutdown();
 	}
 }
 

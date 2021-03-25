@@ -11,12 +11,13 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h" // GetEngine
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Texture.h"  // Logo
-#include <doodle/input.hpp>
+#include "../Engine/Input.h"
 
 class Splash : public Retry::Scene
 {
 private:
     Retry::Texture Logo;
+    Retry::InputKey StageNext;
 public:
     Splash();
     void Load() override;

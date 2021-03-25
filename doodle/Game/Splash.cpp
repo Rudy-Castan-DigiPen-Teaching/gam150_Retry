@@ -1,10 +1,7 @@
 #include "Splash.h"
-
 #include <doodle/drawing.hpp>
 
-Splash::Splash()
-{
-}
+Splash::Splash() : StageNext(Retry::InputKey::Keyboard::Enter){}
 
 void Splash::Load()
 {
@@ -13,17 +10,9 @@ void Splash::Load()
 
 void Splash::Update()
 {
-	if (doodle::KeyIsPressed)
+	if (StageNext.IsKeyReleased() == true)
 	{
-		Engine::GetLogger().LogEvent("Key Pressed");
-		switch (doodle::Key)
-		{
-		case doodle::KeyboardButtons::Enter:
-			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
-			break;
-		default:
-			break;
-		}
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
 	}
 }
 

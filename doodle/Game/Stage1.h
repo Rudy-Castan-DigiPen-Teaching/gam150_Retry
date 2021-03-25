@@ -1,12 +1,12 @@
 #pragma once
 #include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"    // Scene (Base class)
-#include <doodle/input.hpp>
+#include "../Engine/Input.h"
 
 class Stage1 : public Retry::Scene
 {
 private:
-    
+    Retry::InputKey StageNext;
 public:
     Stage1();
     void Load() override;

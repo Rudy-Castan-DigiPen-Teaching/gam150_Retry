@@ -7,7 +7,7 @@ Project: GAM150_Networker
 Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
 Creation date: 03/25/2021
 -----------------------------------------------------------------*/
-
+#pragma once
 #include <vector>
 
 namespace Retry
