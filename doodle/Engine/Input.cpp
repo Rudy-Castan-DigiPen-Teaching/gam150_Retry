@@ -36,7 +36,7 @@ bool Retry::Input::IsKeyDown(InputKey::Keyboard key) const
 
 bool Retry::Input::IsKeyReleased(InputKey::Keyboard key) const
 {
-    return wasKeyDown[static_cast<int>(key)] == true && KeyDown[static_cast<int>(key)] == false;
+    return (wasKeyDown[static_cast<int>(key)] == true) && (KeyDown[static_cast<int>(key)] == false);
 }
 
 void Retry::Input::SetKeyDown(InputKey::Keyboard key, bool value)

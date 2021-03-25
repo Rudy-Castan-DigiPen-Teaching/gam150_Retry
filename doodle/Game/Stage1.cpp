@@ -9,13 +9,14 @@ void Stage1::Load()
 
 void Stage1::Draw()
 {
+	doodle::clear_background(100, 20, 100, 255);
 }
 
 void Stage1::Update()
 {
 	if (StageNext.IsKeyReleased() == true)
 	{
-			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
+	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 	}
 }
 

@@ -30,6 +30,7 @@ void Engine::Update()
 {
 	window.Update();
 	sceneManager.Update();
+	input.Update();
 }
 
 bool Engine::hasGameEnded() 
