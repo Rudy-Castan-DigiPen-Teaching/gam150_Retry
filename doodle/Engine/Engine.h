@@ -13,7 +13,7 @@ Creation date: 03/23/2021
 #include "Logger.h"
 #include "Window.h"
 #include "SceneManager.h"
-
+#include "Input.h"
 class Engine
 {
 public:
@@ -22,6 +22,7 @@ public:
 	static Retry::Logger& GetLogger() { return  Instance().logger; }
 	static Retry::Window& GetWindow() { return Instance().window; }
 	static Retry::SceneManager& GetSceneManager() { return Instance().sceneManager; }
+	static Retry::Input& GetInput() { return Instance().input; }
 
 	void Init(std::string windowName);
 	void Shutdown();
@@ -35,4 +36,5 @@ private:
 	Retry::Logger logger;
 	Retry::Window window;
 	Retry::SceneManager sceneManager;
+	Retry::Input input;
 };
