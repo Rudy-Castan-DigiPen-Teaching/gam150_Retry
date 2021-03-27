@@ -66,6 +66,9 @@
     <ClCompile Include="Engine\InputDoodle.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Object.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sketch.h">
@@ -111,6 +114,9 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Input.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
