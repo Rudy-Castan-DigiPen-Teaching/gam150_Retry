@@ -41,7 +41,17 @@ namespace Retry
         std::vector<bool> wasKeyDown;
     };
 
-
+    class MouseInput
+    {
+    public:
+        bool IsMousePressed() const;
+        bool IsMouseReleased() const;
+        void setMousePressed(bool value);
+        void Update();
+    private:
+        bool MousePressed = false;
+        bool wasMousePressed = false;
+    };
 
 
 
