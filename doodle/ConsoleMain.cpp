@@ -8,7 +8,6 @@ Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 
-#include "Sketch.h"
 #include "Engine/Engine.h"
 #include <doodle/window.hpp>
 #include <exception>
