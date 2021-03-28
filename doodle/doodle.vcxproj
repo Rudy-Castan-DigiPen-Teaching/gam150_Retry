@@ -127,6 +127,8 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClCompile Include="Game\Stage1.cpp" />
     <ClCompile Include="Game\Stage2.cpp" />
     <ClCompile Include="Game\Stage3.cpp" />
+    <ClCompile Include="Game\TestObject.cpp" />
+    <ClCompile Include="Game\TestStage.cpp" />
     <ClCompile Include="WinMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -146,6 +148,8 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Game\Stage1.h" />
     <ClInclude Include="Game\Stage2.h" />
     <ClInclude Include="Game\Stage3.h" />
+    <ClInclude Include="Game\TestObject.h" />
+    <ClInclude Include="Game\TestStage.h" />
     <ClInclude Include="Sketch.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
