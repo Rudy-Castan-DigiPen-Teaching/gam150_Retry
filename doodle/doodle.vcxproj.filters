@@ -1,57 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\main">
-      <UniqueIdentifier>{41dfdc68-670a-4111-a501-8539b3f7f9a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{98c3d59e-65b8-40cb-804f-6df6e5b4dbcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{05cd7e5d-0575-46dd-bf4e-90bc8e93c088}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ConsoleMain.cpp">
-      <Filter>Source Files\main</Filter>
-    </ClCompile>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Source Files\main</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Input.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\InputDoodle.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Logger.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Window.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Texture.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Sprite.cpp">
+    <ClCompile Include="Engine\Object.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\SceneManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Texture.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Window.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
     <ClCompile Include="Game\Splash.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Stage3.cpp">
+    <ClCompile Include="Engine\Sprite.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage1.cpp">
@@ -60,11 +40,8 @@
     <ClCompile Include="Game\Stage2.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Input.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\InputDoodle.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Game\Stage3.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\TestObject.cpp">
       <Filter>Game</Filter>
@@ -72,35 +49,25 @@
     <ClCompile Include="Game\TestStage.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Object.cpp">
-      <Filter>Engine</Filter>
-    <ClCompile Include="Game\Player.cpp">
-      <Filter>Game</Filter>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleMain.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sketch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Logger.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Window.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Sprite.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Texture.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Vec2.h">
+    <ClInclude Include="Engine\Object.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Scene.h">
@@ -109,10 +76,22 @@
     <ClInclude Include="Engine\SceneManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vec2.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Window.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Splash.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Stage3.h">
+    <ClInclude Include="Engine\Sprite.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Stage1.h">
@@ -121,29 +100,32 @@
     <ClInclude Include="Game\Stage2.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Input.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Game\Stage3.h">
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\TestObject.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\TestStage.h">
-    <ClInclude Include="Game\Player.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="doodle.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="doodle.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{689090c5-fe93-4bdc-bde8-e8ce1241f3e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{6e56cbaa-cbc0-4acb-a5ec-d6e70e63ab21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{f2e46793-009f-4835-9767-f888bb024ef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Vec2.inl">
