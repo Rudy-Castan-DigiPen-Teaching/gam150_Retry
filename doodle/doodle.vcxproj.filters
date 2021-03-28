@@ -66,14 +66,14 @@
     <ClCompile Include="Engine\InputDoodle.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Object.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Game\TestObject.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\TestStage.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

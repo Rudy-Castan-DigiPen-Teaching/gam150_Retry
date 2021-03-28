@@ -17,7 +17,7 @@ namespace Retry
 {
 	class Object
 	{
-	private:
+	protected:
 		math::vec2 position;
 		math::vec2 hotspot;
 		double width;
