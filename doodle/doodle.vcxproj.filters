@@ -66,8 +66,8 @@
     <ClCompile Include="Engine\InputDoodle.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Object.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Game\Player.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Object.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

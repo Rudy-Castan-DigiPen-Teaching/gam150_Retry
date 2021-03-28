@@ -16,10 +16,10 @@ namespace Retry
 {
 	class Object
 	{
-	private:
-		math::vec2 position;
-		double width;
-		double height;
+	protected:
+		math::vec2 position {0,0};
+		double width = 50;
+		double height = 50;
 
 	public:
 		Object(math::vec2 pos, double w, double h) : position(pos), width(w), height(h) {}

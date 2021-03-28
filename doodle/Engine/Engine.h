@@ -23,6 +23,7 @@ public:
 	static Retry::Window& GetWindow() { return Instance().window; }
 	static Retry::SceneManager& GetSceneManager() { return Instance().sceneManager; }
 	static Retry::Input& GetInput() { return Instance().input; }
+	static Retry::MouseInput& GetMouseInput() { return Instance().mouseInput; }
 
 	void Init(std::string windowName);
 	void Shutdown();
@@ -37,4 +38,5 @@ private:
 	Retry::Window window;
 	Retry::SceneManager sceneManager;
 	Retry::Input input;
+	Retry::MouseInput mouseInput;
 };

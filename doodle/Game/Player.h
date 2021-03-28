@@ -2,27 +2,26 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: Splash.h
+File Name: Player.h
 Project: GAM150_Networker
 Author: Team RETRY - Haeun Park
-Creation date: 03/23/2021
+Creation date: 03/28/2021
 -----------------------------------------------------------------*/
 #pragma once
-#include "../Engine/Scene.h"    // Scene (Base class)
-#include "../Engine/Texture.h"  // Logo
+#include "../Engine/Object.h"
 #include "../Engine/Input.h"
 
-class Splash : public Retry::Scene
+class Player : public Retry::Object
 {
 private:
-    Retry::Texture Logo;
-    Retry::InputKey StageNext;
+	Retry::InputKey moveRightKey;
+	Retry::InputKey moveLeftKey;
+	Retry::InputKey moveUpKey;
+	Retry::InputKey moveDownKey;
+
 public:
-    Splash();
-    void Load() override;
-    void Update() override;
-    void Unload() override;
-    void Draw() override;
-    std::string GetName() override { return "Splash"; };
+	Player(math::vec2 position, double width, double height);
+	Player(double x, double y, double width, double height);
+	void Update() override;
+	void Draw() const override;
 };
-	
