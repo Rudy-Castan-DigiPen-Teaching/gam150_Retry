@@ -7,7 +7,7 @@ moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::
 
 void TestObject::Update() 
 {
-	SetPosition({ static_cast<double>(doodle::get_mouse_x()), static_cast<double>(doodle::get_mouse_y()) });
+	SetPosition({ static_cast<double>(doodle::get_mouse_x()) - (Object::GetSize().x / 2), static_cast<double>(doodle::get_mouse_y()) - (Object::GetSize().y / 2) });
 }
 
 void TestObject::Draw() const
