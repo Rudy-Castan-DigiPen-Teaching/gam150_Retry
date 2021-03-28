@@ -21,5 +21,5 @@ public:
     void Update() override;
     void Unload() override;
     void Draw() override;
-    std::string GetName() override { return "Stage1"; };
+    std::string GetName() override { return "Test Stage"; };
 };

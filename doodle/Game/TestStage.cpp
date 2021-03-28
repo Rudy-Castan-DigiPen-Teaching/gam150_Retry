@@ -30,7 +30,8 @@ void TestStage::Update()
 
 	if (StageNext.IsKeyReleased() == true)
 	{
-		Engine::GetSceneManager().Shutdown();
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
+		//Engine::GetSceneManager().Shutdown();
 	}
 }
 
