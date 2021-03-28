@@ -9,7 +9,7 @@ void Stage2::Load()
 
 void Stage2::Update()
 {
-	if (StageNext.IsKeyReleased() == true)
+	if (StageNext.IsKeyReleased() == true || Engine::GetMouseInput().IsMouseReleased() == true)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
 	}

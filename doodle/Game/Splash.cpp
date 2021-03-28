@@ -10,7 +10,7 @@ void Splash::Load()
 
 void Splash::Update()
 {
-	if (StageNext.IsKeyReleased() == true)
+	if (StageNext.IsKeyReleased() == true || Engine::GetMouseInput().IsMouseReleased() == true)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
 	}

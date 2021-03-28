@@ -61,3 +61,24 @@ void on_key_released(doodle::KeyboardButtons doodleButton)
         Engine::GetLogger().LogDebug("on_key_released");
     }
 }
+
+
+void on_mouse_pressed(doodle::MouseButtons button)
+{
+    if (button == doodle::MouseButtons::Left)
+    {
+        Engine::GetMouseInput().setMousePressed(true);
+        Engine::GetLogger().LogDebug("on_mouse_pressed");
+    }
+
+}
+
+void on_mouse_released(doodle::MouseButtons button)
+{
+    if (button == doodle::MouseButtons::Left)
+    {
+        Engine::GetMouseInput().setMousePressed(false);
+        Engine::GetLogger().LogDebug("on_mouse_released");
+    }
+
+}

@@ -31,6 +31,7 @@ void Engine::Update()
 	window.Update();
 	sceneManager.Update();
 	input.Update();
+	mouseInput.Update();
 }
 
 bool Engine::hasGameEnded() 

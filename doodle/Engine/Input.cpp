@@ -48,3 +48,24 @@ void Retry::Input::Update()
 {
     wasKeyDown = KeyDown;
 }
+
+
+bool Retry::MouseInput::IsMousePressed() const
+{
+    return MousePressed;
+}
+
+bool Retry::MouseInput::IsMouseReleased() const
+{
+    return (wasMousePressed == true) && (MousePressed == false);
+}
+
+void Retry::MouseInput::setMousePressed(bool value)
+{
+    MousePressed = value;
+}
+
+void Retry::MouseInput::Update()
+{
+    wasMousePressed = MousePressed;
+}
