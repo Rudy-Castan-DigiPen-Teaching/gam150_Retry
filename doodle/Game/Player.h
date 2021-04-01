@@ -22,6 +22,6 @@ private:
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
-	void Update() override;
-	void Draw() const override;
+	virtual void Update() override;
+	virtual void Draw() const override;
 };
