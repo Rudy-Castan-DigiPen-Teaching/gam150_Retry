@@ -2,7 +2,7 @@
 #include <doodle/drawing.hpp>
 #include "../Engine/Engine.h"
 
-Splash::Splash() : StageNext(Retry::InputKey::Keyboard::Enter){}
+Splash::Splash() : StageNext(Retry::InputKey::Keyboard::Enter) {}
 
 void Splash::Load()
 {
@@ -24,5 +24,5 @@ void Splash::Unload()
 void Splash::Draw()
 {
 	doodle::clear_background(255);
-	Logo.Draw(-Logo.getSize() / 2.0);
+	Logo.Draw(Engine::GetWindow().GetSize() / 2.0 - Logo.getSize() / 2.0);
 }

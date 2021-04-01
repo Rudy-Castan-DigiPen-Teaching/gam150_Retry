@@ -29,7 +29,7 @@ void Stage1::Update()
 	{
 	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 	}
-	player.Update();
+	player.Update(Retry::GameScenes::Stage1);
 }
 
 void Stage1::Unload()

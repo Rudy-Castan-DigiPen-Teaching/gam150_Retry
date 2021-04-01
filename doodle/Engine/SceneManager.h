@@ -41,7 +41,6 @@ namespace Retry {
 
 		void Setup();
 		void Update();
-		void Draw() const;
 		void setNextScene(GameScenes scene);
 		void Shutdown();
 		bool HasGameEnded() { return state == State::EXIT; }

@@ -10,6 +10,12 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include "../Engine/SceneManager.h"
+
+enum class NetworkLine
+{
+	Bottom, Middle, Top
+};
 
 class Player : public Retry::Object
 {
@@ -18,10 +24,12 @@ private:
 	Retry::InputKey moveLeftKey;
 	Retry::InputKey moveUpKey;
 	Retry::InputKey moveDownKey;
+	NetworkLine currLine = NetworkLine::Middle;
 
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
-	virtual void Update() override;
-	virtual void Draw() const override;
+	void Update(Retry::GameScenes scene);
+	void UpdateStage3();
+	void Draw() const override;
 };

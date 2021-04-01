@@ -1,22 +1,61 @@
 #include "Player.h"
 
+#include <functional>
+
+#include "../Engine/Engine.h"
+#include "Stage3.h"
+
 Player::Player(math::vec2 position, double width, double height)
-: Object(position,width,height),
-moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S)
+	: Object(position, width, height),
+	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
+	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S)
 {
 }
 Player::Player(double x, double y, double width, double height)
-: Player({x,y},width,height)
+	: Player({ x,y }, width, height)
 {
 }
 
-void Player::Update()
+void Player::Update(Retry::GameScenes scene)
 {
-	if (moveRightKey.IsKeyDown() == true) { position.x += 5; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= 5; }
-	if (moveUpKey.IsKeyDown() == true) { position.y += 5; }
-	if (moveDownKey.IsKeyDown() == true) { position.y -= 5; }
+	switch (scene)
+	{
+	case Retry::GameScenes::Stage1:
+		//UpdateStage1();
+		break;
+	case Retry::GameScenes::Stage2:
+		//UpdateStage2();
+		break;
+	case Retry::GameScenes::Stage3:
+		UpdateStage3();
+		break;
+	}
+}
+
+void Player::UpdateStage3()
+{
+	Engine::GetLogger().LogDebug("curr line: " + std::to_string(static_cast<int>(currLine)));
+	if (moveUpKey.IsKeyReleased() && currLine < NetworkLine::Top)
+	{
+		currLine = static_cast<NetworkLine>(static_cast<int>(currLine) + 1);
+	}
+	else if (moveDownKey.IsKeyReleased() && currLine > NetworkLine::Bottom) { currLine = static_cast<NetworkLine>(static_cast<int>(currLine) - 1); }
+
+
+
+	switch (currLine)
+	{
+	case NetworkLine::Top:
+		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.75 };
+		break;
+	case NetworkLine::Middle:
+		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.5 };
+		break;
+	case NetworkLine::Bottom:
+		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.25 };
+		break;
+	}
+
 }
 
 void Player::Draw() const
