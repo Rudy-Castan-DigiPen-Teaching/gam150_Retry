@@ -14,6 +14,10 @@ Creation date: 03/28/2021
 class Player : public Retry::Object
 {
 private:
+	Retry::InputKey moveRightKey;
+	Retry::InputKey moveLeftKey;
+	Retry::InputKey moveUpKey;
+	Retry::InputKey moveDownKey;
 
 public:
 	Player(math::vec2 position, double width, double height);
