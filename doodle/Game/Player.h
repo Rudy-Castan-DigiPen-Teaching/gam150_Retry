@@ -13,7 +13,7 @@ Creation date: 03/28/2021
 
 class Player : public Retry::Object
 {
-private:
+protected:
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 	Retry::InputKey moveUpKey;
