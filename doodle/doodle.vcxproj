@@ -126,6 +126,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\Splash.cpp" />
     <ClCompile Include="Game\Stage1.cpp" />
+    <ClCompile Include="Game\Stage1_Object.cpp" />
     <ClCompile Include="Game\Stage2.cpp" />
     <ClCompile Include="Game\Stage3.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
@@ -148,6 +149,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Splash.h" />
     <ClInclude Include="Game\Stage1.h" />
+    <ClInclude Include="Game\Stage1_Object.h" />
     <ClInclude Include="Game\Stage2.h" />
     <ClInclude Include="Game\Stage3.h" />
     <ClInclude Include="Game\TestObject.h" />

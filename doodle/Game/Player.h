@@ -10,6 +10,7 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include "../Engine/SceneManager.h"
 
 class Player : public Retry::Object
 {
@@ -22,6 +23,11 @@ private:
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
-	void Update() override;
+	void Update(Retry::GameScenes scene);
 	void Draw() const override;
+
+	void UpdateStage1();
+	void UpdateStage2();
+	void UpdateStage3();
+
 };

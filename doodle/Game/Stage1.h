@@ -11,13 +11,22 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
+#include "Stage1_Object.h"
 #include "Player.h"
 
 class Stage1 : public Retry::Scene
 {
 private:
 	Retry::InputKey StageNext;
+
 	Player player;
+
+	Stage1_Object so1;
+	Stage1_Object so2;
+	Stage1_Object so3;
+
+	int on1, on2, on3;
+
 public:
 	Stage1();
 	void Load() override;
