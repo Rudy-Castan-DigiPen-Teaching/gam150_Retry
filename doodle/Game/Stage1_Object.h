@@ -21,6 +21,7 @@ class Stage1_Object : public Retry::Object
 		void Update() override;
 		void Draw() const override;
 		void revector();
+		bool Yisdown();
 private:
 	int numbering;
 };

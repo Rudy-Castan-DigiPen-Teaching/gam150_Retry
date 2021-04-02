@@ -12,17 +12,11 @@ Creation date: 04/01/2021
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h"
 
-Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number) : Object(initpos, w, h), numbering(number) {}
+Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number) : Object(initpos, w, h), numbering(number){}
 
 void Stage1_Object::Update()
 {
-	position.y -= doodle::random(2, 11);
-
-	if (position.y < 0)
-	{
-		num.clear();
-		revector();
-	}
+	position.y -= 10;
 }
 
 void Stage1_Object::Draw() const
@@ -58,9 +52,15 @@ void Stage1_Object::Draw() const
 
 void Stage1_Object::revector()
 {
-	num.push_back(Stage1_Object({ 200, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
-	num.push_back(Stage1_Object({ 450, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
-	num.push_back(Stage1_Object({ 700, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
-	num.push_back(Stage1_Object({ 950, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
-	num.push_back(Stage1_Object({ 1200, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ doodle::random( 100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+}
+
+
+bool Stage1_Object::Yisdown()
+{
+	if (position.y < 0)
+	{
+		return true;
+	}
+	return false;
 }

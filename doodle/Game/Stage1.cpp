@@ -11,7 +11,9 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/doodle.hpp>
 
-Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0){}
+Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0){
+	time = 0;
+}
 
 void Stage1::Load()
 {
@@ -23,7 +25,7 @@ void Stage1::Draw()
 	doodle::clear_background(165, 200, 255, 255);
 	player.Draw();
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < num.size(); i++)
 	{
 		num[i].Draw();
 	}
@@ -37,10 +39,26 @@ void Stage1::Update()
 	}
 	player.Update(Retry::GameScenes::Stage1);
 
-	for (int i = 0; i < 5; i++)
+	if (time % 55 == 0)
+	{
+		s1.revector();
+	}
+
+	time++;
+
+	for (int i = 0; i < num.size(); i++)
 	{
 		num[i].Update();
 	}
+
+	for (int i = 0; i < num.size(); i++)
+	{
+		if (num[i].Yisdown() == true)
+		{
+			num.erase(num.begin() + i);
+		}
+	}
+		
 }
 
 void Stage1::Unload()

@@ -34,8 +34,8 @@ void Player::Draw() const
 
 void Player::UpdateStage1()
 {
-	if (moveRightKey.IsKeyDown() == true) { position.x += 5; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= 5; }
+	if (moveRightKey.IsKeyDown() == true) { position.x += 15; }
+	if (moveLeftKey.IsKeyDown() == true) { position.x -= 15; }
 }
 
 void Player::UpdateStage2()
