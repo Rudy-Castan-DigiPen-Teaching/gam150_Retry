@@ -9,34 +9,27 @@ Creation date: 04/01/2021
 -----------------------------------------------------------------*/
 #include "Stage1_Object.h"
 #include <doodle/drawing.hpp>
+#include <doodle/random.hpp>
+#include "../Engine/Engine.h"
 
-Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h) : Object(initpos, w, h) {}
+Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number) : Object(initpos, w, h), numbering(number) {}
 
-void Stage1_Object::Update(int num)
+void Stage1_Object::Update()
 {
-	switch (num)
+	position.y -= 5;
+
+	if (position.y == 0)
 	{
-	case 0 :
-		position.y -= 5;
-		break;
-	case 1:
-		position.y -= 3;
-		break;
-	case 2:
-		position.y -= 4;
-		break;
-	case 3 :
-		position.y -= 2;
-		break;
+		num.clear();
+		revector();
 	}
 }
 
-void Stage1_Object::Draw(int num) const
+void Stage1_Object::Draw() const
 {
-
-	switch (num)
+	switch (numbering)
 	{
-	case 0:
+	case 0 :
 		doodle::push_settings();
 		doodle::set_fill_color(100, 0, 0);
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
@@ -56,9 +49,18 @@ void Stage1_Object::Draw(int num) const
 		break;
 	case 3:
 		doodle::push_settings();
-		doodle::set_fill_color(200, 100, 100);
+		doodle::set_fill_color(100, 100, 100);
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		doodle::pop_settings();
 		break;
 	}
+}
+
+void Stage1_Object::revector()
+{
+	num.push_back(Stage1_Object({ 200, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ 450, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ 700, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ 950, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ 1200, Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
 }

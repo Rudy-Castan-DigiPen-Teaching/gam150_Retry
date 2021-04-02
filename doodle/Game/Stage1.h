@@ -18,14 +18,9 @@ class Stage1 : public Retry::Scene
 {
 private:
 	Retry::InputKey StageNext;
-
 	Player player;
+	Stage1_Object s1;
 
-	Stage1_Object so1;
-	Stage1_Object so2;
-	Stage1_Object so3;
-
-	int on1, on2, on3;
 
 public:
 	Stage1();

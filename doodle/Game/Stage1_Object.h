@@ -10,15 +10,19 @@ Creation date: 04/01/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include <vector>
 
 class Stage1_Object : public Retry::Object
 {
-	private :
-
 	public:
-		Stage1_Object(math::ivec2 initpos, double w, double h);
+		Stage1_Object(math::ivec2 initpos, double w, double h, int number);
 		~Stage1_Object() {}
 
-		void Update(int num);
-		void Draw(int num) const;
+		void Update() override;
+		void Draw() const override;
+		void revector();
+private:
+	int numbering;
 };
+
+inline std::vector<Stage1_Object> num{};
