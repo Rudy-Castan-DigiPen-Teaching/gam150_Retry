@@ -16,9 +16,9 @@ Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number
 
 void Stage1_Object::Update()
 {
-	position.y -= 5;
+	position.y -= doodle::random(2, 11);
 
-	if (position.y == 0)
+	if (position.y < 0)
 	{
 		num.clear();
 		revector();
