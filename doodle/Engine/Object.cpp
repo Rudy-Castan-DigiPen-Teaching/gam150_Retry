@@ -6,6 +6,8 @@ namespace Retry
 {
 	void Object::Update() {}
 
+	void Object::Load() {}
+
 	void Object::Draw() const
 	{
 		doodle::push_settings();

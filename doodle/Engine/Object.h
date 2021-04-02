@@ -28,6 +28,7 @@ namespace Retry
 		Object(math::vec2 pos, double w, double h) : position(pos), width(w), height(h) {}
 		~Object() {}
 
+		virtual void Load();
 		virtual void Update();
 		virtual void Draw() const;
 

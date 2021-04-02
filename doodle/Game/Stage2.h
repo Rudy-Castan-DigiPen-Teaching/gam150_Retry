@@ -11,10 +11,16 @@ Creation date: 03/23/2021
 #include "../Engine/Input.h"
 #include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"
+#include "Player.h"
+#include "DataBox.h"
 
 class Stage2 : public Retry::Scene
 {
 private:
+    Player player;
+    std::vector<DataBox> dataBoxes;
+    int stackedData;
+
     Retry::InputKey StageNext;
 public:
     Stage2();
@@ -24,3 +30,10 @@ public:
     void Draw() override;
     std::string GetName() override { return "Stage2"; };
 };
+
+/*
+* ¿ÞÂÊ¿¡ ½×¿©ÀÖ´Â ¹Ú½º Áß¿¡ ¹Ù´ÚÇÏ°í ´ê¾ÆÀÖ´Â°Å µû·Î »©¼­
+* if (databox.Getposiiton().y == floor && player.) {
+*
+* }
+*/

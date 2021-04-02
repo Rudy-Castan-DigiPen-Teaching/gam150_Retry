@@ -10,10 +10,11 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include "../Engine/SceneManager.h"
 
 class Player : public Retry::Object
 {
-protected:
+private:
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 	Retry::InputKey moveUpKey;
@@ -22,6 +23,10 @@ protected:
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
-	virtual void Update() override;
-	virtual void Draw() const override;
+
+	void Load() override;
+	void Update(Retry::GameScenes scene);
+	void UpdateStage2();
+	void Draw() const override;
 };
+
