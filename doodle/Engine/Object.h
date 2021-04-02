@@ -32,7 +32,7 @@ namespace Retry
 		virtual void Update();
 		virtual void Draw() const;
 
-		bool CollideWith(Object& obj);
+		bool CollideWith(const Object& obj);
 
 		void SetPosition(math::vec2 newPos) { position = newPos; }
 		math::vec2 GetPosition() const { return position; }

@@ -1,13 +1,15 @@
 #include "DataBox.h"
+#include "Player.h"
+#include "Stage2.h"
 
-DataBox::DataBox(DataKinds dataKind) : Object({0, 0}, 100, 50), dataKind(dataKind), isStacked(false), isOnBoard(false)
+DataBox::DataBox(DataType dataType, const Player& player) : Object({0, Stage2::floor}, 50, 50), dataType(dataType), isStacked(true), isOnBoard(false), player(player)
 {
 	hotspot = { width / 2, 0 };
 }
 
 void DataBox::Load() 
 {
-	isStacked = false;
+	isStacked = true;
 	isOnBoard = false;
 }
 
@@ -15,16 +17,15 @@ void DataBox::Update()
 {
 
 	if (isStacked == false && isOnBoard == false) {
-		// position.x = player.GetPosition,x + a;
-		// position.y = a;
+		position.x = player.GetPosition().x + width;
 	}
 
-	switch (dataKind) {
-	case DataKinds::RED:
+	switch (dataType) {
+	case DataType::RED:
 		break;
-	case DataKinds::GREEN:
+	case DataType::GREEN:
 		break;
-	case DataKinds::BLUE:
+	case DataType::BLUE:
 		break;
 	}
 }
@@ -32,13 +33,17 @@ void DataBox::Update()
 void DataBox::Draw() const 
 {
 	doodle::push_settings();
-	switch (dataKind) {
-	case DataKinds::RED:
+	switch (dataType) {
+	case DataType::RED:
+		doodle::set_fill_color(255, 0, 0, 255);
 		break;
-	case DataKinds::GREEN:
+	case DataType::GREEN:
+		doodle::set_fill_color(0, 255, 0, 255);
 		break;
-	case DataKinds::BLUE:
+	case DataType::BLUE:
+		doodle::set_fill_color(0, 0, 255, 255);
 		break;
 	}
+	doodle::draw_rectangle(position.x, position.y, width, height);
 	doodle::pop_settings();
 }

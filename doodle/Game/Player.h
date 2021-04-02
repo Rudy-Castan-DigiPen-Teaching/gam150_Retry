@@ -20,6 +20,7 @@ private:
 	Retry::InputKey moveUpKey;
 	Retry::InputKey moveDownKey;
 
+
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
@@ -28,5 +29,7 @@ public:
 	void Update(Retry::GameScenes scene);
 	void UpdateStage2();
 	void Draw() const override;
+
+	bool hasDataBox;
 };
 

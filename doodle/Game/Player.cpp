@@ -4,7 +4,8 @@
 Player::Player(math::vec2 position, double width, double height)
 	: Object(position, width, height),
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S)
+	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
+	hasDataBox(false)
 {
 }
 Player::Player(double x, double y, double width, double height)
@@ -12,7 +13,10 @@ Player::Player(double x, double y, double width, double height)
 {
 }
 
-void Player::Load() {}
+void Player::Load() 
+{
+	hasDataBox = false;
+}
 
 void Player::Update(Retry::GameScenes scene)
 {

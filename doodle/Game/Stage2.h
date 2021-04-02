@@ -20,15 +20,19 @@ private:
     Player player;
     std::vector<DataBox> dataBoxes;
     int stackedData;
+    static constexpr int maxDataNum = 1;
 
     Retry::InputKey StageNext;
 public:
     Stage2();
+
     void Load() override;
     void Update() override;
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Stage2"; };
+
+    static constexpr double floor = 200;
 };
 
 /*
