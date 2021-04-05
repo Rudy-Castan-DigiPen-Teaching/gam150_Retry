@@ -12,37 +12,61 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h" // GetLogger
 
 
-Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Escape),
-player(Engine::GetWindow().GetSize() / 2.0, 50, 50), bug(0, 50) {}
+Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::Escape),
+player(Engine::GetWindow().GetSize() / 2.0, 50, 50) {}
 
 void Stage3::Load()
 {
+	overlapseTime = 0;
+	player.Load();
+	bugs.push_back(Bug(NetworkLine::Middle));
+	bugs.push_back(Bug(NetworkLine::Top, 10));
+	bugs.push_back(Bug(NetworkLine::Bottom, 20));
 }
 
 void Stage3::Unload()
 {
+	bugs.clear();
 }
 
 void Stage3::Update()
 {
+	overlapseTime += 0.1;
+
 	if (StageNext.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().Shutdown();
 	}
+	else if (Reload.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().ReloadScene();
+	}
 
 	player.Update(Retry::GameScenes::Stage3);
-	bug.Update();
 
-	if (player.GetIsPlayerHitting() && bug.CollideWith(player.GetAttackBox()))
+	for (Bug& b : bugs)
 	{
-		Engine::GetLogger().LogDebug("Hit the Bug");
+		if (b.getStartTime() <= overlapseTime && b.getAlive()==true)
+		{
+			b.Update();
+			if (player.GetIsPlayerHitting() && b.CollideWith(player.GetAttackBox()))
+			{
+				b.HitByPlayer();
+				Engine::GetLogger().LogDebug("Hit the Bug");
+			}
+			else if (b.CollideWith(player) && b.getHitThePlayer() == false) {
+				player.HitByBug();
+				b.HitThePlayer();
+			}
+		}
 	}
+
 }
 
 void Stage3::Draw()
 {
 	doodle::clear_background(100, 100, 255);
-
+	doodle::draw_text(std::to_string(player.GetLives()), 10, 200);
 	doodle::push_settings();
 	doodle::set_outline_width(7);
 	doodle::set_outline_color(210, 253, 255);
@@ -52,8 +76,14 @@ void Stage3::Draw()
 	doodle::pop_settings();
 
 	doodle::push_settings();
-	//doodle::set_rectangle_mode(doodle::RectMode::Center);
 	player.Draw();
-	bug.Draw();
-	//doodle::pop_settings();
+
+	for (Bug& b : bugs)
+	{
+		if (b.getStartTime() <= overlapseTime)
+		{
+			b.Draw();
+		}
+	}
+
 }

@@ -6,16 +6,25 @@
 #include "Stage3.h"
 
 Player::Player(math::vec2 position, double width, double height)
-	: Object(position, width, height),
+	: Object(position, width, height), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
-attackBox({ position.x + width, position.y }, width, height,{ width / 2, height / 2 })
+	attackBox({ position.x + width, position.y }, width, height, { width / 2, height / 2 })
 {
 	hotspot = { width / 2, height / 2 };
 }
 Player::Player(double x, double y, double width, double height)
 	: Player({ x,y }, width, height)
 {
+}
+
+void Player::Load()
+{
+	position = startPosition;
+	currLine = NetworkLine::Middle;
+	lives = 3;
+	isMoved = false;
+	isHitting = false;
 }
 
 void Player::Update(Retry::GameScenes scene)
@@ -79,10 +88,21 @@ void Player::UpdateStage3()
 
 void Player::Draw() const
 {
+	doodle::push_settings();
+	doodle::set_fill_color(255, 85 * lives, 85 * lives);
 	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+	doodle::pop_settings();
 
 	if (Engine::GetMouseInput().IsMousePressed())
 	{
 		attackBox.Draw();
+	}
+}
+
+void Player::HitByBug()
+{
+	if (lives > 0)
+	{
+		lives -= 1;
 	}
 }

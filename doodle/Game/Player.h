@@ -20,12 +20,16 @@ enum class NetworkLine
 class Player : public Retry::Object
 {
 private:
+	math::vec2 startPosition;
+
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 	Retry::InputKey moveUpKey;
 	Retry::InputKey moveDownKey;
+
 	NetworkLine currLine = NetworkLine::Middle;
 
+	int lives = 3;
 	bool isMoved = false;
 	bool isHitting = false;
 	Object attackBox;
@@ -33,10 +37,16 @@ private:
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
+
+	void Load();
 	void Update(Retry::GameScenes scene);
 	void UpdateStage3();
 	void Draw() const override;
+
+	const int GetLives() const { return lives; }
 	const Object& GetAttackBox() const { return attackBox; }
 	const bool GetIsPlayerHitting() const { return  isHitting; }
+
+	void HitByBug();
 
 };

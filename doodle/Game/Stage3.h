@@ -8,9 +8,10 @@ Author: Team RETRY - Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 #pragma once
+#include <vector>
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "Player.h"
-#include "TestObject.h"
+#include "Bug.h"
 
 class Stage3 : public Retry::Scene
 {
@@ -18,8 +19,10 @@ public:
 	static constexpr double lineX = 200;
 private:
 	Retry::InputKey StageNext;
+	Retry::InputKey Reload;
 	Player player;
-	TestObject bug;
+	std::vector<Bug> bugs;
+	double overlapseTime = 0;
 public:
 	Stage3();
 	void Load() override;

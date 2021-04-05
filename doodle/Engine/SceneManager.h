@@ -43,6 +43,7 @@ namespace Retry {
 		void Update();
 		void setNextScene(GameScenes scene);
 		void Shutdown();
+		void ReloadScene();
 		bool HasGameEnded() { return state == State::EXIT; }
 	};
 }
