@@ -13,14 +13,17 @@ Creation date: 03/23/2021
 #include "../Engine/Scene.h"
 #include "Player.h"
 #include "DataBox.h"
+#include "DataBoard.h"
 
 class Stage2 : public Retry::Scene
 {
 private:
     Player player;
     std::vector<DataBox> dataBoxes;
+    std::vector<DataBoard> dataBoard;
     int stackedData;
-    static constexpr int maxDataNum = 1;
+
+    int maxDataNum = 1;
 
     Retry::InputKey StageNext;
 public:

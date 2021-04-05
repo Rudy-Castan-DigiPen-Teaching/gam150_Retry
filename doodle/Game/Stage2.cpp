@@ -17,6 +17,7 @@ void Stage2::Load()
 {
 	player.Load();
 	dataBoxes.clear();
+	dataBoard.clear();
 	stackedData = 1;
 
 	int num = 0;
@@ -36,6 +37,22 @@ void Stage2::Load()
 			break;
 		}
 		dataBoxes.push_back(DataBox(dataType, player));
+	}
+
+	for (int i = 0; i < static_cast<int>(DataBox::DataType::BLUE) + 1; ++i)
+	{
+		switch (i) {
+		case 0:
+			dataType = DataBox::DataType::RED;
+			break;
+		case 1:
+			dataType = DataBox::DataType::GREEN;
+			break;
+		case 2:
+			dataType = DataBox::DataType::BLUE;
+			break;
+		}
+		dataBoard.push_back(DataBoard(Stage2::floor, dataType));
 	}
 }
 
@@ -57,7 +74,7 @@ void Stage2::Update()
 			break;
 		}
 		dataBoxes.push_back(DataBox(dataType, player));
-		stackedData++;
+		++stackedData;
 	}
 	
 	for (int i = 0; i < dataBoxes.size(); ++i) {
@@ -68,7 +85,17 @@ void Stage2::Update()
 		{
 			dataBoxes[i].isStacked = false;
 			player.hasDataBox = true;
-			stackedData--;
+			--stackedData;
+		}
+
+		for (int j = 0; j < dataBoard.size(); ++j) {
+			if (player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true && dataBoxes[i].GetDataType() == dataBoard[j].GetDataType() && 
+				Engine::GetMouseInput().IsMousePressed() == true)
+			{
+				player.hasDataBox = false;
+				dataBoxes[i].isOnBoard = true;
+				dataBoxes[i].SetPosition(math::vec2{dataBoard[j].GetPosition().x, dataBoard[j].GetPosition().y + dataBoard[j].GetCurrDataNum() * dataBoxes[i].GetSize().y});
+			}
 		}
 	}
 	
@@ -92,6 +119,9 @@ void Stage2::Unload()
 void Stage2::Draw()
 {
 	doodle::clear_background(0, 0, 0, 255);
+	for (int i = 0; i < dataBoard.size(); ++i) {
+		dataBoard[i].Draw();
+	}
 	for (int i = 0; i < dataBoxes.size(); ++i) {
 		dataBoxes[i].Draw();
 	}
