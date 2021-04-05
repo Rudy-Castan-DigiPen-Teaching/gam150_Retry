@@ -21,7 +21,7 @@ private:
 	Player player;
 	Stage1_Object s1;
 
-	int time;
+	int time, score, heart, file;
 
 public:
 	Stage1();

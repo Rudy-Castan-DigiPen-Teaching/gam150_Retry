@@ -25,25 +25,25 @@ void Stage1_Object::Draw() const
 	{
 	case 0 :
 		doodle::push_settings();
-		doodle::set_fill_color(100, 0, 0);
+		doodle::set_fill_color(100, 0, 0);   //red
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		doodle::pop_settings();
 		break;
 	case 1:
 		doodle::push_settings();
-		doodle::set_fill_color(0, 100, 0);
+		doodle::set_fill_color(0, 100, 0);   //green
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		doodle::pop_settings();
 		break;
 	case 2:
 		doodle::push_settings();
-		doodle::set_fill_color(0, 0, 100);
+		doodle::set_fill_color(0, 0, 100);   //blue
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		doodle::pop_settings();
 		break;
 	case 3:
 		doodle::push_settings();
-		doodle::set_fill_color(100, 100, 100);
+		doodle::set_fill_color(100, 100, 100);  //grey
 		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		doodle::pop_settings();
 		break;
