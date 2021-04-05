@@ -13,7 +13,7 @@ namespace Retry
 		doodle::pop_settings();
 	}
 
-	bool Object::CollideWith(Object& obj)
+	bool Object::CollideWith(const Object& obj)
 	{
 		math::vec2 corner = position - hotspot;
 		math::vec2 objCorner = obj.GetPosition() - obj.GetHotspot();

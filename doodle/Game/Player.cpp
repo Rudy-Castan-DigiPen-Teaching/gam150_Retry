@@ -8,8 +8,10 @@
 Player::Player(math::vec2 position, double width, double height)
 	: Object(position, width, height),
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S)
+	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
+attackBox({ position.x + width, position.y }, width, height,{ width / 2, height / 2 })
 {
+	hotspot = { width / 2, height / 2 };
 }
 Player::Player(double x, double y, double width, double height)
 	: Player({ x,y }, width, height)
@@ -34,14 +36,25 @@ void Player::Update(Retry::GameScenes scene)
 
 void Player::UpdateStage3()
 {
-	Engine::GetLogger().LogDebug("curr line: " + std::to_string(static_cast<int>(currLine)));
-	if (moveUpKey.IsKeyReleased() && currLine < NetworkLine::Top)
+	//Engine::GetLogger().LogDebug("isMoved: " + std::to_string(isMoved));
+
+	if (isMoved == false)
 	{
-		currLine = static_cast<NetworkLine>(static_cast<int>(currLine) + 1);
+		if (moveUpKey.IsKeyDown() && currLine < NetworkLine::Top)
+		{
+			currLine = static_cast<NetworkLine>(static_cast<int>(currLine) + 1);
+			isMoved = true;
+		}
+		else if (moveDownKey.IsKeyDown() && currLine > NetworkLine::Bottom)
+		{
+			currLine = static_cast<NetworkLine>(static_cast<int>(currLine) - 1);
+			isMoved = true;
+		}
 	}
-	else if (moveDownKey.IsKeyReleased() && currLine > NetworkLine::Bottom) { currLine = static_cast<NetworkLine>(static_cast<int>(currLine) - 1); }
-
-
+	if (moveUpKey.IsKeyReleased() || moveDownKey.IsKeyReleased())
+	{
+		isMoved = false;
+	}
 
 	switch (currLine)
 	{
@@ -56,9 +69,20 @@ void Player::UpdateStage3()
 		break;
 	}
 
+	if (Engine::GetMouseInput().IsMousePressed())
+	{
+		isHitting = true;
+		attackBox.SetPosition({ position.x + width, position.y });
+	}
+	else { isHitting = false; }
 }
 
 void Player::Draw() const
 {
-	doodle::draw_rectangle(position.x, position.y, width, height);
+	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+
+	if (Engine::GetMouseInput().IsMousePressed())
+	{
+		attackBox.Draw();
+	}
 }

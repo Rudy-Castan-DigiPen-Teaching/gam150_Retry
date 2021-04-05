@@ -13,9 +13,13 @@ Creation date: 03/23/2021
 
 
 Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Escape),
-player(Engine::GetWindow().GetSize() / 2.0, 50, 50) {}
+player(Engine::GetWindow().GetSize() / 2.0, 50, 50), bug(0, 50) {}
 
 void Stage3::Load()
+{
+}
+
+void Stage3::Unload()
 {
 }
 
@@ -27,10 +31,12 @@ void Stage3::Update()
 	}
 
 	player.Update(Retry::GameScenes::Stage3);
-}
+	bug.Update();
 
-void Stage3::Unload()
-{
+	if (player.GetIsPlayerHitting() && bug.CollideWith(player.GetAttackBox()))
+	{
+		Engine::GetLogger().LogDebug("Hit the Bug");
+	}
 }
 
 void Stage3::Draw()
@@ -46,7 +52,8 @@ void Stage3::Draw()
 	doodle::pop_settings();
 
 	doodle::push_settings();
-	doodle::set_rectangle_mode(doodle::RectMode::Center);
+	//doodle::set_rectangle_mode(doodle::RectMode::Center);
 	player.Draw();
-	doodle::pop_settings();
+	bug.Draw();
+	//doodle::pop_settings();
 }

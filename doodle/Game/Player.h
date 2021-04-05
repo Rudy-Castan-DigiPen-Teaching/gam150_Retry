@@ -26,10 +26,17 @@ private:
 	Retry::InputKey moveDownKey;
 	NetworkLine currLine = NetworkLine::Middle;
 
+	bool isMoved = false;
+	bool isHitting = false;
+	Object attackBox;
+
 public:
 	Player(math::vec2 position, double width, double height);
 	Player(double x, double y, double width, double height);
 	void Update(Retry::GameScenes scene);
 	void UpdateStage3();
 	void Draw() const override;
+	const Object& GetAttackBox() const { return attackBox; }
+	const bool GetIsPlayerHitting() const { return  isHitting; }
+
 };

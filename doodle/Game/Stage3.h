@@ -10,6 +10,7 @@ Creation date: 03/23/2021
 #pragma once
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "Player.h"
+#include "TestObject.h"
 
 class Stage3 : public Retry::Scene
 {
@@ -18,6 +19,7 @@ public:
 private:
 	Retry::InputKey StageNext;
 	Player player;
+	TestObject bug;
 public:
 	Stage3();
 	void Load() override;
