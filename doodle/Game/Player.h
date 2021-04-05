@@ -30,6 +30,6 @@ public:
 	void UpdateStage2();
 	void Draw() const override;
 
-	bool hasDataBox;
+	bool hasDataBox;	// Stage 2
 };
 

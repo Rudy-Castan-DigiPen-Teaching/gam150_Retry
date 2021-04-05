@@ -11,7 +11,7 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/random.hpp>
 
-Stage2::Stage2() : StageNext(Retry::InputKey::Keyboard::Enter), player({0, Stage2::floor}, 50, 50), stackedData(1) {}
+Stage2::Stage2() : StageNext(Retry::InputKey::Keyboard::Enter), player({200, Stage2::floor}, 50, 50), stackedData(1) {}
 
 void Stage2::Load()
 {
@@ -57,6 +57,7 @@ void Stage2::Update()
 			break;
 		}
 		dataBoxes.push_back(DataBox(dataType, player));
+		stackedData++;
 	}
 	
 	for (int i = 0; i < dataBoxes.size(); ++i) {
@@ -67,6 +68,7 @@ void Stage2::Update()
 		{
 			dataBoxes[i].isStacked = false;
 			player.hasDataBox = true;
+			stackedData--;
 		}
 	}
 	

@@ -34,10 +34,3 @@ public:
 
     static constexpr double floor = 200;
 };
-
-/*
-* 왼쪽에 쌓여있는 박스 중에 바닥하고 닿아있는거 따로 빼서
-* if (databox.Getposiiton().y == floor && player.) {
-*
-* }
-*/

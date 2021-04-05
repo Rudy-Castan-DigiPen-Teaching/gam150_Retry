@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Stage2.h"
 
-DataBox::DataBox(DataType dataType, const Player& player) : Object({0, Stage2::floor}, 50, 50), dataType(dataType), isStacked(true), isOnBoard(false), player(player)
+DataBox::DataBox(DataType dataType, const Player& player) : Object({100, Stage2::floor}, 50, 50), dataType(dataType), isStacked(true), isOnBoard(false), player(player)
 {
 	hotspot = { width / 2, 0 };
 }
