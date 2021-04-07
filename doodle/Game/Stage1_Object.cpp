@@ -12,11 +12,11 @@ Creation date: 04/01/2021
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h"
 
-Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number) : Object(initpos, w, h), numbering(number){}
+Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number, int dropspeed) : Object(initpos, w, h), numbering(number), player(0, 0, 0), speed(dropspeed){}
 
 void Stage1_Object::Update()
 {
-	position.y -= 10;
+	position.y -= speed;
 }
 
 void Stage1_Object::Draw() const
@@ -50,9 +50,9 @@ void Stage1_Object::Draw() const
 	}
 }
 
-void Stage1_Object::revector()
+void Stage1_Object::revector(int sp)
 {
-	num.push_back(Stage1_Object({ doodle::random( 100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4)));
+	num.push_back(Stage1_Object({ doodle::random( 100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y }, 40, 40, doodle::random(0, 4), sp));
 }
 
 

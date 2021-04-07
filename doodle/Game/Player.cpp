@@ -1,4 +1,6 @@
 #include "Player.h"
+#include <doodle/input.hpp>
+
 
 Player::Player(math::vec2 position, double width, double height)
 : Object(position,width,height),
@@ -34,8 +36,10 @@ void Player::Draw() const
 
 void Player::UpdateStage1()
 {
-	if (moveRightKey.IsKeyDown() == true) { position.x += 15; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= 15; }
+	const double easing = 10.0 * doodle::DeltaTime;
+	position.x += easing * (doodle::get_mouse_x() - position.x);
+
+	SetPosition({ position.x, 100 });
 }
 
 void Player::UpdateStage2()

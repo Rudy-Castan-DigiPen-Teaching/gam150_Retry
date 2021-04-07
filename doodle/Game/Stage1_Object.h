@@ -11,20 +11,23 @@ Creation date: 04/01/2021
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
 #include <vector>
+#include "Player.h"
 
 class Stage1_Object : public Retry::Object
 {
 	public:
-		Stage1_Object(math::ivec2 initpos, double w, double h, int number);
+		Stage1_Object(math::ivec2 initpos, double w, double h, int number, int dropspeed);
 		~Stage1_Object() {}
 
 		void Update() override;
 		void Draw() const override;
-		void revector();
+		void revector(int sp);
 		int GetNumbering() { return numbering; }
+		void SetSpeed(int plus) { speed = plus; }
 		bool Yisdown();
 private:
-	int numbering;
+	int numbering, speed;
+	Player player;
 };
 
 inline std::vector<Stage1_Object> num{};

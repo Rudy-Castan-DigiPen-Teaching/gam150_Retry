@@ -11,7 +11,7 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/doodle.hpp>
 
-Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0){
+Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(20){
 	time = 0;
 	score = 0;
 	heart = 3;
@@ -20,7 +20,7 @@ Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100,
 
 void Stage1::Load()
 {
-	s1.revector();
+	s1.revector(dropspeed);
 }
 
 void Stage1::Draw()
@@ -53,9 +53,9 @@ void Stage1::Update()
 	}
 	player.Update(Retry::GameScenes::Stage1);
 
-	if (time % 55 == 0)
+	if (time % 20 == 0)
 	{
-		s1.revector();
+		s1.revector(dropspeed);
 	}
 
 	time++;
@@ -63,18 +63,12 @@ void Stage1::Update()
 	for (int i = 0; i < num.size(); i++)
 	{
 		num[i].Update();
-	}
 
-	for (int i = 0; i < num.size(); i++)
-	{
 		if (num[i].Yisdown() == true)
 		{
 			num.erase(num.begin() + i);
 		}
-	}
-		
-	for (int i = 0; i < num.size(); i++)
-	{
+
 		if (player.CollideWith(num[i]) == true)
 		{
 			Engine::GetLogger().LogDebug("Collision!");
@@ -83,26 +77,39 @@ void Stage1::Update()
 			{
 			case 0:
 				score += 1;     // red
+				dropspeed -= 5;
 				Engine::GetLogger().LogEvent("Im Red +1");
 				break;
 			case 1:
 				score += 2;     // green
+				dropspeed -= 5;
 				Engine::GetLogger().LogEvent("Im green +2");
 				break;
 			case 2:
 				score -= 3;     // blue
 				heart -= 1;
+				dropspeed += 5;
 				Engine::GetLogger().LogEvent("Im blue -3");
 				break;
 			case 3:
 				score -= 4;     // grey
 				heart -= 1;
+				dropspeed += 5;
 				Engine::GetLogger().LogEvent("Im grey -4");
 				break;
+			}
+			if (dropspeed <= 0)
+			{
+				dropspeed = 2;
+			}
+			for (Stage1_Object& n : num)
+			{
+				n.SetSpeed(dropspeed);
 			}
 			num.erase(num.begin() + i);
 		}
 	}
+
 
 	if (score >= 10)
 	{

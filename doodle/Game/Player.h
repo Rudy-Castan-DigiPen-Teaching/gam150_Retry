@@ -11,6 +11,7 @@ Creation date: 03/28/2021
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
+#include <doodle/doodle.hpp>
 
 class Player : public Retry::Object
 {
@@ -29,5 +30,4 @@ public:
 	void UpdateStage1();
 	void UpdateStage2();
 	void UpdateStage3();
-
 };
