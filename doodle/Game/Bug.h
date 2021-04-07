@@ -17,20 +17,23 @@ class Bug : public Retry::Object
 private:
 	NetworkLine currLine;
 
-	int speed = 10;
 	double startTime = 0;
+	int speed = 10;
 
 	bool isAlive = true;
 	bool isHitThePlayer = false;
 
 public:
-	Bug(NetworkLine line, double sTime);
 	Bug(NetworkLine line) : Bug(line, 0) {}
+	Bug(NetworkLine line, double sTime) : Bug(line, sTime, 10) {}
+		Bug(NetworkLine line, double sTime, int speed);
 
-	void Update();
+	void Update(Player& p);
 	void Draw() const override;
-	double getStartTime() { return startTime; }
 
+	void setAlive(bool alive) { isAlive = alive; }
+	
+	double getStartTime() { return startTime; }
 	bool getAlive() { return isAlive; }
 	bool getHitThePlayer() { return isHitThePlayer; }
 	void HitByPlayer();

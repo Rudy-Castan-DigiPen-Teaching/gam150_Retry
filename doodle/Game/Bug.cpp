@@ -11,7 +11,7 @@ Creation date: 04/05/2021
 #include "../Engine/Engine.h"
 #include "Stage3.h"
 
-Bug::Bug(NetworkLine line, double sTime) : currLine(line), startTime(sTime)
+Bug::Bug(NetworkLine line, double sTime, int speed) : currLine(line), startTime(sTime), speed(speed)
 {
 	switch (line)
 	{
@@ -29,14 +29,20 @@ Bug::Bug(NetworkLine line, double sTime) : currLine(line), startTime(sTime)
 	}
 }
 
-void Bug::Update()
+void Bug::Update(Player& p)
 {
 	if (isAlive == true)
 	{
 		position.x -= speed;
 	}
 
-	if (position.x < Stage3::lineX - width * 2) { isAlive = false; }
+	if (position.x < 0 + width )
+	{
+		p.HitByBug();
+		isAlive = false;
+		Engine::GetLogger().LogDebug("Can't kill the bug");
+
+	}
 
 }
 

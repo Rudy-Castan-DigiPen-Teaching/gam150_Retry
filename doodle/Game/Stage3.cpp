@@ -22,6 +22,9 @@ void Stage3::Load()
 	bugs.push_back(Bug(NetworkLine::Middle));
 	bugs.push_back(Bug(NetworkLine::Top, 10));
 	bugs.push_back(Bug(NetworkLine::Bottom, 20));
+	bugs.push_back(Bug(NetworkLine::Middle, 35, 2));
+	bugs.push_back(Bug(NetworkLine::Top, 70, 35));
+	bugs.push_back(Bug(NetworkLine::Bottom, 73, 35));
 }
 
 void Stage3::Unload()
@@ -44,11 +47,19 @@ void Stage3::Update()
 
 	player.Update(Retry::GameScenes::Stage3);
 
+	for (size_t i = 0; i < bugs.size(); i++)
+	{
+		if (bugs[i].getAlive() == false)
+		{
+			bugs.erase(bugs.begin() + i);
+		}
+	}
+
 	for (Bug& b : bugs)
 	{
-		if (b.getStartTime() <= overlapseTime && b.getAlive()==true)
+		if (b.getStartTime() <= overlapseTime && b.getAlive() == true)
 		{
-			b.Update();
+			b.Update(player);
 			if (player.GetIsPlayerHitting() && b.CollideWith(player.GetAttackBox()))
 			{
 				b.HitByPlayer();
@@ -57,6 +68,8 @@ void Stage3::Update()
 			else if (b.CollideWith(player) && b.getHitThePlayer() == false) {
 				player.HitByBug();
 				b.HitThePlayer();
+				Engine::GetLogger().LogDebug("Hit by Bug");
+				b.setAlive(false);
 			}
 		}
 	}
@@ -83,6 +96,23 @@ void Stage3::Draw()
 		if (b.getStartTime() <= overlapseTime)
 		{
 			b.Draw();
+		}
+	}
+
+	if (bugs.empty())
+	{
+		switch (player.GetLives())
+		{
+		case 3:
+			doodle::draw_text("perfect clear!", 40, Engine::GetWindow().GetSize().y / 2);
+			break;
+		case 2:
+		case 1:
+			doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y/2);
+			break;
+		case 0:
+			doodle::draw_text("Fail", 40, Engine::GetWindow().GetSize().y / 2);
+
 		}
 	}
 
