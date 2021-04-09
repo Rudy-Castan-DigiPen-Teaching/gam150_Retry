@@ -29,5 +29,10 @@ public:
 	void Update() override;
 	void Unload() override;
 	void Draw() override;
+
+	bool Identify_v();
+
 	std::string GetName() override { return "Stage1"; };
 };
+
+inline 	std::vector<int> file_input;
