@@ -16,28 +16,35 @@ player(Engine::GetWindow().GetSize() / 2.0, 50, 50) {}
 
 void Stage3::Load()
 {
-	sound.LoadSound("assets/error_003.ogg");
-	sound.SetVolume(killBug, 20);
+	music.openFromFile("assets/dambient_8-bit-loop.wav");
 	gameOver = false;
 	overlapseTime = 0;
 	player.Load();
-	bugs.push_back(Bug(NetworkLine::Middle));
-	bugs.push_back(Bug(NetworkLine::Top, 10));
-	bugs.push_back(Bug(NetworkLine::Bottom, 20));
-	bugs.push_back(Bug(NetworkLine::Middle, 35, 2));
-	bugs.push_back(Bug(NetworkLine::Top, 70, 19));
-	bugs.push_back(Bug(NetworkLine::Bottom, 73, 19));
+	const double time_offset = 1;
+	bugs.push_back(Bug(NetworkLine::Middle, time_offset));
+	bugs.push_back(Bug(NetworkLine::Bottom, 5 + time_offset));
+	bugs.push_back(Bug(NetworkLine::Top, 10 + time_offset));
+	bugs.push_back(Bug(NetworkLine::Bottom, 20 + time_offset));
+	bugs.push_back(Bug(NetworkLine::Middle, 35 + time_offset, 2));
+	bugs.push_back(Bug(NetworkLine::Top, 68 + time_offset, 18));
+	bugs.push_back(Bug(NetworkLine::Top, 70 + time_offset, 18));
+	bugs.push_back(Bug(NetworkLine::Bottom, 75 + time_offset, 20));
 
 	for (Bug& bug : bugs)
 	{
 		bug.Load();
 	}
+
+	music.setLoop(true);
+	music.setVolume(10);
+	music.play();
 }
 
 void Stage3::Unload()
 {
 	doodle::clear_background(100, 100, 255);
 	bugs.clear();
+	music.setLoop(false);
 }
 
 void Stage3::Update()
@@ -75,14 +82,13 @@ void Stage3::Draw()
 	/*doodle::draw_line(lineX, Engine::GetWindow().GetSize().y * 0.75, Engine::GetWindow().GetSize().x - lineX, Engine::GetWindow().GetSize().y * 0.75);
 	doodle::draw_line(lineX, Engine::GetWindow().GetSize().y * 0.5, Engine::GetWindow().GetSize().x - lineX, Engine::GetWindow().GetSize().y * 0.5);
 	doodle::draw_line(lineX, Engine::GetWindow().GetSize().y * 0.25, Engine::GetWindow().GetSize().x - lineX, Engine::GetWindow().GetSize().y * 0.25);*/
-	//doodle::draw_line(-500, Engine::GetWindow().GetSize().y * 0.75, 500, Engine::GetWindow().GetSize().y * 0.75);
+
 	doodle::apply_translate(Engine::GetWindow().GetSize().x * 0.5, Engine::GetWindow().GetSize().y * 0.5);
-	doodle::apply_scale(1+sin(doodle::ElapsedTime*10)/400);
+	doodle::apply_scale(1 + sin(doodle::ElapsedTime * 13) / 330);
 	doodle::draw_line(-500, Engine::GetWindow().GetSize().y * 0.25, 500, Engine::GetWindow().GetSize().y * 0.25);
 	doodle::draw_line(-500, 0, 500, 0);
 	doodle::draw_line(-500, -Engine::GetWindow().GetSize().y * 0.25, 500, -Engine::GetWindow().GetSize().y * 0.25);
-	//doodle::draw_line(-500, Engine::GetWindow().GetSize().y * 0.25, 500, Engine::GetWindow().GetSize().y * 0.25); */
-		doodle::pop_settings();
+	doodle::pop_settings();
 
 	if (gameOver)
 	{

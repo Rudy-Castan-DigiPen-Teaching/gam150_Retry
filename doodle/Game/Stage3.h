@@ -16,12 +16,7 @@ Creation date: 03/23/2021
 
 class Stage3 : public Retry::Scene
 {
-	enum soundIndex : int {
-		killBug, looseHeart
-	};
-
-	Retry::Sound sound;
-
+	sf::Music music;
 public:
 	static constexpr double lineX = 200;
 private:
