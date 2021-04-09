@@ -31,7 +31,7 @@ private:
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;
-	int Hearts = 3;
+
 public:
 	Stage3();
 	void Load() override;
@@ -40,6 +40,5 @@ public:
 	void Draw() override;
 	std::string GetName() override { return "Stage3"; }
 
-	void LooseHeart() { if(Hearts > 0) Hearts -= 1; }
 	bool isAllDead();
 };

@@ -9,7 +9,7 @@ Player::Player(math::vec2 position, double width, double height)
 	: Object(position, width, height), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
-	attackBox({ position.x + width, position.y }, width * 1.5, height, { width / 2, height / 2 })
+	attackBox({ position.x + width, position.y }, width * 1.8, height, { width / 2, height / 2 })
 {
 	hotspot = { width / 2, height / 2 };
 }
@@ -22,8 +22,8 @@ void Player::Load()
 {
 	sound.LoadSound("assets/error_002.ogg");
 	sound.LoadSound("assets/scratch_001.ogg");
-	sound.SetVolume(looseHeart, 10);
-	sound.SetVolume(attack, 10);
+	sound.SetVolume(looseHeart, 30);
+	sound.SetVolume(attack, 20);
 
 	position = startPosition;
 	currLine = NetworkLine::Middle;
@@ -90,7 +90,7 @@ void Player::UpdateStage3()
 	{
 		isHitting = false;
 	}
-	else { attackBox.SetPosition({ 0 }); }
+	else { attackBox.SetPosition({ -100 }); }
 }
 
 void Player::Draw() const
