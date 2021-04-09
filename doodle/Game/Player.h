@@ -11,6 +11,7 @@ Creation date: 03/28/2021
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
+#include "../Engine/Sound.h"
 
 enum class NetworkLine
 {
@@ -19,6 +20,12 @@ enum class NetworkLine
 
 class Player : public Retry::Object
 {
+	Retry::Sound sound;
+
+	enum SoundIndex
+	{
+		looseHeart, attack
+	};
 private:
 	math::vec2 startPosition;
 

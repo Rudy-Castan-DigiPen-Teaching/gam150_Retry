@@ -9,7 +9,7 @@ Player::Player(math::vec2 position, double width, double height)
 	: Object(position, width, height), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
-	attackBox({ position.x + width, position.y }, width, height, { width / 2, height / 2 })
+	attackBox({ position.x + width, position.y }, width * 1.5, height, { width / 2, height / 2 })
 {
 	hotspot = { width / 2, height / 2 };
 }
@@ -20,6 +20,11 @@ Player::Player(double x, double y, double width, double height)
 
 void Player::Load()
 {
+	sound.LoadSound("assets/error_002.ogg");
+	sound.LoadSound("assets/scratch_001.ogg");
+	sound.SetVolume(looseHeart, 10);
+	sound.SetVolume(attack, 10);
+
 	position = startPosition;
 	currLine = NetworkLine::Middle;
 	lives = 3;
@@ -45,8 +50,6 @@ void Player::Update(Retry::GameScenes scene)
 
 void Player::UpdateStage3()
 {
-	//Engine::GetLogger().LogDebug("isMoved: " + std::to_string(isMoved));
-
 	if (isMoved == false)
 	{
 		if (moveUpKey.IsKeyDown() && currLine < NetworkLine::Top)
@@ -77,13 +80,17 @@ void Player::UpdateStage3()
 		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.25 };
 		break;
 	}
-
-	if (Engine::GetMouseInput().IsMousePressed())
+	if (Engine::GetMouseInput().IsMousePressed() && isHitting == false)
 	{
+		sound.PlaySound(1);
 		isHitting = true;
 		attackBox.SetPosition({ position.x + width, position.y });
 	}
-	else { isHitting = false; }
+	else if (Engine::GetMouseInput().IsMouseReleased())
+	{
+		isHitting = false;
+	}
+	else { attackBox.SetPosition({ 0 }); }
 }
 
 void Player::Draw() const
@@ -93,16 +100,21 @@ void Player::Draw() const
 	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 	doodle::pop_settings();
 
-	if (Engine::GetMouseInput().IsMousePressed())
+	if (Engine::GetMouseInput().IsMousePressed() && isHitting)
 	{
+		doodle::push_settings();
+		doodle::set_fill_color(0, 255, 0);
 		attackBox.Draw();
+		doodle::pop_settings();
+
 	}
 }
 
 void Player::HitByBug()
 {
+	sound.PlaySound(looseHeart);
 	if (lives > 0)
-	{
+	{	
 		lives -= 1;
 	}
 }

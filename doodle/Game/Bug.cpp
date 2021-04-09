@@ -29,28 +29,48 @@ Bug::Bug(NetworkLine line, double sTime, int speed) : currLine(line), startTime(
 	}
 }
 
-void Bug::Update(Player& p)
+void Bug::Load()
+{
+	sound.LoadSound("assets/confirmation_004.ogg");
+	sound.SetVolume(dead, 20);
+}
+
+void Bug::Update(Player& player)
 {
 	if (isAlive == true)
 	{
 		position.x -= speed;
+
+		if (position.x < 0 + width)
+		{
+			player.HitByBug();
+			isAlive = false;
+			Engine::GetLogger().LogDebug("Can't kill the bug");
+		}
+
+		if (player.GetIsPlayerHitting() && CollideWith(player.GetAttackBox()))
+		{
+			sound.PlaySound(dead);
+			HitByPlayer();
+			Engine::GetLogger().LogDebug("Hit the Bug");
+		}
+
+		if (CollideWith(player) && getHitThePlayer() == false)
+		{
+			player.HitByBug();
+			HitThePlayer();
+			setAlive(false);
+		}
 	}
-
-	if (position.x < 0 + width )
-	{
-		p.HitByBug();
-		isAlive = false;
-		Engine::GetLogger().LogDebug("Can't kill the bug");
-
-	}
-
 }
 
 void Bug::Draw() const
 {
 	doodle::push_settings();
-	if (isAlive == false) { doodle::set_fill_color(0); }
-	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+	doodle::set_fill_color(100);
+	if (isAlive) {
+		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+	}
 	doodle::pop_settings();
 }
 

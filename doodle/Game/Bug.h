@@ -9,11 +9,12 @@ Creation date: 04/05/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Object.h"
-#include "../Engine/Input.h"
 #include "Player.h"
 
 class Bug : public Retry::Object
 {
+	Retry::Sound sound;
+	enum SoundIndex { dead };
 private:
 	NetworkLine currLine;
 
@@ -22,20 +23,23 @@ private:
 
 	bool isAlive = true;
 	bool isHitThePlayer = false;
+	bool crossedTheLine = false;
 
 public:
 	Bug(NetworkLine line) : Bug(line, 0) {}
 	Bug(NetworkLine line, double sTime) : Bug(line, sTime, 10) {}
-		Bug(NetworkLine line, double sTime, int speed);
+	Bug(NetworkLine line, double sTime, int speed);
 
-	void Update(Player& p);
+	void Load();
+	void Update(Player& player);
 	void Draw() const override;
 
 	void setAlive(bool alive) { isAlive = alive; }
-	
+
 	double getStartTime() { return startTime; }
 	bool getAlive() { return isAlive; }
 	bool getHitThePlayer() { return isHitThePlayer; }
+	bool getCrossedTheLine() { return crossedTheLine; }
 	void HitByPlayer();
 	void HitThePlayer();
 
