@@ -33,8 +33,9 @@ void Stage1::Draw()
 	doodle::push_settings();
 	doodle::set_font_size(30);
 	doodle::draw_text("Heart : " + std::to_string(heart), 100, 650);
-	doodle::draw_text("File : " + std::to_string(file), 100, 600);
-	doodle::draw_text("File contents ", 100, 550);
+	doodle::draw_text("File : " + std::to_string(file) + " / 3 ", 100, 600);
+	doodle::draw_text("File contents : " + std::to_string(file_input.size()) + " / 3 ", 100, 550);
+
 	doodle::pop_settings();
 	for (int i = 0; i < num.size(); i++)
 	{
@@ -44,7 +45,6 @@ void Stage1::Draw()
 
 void Stage1::Update()
 {
-
 	if (StageNext.IsKeyReleased() == true || file == 3)
 	{
 	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
@@ -55,7 +55,6 @@ void Stage1::Update()
 	}
 
 	player.Update(Retry::GameScenes::Stage1);
-
 
 
 	if (time % 20 == 0)
