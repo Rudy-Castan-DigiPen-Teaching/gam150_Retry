@@ -6,6 +6,8 @@ namespace Retry
 {
 	void Object::Update() {}
 
+	void Object::Load() {}
+
 	void Object::Draw() const
 	{
 		doodle::push_settings();
@@ -13,7 +15,7 @@ namespace Retry
 		doodle::pop_settings();
 	}
 
-	bool Object::CollideWith(Object& obj)
+	bool Object::CollideWith(const Object& obj)
 	{
 		math::vec2 corner = position - hotspot;
 		math::vec2 objCorner = obj.GetPosition() - obj.GetHotspot();
@@ -28,29 +30,3 @@ namespace Retry
 		return false;
 	}
 }
-
-
-
-
-
-/*
-
-class DataaBox : public Object
-{
-private:
-	DataKind data;
-
-public:
-	enum class DataKind {
-		
-		red,
-		green,
-		blue
-
-	}
-
-	DataaBox(DataKind data) : data(data) {}
-
-
-
-*/
