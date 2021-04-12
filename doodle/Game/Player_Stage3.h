@@ -18,7 +18,7 @@ enum class NetworkLine
 	Bottom, Middle, Top
 };
 
-class Player : public Retry::Object
+class Player_Stage3 : public Retry::Object
 {
 	Retry::Sound sound;
 
@@ -42,8 +42,8 @@ private:
 	Object attackBox;
 
 public:
-	Player(math::vec2 position, double width, double height);
-	Player(double x, double y, double width, double height);
+	Player_Stage3(math::vec2 position, double width, double height);
+	Player_Stage3(double x, double y, double width, double height);
 
 	void Load();
 	void Update(Retry::GameScenes scene);

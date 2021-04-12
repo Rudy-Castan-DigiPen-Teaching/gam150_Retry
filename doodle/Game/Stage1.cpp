@@ -10,8 +10,9 @@ Creation date: 03/23/2021
 #include "Stage1.h"
 #include <doodle/drawing.hpp>
 
-Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter),
-player(0,50,50){}
+Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter)
+//player(0,50,50)
+{}
 
 void Stage1::Load()
 {
@@ -20,7 +21,7 @@ void Stage1::Load()
 void Stage1::Draw()
 {
 	doodle::clear_background(100, 20, 100, 255);
-	player.Draw();
+	//player.Draw();
 }
 
 void Stage1::Update()
@@ -29,7 +30,7 @@ void Stage1::Update()
 	{
 	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 	}
-	player.Update(Retry::GameScenes::Stage1);
+	//player.Update(Retry::GameScenes::Stage1);
 }
 
 void Stage1::Unload()

@@ -1,11 +1,11 @@
-#include "Player.h"
+#include "Player_Stage3.h"
 
 #include <functional>
 
 #include "../Engine/Engine.h"
 #include "Stage3.h"
 
-Player::Player(math::vec2 position, double width, double height)
+Player_Stage3::Player_Stage3(math::vec2 position, double width, double height)
 	: Object(position, width, height), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
@@ -13,12 +13,12 @@ Player::Player(math::vec2 position, double width, double height)
 {
 	hotspot = { width / 2, height / 2 };
 }
-Player::Player(double x, double y, double width, double height)
-	: Player({ x,y }, width, height)
+Player_Stage3::Player_Stage3(double x, double y, double width, double height)
+	: Player_Stage3({ x,y }, width, height)
 {
 }
 
-void Player::Load()
+void Player_Stage3::Load()
 {
 	sound.LoadSound("assets/error_002.ogg");
 	sound.LoadSound("assets/scratch_001.ogg");
@@ -32,7 +32,7 @@ void Player::Load()
 	isHitting = false;
 }
 
-void Player::Update(Retry::GameScenes scene)
+void Player_Stage3::Update(Retry::GameScenes scene)
 {
 	switch (scene)
 	{
@@ -48,7 +48,7 @@ void Player::Update(Retry::GameScenes scene)
 	}
 }
 
-void Player::UpdateStage3()
+void Player_Stage3::UpdateStage3()
 {
 	if (isMoved == false)
 	{
@@ -93,7 +93,7 @@ void Player::UpdateStage3()
 	else { attackBox.SetPosition({ -100 }); }
 }
 
-void Player::Draw() const
+void Player_Stage3::Draw() const
 {
 	doodle::push_settings();
 	doodle::set_fill_color(255, 85 * lives, 85 * lives);
@@ -110,7 +110,7 @@ void Player::Draw() const
 	}
 }
 
-void Player::HitByBug()
+void Player_Stage3::HitByBug()
 {
 	sound.PlaySound(looseHeart);
 	if (lives > 0)

@@ -25,7 +25,7 @@
     <ClCompile Include="Engine\Window.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player.cpp">
+    <ClCompile Include="Game\Player_Stage3.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Splash.cpp">
@@ -91,7 +91,7 @@
     <ClInclude Include="Engine\Window.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player.h">
+    <ClInclude Include="Game\Player_Stage3.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Splash.h">

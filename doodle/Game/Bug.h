@@ -9,7 +9,7 @@ Creation date: 04/05/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Object.h"
-#include "Player.h"
+#include "Player_Stage3.h"
 
 class Bug : public Retry::Object
 {
@@ -31,7 +31,7 @@ public:
 	Bug(NetworkLine line, double sTime, int speed);
 
 	void Load();
-	void Update(Player& player);
+	void Update(Player_Stage3& player);
 	void Draw() const override;
 
 	void setAlive(bool alive) { isAlive = alive; }

@@ -10,7 +10,7 @@ Creation date: 03/23/2021
 #pragma once
 #include <vector>
 #include "../Engine/Scene.h"    // Scene (Base class)
-#include "Player.h"
+#include "Player_Stage3.h"
 #include "Bug.h"
 #include "../Engine/Sound.h"
 
@@ -22,7 +22,7 @@ public:
 private:
 	Retry::InputKey StageNext;
 	Retry::InputKey Reload;
-	Player player;
+	Player_Stage3 player;
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;

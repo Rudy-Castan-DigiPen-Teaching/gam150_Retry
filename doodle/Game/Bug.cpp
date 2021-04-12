@@ -35,7 +35,7 @@ void Bug::Load()
 	sound.SetVolume(dead, 20);
 }
 
-void Bug::Update(Player& player)
+void Bug::Update(Player_Stage3& player)
 {
 	if (isAlive == true)
 	{
