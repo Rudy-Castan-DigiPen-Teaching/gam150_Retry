@@ -24,8 +24,11 @@ public:
 	int GetGoalDataNum() const { return goalDataNum; }
 	int GetCurrDataNum() const { return currDataNum; }
 	DataBox::DataType GetDataType() const { return dataType; }
+
+	bool reachedGoal;
 private:
 	DataBox::DataType dataType;
 	int goalDataNum;
-	int currDataNum = 0;
+	int currDataNum;
+
 };

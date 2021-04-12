@@ -19,7 +19,7 @@ public:
 		GREEN,
 		BLUE
 	};
-	DataBox(DataType dataKind, const Player& player);
+	DataBox(DataType dataKind);
 
 	void Load() override;
 	void Update() override;
@@ -29,11 +29,12 @@ public:
 
 	bool isStacked;
 	bool isOnBoard;
+	bool isTransfered;
 
+	DataBox& operator=(const DataBox&) = default;
 private:
 	DataType dataType;
 
-	const Player& player;
-
+	//const Player& player;
 
 };

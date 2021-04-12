@@ -37,8 +37,8 @@ void Player::Draw() const
 }
 
 void Player::UpdateStage2() {
-	if (moveRightKey.IsKeyDown() == true) { position.x += 5; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= 5; }
+	if (moveRightKey.IsKeyDown() == true) { position.x += 7; }
+	if (moveLeftKey.IsKeyDown() == true) { position.x -= 7; }
 	if (Engine::GetMouseInput().IsMousePressed()) {}
 
 }

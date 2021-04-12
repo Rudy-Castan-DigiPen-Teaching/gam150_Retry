@@ -30,29 +30,3 @@ namespace Retry
 		return false;
 	}
 }
-
-
-
-
-
-/*
-
-class DataaBox : public Object
-{
-private:
-	DataKind data;
-
-public:
-	enum class DataKind {
-		
-		red,
-		green,
-		blue
-
-	}
-
-	DataaBox(DataKind data) : data(data) {}
-
-
-
-*/

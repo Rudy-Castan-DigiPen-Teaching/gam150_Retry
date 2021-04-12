@@ -12,7 +12,8 @@ Creation date: 04/01/2021
 #include "Stage2.h"
 #include "DataBoard.h"
 
-DataBox::DataBox(DataType dataType, const Player& player) : Object({100, Stage2::floor}, 50, 50), dataType(dataType), isStacked(true), isOnBoard(false), player(player)
+DataBox::DataBox(DataType dataType) : Object({ 100, Stage2::floor }, 50, 50),
+dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false)
 {
 	hotspot = { width / 2, 0 };
 }
@@ -25,26 +26,7 @@ void DataBox::Load()
 
 void DataBox::Update() 
 {
-
-	if (isStacked == false && isOnBoard == false) {
-		position.x = player.GetPosition().x + width;
-	}
-
 	
-	// position.y = databoard.height + height * (databoard.GetCurrDataNum() - 1)
-	// 여기서 데이터박스를 어케 올려야되지?? ㅜㅜ 데이터박스도 레퍼런스로 가져와야될듯
-	// 앓~~ 살려줘
-	/*
-	* 그러니가 데이터박스를 레퍼런스로 가져와서
-	* 어.. 레퍼런스로 가져오는건 같은 데이터타입이어야겠지?
-	* 그럼 또 스테이지에셔 for문 조지게 돌려야되잖아 ㅋㅋ 에휴...
-	* Too many loops
-	* if (databoard.GetDataType() == databox.GetDataType()) {
-	*	databox.
-	* }
-	*/
-	
-
 }
 
 void DataBox::Draw() const 

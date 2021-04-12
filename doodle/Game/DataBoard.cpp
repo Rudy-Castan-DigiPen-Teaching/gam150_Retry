@@ -10,7 +10,7 @@ Creation date: 04/05/2021
 #include "DataBoard.h"
 #include <doodle/random.hpp>
 
-DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 80, 25), dataType(datatype) 
+DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 80, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
 {
 	position.x = static_cast<double>(datatype) * 100 + 500;
 	goalDataNum = doodle::random(2, 5);
@@ -19,13 +19,15 @@ DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 80
 void DataBoard::Load() 
 {
 	goalDataNum = doodle::random(2, 5);
+	currDataNum = 0;
 }
 
 void DataBoard::Update()
 {
-	if (currDataNum == goalDataNum) 
+	if (currDataNum >= goalDataNum) 
 	{
 		currDataNum = 0;
+		goalDataNum = doodle::random(2, 5);
 	}
 }
 
@@ -44,5 +46,6 @@ void DataBoard::Draw() const
 		break;
 	}
 	doodle::draw_rectangle(position.x, position.y, width, height);
+	doodle::draw_text(std::to_string(currDataNum) + "/" + std::to_string(goalDataNum), position.x, 600);
 	doodle::pop_settings();
 }

@@ -22,10 +22,13 @@ private:
     std::vector<DataBox> dataBoxes;
     std::vector<DataBoard> dataBoard;
     int stackedData;
+    int currTransferNum;
 
     int maxDataNum = 1;
+    static constexpr int goalTranasferNum = 5;
 
     Retry::InputKey StageNext;
+    Retry::InputKey StageReload;
 public:
     Stage2();
 
