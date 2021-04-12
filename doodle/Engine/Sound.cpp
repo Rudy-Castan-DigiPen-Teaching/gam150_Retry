@@ -9,7 +9,6 @@ Creation date: 04/10/2021
 -----------------------------------------------------------------*/
 #include "Sound.h"
 #include "Engine.h"
-#include <memory>
 
 void Retry::Sound::LoadSound(const std::string& file_path)
 {

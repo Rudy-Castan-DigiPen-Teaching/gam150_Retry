@@ -82,7 +82,7 @@ void Player_Stage3::UpdateStage3()
 	}
 	if (Engine::GetMouseInput().IsMousePressed() && isHitting == false)
 	{
-		sound.PlaySound(1);
+		sound.PlaySound(attack);
 		isHitting = true;
 		attackBox.SetPosition({ position.x + width, position.y });
 	}

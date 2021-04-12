@@ -26,6 +26,7 @@ class Player_Stage3 : public Retry::Object
 	{
 		looseHeart, attack
 	};
+
 private:
 	math::vec2 startPosition;
 
