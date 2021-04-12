@@ -12,8 +12,8 @@ class TestStage : public Retry::Scene
 private:
     Retry::InputKey StageNext;
 
-    TestObject test1;
-    Retry::Object test2;
+    TestObject test1;             // = player
+    Retry::Object test2;          // 부동 물체 
 
 public:
     TestStage();

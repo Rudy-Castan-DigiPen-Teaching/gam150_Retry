@@ -18,6 +18,8 @@ namespace Retry
 	{
 		doodle::create_window(windowName, 1440, 810);
 		windowSize = { 1440,810 };
+
+		doodle::set_frame_of_reference(doodle::FrameOfReference::RightHanded_OriginBottomLeft);
 	}
 
 	void Window::Update() 

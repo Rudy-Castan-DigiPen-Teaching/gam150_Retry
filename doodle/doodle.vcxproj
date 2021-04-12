@@ -123,9 +123,10 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClCompile Include="Engine\Sprite.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
-    <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\Player_Stage1.cpp" />
     <ClCompile Include="Game\Splash.cpp" />
     <ClCompile Include="Game\Stage1.cpp" />
+    <ClCompile Include="Game\Stage1_Object.cpp" />
     <ClCompile Include="Game\Stage2.cpp" />
     <ClCompile Include="Game\Stage3.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
@@ -145,9 +146,10 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
-    <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\Player_Stage1.h" />
     <ClInclude Include="Game\Splash.h" />
     <ClInclude Include="Game\Stage1.h" />
+    <ClInclude Include="Game\Stage1_Object.h" />
     <ClInclude Include="Game\Stage2.h" />
     <ClInclude Include="Game\Stage3.h" />
     <ClInclude Include="Game\TestObject.h" />

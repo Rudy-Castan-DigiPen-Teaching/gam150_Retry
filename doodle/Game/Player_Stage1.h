@@ -10,18 +10,15 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include "../Engine/SceneManager.h"
+#include <doodle/doodle.hpp>
 
-class Player : public Retry::Object
+class Player_Stage1 : public Retry::Object
 {
-protected:
-	Retry::InputKey moveRightKey;
-	Retry::InputKey moveLeftKey;
-	Retry::InputKey moveUpKey;
-	Retry::InputKey moveDownKey;
-
-public:
-	Player(math::vec2 position, double width, double height);
-	Player(double x, double y, double width, double height);
-	virtual void Update() override;
-	virtual void Draw() const override;
+	public:
+		Player_Stage1(math::vec2 position, double width, double height);
+		Player_Stage1(double x, double y, double width, double height);
+		void Update(Retry::GameScenes scene);
+		void Draw() const override;
+		void UpdateStage1();
 };

@@ -27,8 +27,8 @@ namespace Retry
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::Splash].get();
-		queuedScene = scenes[GameScenes::Splash].get();
+		currentScene = scenes[GameScenes::Stage1].get();
+		queuedScene = scenes[GameScenes::Stage1].get();
 	}
 
 	void SceneManager::Update() 
