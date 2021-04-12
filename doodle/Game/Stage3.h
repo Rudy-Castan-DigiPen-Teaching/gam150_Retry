@@ -8,19 +8,32 @@ Author: Team RETRY - Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 #pragma once
-#include "../Engine/Engine.h" // GetLogger
+#include <vector>
 #include "../Engine/Scene.h"    // Scene (Base class)
-#include <doodle/input.hpp>
+#include "Player_Stage3.h"
+#include "Bug.h"
+#include "../Engine/Sound.h"
 
 class Stage3 : public Retry::Scene
 {
-private:
-    Retry::InputKey StageNext;
+	sf::Music music;
 public:
-    Stage3();
-    void Load() override;
-    void Update() override;
-    void Unload() override;
-    void Draw() override;
-    std::string GetName() override { return "Stage3"; };
+	static constexpr double lineX = 200;
+private:
+	Retry::InputKey StageNext;
+	Retry::InputKey Reload;
+	Player_Stage3 player;
+	std::vector<Bug> bugs;
+	double overlapseTime = 0;
+	bool gameOver = false;
+
+public:
+	Stage3();
+	void Load() override;
+	void Update() override;
+	void Unload() override;
+	void Draw() override;
+	std::string GetName() override { return "Stage3"; }
+
+	bool isAllDead();
 };

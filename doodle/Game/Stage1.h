@@ -21,16 +21,8 @@ private:
 	Player_Stage1 player;
 	Stage1_Object s1;
 
-	int time, score, heart, file, dropspeed;
-
 public:
-	Stage1();
-	void Load() override;
-	void Update() override;
 	void Unload() override;
-	void Draw() override;
-
-	bool Identify_v();
 
 	std::string GetName() override { return "Stage1"; };
 };

@@ -26,6 +26,7 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player_Stage1.cpp">
+    <ClCompile Include="Game\Player_Stage3.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Splash.cpp">
@@ -64,6 +65,11 @@
     </ClCompile>
     <ClCompile Include="Game\Player_Stage2.cpp">
       <Filter>Game</Filter>
+    <ClCompile Include="Game\Bug.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sound.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +102,7 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player_Stage1.h">
+    <ClInclude Include="Game\Player_Stage3.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Splash.h">
@@ -128,6 +135,11 @@
     </ClInclude>
     <ClInclude Include="Game\Player_Stage2.h">
       <Filter>Game</Filter>
+    <ClInclude Include="Game\Bug.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sound.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
