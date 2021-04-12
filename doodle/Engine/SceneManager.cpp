@@ -90,10 +90,4 @@ namespace Retry
 	{
 		queuedScene = nullptr;
 	}
-
-	void SceneManager::ReloadScene()
-	{
-		state = State::UNLOAD;
-	}
-
 }

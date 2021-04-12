@@ -56,13 +56,6 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage1_Object.cpp">
-    <ClCompile Include="Game\DataBox.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\DataBoard.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player_Stage2.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,13 +113,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Stage1_Object.h">
-    <ClInclude Include="Game\DataBox.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\DataBoard.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player_Stage2.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

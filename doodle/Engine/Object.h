@@ -28,11 +28,10 @@ namespace Retry
 		Object(math::vec2 pos, double w, double h) : position(pos), width(w), height(h) {}
 		~Object() {}
 
-		virtual void Load();
 		virtual void Update();
 		virtual void Draw() const;
 
-		bool CollideWith(const Object& obj);
+		bool CollideWith(Object& obj);
 
 		void SetPosition(math::vec2 newPos) { position = newPos; }
 		math::vec2 GetPosition() const { return position; }
