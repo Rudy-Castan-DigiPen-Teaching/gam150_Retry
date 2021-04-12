@@ -11,16 +11,32 @@ Creation date: 03/23/2021
 #include "../Engine/Input.h"
 #include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"
+#include "Player_Stage2.h"
+#include "DataBox.h"
+#include "DataBoard.h"
 
 class Stage2 : public Retry::Scene
 {
 private:
+    Player_Stage2 player;
+    std::vector<DataBox> dataBoxes;
+    std::vector<DataBoard> dataBoard;
+    int stackedData;
+    int currTransferNum;
+
+    int maxDataNum = 1;
+    static constexpr int goalTranasferNum = 5;
+
     Retry::InputKey StageNext;
+    Retry::InputKey StageReload;
 public:
     Stage2();
+
     void Load() override;
     void Update() override;
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Stage2"; };
+
+    static constexpr double floor = 200;
 };
