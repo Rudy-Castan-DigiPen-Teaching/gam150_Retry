@@ -100,7 +100,7 @@ void Stage2::Update()
 		dataBoard[i].Update();
 	}
 
-	player.Update(Retry::GameScenes::Stage2);
+	player.Update();
 
 	if (StageNext.IsKeyReleased() == true)
 	{

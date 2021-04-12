@@ -11,14 +11,14 @@ Creation date: 03/23/2021
 #include "../Engine/Input.h"
 #include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"
-#include "Player.h"
+#include "Player_Stage2.h"
 #include "DataBox.h"
 #include "DataBoard.h"
 
 class Stage2 : public Retry::Scene
 {
 private:
-    Player player;
+    Player_Stage2 player;
     std::vector<DataBox> dataBoxes;
     std::vector<DataBoard> dataBoard;
     int stackedData;

@@ -8,7 +8,6 @@ Author: Team RETRY - Yeongju Lee
 Creation date: 04/01/2021
 -----------------------------------------------------------------*/
 #include "DataBox.h"
-#include "Player.h"
 #include "Stage2.h"
 #include "DataBoard.h"
 

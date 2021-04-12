@@ -34,7 +34,4 @@ public:
 	DataBox& operator=(const DataBox&) = default;
 private:
 	DataType dataType;
-
-	//const Player& player;
-
 };

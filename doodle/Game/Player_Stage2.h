@@ -12,22 +12,18 @@ Creation date: 03/28/2021
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
 
-class Player : public Retry::Object
+class Player_Stage2 : public Retry::Object
 {
 private:
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
-	Retry::InputKey moveUpKey;
-	Retry::InputKey moveDownKey;
-
 
 public:
-	Player(math::vec2 position, double width, double height);
-	Player(double x, double y, double width, double height);
+	Player_Stage2(math::vec2 position, double width, double height);
+	Player_Stage2(double x, double y, double width, double height);
 
 	void Load() override;
-	void Update(Retry::GameScenes scene);
-	void UpdateStage2();
+	void Update() override;
 	void Draw() const override;
 
 	bool hasDataBox;	// Stage 2
