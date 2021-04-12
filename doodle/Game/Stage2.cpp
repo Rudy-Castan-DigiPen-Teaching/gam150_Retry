@@ -104,8 +104,8 @@ void Stage2::Update()
 
 	if (StageNext.IsKeyReleased() == true)
 	{
-		// Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
-		Engine::GetSceneManager().Shutdown();
+		 Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
+		//Engine::GetSceneManager().Shutdown();
 	}
 	if (StageReload.IsKeyReleased() == true)
 	{

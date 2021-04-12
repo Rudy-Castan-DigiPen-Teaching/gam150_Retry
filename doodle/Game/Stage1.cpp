@@ -45,7 +45,7 @@ void Stage1::Draw()
 void Stage1::Update()
 {
 
-	if (StageNext.IsKeyReleased() == true || Engine::GetMouseInput().IsMouseReleased() == true || file == 3)
+	if (StageNext.IsKeyReleased() == true || file == 3)
 	{
 	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 	}
