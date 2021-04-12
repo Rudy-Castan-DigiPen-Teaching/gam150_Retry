@@ -10,7 +10,7 @@ Player_Stage1::Player_Stage1(double x, double y, double width, double height)
 {
 }
 
-void Player_Stage1::Update(Retry::GameScenes scene)
+void Player_Stage1::Update([[maybe_unused]]Retry::GameScenes scene)
 {
 	UpdateStage1();
 }
