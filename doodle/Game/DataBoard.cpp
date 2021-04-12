@@ -12,7 +12,7 @@ Creation date: 04/05/2021
 
 DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 80, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
 {
-	position.x = static_cast<double>(datatype) * 100 + 500;
+	position.x = static_cast<double>(datatype) * 200 + 500;
 	goalDataNum = doodle::random(2, 5);
 }
 

@@ -10,8 +10,10 @@ Creation date: 03/23/2021
 #include "Stage2.h"
 #include <doodle/drawing.hpp>
 #include <doodle/random.hpp>
+#include <doodle/doodle.hpp>
 
-Stage2::Stage2() : StageReload(Retry::InputKey::Keyboard::Enter), StageNext(Retry::InputKey::Keyboard::Escape), player({200, Stage2::floor}, 50, 50), stackedData(1), currTransferNum(0) {}
+Stage2::Stage2() : StageReload(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter),
+player({200, Stage2::floor}, 50, 50), stackedData(1), currTransferNum(0), timer(0), gameStarted(false), stageCleared(false) {}
 
 void Stage2::Load()
 {
@@ -32,80 +34,103 @@ void Stage2::Load()
 	{
 		dataBoard.push_back(DataBoard(Stage2::floor, static_cast<DataBox::DataType>(i)));
 	}
+
+	timer = 0;
+	gameStarted = false;
 }
 
 void Stage2::Update()
 {
-	
-	if (stackedData < maxDataNum) {
-		int num = doodle::random(3);
 
-		dataBoxes.push_back(DataBox(static_cast<DataBox::DataType>(num)));
-		++stackedData;
-		Engine::GetLogger().LogDebug("New Data Stacked");
-	}
-
-	for (int i = 0; i < dataBoxes.size(); ++i) {
-		
-		if (player.hasDataBox == false && dataBoxes[i].GetPosition().y == floor && dataBoxes[i].isStacked == true &&
-			player.CollideWith(dataBoxes[i]) == true && Engine::GetMouseInput().IsMousePressed() == true) 
-		{
-			dataBoxes[i].isStacked = false;
-			player.hasDataBox = true;
-			--stackedData;
-		}
-
-		if (dataBoxes[i].isStacked == false && dataBoxes[i].isOnBoard == false) {
-			dataBoxes[i].SetPosition(math::vec2{ player.GetPosition().x + dataBoxes[i].GetSize().x, Stage2::floor });
-		}
-
-		for (int j = 0; j < dataBoard.size(); ++j) {
-			if (dataBoxes[i].GetDataType() == dataBoard[j].GetDataType())
-			{
-				if (player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
-					Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isOnBoard == false)
-				{
-					player.hasDataBox = false;
-					dataBoxes[i].isOnBoard = true;
-					dataBoard[j].AddCurrDataNum(1);
-				}
-
-				if (dataBoxes[i].isOnBoard == true && dataBoard[j].GetCurrDataNum() >= dataBoard[j].GetGoalDataNum())
-				{
-					dataBoard[j].reachedGoal = true;
-				}
-			}
-		}
-		
-		dataBoxes[i].Update();
-	}
-	
-	for (int i = 0; i < dataBoard.size(); ++i)
+	if (gameStarted == false && Engine::GetMouseInput().IsMouseReleased() == true)
 	{
-		if (dataBoard[i].reachedGoal == true)
-		{
-			for (int j = 0; j < dataBoxes.size(); ++j)
-			{
-				if (dataBoxes[j].isOnBoard == true && dataBoard[i].GetDataType() == dataBoxes[j].GetDataType() && j < dataBoxes.size())
-				{
-					dataBoxes.erase(dataBoxes.begin() + j);
-					Engine::GetLogger().LogDebug("Data box in vector erased");
-					--j;
-				}
+		gameStarted = true;
+	}
+	else if (gameStarted == true && stageCleared == false) {
+		timer += doodle::DeltaTime;
+
+		if (timer <= timeLimit) {
+			if (stackedData < maxDataNum) {
+				int num = doodle::random(3);
+
+				dataBoxes.push_back(DataBox(static_cast<DataBox::DataType>(num)));
+				++stackedData;
+				Engine::GetLogger().LogDebug("New Data Stacked");
 			}
 
-			++currTransferNum;
-			dataBoard[i].reachedGoal = false;
+			for (int i = 0; i < dataBoxes.size(); ++i) {
+
+				if (player.hasDataBox == false && dataBoxes[i].GetPosition().y == floor && dataBoxes[i].isStacked == true &&
+					player.CollideWith(dataBoxes[i]) == true && Engine::GetMouseInput().IsMousePressed() == true)
+				{
+					dataBoxes[i].isStacked = false;
+					player.hasDataBox = true;
+					--stackedData;
+				}
+
+				if (dataBoxes[i].isStacked == false && dataBoxes[i].isOnBoard == false) {
+					dataBoxes[i].SetPosition(math::vec2{ player.GetPosition().x + dataBoxes[i].GetSize().x, Stage2::floor });
+				}
+
+				for (int j = 0; j < dataBoard.size(); ++j) {
+					if (dataBoxes[i].GetDataType() == dataBoard[j].GetDataType())
+					{
+						if (dataBoxes[i].isStacked == false && player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
+							Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isOnBoard == false)
+						{
+							player.hasDataBox = false;
+							dataBoxes[i].isOnBoard = true;
+							dataBoard[j].AddCurrDataNum(1);
+						}
+
+						if (dataBoxes[i].isOnBoard == true && dataBoard[j].GetCurrDataNum() >= dataBoard[j].GetGoalDataNum())
+						{
+							dataBoard[j].reachedGoal = true;
+						}
+					}
+				}
+
+				dataBoxes[i].Update();
+			}
+
+			for (int i = 0; i < dataBoard.size(); ++i)
+			{
+				if (dataBoard[i].reachedGoal == true)
+				{
+					for (int j = 0; j < dataBoxes.size(); ++j)
+					{
+						if (dataBoxes[j].isOnBoard == true && dataBoard[i].GetDataType() == dataBoxes[j].GetDataType() && j < dataBoxes.size())
+						{
+							dataBoxes.erase(dataBoxes.begin() + j);
+							Engine::GetLogger().LogDebug("Data box in vector erased");
+							--j;
+						}
+					}
+
+					++currTransferNum;
+					dataBoard[i].reachedGoal = false;
+				}
+				dataBoard[i].Update();
+
+
+			}
+			if (currTransferNum >= goalTranasferNum)
+			{
+				stageCleared = true;
+			}
+			player.Update();
 		}
-		dataBoard[i].Update();
+
+		if (timer > timeLimit)
+		{
+			timer = timeLimit;
+		}
+
 	}
-
-	player.Update();
-
+	
 	if (StageNext.IsKeyReleased() == true)
 	{
-		 Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
-		//Engine::GetSceneManager().Shutdown();
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
 	}
 	if (StageReload.IsKeyReleased() == true)
 	{
@@ -129,10 +154,15 @@ void Stage2::Draw()
 	player.Draw();
 
 	doodle::push_settings();
+	doodle::draw_text(std::to_string(timeLimit - static_cast<int>(timer)), 1000, 700);
 	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", 200, 700);
-	if (currTransferNum >= goalTranasferNum)
+	if (stageCleared == true)
 	{
 		doodle::draw_text("Clear!!", doodle::Width / 2, doodle::Height / 2);
+	}
+	else if (timer >= timeLimit)
+	{
+		doodle::draw_text("Game Over", doodle::Width / 2, doodle::Height / 2);
 	}
 	doodle::pop_settings();
 }

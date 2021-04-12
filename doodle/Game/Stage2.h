@@ -27,6 +27,12 @@ private:
     int maxDataNum = 1;
     static constexpr int goalTranasferNum = 5;
 
+    double timer;
+    constexpr static int timeLimit = 60;
+
+    bool gameStarted;
+    bool stageCleared;
+	
     Retry::InputKey StageNext;
     Retry::InputKey StageReload;
 public:
