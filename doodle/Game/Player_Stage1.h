@@ -11,7 +11,6 @@ Creation date: 03/28/2021
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
-<<<<<<< HEAD:doodle/Game/Player_Stage1.h
 #include <doodle/doodle.hpp>
 
 class Player_Stage1 : public Retry::Object
@@ -22,23 +21,5 @@ class Player_Stage1 : public Retry::Object
 		void Update(Retry::GameScenes scene);
 		void Draw() const override;
 		void UpdateStage1();
-=======
-
-class Player_Stage2 : public Retry::Object
-{
-private:
-	Retry::InputKey moveRightKey;
-	Retry::InputKey moveLeftKey;
-
-public:
-	Player_Stage2(math::vec2 position, double width, double height);
-	Player_Stage2(double x, double y, double width, double height);
-
-	void Load() override;
-	void Update() override;
-	void Draw() const override;
-
-	bool hasDataBox;	// Stage 2
->>>>>>> Stage2:doodle/Game/Player_Stage2.h
 };
 
