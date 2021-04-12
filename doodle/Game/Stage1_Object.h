@@ -11,7 +11,7 @@ Creation date: 04/01/2021
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
 #include <vector>
-#include "Player.h"
+#include "Player_Stage1.h"
 
 class Stage1_Object : public Retry::Object
 {
@@ -27,7 +27,7 @@ class Stage1_Object : public Retry::Object
 		bool Yisdown();
 private:
 	int numbering, speed;
-	Player player;
+	Player_Stage1 player;
 };
 
 inline std::vector<Stage1_Object> num{};

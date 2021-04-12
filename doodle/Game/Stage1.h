@@ -12,13 +12,13 @@ Creation date: 03/23/2021
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
 #include "Stage1_Object.h"
-#include "Player.h"
+#include "Player_Stage1.h"
 
 class Stage1 : public Retry::Scene
 {
 private:
 	Retry::InputKey StageNext;
-	Player player;
+	Player_Stage1 player;
 	Stage1_Object s1;
 
 	int time, score, heart, file, dropspeed;

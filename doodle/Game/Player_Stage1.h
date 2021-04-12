@@ -13,21 +13,12 @@ Creation date: 03/28/2021
 #include "../Engine/SceneManager.h"
 #include <doodle/doodle.hpp>
 
-class Player : public Retry::Object
+class Player_Stage1 : public Retry::Object
 {
-private:
-	Retry::InputKey moveRightKey;
-	Retry::InputKey moveLeftKey;
-	Retry::InputKey moveUpKey;
-	Retry::InputKey moveDownKey;
-
-public:
-	Player(math::vec2 position, double width, double height);
-	Player(double x, double y, double width, double height);
-	void Update(Retry::GameScenes scene);
-	void Draw() const override;
-
-	void UpdateStage1();
-	void UpdateStage2();
-	void UpdateStage3();
+	public:
+		Player_Stage1(math::vec2 position, double width, double height);
+		Player_Stage1(double x, double y, double width, double height);
+		void Update(Retry::GameScenes scene);
+		void Draw() const override;
+		void UpdateStage1();
 };
