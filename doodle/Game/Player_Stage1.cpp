@@ -10,14 +10,19 @@ Player_Stage1::Player_Stage1(double x, double y, double width, double height)
 {
 }
 
+void Player_Stage1::Load()
+{
+	sprite.Load("assets/zero_standing.png");
+}
+
 void Player_Stage1::Update([[maybe_unused]]Retry::GameScenes scene)
 {
 	UpdateStage1();
 }
 
-void Player_Stage1::Draw() const
+void Player_Stage1::Draw()
 {
-	doodle::draw_rectangle(position.x, position.y, width, height);
+	sprite.Draw({position.x, position.y});
 }
 
 void Player_Stage1::UpdateStage1()

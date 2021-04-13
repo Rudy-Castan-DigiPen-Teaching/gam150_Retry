@@ -9,17 +9,19 @@ Creation date: 03/28/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Object.h"
-#include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
-#include <doodle/doodle.hpp>
+#include "../Engine/Sprite.h"
 
 class Player_Stage1 : public Retry::Object
 {
+	Retry::Sprite sprite;
+
 	public:
 		Player_Stage1(math::vec2 position, double width, double height);
 		Player_Stage1(double x, double y, double width, double height);
+		void Load() override;
 		void Update(Retry::GameScenes scene);
-		void Draw() const override;
+		void Draw();
 		void UpdateStage1();
 };
 

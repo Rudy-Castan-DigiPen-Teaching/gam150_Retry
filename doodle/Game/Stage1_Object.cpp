@@ -14,6 +14,18 @@ Creation date: 04/01/2021
 
 Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number, int dropspeed) : Object(initpos, w, h), numbering(number), player(0, 0, 0), speed(dropspeed){}
 
+
+void Stage1_Object::Load()
+{
+	sprite.Load("assets/file.png");
+	sprite.Load("assets/file_1insert.png");
+	sprite.Load("assets/file_2insert.png");
+	sprite.Load("assets/file_3insert.png");
+	sprite.Load("assets/correct_file.png");
+	sprite.Load("assets/incorrect_file.png");
+}
+
+
 void Stage1_Object::Update()
 {
 	position.y -= speed;
@@ -49,6 +61,8 @@ void Stage1_Object::Draw() const
 		break;
 	}
 }
+
+
 
 void Stage1_Object::revector(int sp)
 {

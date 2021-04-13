@@ -9,9 +9,9 @@ Creation date: 04/01/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Object.h"
-#include "../Engine/Input.h"
 #include <vector>
 #include "Player_Stage1.h"
+#include "../Engine/Sprite.h"
 
 class Stage1_Object : public Retry::Object
 {
@@ -21,6 +21,7 @@ class Stage1_Object : public Retry::Object
 
 		void Update() override;
 		void Draw() const override;
+		void Load() override;
 		void revector(int sp);
 		int GetNumbering() { return numbering; }
 		void SetSpeed(int plus) { speed = plus; }
@@ -28,6 +29,7 @@ class Stage1_Object : public Retry::Object
 private:
 	int numbering, speed;
 	Player_Stage1 player;
+	Retry::Sprite sprite;
 };
 
 inline std::vector<Stage1_Object> num{};

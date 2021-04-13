@@ -11,9 +11,8 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/doodle.hpp>
 
-#include <iostream>
 
-Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(10){
+Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8){
 	time = 0;
 	score = 0;
 	heart = 3;
@@ -23,6 +22,7 @@ Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100,
 void Stage1::Load()
 {
 	s1.revector(dropspeed);
+	player.Load();
 }
 
 void Stage1::Draw()
@@ -35,7 +35,6 @@ void Stage1::Draw()
 	doodle::draw_text("Heart : " + std::to_string(heart), 100, 650);
 	doodle::draw_text("File : " + std::to_string(file) + " / 3 ", 100, 600);
 	doodle::draw_text("File contents : " + std::to_string(file_input.size()) + " / 3 ", 100, 550);
-
 	doodle::pop_settings();
 	for (int i = 0; i < num.size(); i++)
 	{
@@ -160,4 +159,6 @@ bool Stage1::Identify_v()
 
 void Stage1::Unload()
 {
+	doodle::clear_background(165, 200, 255, 255);
+	num.clear();
 }
