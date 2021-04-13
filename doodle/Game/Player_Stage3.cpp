@@ -1,6 +1,8 @@
 #include "Player_Stage3.h"
 
 #include <functional>
+#include <doodle/random.hpp>
+
 
 #include "../Engine/Engine.h"
 #include "Stage3.h"
@@ -93,6 +95,10 @@ void Player_Stage3::Draw()
 
 void Player_Stage3::LooseHeart()
 {
+	const int shakeAmount = 20;
+	doodle::apply_translate(
+		doodle::random(-shakeAmount, shakeAmount),
+		doodle::random(-shakeAmount, shakeAmount));
 	sound.PlaySound(looseHeart);
 	if (lives > 0)
 	{	

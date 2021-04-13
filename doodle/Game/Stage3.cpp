@@ -63,7 +63,7 @@ void Stage3::Update()
 		Engine::GetSceneManager().ReloadScene();
 	}
 
-	ScreenShake();
+	//ScreenShake();
 
 	if (!gameOver) {
 		overlapseTime += 0.1;
