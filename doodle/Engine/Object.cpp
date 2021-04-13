@@ -11,7 +11,8 @@ namespace Retry
 	void Object::Draw() const
 	{
 		doodle::push_settings();
-		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+		doodle::apply_translate(position.x - hotspot.x, position.y - hotspot.y);
+		doodle::draw_rectangle(0,0, width, height);
 		doodle::pop_settings();
 	}
 

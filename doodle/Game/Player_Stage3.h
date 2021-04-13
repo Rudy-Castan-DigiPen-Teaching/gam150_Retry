@@ -12,6 +12,7 @@ Creation date: 03/28/2021
 #include "../Engine/Input.h"
 #include "../Engine/SceneManager.h"
 #include "../Engine/Sound.h"
+#include "../Engine/Sprite.h"
 
 enum class NetworkLine
 {
@@ -21,7 +22,8 @@ enum class NetworkLine
 class Player_Stage3 : public Retry::Object
 {
 	Retry::Sound sound;
-
+	Retry::Sprite sprite;
+	
 	enum SoundIndex
 	{
 		looseHeart, attack
@@ -43,18 +45,16 @@ private:
 	Object attackBox;
 
 public:
-	Player_Stage3(math::vec2 position, double width, double height);
-	Player_Stage3(double x, double y, double width, double height);
+	Player_Stage3(math::vec2 position);
 
-	void Load();
-	void Update(Retry::GameScenes scene);
-	void UpdateStage3();
-	void Draw() const override;
+	void Load() override;
+	void Update() override;
+	void Draw();
 
 	const int GetLives() const { return lives; }
 	const Object& GetAttackBox() const { return attackBox; }
 	const bool GetIsPlayerHitting() const { return  isHitting; }
 
-	void HitByBug();
+	void LooseHeart();
 
 };

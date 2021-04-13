@@ -43,7 +43,7 @@ void Bug::Update(Player_Stage3& player)
 
 		if (position.x < 0 + width)
 		{
-			player.HitByBug();
+			player.LooseHeart();
 			isAlive = false;
 			Engine::GetLogger().LogDebug("Can't kill the bug");
 		}
@@ -53,13 +53,6 @@ void Bug::Update(Player_Stage3& player)
 			sound.PlaySound(dead);
 			HitByPlayer();
 			Engine::GetLogger().LogDebug("Hit the Bug");
-		}
-
-		if (CollideWith(player) && getHitThePlayer() == false)
-		{
-			player.HitByBug();
-			HitThePlayer();
-			setAlive(false);
 		}
 	}
 }
@@ -79,7 +72,3 @@ void Bug::HitByPlayer()
 	isAlive = false;
 }
 
-void Bug::HitThePlayer()
-{
-	isHitThePlayer = true;
-}

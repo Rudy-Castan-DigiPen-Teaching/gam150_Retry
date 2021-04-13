@@ -21,7 +21,11 @@ namespace Retry {
 
 	void Texture::Draw(math::vec2 position)
 	{
-		doodle::draw_image(image, position.x, position.y);
+		doodle::push_settings();
+		doodle::apply_translate(position.x, position.y);
+		doodle::draw_image(image, 0,0);
+		doodle::pop_settings();
+
 	}
 
 	math::ivec2 Texture::getSize() 

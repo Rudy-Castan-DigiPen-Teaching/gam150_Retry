@@ -28,6 +28,7 @@ namespace Retry
 		Object(math::vec2 pos, double w, double h, math::vec2 hotspot) : position(pos), width(w), height(h), hotspot(hotspot) {}
 		Object(math::vec2 pos, double w, double h) : position(pos), width(w), height(h) { hotspot = { width / 2.0, height / 2.0 }; }
 		Object(math::vec2 pos, double size) : Object(pos, size, size) {}
+		Object(math::vec2 pos) : Object(pos, 50) {}
 		~Object() {}
 
 		virtual void Load();
