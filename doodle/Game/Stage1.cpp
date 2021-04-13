@@ -10,6 +10,7 @@ Creation date: 03/23/2021
 #include "Stage1.h"
 #include <doodle/drawing.hpp>
 #include <doodle/doodle.hpp>
+#include "../Engine/Engine.h"
 
 
 Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8){
@@ -17,25 +18,53 @@ Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100,
 	score = 0;
 	heart = 3;
 	file = 0;
+	sprite_num = -1;
 }
 
 void Stage1::Load()
 {
 	s1.revector(dropspeed);
 	player.Load();
+	s1.Load();
+	sprite_file.Load("assets/file.png");
+	sprite_c_file.Load("assets/correct_file.png");
+	sprite_in_file.Load("assets/incorrect_file.png");
+	default_file.Load("assets/default_file.png");
 }
 
 void Stage1::Draw()
 {
 	doodle::clear_background(165, 200, 255, 255);
 	player.Draw();
-
+	sprite_file.Draw({50, 750});
+	
+	s1.File_Draw(file);
+	s1.Heart_Draw(heart);
+	
+	switch (sprite_num)
+	{
+	case -1:
+		default_file.Draw({ 450, 680 });
+		break;
+	case 0:
+	case 1:
+		sprite_c_file.Draw({ 450, 680 });
+		break;
+	case 2:
+	case 3:
+		sprite_in_file.Draw({ 450, 680 });
+		break;
+	default:
+		break;
+	}
+	
+	
 	doodle::push_settings();
 	doodle::set_font_size(30);
-	doodle::draw_text("Heart : " + std::to_string(heart), 100, 650);
-	doodle::draw_text("File : " + std::to_string(file) + " / 3 ", 100, 600);
-	doodle::draw_text("File contents : " + std::to_string(file_input.size()) + " / 3 ", 100, 550);
+	doodle::draw_text(" :  " + std::to_string(file) + " / 3 ", 80, 720);
+	doodle::draw_text("File previously put :          " + std::to_string(file_input.size()) + " / 3 ", 20, 650);
 	doodle::pop_settings();
+	
 	for (int i = 0; i < num.size(); i++)
 	{
 		num[i].Draw();
@@ -79,23 +108,19 @@ void Stage1::Update()
 			switch (num[i].GetNumbering())
 			{
 			case 0:
-				// red
-				//dropspeed -= 5;
+				Getnumber(num[i].GetNumbering());
 				file_input.push_back(num[i].GetNumbering());
 				break;
 			case 1:
-				// green
-				//dropspeed -= 5;
+				Getnumber(num[i].GetNumbering());
 				file_input.push_back(num[i].GetNumbering());
 				break;
 			case 2:
-				// blue
-				//dropspeed += 5;
+				Getnumber(num[i].GetNumbering());
 				file_input.push_back(num[i].GetNumbering());
 				break;
 			case 3:
-				// grey
-				//dropspeed += 5;
+				Getnumber(num[i].GetNumbering());
 				file_input.push_back(num[i].GetNumbering());
 				break;
 			}
@@ -108,9 +133,6 @@ void Stage1::Update()
 			{
 				n.SetSpeed(dropspeed);
 			}
-
-
-
 			num.erase(num.begin() + i);
 		}
 	}
@@ -155,6 +177,10 @@ bool Stage1::Identify_v()
 	return false;
 }
 
+void Stage1::Getnumber(int number)
+{
+	sprite_num = number;
+}
 
 
 void Stage1::Unload()

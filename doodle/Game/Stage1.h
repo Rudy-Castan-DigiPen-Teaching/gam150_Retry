@@ -8,7 +8,6 @@ Author: Team RETRY - Yujin Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 #pragma once
-#include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
 #include "Stage1_Object.h"
@@ -20,8 +19,12 @@ private:
 	Retry::InputKey StageNext;
 	Player_Stage1 player;
 	Stage1_Object s1;
+	Retry::Sprite sprite_file;
+	Retry::Sprite sprite_c_file;
+	Retry::Sprite sprite_in_file;
+	Retry::Sprite default_file;
 
-	int time, score, heart, file, dropspeed;
+	int time, score, heart, file, dropspeed, sprite_num;
 public:
 	Stage1();
 	void Load() override;
@@ -30,6 +33,7 @@ public:
 	void Draw() override;
 
 	bool Identify_v();
+	void Getnumber(int number);
 	std::string GetName() override { return "Stage1"; };
 };
 

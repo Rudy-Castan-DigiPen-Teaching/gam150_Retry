@@ -23,13 +23,20 @@ class Stage1_Object : public Retry::Object
 		void Draw() const override;
 		void Load() override;
 		void revector(int sp);
+
+		void File_Draw(int file_number);
+		void Heart_Draw(int heart_num);
 		int GetNumbering() { return numbering; }
 		void SetSpeed(int plus) { speed = plus; }
 		bool Yisdown();
 private:
 	int numbering, speed;
 	Player_Stage1 player;
-	Retry::Sprite sprite;
+	Retry::Sprite sprite_file1;
+	Retry::Sprite sprite_file2;
+	Retry::Sprite sprite_file3;
+	Retry::Sprite heart;
+	
 };
 
 inline std::vector<Stage1_Object> num{};

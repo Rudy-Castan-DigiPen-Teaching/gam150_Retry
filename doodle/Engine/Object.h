@@ -11,7 +11,7 @@ Creation date: 03/27/2021
 #include "Vec2.h"
 #include "Sprite.h"
 #include <doodle/environment.hpp> 
-#include <doodle/drawing.hpp> 
+#include <doodle/drawing.hpp>
 
 namespace Retry
 {
