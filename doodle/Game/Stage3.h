@@ -11,14 +11,16 @@ Creation date: 03/23/2021
 #include <vector>
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Sound.h"
+#include "../Engine/Sprite.h"
 #include "Player_Stage3.h"
 #include "Bug.h"
-#include "../Engine/Sprite.h"
 
 class Stage3 : public Retry::Scene
 {
 	sf::Music music;
+	Retry::Sprite hacker;
 	Retry::Sprite heart;
+
 public:
 	static constexpr double lineX = 200;
 private:
@@ -29,7 +31,7 @@ private:
 	double overlapseTime = 0;
 	bool gameOver = false;
 	bool screenShake = false;
-
+	math::vec2 hackerPos;
 public:
 	Stage3();
 	void Load() override;

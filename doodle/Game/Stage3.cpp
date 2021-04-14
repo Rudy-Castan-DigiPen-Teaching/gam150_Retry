@@ -20,10 +20,13 @@ player(Engine::GetWindow().GetSize() / 2.0) {}
 void Stage3::Load()
 {
 	doodle::clear_background(255);
+	hacker.Load("assets/hacker_standing.png");
 	heart.Load("assets/Heart.png");
 	music.openFromFile("assets/dambient_8-bit-loop.wav");
 	gameOver = false;
 	overlapseTime = 0;
+	screenShake = false;
+	hackerPos = math::vec2{ Engine::GetWindow().GetSize().x - static_cast<double>(hacker.getTextureSize().x), Engine::GetWindow().GetSize().y * 0.5 };
 	player.Load();
 	const double time_offset = 1;
 	bugs.push_back(Bug(NetworkLine::Middle, time_offset));
@@ -41,7 +44,7 @@ void Stage3::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(10);
+	music.setVolume(8);
 	music.play();
 }
 
@@ -74,6 +77,7 @@ void Stage3::Update()
 			if (bug.getStartTime() <= overlapseTime && bug.getAlive() == true)
 			{
 				bug.Update(player);
+				hackerPos = { hackerPos.x ,bug.GetPosition().y };
 			}
 		}
 		if (player.GetLives() == 0) { gameOver = true; }
@@ -98,6 +102,7 @@ void Stage3::Draw()
 	doodle::draw_line(-500, -Engine::GetWindow().GetSize().y * 0.25, 500, -Engine::GetWindow().GetSize().y * 0.25);
 	doodle::pop_settings();
 
+	hacker.Draw(hackerPos);
 	if (gameOver)
 	{
 		doodle::draw_text("Game Over!", Engine::GetWindow().GetSize().x / 2 - 300, Engine::GetWindow().GetSize().y / 2);
