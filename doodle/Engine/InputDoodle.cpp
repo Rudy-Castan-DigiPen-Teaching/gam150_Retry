@@ -37,6 +37,14 @@ Retry::InputKey::Keyboard DoodleKeyToRetryKey(doodle::KeyboardButtons button)
     {
         return  Retry::InputKey::Keyboard::D;
     }
+    else if (button == doodle::KeyboardButtons::R)
+    {
+        return Retry::InputKey::Keyboard::R;
+    }
+    else if (button == doodle::KeyboardButtons::Space)
+    {
+        return Retry::InputKey::Keyboard::Space;
+    }
     return Retry::InputKey::Keyboard::None;
 }
 

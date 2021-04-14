@@ -92,7 +92,7 @@ void Stage3::Draw()
 
 	if (gameOver)
 	{
-		doodle::draw_text("Game Over!", Engine::GetWindow().GetSize().x / 2 - 300, Engine::GetWindow().GetSize().y / 2);
+		doodle::draw_text("Game Over!", Engine::GetWindow().GetSize().x / 2.0 - 300, Engine::GetWindow().GetSize().y / 2);
 	}
 	else {
 		for (Bug& b : bugs)

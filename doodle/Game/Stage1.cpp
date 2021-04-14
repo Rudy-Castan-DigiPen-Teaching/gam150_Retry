@@ -13,16 +13,23 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h"
 
 
-Stage1::Stage1() : StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8){
+Stage1::Stage1() : StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
+StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8)
+{
+}
+
+void Stage1::Load()
+{
 	time = 0;
 	score = 0;
 	heart = 3;
 	file = 0;
 	sprite_num = -1;
-}
-
-void Stage1::Load()
-{
+	GameStart = false;
+	GameOver = false;
+	GameClear = false;
+	IsPreviousFileExist = false;
+	
 	s1.revector(dropspeed);
 	player.Load();
 	s1.Load();
@@ -40,30 +47,56 @@ void Stage1::Draw()
 	
 	s1.File_Draw(file);
 	s1.Heart_Draw(heart);
-	
-	switch (sprite_num)
+
+	if (IsPreviousFileExist == false)
 	{
-	case -1:
 		default_file.Draw({ 450, 680 });
-		break;
-	case 0:
-	case 1:
-		sprite_c_file.Draw({ 450, 680 });
-		break;
-	case 2:
-	case 3:
-		sprite_in_file.Draw({ 450, 680 });
-		break;
-	default:
-		break;
 	}
-	
+	else if (IsPreviousFileExist == true)
+	{
+		switch (sprite_num)
+		{
+		case 0:
+		case 1:
+			sprite_c_file.Draw({ 450, 680 });
+			break;
+		case 2:
+		case 3:
+			sprite_in_file.Draw({ 450, 680 });
+			break;
+		default:
+			break;
+		}
+	}
 	
 	doodle::push_settings();
 	doodle::set_font_size(30);
 	doodle::draw_text(" :  " + std::to_string(file) + " / 3 ", 80, 720);
 	doodle::draw_text("File previously put :          " + std::to_string(file_input.size()) + " / 3 ", 20, 650);
+	if(GameStart == false && GameOver == false && GameClear == false)
+	{
+		doodle::draw_text("Move ZERO with the mouse and get the  \t!", 250, Engine::GetWindow().GetSize().y / 2.0 + 20.0);
+		
+		doodle::push_settings();
+		doodle::set_fill_color(0, 100, 0);   //green
+		doodle::draw_rectangle(1000, Engine::GetWindow().GetSize().y / 2.0 + 30, 40, 40);
+		doodle::pop_settings();
+		
+		doodle::push_settings();
+		doodle::set_fill_color(33, 255, 78);
+		doodle::draw_text("<<Press Space bar to Start>>", 430, Engine::GetWindow().GetSize().y / 2.0 - 80.0);
+		doodle::pop_settings();
+	}
+	else if (GameOver == true)
+	{
+		doodle::draw_text("Game Over!", 600, Engine::GetWindow().GetSize().y / 2.0);
+	}
+	else if (GameClear == true)
+	{
+		doodle::draw_text("Game Clear!", 600, Engine::GetWindow().GetSize().y / 2.0);
+	}
 	doodle::pop_settings();
+
 	
 	for (int i = 0; i < num.size(); i++)
 	{
@@ -73,83 +106,118 @@ void Stage1::Draw()
 
 void Stage1::Update()
 {
-	if (StageNext.IsKeyReleased() == true || file == 3)
+	if(GameClear == true)
 	{
-	  Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
-	}
-	else if (heart == 0)
-	{
-		Engine::GetSceneManager().Shutdown();
-	}
-
-	player.Update(Retry::GameScenes::Stage1);
-
-
-	if (time % 20 == 0)
-	{
-		s1.revector(dropspeed);
-	}
-
-	time++;
-
-	for (int i = 0; i < num.size(); i++)
-	{
-		num[i].Update();
-
-		if (num[i].Yisdown() == true)
+		if (StageNext.IsKeyReleased() == true)
 		{
-			num.erase(num.begin() + i);
-		}
-
-		if (player.CollideWith(num[i]) == true)
-		{
-			Engine::GetLogger().LogDebug("Collision!");
-
-			switch (num[i].GetNumbering())
-			{
-			case 0:
-				Getnumber(num[i].GetNumbering());
-				file_input.push_back(num[i].GetNumbering());
-				break;
-			case 1:
-				Getnumber(num[i].GetNumbering());
-				file_input.push_back(num[i].GetNumbering());
-				break;
-			case 2:
-				Getnumber(num[i].GetNumbering());
-				file_input.push_back(num[i].GetNumbering());
-				break;
-			case 3:
-				Getnumber(num[i].GetNumbering());
-				file_input.push_back(num[i].GetNumbering());
-				break;
-			}
-			if (dropspeed <= 0)
-			{
-				dropspeed = 2;
-			}
-
-			for (Stage1_Object& n : num)
-			{
-				n.SetSpeed(dropspeed);
-			}
-			num.erase(num.begin() + i);
+			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 		}
 	}
+	else if (StageStart.IsKeyReleased() == true)
+	{
+		GameStart = true;
+	}
+	else if (StageReload.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().ReloadScene();
+	}
+
+	if(GameOver == true)
+	{
+		if (StageReload.IsKeyReleased() == true)
+		{
+			Engine::GetSceneManager().ReloadScene();
+		}
+	}
+
 	
-	if (file_input.size() == 3)
+	if(GameStart == true)
 	{
-		if (Identify_v() == true)
+		player.Update(Retry::GameScenes::Stage1);
+
+
+		if (time % 20 == 0)
 		{
-			file_input.clear();
-			score = 0;
-			file += 1;
+			s1.revector(dropspeed);
 		}
-		else if (Identify_v() == false) {
-			score = 0;
-			file_input.clear();
-			heart -= 1;
+
+		time++;
+
+		for (int i = 0; i < num.size(); i++)
+		{
+			num[i].Update();
+
+			if (num[i].Yisdown() == true)
+			{
+				num.erase(num.begin() + i);
+			}
+
+			if (player.CollideWith(num[i]) == true)
+			{
+				Engine::GetLogger().LogDebug("Collision!");
+				
+				IsPreviousFileExist = true;
+				
+				switch (num[i].GetNumbering())
+				{
+				case 0:
+					Getnumber(num[i].GetNumbering());
+					file_input.push_back(num[i].GetNumbering());
+					break;
+				case 1:
+					Getnumber(num[i].GetNumbering());
+					file_input.push_back(num[i].GetNumbering());
+					break;
+				case 2:
+					Getnumber(num[i].GetNumbering());
+					file_input.push_back(num[i].GetNumbering());
+					break;
+				case 3:
+					Getnumber(num[i].GetNumbering());
+					file_input.push_back(num[i].GetNumbering());
+					break;
+				}
+				if (dropspeed <= 0)
+				{
+					dropspeed = 2;
+				}
+
+				for (Stage1_Object& n : num)
+				{
+					n.SetSpeed(dropspeed);
+				}
+				num.erase(num.begin() + i);
+			}
 		}
+
+		if (file_input.size() == 3)
+		{
+			if (Identify_v() == true)
+			{
+				file_input.clear();
+				score = 0;
+				file += 1;
+				IsPreviousFileExist = false;
+			}
+			else if (Identify_v() == false) {
+				score = 0;
+				file_input.clear();
+				heart -= 1;
+				IsPreviousFileExist = false;
+			}
+		}
+
+		if (heart == 0)
+		{
+			GameOver = true;
+			GameStart = false;
+		}
+		else if (file == 3)
+		{
+			GameStart = false;
+			GameClear = true;
+		}
+		
 	}
 	
 }

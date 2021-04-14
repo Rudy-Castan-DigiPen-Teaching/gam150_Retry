@@ -16,15 +16,21 @@ Creation date: 03/23/2021
 class Stage1 : public Retry::Scene
 {
 private:
+	Retry::InputKey StageStart;
+	Retry::InputKey StageReload;
 	Retry::InputKey StageNext;
+	
 	Player_Stage1 player;
 	Stage1_Object s1;
+	
 	Retry::Sprite sprite_file;
 	Retry::Sprite sprite_c_file;
 	Retry::Sprite sprite_in_file;
 	Retry::Sprite default_file;
 
 	int time, score, heart, file, dropspeed, sprite_num;
+	bool GameStart, GameOver, GameClear, IsPreviousFileExist;
+
 public:
 	Stage1();
 	void Load() override;

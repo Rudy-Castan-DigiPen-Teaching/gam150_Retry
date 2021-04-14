@@ -17,7 +17,7 @@ namespace Retry
     public:
         enum class Keyboard
         {
-            None, Enter, Escape, W, A, S, D, Count
+            None, Enter, Escape, W, A, S, D, R, Space, Count
         };
 
         InputKey(Keyboard button);
