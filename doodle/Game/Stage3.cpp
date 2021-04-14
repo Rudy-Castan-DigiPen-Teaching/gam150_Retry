@@ -86,7 +86,7 @@ void Stage3::Update()
 
 void Stage3::Draw()
 {
-	doodle::clear_background(100, 100, 255, 100);
+	doodle::clear_background(100, 100, 255, 150);
 	for (int i = 1; i <= player.GetLives(); i++)
 	{
 		heart.Draw({ static_cast<double>(i * heart.getTextureSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.getTextureSize().y) });

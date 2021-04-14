@@ -16,12 +16,6 @@ namespace Retry {
 
     class Scene
     {
-    //    //SceneManager* sceneInstance;
-
-    //protected:
-    //    //SceneManager& Manager() { return *sceneInstance; }
-    //    const SceneManager& Manager() const { return *sceneInstance; }
-
     public:
         Scene(){}
 
