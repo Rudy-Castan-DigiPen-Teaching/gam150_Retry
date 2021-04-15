@@ -41,6 +41,7 @@ void Hacker_Stage2::Update()
 	if (isAppeard == false)
 	{
 		timer += doodle::DeltaTime;
+		position.x = Engine::GetWindow().GetSize().x;
 	}
 	if (isAppeard == true) 
 	{
@@ -51,9 +52,9 @@ void Hacker_Stage2::Update()
 		else
 		{
 			position.x += 10;
-			if (position.x > Engine::GetWindow().GetSize().x + width)
+			if (position.x > Engine::GetWindow().GetSize().x)
 			{
-				position.x = Engine::GetWindow().GetSize().x + width;
+				position.x = Engine::GetWindow().GetSize().x;
 				boxPosition = Engine::GetWindow().GetSize();
 				timer = 0;
 				isAppeard = false;

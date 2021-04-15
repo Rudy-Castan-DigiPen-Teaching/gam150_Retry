@@ -144,7 +144,7 @@ void Stage2::Update()
 
 				dataBoxes[i].Update();
 				
-				if (dataBoxes[i].isStolen == true && hacker.GetPosition().x > Engine::GetWindow().GetSize().x)
+				if (dataBoxes[i].isStolen == true && hacker.GetPosition().x >= Engine::GetWindow().GetSize().x)
 				{
 					dataBoxes.erase(dataBoxes.begin() + i);
 					--i;
