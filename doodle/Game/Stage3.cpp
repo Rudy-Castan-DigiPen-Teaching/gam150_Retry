@@ -43,8 +43,9 @@ void Stage3::Load()
 		bug.Load();
 	}
 
+
 	music.setLoop(true);
-	music.setVolume(8);
+	music.setVolume(0);
 	music.play();
 }
 
