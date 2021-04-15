@@ -11,6 +11,9 @@ Creation date: 04/15/2021
 #include <doodle/drawing.hpp>
 #include <string>
 
+MainMenu::MainMenu() : exitkey(Retry::InputKey::Keyboard::Escape)
+{}
+
 void MainMenu::Load()
 {
 	int width = 150;
@@ -23,6 +26,11 @@ void MainMenu::Load()
 
 void MainMenu::Update()
 {
+	if (exitkey.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().Shutdown();
+	}
+
 	for (int i = 0; i < buttons.size(); i++)
 	{
 		buttons[i].Update();

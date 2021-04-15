@@ -18,8 +18,11 @@ class MainMenu : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
+    Retry::InputKey exitkey;
+
 
 public:
+    MainMenu();
     void Load() override;
     void Update() override;
     void Unload() override;
