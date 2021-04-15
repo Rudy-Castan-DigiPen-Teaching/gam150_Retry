@@ -15,7 +15,6 @@
     <ProjectGuid>{CE9DFDD0-2049-4F77-909C-38FD0CA8F78E}</ProjectGuid>
     <RootNamespace>doodle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>RETRY_Networker</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -70,9 +69,10 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist $(OutputPath)Assets mkdir $(OutputPath)Assets
-xcopy /d /y Assets\* $(OutputPath)Assets
-</Command>
+      <Command>xcopy /y /d /s "$(ProjectDir)assets" "$(TargetDir)assets\"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\openal32.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-audio-d-2.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-d-2.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -103,15 +103,14 @@ xcopy /d /y Assets\* $(OutputPath)Assets
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist $(OutputPath)Assets mkdir $(OutputPath)Assets
-xcopy /d /y Assets\* $(OutputPath)Assets
-</Command>
+      <Command>xcopy /y /d /s "$(ProjectDir)assets" "$(TargetDir)assets\"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\openal32.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-audio-2.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleMain.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="ConsoleMain.cpp" />
     <ClCompile Include="Engine\Button.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
@@ -123,13 +122,13 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClCompile Include="Engine\Sprite.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
-    <ClCompile Include="Game\MainMenu.cpp" />
-    <ClCompile Include="Game\Hacker_Stage2.cpp" />
-    <ClCompile Include="Game\Player_Stage1.cpp" />
+    <ClCompile Include="Game\Bug.cpp" />
     <ClCompile Include="Game\DataBoard.cpp" />
     <ClCompile Include="Game\DataBox.cpp" />
+    <ClCompile Include="Game\Hacker_Stage2.cpp" />
+    <ClCompile Include="Game\MainMenu.cpp" />
+    <ClCompile Include="Game\Player_Stage1.cpp" />
     <ClCompile Include="Game\Player_Stage2.cpp" />
-    <ClCompile Include="Game\Bug.cpp" />
     <ClCompile Include="Game\Player_Stage3.cpp" />
     <ClCompile Include="Game\Splash.cpp" />
     <ClCompile Include="Game\Stage1.cpp" />
@@ -155,13 +154,13 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
-    <ClInclude Include="Game\MainMenu.h" />
-    <ClInclude Include="Game\Hacker_Stage2.h" />
-    <ClInclude Include="Game\Player_Stage1.h" />
+    <ClInclude Include="Game\Bug.h" />
     <ClInclude Include="Game\DataBoard.h" />
     <ClInclude Include="Game\DataBox.h" />
+    <ClInclude Include="Game\Hacker_Stage2.h" />
+    <ClInclude Include="Game\MainMenu.h" />
+    <ClInclude Include="Game\Player_Stage1.h" />
     <ClInclude Include="Game\Player_Stage2.h" />
-    <ClInclude Include="Game\Bug.h" />
     <ClInclude Include="Game\Player_Stage3.h" />
     <ClInclude Include="Game\Splash.h" />
     <ClInclude Include="Game\Stage1.h" />

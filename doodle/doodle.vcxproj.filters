@@ -1,10 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Engine\SceneManager.cpp">
-      <Filter>Engine</Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\main">
+      <UniqueIdentifier>{41dfdc68-670a-4111-a501-8539b3f7f9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{97219032-b8d1-4239-bfc7-10ad3033f676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{73d6867b-7791-4b57-96f3-2110d4ea9891}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files\main</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Sound.cpp">
+    <ClCompile Include="Engine\Button.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
@@ -20,6 +39,12 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Object.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SceneManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sound.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Sprite.cpp">
@@ -38,6 +63,12 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\DataBox.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Hacker_Stage2.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MainMenu.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player_Stage1.cpp">
@@ -70,30 +101,15 @@
     <ClCompile Include="Game\TestStage.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="ConsoleMain.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\MainMenu.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Button.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Hacker_Stage2.cpp">
-      <Filter>Game</Filter>
+      <Filter>Source Files\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Scene.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SceneManager.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Sound.h">
+    <ClInclude Include="Engine\Button.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Engine.h">
@@ -106,6 +122,15 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SceneManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sound.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sprite.h">
@@ -127,6 +152,12 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\DataBox.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hacker_Stage2.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MainMenu.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player_Stage1.h">
@@ -159,46 +190,20 @@
     <ClInclude Include="Game\TestStage.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\MainMenu.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Button.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Hacker_Stage2.h">
-      <Filter>Game</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{a13e368e-7e9b-4fc2-915e-2248997b249f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{e9c27a88-2751-47ff-88b6-a6c0b3c511ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{e63941e8-4a2b-40c4-902f-40c25408dfdb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{e106d292-595b-432b-961e-bfcbed0e0b09}</UniqueIdentifier>
-    </Filter>
+    <ResourceCompile Include="doodle.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Vec2.inl">
       <Filter>Engine</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="doodle.rc">
-      <Filter>Resource</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>Resource</Filter>
-    </Image>
   </ItemGroup>
 </Project>
