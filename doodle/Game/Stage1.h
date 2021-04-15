@@ -20,6 +20,7 @@ private:
 	Retry::InputKey StageStart;
 	Retry::InputKey StageReload;
 	Retry::InputKey StageNext;
+	Retry::InputKey RolebackMenu;
 	
 	Player_Stage1 player;
 	Stage1_Object s1;

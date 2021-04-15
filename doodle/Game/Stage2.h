@@ -36,6 +36,8 @@ private:
 	
     Retry::InputKey StageNext;
     Retry::InputKey StageReload;
+    Retry::InputKey StageStart;
+    Retry::InputKey RolebackMenu;
 public:
     Stage2();
 

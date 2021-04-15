@@ -26,6 +26,7 @@ public:
 private:
 	Retry::InputKey StageNext;
 	Retry::InputKey Reload;
+	Retry::InputKey RolebackMenu;
 	Player_Stage3 player;
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;

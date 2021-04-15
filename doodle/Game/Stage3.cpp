@@ -14,7 +14,7 @@ Creation date: 03/23/2021
 
 #include "../Engine/Engine.h" // GetLogger
 
-Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::Escape),
+Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::R),
 player(Engine::GetWindow().GetSize() / 2.0) {}
 
 void Stage3::Load()
@@ -66,7 +66,11 @@ void Stage3::Update()
 	{
 		Engine::GetSceneManager().ReloadScene();
 	}
-
+	if (RolebackMenu.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+	}
+	
 	//ScreenShake();
 
 	if (!gameOver) {

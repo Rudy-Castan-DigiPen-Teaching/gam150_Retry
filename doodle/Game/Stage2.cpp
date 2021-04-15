@@ -12,13 +12,14 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/random.hpp>
 
-Stage2::Stage2() : StageReload(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter),
+Stage2::Stage2() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageReload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), StageStart(Retry::InputKey::Keyboard::Space),
 player({200, Stage2::floor}, 50, 50), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
 stackedData(1), currTransferNum(0), timer(0), gameStarted(false), stageCleared(false) {}
 
 void Stage2::Load()
 {
 	player.Load();
+	hacker.Load();
 	dataBoxes.clear();
 	dataBoard.clear();
 	stackedData = 1;
@@ -43,7 +44,7 @@ void Stage2::Load()
 
 void Stage2::Update()
 {
-	if (gameStarted == false && Engine::GetMouseInput().IsMouseReleased() == true)	// Start Game after mouse is released
+	if (gameStarted == false && StageStart.IsKeyReleased() == true )	// Start Game after mouse is released
 	{
 		gameStarted = true;
 	}
@@ -174,11 +175,15 @@ void Stage2::Update()
 		}
 
 	}
-	
+
+	if (RolebackMenu.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+	}
 	if (StageNext.IsKeyReleased() == true)
 	{
-		// Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
-		Engine::GetSceneManager().Shutdown();
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
+		// Engine::GetSceneManager().Shutdown();
 	}
 	if (StageReload.IsKeyReleased() == true)
 	{
@@ -207,7 +212,7 @@ void Stage2::Draw()
 	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", Engine::GetWindow().GetSize().x * 0.05, Engine::GetWindow().GetSize().y * 0.9);
 	if (gameStarted == false)
 	{
-		doodle::draw_text("Press Mouse Button to Start", 370, doodle::Height / 2);
+		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
 	}
 	if (stageCleared == true)
 	{

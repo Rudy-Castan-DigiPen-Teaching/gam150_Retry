@@ -8,6 +8,7 @@ Author: Team RETRY - Haeun Park
 Creation date: 04/15/2021
 -----------------------------------------------------------------*/
 #include "MainMenu.h"
+#include <doodle/drawing.hpp>
 #include <string>
 
 void MainMenu::Load()
@@ -52,6 +53,7 @@ void MainMenu::Unload()
 
 void MainMenu::Draw()
 {
+	doodle::clear_background(0, 0, 0);
 	for (Button b : buttons)
 	{
 		b.Draw();

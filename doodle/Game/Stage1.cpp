@@ -13,7 +13,7 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h"
 
 
-Stage1::Stage1() : StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
+Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
 StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8)
 {
 }
@@ -117,6 +117,11 @@ void Stage1::Draw()
 
 void Stage1::Update()
 {
+	if (RolebackMenu.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+	}
+
 	if(GameClear == true)
 	{
 		if (StageNext.IsKeyReleased() == true)
