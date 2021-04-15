@@ -2,38 +2,40 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: DataBox.h
+File Name: Hacker_Stage2.h
 Project: GAM150_Networker
 Author: Team RETRY - Yeongju Lee
-Creation date: 04/01/2021
+Creation date: 04/13/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Object.h"
+#include "../Engine/Sprite.h"
+#include "DataBox.h"
 
-class Player;
+class Hacker_Stage2 : public Retry::Object
+{
+private:
+	math::vec2 initPos;
+	
+	constexpr static double appearTime = 10;
+	double timer;
 
-class DataBox : public Retry::Object {
+	bool isAppeard;
+
+	math::vec2 boxPosition;
+
+	// Retry::Sprite sprite;
 public:
-	enum class DataType {
-		RED,
-		GREEN,
-		BLUE
-	};
-	DataBox(DataType dataKind);
+	bool hasDataBox;
+	bool targettingBox;
 
+	
+	Hacker_Stage2(math::vec2 pos);
 	void Load() override;
 	void Update() override;
 	void Draw() const override;
 
-	DataType GetDataType() const { return dataType; }
+	void SetBoxPosition(math::vec2 boxPos) { boxPosition = boxPos; }
 
-	bool isStacked;
-	bool isOnBoard;
-	bool isTransfered;
-	bool isTargetted;
-	bool isStolen;
-
-	DataBox& operator=(const DataBox&) = default;
-private:
-	DataType dataType;
+	bool IsAppeard() const { return isAppeard; }
 };

@@ -12,7 +12,7 @@ Creation date: 04/01/2021
 #include "DataBoard.h"
 
 DataBox::DataBox(DataType dataType) : Object({ 100, Stage2::floor }, 50, 50),
-dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false)
+dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false), isTargetted(false), isStolen(false)
 {
 	hotspot = { width / 2, 0 };
 }
@@ -21,6 +21,9 @@ void DataBox::Load()
 {
 	isStacked = true;
 	isOnBoard = false;
+	isTransfered = false;
+	isTargetted = false;
+	isStolen = false;
 }
 
 void DataBox::Update() 

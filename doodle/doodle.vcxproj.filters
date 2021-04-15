@@ -82,6 +82,9 @@
     <ClCompile Include="Engine\Button.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Hacker_Stage2.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Scene.h">
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Button.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hacker_Stage2.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
