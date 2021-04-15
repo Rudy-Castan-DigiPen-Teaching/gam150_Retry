@@ -30,7 +30,7 @@ private:
     static constexpr int goalTranasferNum = 3;
 
     double timer;
-    constexpr static int timeLimit = 60;
+    constexpr static int timeLimit = 50;
 
     bool gameStarted;
     bool stageCleared;
