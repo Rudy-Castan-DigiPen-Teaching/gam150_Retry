@@ -12,7 +12,7 @@ Player_Stage1::Player_Stage1(double x, double y, int width, int height)
 
 void Player_Stage1::Load()
 {
-	sprite.Load("assets/zero_stage1.png");
+	sprite.Load("assets/zero_stage1.png", {46, 15});
 }
 
 void Player_Stage1::Update([[maybe_unused]]Retry::GameScenes scene)
