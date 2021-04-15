@@ -37,6 +37,17 @@ void Stage1::Load()
 	sprite_c_file.Load("assets/correct_file.png");
 	sprite_in_file.Load("assets/incorrect_file.png");
 	default_file.Load("assets/default_file.png");
+
+	sound.LoadSound("assets/drop_004.ogg"); // Insert correct file
+	sound.LoadSound("assets/error_006.ogg");  // Insert incorrect file
+	sound.LoadSound("assets/confirmation_002.ogg"); // make correct file
+	sound.LoadSound("assets/error_003.ogg"); // Make incorrect file
+
+
+	sound.SetVolume(CorrectMakeFIle, 30);
+	sound.SetVolume(InsertIncorrectFIle, 50);
+	sound.SetVolume(InsertCorrectFIle, 30);
+	sound.SetVolume(IncorrectMakeFile, 30);
 }
 
 void Stage1::Draw()
@@ -161,26 +172,30 @@ void Stage1::Update()
 				switch (num[i].GetNumbering())
 				{
 				case 0:
+					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 1:
+					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 2:
+					sound.PlaySound(InsertIncorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 3:
 					Getnumber(num[i].GetNumbering());
+					sound.PlaySound(InsertIncorrectFIle);
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				}
-				if (dropspeed <= 0)
+		/*		if (dropspeed <= 0)
 				{
 					dropspeed = 2;
-				}
+				}*/
 
 				for (Stage1_Object& n : num)
 				{
@@ -198,12 +213,15 @@ void Stage1::Update()
 				score = 0;
 				file += 1;
 				IsPreviousFileExist = false;
+
+				sound.PlaySound(CorrectMakeFIle);
 			}
 			else if (Identify_v() == false) {
 				score = 0;
 				file_input.clear();
 				heart -= 1;
 				IsPreviousFileExist = false;
+				sound.PlaySound(IncorrectMakeFile);
 			}
 		}
 

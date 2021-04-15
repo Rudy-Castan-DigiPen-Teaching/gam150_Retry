@@ -12,6 +12,7 @@ Creation date: 03/23/2021
 #include "../Engine/Input.h"
 #include "Stage1_Object.h"
 #include "Player_Stage1.h"
+#include "../Engine/Sound.h"
 
 class Stage1 : public Retry::Scene
 {
@@ -30,6 +31,12 @@ private:
 
 	int time, score, heart, file, dropspeed, sprite_num;
 	bool GameStart, GameOver, GameClear, IsPreviousFileExist;
+
+	Retry::Sound sound;
+
+	enum SoundIndex {
+		InsertCorrectFIle, InsertIncorrectFIle, CorrectMakeFIle, IncorrectMakeFile
+	};
 
 public:
 	Stage1();
