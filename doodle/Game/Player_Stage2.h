@@ -22,13 +22,15 @@ private:
 
 	math::vec2 initPos;
 
+	Retry::Sprite sprite;
+
 public:
-	Player_Stage2(math::vec2 position, double width, double height);
-	Player_Stage2(double x, double y, double width, double height);
+	Player_Stage2(math::vec2 position, int width, int height);
+	Player_Stage2(double x, double y, int width, int height);
 
 	void Load() override;
 	void Update() override;
-	void Draw() const override;
+	void Draw();
 
 	void SetSpeed(double d) { speed = d; }
 	

@@ -18,6 +18,16 @@ stackedData(1), currTransferNum(0), timer(0), gameStarted(false), stageCleared(f
 
 void Stage2::Load()
 {
+	sound.LoadSound("assets/tone1.ogg");
+	sound.LoadSound("assets/powerUp7.ogg");
+	sound.LoadSound("assets/pepSound1.ogg");
+	sound.LoadSound("assets/phaserUp5.ogg");
+
+	sound.SetVolume(StackBox, 30);
+	sound.SetVolume(TransferData, 30);
+	sound.SetVolume(SteelData, 30);
+	sound.SetVolume(RefillData, 30);
+	
 	player.Load();
 	hacker.Load();
 	dataBoxes.clear();

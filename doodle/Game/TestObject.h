@@ -12,7 +12,7 @@ private:
 	Retry::InputKey moveRightKey;
 
 public:
-	TestObject(math::vec2 initpos, double size);
+	TestObject(math::vec2 initpos, int size);
 
 	void Update() override;
 	void Draw() const override;

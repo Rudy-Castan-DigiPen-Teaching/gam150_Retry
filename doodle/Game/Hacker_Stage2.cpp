@@ -25,6 +25,10 @@ void Hacker_Stage2::Load()
 	hasDataBox = false;
 	targettingBox = false;
 	boxPosition = Engine::GetWindow().GetSize();
+	hotspot = math::ivec2(48, 0);
+	sprite.Load("assets/hacker_standing.png", hotspot);
+	width = sprite.getTextureSize().x;
+	height = sprite.getTextureSize().y;
 }
 
 void Hacker_Stage2::Update()
@@ -64,10 +68,7 @@ void Hacker_Stage2::Update()
 	}
 }
 
-void Hacker_Stage2::Draw() const
+void Hacker_Stage2::Draw()
 {
-	doodle::push_settings();
-	doodle::set_fill_color(doodle::HexColor(0xCC3D3DFF));
-	doodle::draw_rectangle(position.x, position.y, width, height);
-	doodle::pop_settings();
+	sprite.Draw(position);
 }

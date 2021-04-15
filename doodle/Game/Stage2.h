@@ -10,6 +10,7 @@ Creation date: 03/23/2021
 #pragma once
 #include "../Engine/Input.h"
 #include "../Engine/Scene.h"
+#include "../Engine/Sound.h"
 #include "Player_Stage2.h"
 #include "Hacker_Stage2.h"
 #include "DataBox.h"
@@ -38,6 +39,16 @@ private:
     Retry::InputKey StageReload;
     Retry::InputKey StageStart;
     Retry::InputKey RolebackMenu;
+
+    Retry::Sound sound;
+
+	enum SoundIndex
+	{
+		StackBox,
+		TransferData,
+		SteelData,
+		RefillData
+	};
 public:
     Stage2();
 

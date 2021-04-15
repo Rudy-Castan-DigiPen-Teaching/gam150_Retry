@@ -19,15 +19,15 @@ namespace Retry
 	{
 	protected:
 		math::vec2 position{ 0 };
-		double width{ 50 };
-		double height{ 50 };
-		math::vec2 hotspot{ width / 2.0, height / 2.0 };
+		int width{ 50 };
+		int height{ 50 };
+		math::ivec2 hotspot{ width / 2, height / 2 };
 
 	public:
 		Object() = default;
-		Object(math::vec2 pos, double w, double h, math::vec2 hotspot) : position(pos), width(w), height(h), hotspot(hotspot) {}
-		Object(math::vec2 pos, double w, double h) : position(pos), width(w), height(h) { hotspot = { width / 2.0, height / 2.0 }; }
-		Object(math::vec2 pos, double size) : Object(pos, size, size) {}
+		Object(math::vec2 pos, int w, int h, math::ivec2 hotspot) : position(pos), width(w), height(h), hotspot(hotspot) {}
+		Object(math::vec2 pos, int w, int h) : position(pos), width(w), height(h) { hotspot = { width / 2, height / 2 }; }
+		Object(math::vec2 pos, int size) : Object(pos, size, size) {}
 		Object(math::vec2 pos) : Object(pos, 50) {}
 		~Object() {}
 
@@ -40,8 +40,8 @@ namespace Retry
 		void SetPosition(math::vec2 newPos) { position = newPos; }
 		void UpdatePosition(math::vec2 v) { position += v; }
 		math::vec2 GetPosition() const { return position; }
-		math::vec2 GetHotspot() const { return hotspot; }
-		math::vec2 GetSize() const { return math::vec2{ width, height }; }
+		math::ivec2 GetHotspot() const { return hotspot; }
+		math::ivec2 GetSize() const { return math::ivec2{ width, height }; }
 	};
 }
 

@@ -14,8 +14,14 @@ Creation date: 03/23/2021
 
 
 Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
-StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8)
+StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8),
+GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false)
 {
+	time = 0;
+	score = 0;
+	heart = 3;
+	file = 0;
+	sprite_num = -1;
 }
 
 void Stage1::Load()
@@ -177,30 +183,30 @@ void Stage1::Update()
 				switch (num[i].GetNumbering())
 				{
 				case 0:
+					dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 1:
+					dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 2:
+					dropspeed += 2;
 					sound.PlaySound(InsertIncorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 3:
+					dropspeed += 2;
 					Getnumber(num[i].GetNumbering());
 					sound.PlaySound(InsertIncorrectFIle);
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				}
-		/*		if (dropspeed <= 0)
-				{
-					dropspeed = 2;
-				}*/
 
 				for (Stage1_Object& n : num)
 				{

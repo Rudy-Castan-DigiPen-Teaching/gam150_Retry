@@ -20,11 +20,11 @@ namespace Retry
 	{
 		math::vec2 corner = position - hotspot;
 		math::vec2 objCorner = obj.GetPosition() - obj.GetHotspot();
-
-		if (position.x + width >= objCorner.x &&
-			position.x <= objCorner.x + obj.GetSize().x &&
-			position.y + height >= objCorner.y &&
-			position.y <= objCorner.y + obj.GetSize().y)
+		
+		if (corner.x + width >= objCorner.x &&
+			corner.x <= objCorner.x + obj.GetSize().x &&
+			corner.y + height >= objCorner.y &&
+			corner.y <= objCorner.y + obj.GetSize().y)
 		{
 			return true;
 		}

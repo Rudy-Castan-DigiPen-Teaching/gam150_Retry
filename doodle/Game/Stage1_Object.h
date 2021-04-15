@@ -16,7 +16,7 @@ Creation date: 04/01/2021
 class Stage1_Object : public Retry::Object
 {
 	public:
-		Stage1_Object(math::ivec2 initpos, double w, double h, int number, int dropspeed);
+		Stage1_Object(math::ivec2 initpos, int w, int h, int number, int dropspeed);
 		~Stage1_Object() {}
 
 		void Update() override;

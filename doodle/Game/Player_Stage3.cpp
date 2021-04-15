@@ -11,7 +11,7 @@ Player_Stage3::Player_Stage3(math::vec2 position)
 	: Object(position), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
-	attackBox({ position.x + width, position.y }, width * 1.8, height, { width / 2, height / 2 })
+	attackBox({ position.x + width, position.y }, static_cast<int>(width * 1.8), height, { width / 2, height / 2 })
 {
 
 }

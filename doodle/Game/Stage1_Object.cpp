@@ -12,7 +12,7 @@ Creation date: 04/01/2021
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h"
 
-Stage1_Object::Stage1_Object(math::ivec2 initpos, double w, double h, int number, int dropspeed) : Object(initpos, w, h), numbering(number), player(0, 0, 0), speed(dropspeed){}
+Stage1_Object::Stage1_Object(math::ivec2 initpos, int w, int h, int number, int dropspeed) : Object(initpos, w, h), numbering(number), player(0, 0, 0), speed(dropspeed){}
 
 
 void Stage1_Object::Load()

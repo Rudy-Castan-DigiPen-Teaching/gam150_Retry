@@ -17,8 +17,8 @@ class Player_Stage1 : public Retry::Object
 	Retry::Sprite sprite;
 
 	public:
-		Player_Stage1(math::vec2 position, double width, double height);
-		Player_Stage1(double x, double y, double width, double height);
+		Player_Stage1(math::vec2 position, int width, int height);
+		Player_Stage1(double x, double y, int width, int height);
 		void Load() override;
 		void Update(Retry::GameScenes scene);
 		void Draw();

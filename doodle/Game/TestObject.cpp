@@ -2,7 +2,7 @@
 #include <doodle/drawing.hpp>
 #include <doodle/input.hpp>
 
-TestObject::TestObject(math::vec2 initpos, double size) : Object(initpos, size),
+TestObject::TestObject(math::vec2 initpos, int size) : Object(initpos, size),
 moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S), moveLeftKey(Retry::InputKey::Keyboard::A), moveRightKey(Retry::InputKey::Keyboard::D){}
 
 void TestObject::Update() 

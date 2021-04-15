@@ -2,10 +2,10 @@
 #include <doodle/input.hpp>
 #include <doodle/environment.hpp>
 
-Player_Stage1::Player_Stage1(math::vec2 position, double width, double height)
+Player_Stage1::Player_Stage1(math::vec2 position, int width, int height)
 : Object(position,width,height) {}
 
-Player_Stage1::Player_Stage1(double x, double y, double width, double height)
+Player_Stage1::Player_Stage1(double x, double y, int width, int height)
 : Player_Stage1({x,y},width,height)
 {
 }
