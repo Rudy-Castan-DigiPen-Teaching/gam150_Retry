@@ -10,13 +10,17 @@ Creation date: 03/23/2021
 #pragma once
 #include <vector>
 #include "../Engine/Scene.h"    // Scene (Base class)
+#include "../Engine/Sound.h"
+#include "../Engine/Sprite.h"
 #include "Player_Stage3.h"
 #include "Bug.h"
-#include "../Engine/Sound.h"
 
 class Stage3 : public Retry::Scene
 {
 	sf::Music music;
+	Retry::Sprite hacker;
+	Retry::Sprite heart;
+
 public:
 	static constexpr double lineX = 200;
 private:
@@ -26,7 +30,8 @@ private:
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;
-
+	bool screenShake = false;
+	math::vec2 hackerPos;
 public:
 	Stage3();
 	void Load() override;
@@ -35,5 +40,9 @@ public:
 	void Draw() override;
 	std::string GetName() override { return "Stage3"; }
 
+	void ScreenShake();
+
+private:
 	bool isAllDead();
+
 };

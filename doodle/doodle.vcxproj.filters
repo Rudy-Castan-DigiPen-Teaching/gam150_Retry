@@ -76,6 +76,12 @@
     <ClCompile Include="ConsoleMain.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Game\MainMenu.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Button.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Scene.h">
@@ -152,6 +158,12 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MainMenu.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Button.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

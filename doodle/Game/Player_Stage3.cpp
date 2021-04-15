@@ -1,25 +1,28 @@
 #include "Player_Stage3.h"
 
 #include <functional>
+#include <doodle/random.hpp>
+
 
 #include "../Engine/Engine.h"
 #include "Stage3.h"
 
-Player_Stage3::Player_Stage3(math::vec2 position, double width, double height)
-	: Object(position, width, height), startPosition{ position },
+Player_Stage3::Player_Stage3(math::vec2 position)
+	: Object(position), startPosition{ position },
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	moveUpKey(Retry::InputKey::Keyboard::W), moveDownKey(Retry::InputKey::Keyboard::S),
 	attackBox({ position.x + width, position.y }, width * 1.8, height, { width / 2, height / 2 })
 {
-	hotspot = { width / 2, height / 2 };
+
 }
-Player_Stage3::Player_Stage3(double x, double y, double width, double height)
-	: Player_Stage3({ x,y }, width, height)
-{
-}
+
 
 void Player_Stage3::Load()
 {
+	sprite.Load("assets/zero_standing.png");
+	width = sprite.getTextureSize().x;
+	height = sprite.getTextureSize().y;
+	hotspot = { width / 2, height / 2 };
 	sound.LoadSound("assets/error_002.ogg");
 	sound.LoadSound("assets/scratch_001.ogg");
 	sound.SetVolume(looseHeart, 30);
@@ -32,23 +35,7 @@ void Player_Stage3::Load()
 	isHitting = false;
 }
 
-void Player_Stage3::Update(Retry::GameScenes scene)
-{
-	switch (scene)
-	{
-	case Retry::GameScenes::Stage1:
-		//UpdateStage1();
-		break;
-	case Retry::GameScenes::Stage2:
-		//UpdateStage2();
-		break;
-	case Retry::GameScenes::Stage3:
-		UpdateStage3();
-		break;
-	}
-}
-
-void Player_Stage3::UpdateStage3()
+void Player_Stage3::Update()
 {
 	if (isMoved == false)
 	{
@@ -71,13 +58,13 @@ void Player_Stage3::UpdateStage3()
 	switch (currLine)
 	{
 	case NetworkLine::Top:
-		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.75 };
+		position = { Stage3::lineX - width/2, Engine::GetWindow().GetSize().y * 0.75 };
 		break;
 	case NetworkLine::Middle:
-		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.5 };
+		position = { Stage3::lineX - width/2, Engine::GetWindow().GetSize().y * 0.5 };
 		break;
 	case NetworkLine::Bottom:
-		position = { Stage3::lineX - width, Engine::GetWindow().GetSize().y * 0.25 };
+		position = { Stage3::lineX - width/2, Engine::GetWindow().GetSize().y * 0.25 };
 		break;
 	}
 	if (Engine::GetMouseInput().IsMousePressed() && isHitting == false)
@@ -91,27 +78,27 @@ void Player_Stage3::UpdateStage3()
 		isHitting = false;
 	}
 	else { attackBox.SetPosition({ -100 }); }
+
 }
 
-void Player_Stage3::Draw() const
+void Player_Stage3::Draw() 
 {
-	doodle::push_settings();
-	doodle::set_fill_color(255, 85 * lives, 85 * lives);
-	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
-	doodle::pop_settings();
-
 	if (Engine::GetMouseInput().IsMousePressed() && isHitting)
 	{
 		doodle::push_settings();
 		doodle::set_fill_color(0, 255, 0);
 		attackBox.Draw();
 		doodle::pop_settings();
-
 	}
+	sprite.Draw(position);
 }
 
-void Player_Stage3::HitByBug()
+void Player_Stage3::LooseHeart()
 {
+	const int shakeAmount = 20;
+	doodle::apply_translate(
+		doodle::random(-shakeAmount, shakeAmount),
+		doodle::random(-shakeAmount, shakeAmount));
 	sound.PlaySound(looseHeart);
 	if (lives > 0)
 	{	

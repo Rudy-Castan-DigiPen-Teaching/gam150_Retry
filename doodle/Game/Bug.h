@@ -22,7 +22,6 @@ private:
 	int speed = 10;
 
 	bool isAlive = true;
-	bool isHitThePlayer = false;
 	bool crossedTheLine = false;
 
 public:
@@ -38,9 +37,6 @@ public:
 
 	double getStartTime() { return startTime; }
 	bool getAlive() { return isAlive; }
-	bool getHitThePlayer() { return isHitThePlayer; }
 	bool getCrossedTheLine() { return crossedTheLine; }
 	void HitByPlayer();
-	void HitThePlayer();
-
 };

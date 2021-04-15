@@ -11,6 +11,7 @@ Creation date: 03/23/2021
 #include "Engine.h"
 #include "SceneManager.h"
 #include "../Game/Splash.h"
+#include "../Game/MainMenu.h"
 #include "../Game/Stage1.h"
 #include "../Game/Stage2.h"
 #include "../Game/Stage3.h"
@@ -22,13 +23,14 @@ namespace Retry
 	void SceneManager::Setup()
 	{
 		scenes[GameScenes::Splash] = std::make_unique<Splash>();
+		scenes[GameScenes::MainMenu] = std::make_unique<MainMenu>();
 		scenes[GameScenes::Stage1] = std::make_unique<Stage1>();
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::Stage1].get();
-		queuedScene = scenes[GameScenes::Stage1].get();
+		currentScene = scenes[GameScenes::MainMenu].get();
+		queuedScene = scenes[GameScenes::MainMenu].get();
 	}
 
 	void SceneManager::Update() 

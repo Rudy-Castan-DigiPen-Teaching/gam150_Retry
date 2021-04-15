@@ -112,6 +112,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClCompile Include="ConsoleMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Engine\Button.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\InputDoodle.cpp" />
@@ -122,6 +123,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClCompile Include="Engine\Sprite.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
+    <ClCompile Include="Game\MainMenu.cpp" />
     <ClCompile Include="Game\Player_Stage1.cpp" />
     <ClCompile Include="Game\DataBoard.cpp" />
     <ClCompile Include="Game\DataBox.cpp" />
@@ -140,6 +142,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Button.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Logger.h" />
@@ -151,6 +154,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
+    <ClInclude Include="Game\MainMenu.h" />
     <ClInclude Include="Game\Player_Stage1.h" />
     <ClInclude Include="Game\DataBoard.h" />
     <ClInclude Include="Game\DataBox.h" />
