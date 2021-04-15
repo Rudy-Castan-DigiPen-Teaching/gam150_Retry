@@ -15,7 +15,10 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h" // GetLogger
 
 Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::R),
-player(Engine::GetWindow().GetSize() / 2.0) {}
+player(Engine::GetWindow().GetSize() / 2.0) 
+{
+	bugs.clear();
+}
 
 void Stage3::Load()
 {

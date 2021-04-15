@@ -22,8 +22,6 @@ try
     while (engine.hasGameEnded() == false)
     {
         engine.Update();
-        //doodle::update_window();
-        //sketch.draw();
     }
     engine.Shutdown();
     return 0;
