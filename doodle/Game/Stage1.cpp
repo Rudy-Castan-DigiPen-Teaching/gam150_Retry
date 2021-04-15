@@ -14,7 +14,7 @@ Creation date: 03/23/2021
 
 
 Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
-StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(8),
+StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(17),
 GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false)
 {
 	time = 0;
@@ -64,6 +64,11 @@ void Stage1::Draw()
 	
 	s1.File_Draw(file);
 	s1.Heart_Draw(heart);
+
+	doodle::push_settings();
+	doodle::set_fill_color(0);
+	doodle::draw_ellipse(doodle::get_mouse_x(), doodle::get_mouse_y(), 20, 20);
+	doodle::pop_settings();
 
 	if (IsPreviousFileExist == false)
 	{
