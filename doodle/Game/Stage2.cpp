@@ -71,6 +71,7 @@ void Stage2::Update()
 			
 			if (stackedData < maxDataNum)
 			{
+				sound.PlaySound(RefillData);
 				int num = doodle::random(3);
 
 				dataBoxes.push_back(DataBox(static_cast<DataBox::DataType>(num)));
@@ -108,6 +109,7 @@ void Stage2::Update()
 
 							if (dataBoxes[i].isTargetted == true && hacker.targettingBox == true && hacker.hasDataBox == false && hacker.CollideWith(dataBoxes[i]))
 							{
+								sound.PlaySound(SteelData);
 								hacker.hasDataBox = true;
 								dataBoxes[i].isOnBoard = false;
 								dataBoxes[i].isStolen = true;
@@ -125,6 +127,7 @@ void Stage2::Update()
 						if (dataBoxes[i].isStacked == false && player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
 							Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isOnBoard == false && dataBoxes[i].isStolen == false)
 						{
+							sound.PlaySound(StackBox);
 							player.hasDataBox = false;
 							dataBoxes[i].isOnBoard = true;
 							dataBoxes[i].UpdatePosition(math::vec2(0, dataBoard[j].GetSize().y));
@@ -152,6 +155,7 @@ void Stage2::Update()
 			{
 				if (dataBoard[i].reachedGoal == true)
 				{
+					sound.PlaySound(TransferData);
 					for (int j = 0; j < dataBoxes.size(); ++j)
 					{
 						if (dataBoxes[j].isOnBoard == true && dataBoard[i].GetDataType() == dataBoxes[j].GetDataType())
