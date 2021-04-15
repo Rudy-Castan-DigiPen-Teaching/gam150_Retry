@@ -37,6 +37,7 @@ namespace Retry
 		bool CollideWith(const Object& obj);
 
 		void SetPosition(math::vec2 newPos) { position = newPos; }
+		void UpdatePosition(math::vec2 v) { position += v; }
 		math::vec2 GetPosition() const { return position; }
 		math::vec2 GetHotspot() const { return hotspot; }
 		math::vec2 GetSize() const { return math::vec2{ width, height }; }

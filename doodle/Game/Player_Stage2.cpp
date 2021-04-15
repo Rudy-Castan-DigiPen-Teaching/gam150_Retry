@@ -4,9 +4,9 @@
 #include "../Engine/Engine.h"
 
 Player_Stage2::Player_Stage2(math::vec2 position, double width, double height)
-	: Object(position, width, height),
+	: Object(position, width, height), initPos(position),
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	hasDataBox(false)
+	hasDataBox(false), speed(7)
 {
 }
 
@@ -17,12 +17,14 @@ Player_Stage2::Player_Stage2(double x, double y, double width, double height)
 
 void Player_Stage2::Load()
 {
+	position = initPos;
 	hasDataBox = false;
+	speed = 7;
 }
 
 void Player_Stage2::Update() {
-	if (moveRightKey.IsKeyDown() == true) { position.x += 7; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= 7; }
+	if (moveRightKey.IsKeyDown() == true) { position.x += speed; }
+	if (moveLeftKey.IsKeyDown() == true) { position.x -= speed; }
 	if (Engine::GetMouseInput().IsMousePressed()) {}
 
 }

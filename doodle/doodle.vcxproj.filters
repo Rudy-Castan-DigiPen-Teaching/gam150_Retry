@@ -76,6 +76,9 @@
     <ClCompile Include="ConsoleMain.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Hacker_Stage2.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Scene.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hacker_Stage2.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

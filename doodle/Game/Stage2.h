@@ -9,9 +9,9 @@ Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Input.h"
-#include "../Engine/Engine.h" // GetLogger
 #include "../Engine/Scene.h"
 #include "Player_Stage2.h"
+#include "Hacker_Stage2.h"
 #include "DataBox.h"
 #include "DataBoard.h"
 
@@ -19,13 +19,14 @@ class Stage2 : public Retry::Scene
 {
 private:
     Player_Stage2 player;
+    Hacker_Stage2 hacker;
     std::vector<DataBox> dataBoxes;
     std::vector<DataBoard> dataBoard;
     int stackedData;
     int currTransferNum;
-
+	
     int maxDataNum = 1;
-    static constexpr int goalTranasferNum = 5;
+    static constexpr int goalTranasferNum = 3;
 
     double timer;
     constexpr static int timeLimit = 60;

@@ -18,6 +18,10 @@ private:
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 
+	double speed;
+
+	math::vec2 initPos;
+
 public:
 	Player_Stage2(math::vec2 position, double width, double height);
 	Player_Stage2(double x, double y, double width, double height);
@@ -26,6 +30,8 @@ public:
 	void Update() override;
 	void Draw() const override;
 
+	void SetSpeed(double d) { speed = d; }
+	
 	bool hasDataBox;	// Stage 2
 };
 

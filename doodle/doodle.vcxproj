@@ -122,6 +122,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClCompile Include="Engine\Sprite.cpp" />
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
+    <ClCompile Include="Game\Hacker_Stage2.cpp" />
     <ClCompile Include="Game\Player_Stage1.cpp" />
     <ClCompile Include="Game\DataBoard.cpp" />
     <ClCompile Include="Game\DataBox.cpp" />
@@ -151,6 +152,7 @@ xcopy /d /y Assets\* $(OutputPath)Assets
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
+    <ClInclude Include="Game\Hacker_Stage2.h" />
     <ClInclude Include="Game\Player_Stage1.h" />
     <ClInclude Include="Game\DataBoard.h" />
     <ClInclude Include="Game\DataBox.h" />
