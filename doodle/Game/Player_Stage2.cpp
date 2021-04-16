@@ -28,9 +28,7 @@ void Player_Stage2::Load()
 
 void Player_Stage2::Update() {
 	if (moveRightKey.IsKeyDown() == true) { position.x += speed; }
-	if (moveLeftKey.IsKeyDown() == true) { position.x -= speed; }
-	if (Engine::GetMouseInput().IsMousePressed()) {}
-
+	else if (moveLeftKey.IsKeyDown() == true) { position.x -= speed; }
 }
 
 void Player_Stage2::Draw()
