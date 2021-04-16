@@ -27,12 +27,15 @@ private:
 	Retry::InputKey StageNext;
 	Retry::InputKey Reload;
 	Retry::InputKey RolebackMenu;
+	Retry::InputKey pausekey;
 	Player_Stage3 player;
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;
 	bool screenShake = false;
 	math::vec2 hackerPos;
+
+	bool pause = true;
 public:
 	Stage3();
 	void Load() override;

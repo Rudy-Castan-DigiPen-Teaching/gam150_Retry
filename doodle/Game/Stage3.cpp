@@ -14,15 +14,18 @@ Creation date: 03/23/2021
 
 #include "../Engine/Engine.h" // GetLogger
 
-Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::R),
-player(Engine::GetWindow().GetSize() / 2.0) 
+Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::R), pausekey(Retry::InputKey::Keyboard::Space),
+player(Engine::GetWindow().GetSize() / 2.0)
 {
 	bugs.clear();
 }
 
 void Stage3::Load()
 {
-	doodle::clear_background(255);
+	pause = true;
+
+	doodle::clear_background(100, 100, 255);
+
 	hacker.Load("assets/hacker_standing.png");
 	heart.Load("assets/Heart.png");
 	music.openFromFile("assets/dambient_8-bit-loop.wav");
@@ -45,7 +48,6 @@ void Stage3::Load()
 	{
 		bug.Load();
 	}
-
 
 	music.setLoop(true);
 	music.setVolume(0);
@@ -73,19 +75,24 @@ void Stage3::Update()
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
 	}
-	
-	//ScreenShake();
+	if (pausekey.IsKeyReleased() == true)
+	{
+		pause = !pause;
+	}
 
 	if (!gameOver) {
-		overlapseTime += 0.1;
 		player.Update();
-
-		for (Bug& bug : bugs)
+		if (!pause)
 		{
-			if (bug.getStartTime() <= overlapseTime && bug.getAlive() == true)
+			overlapseTime += 0.1;
+
+			for (Bug& bug : bugs)
 			{
-				bug.Update(player);
-				hackerPos = { hackerPos.x ,bug.GetPosition().y };
+				if (bug.getStartTime() <= overlapseTime && bug.getAlive() == true)
+				{
+					bug.Update(player);
+					hackerPos = { hackerPos.x ,bug.GetPosition().y };
+				}
 			}
 		}
 		if (player.GetLives() == 0) { gameOver = true; }
@@ -115,7 +122,8 @@ void Stage3::Draw()
 	{
 		doodle::draw_text("Game Over!", Engine::GetWindow().GetSize().x / 2.0 - 300, Engine::GetWindow().GetSize().y / 2);
 	}
-	else {
+	else 
+	{
 		for (Bug& b : bugs)
 		{
 			if (b.getStartTime() <= overlapseTime)
