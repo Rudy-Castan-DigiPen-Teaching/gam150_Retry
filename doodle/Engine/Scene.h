@@ -14,6 +14,8 @@ Creation date: 03/23/2021
 namespace Retry {
     class SceneManager;
 
+    enum class GameScenes;
+	
     class Scene
     {
     public:
@@ -30,5 +32,7 @@ namespace Retry {
         //Scene(Scene&& other) noexcept = default;
         Scene& operator=(const Scene& other) = default;
         //Scene& operator=(Scene&& other) noexcept = default;
+
+        GameScenes prevScene;
     };
 }

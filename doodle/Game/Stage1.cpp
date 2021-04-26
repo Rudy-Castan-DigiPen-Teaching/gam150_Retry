@@ -151,10 +151,11 @@ void Stage1::Update()
 
 	if(GameOver == true)
 	{
-		if (StageReload.IsKeyReleased() == true)
-		{
-			Engine::GetSceneManager().ReloadScene();
-		}
+		//if (StageReload.IsKeyReleased() == true)
+		//{
+		//	Engine::GetSceneManager().ReloadScene();
+		//}
+		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage1);
 	}
 
 	

@@ -190,6 +190,10 @@ void Stage2::Update()
 
 	}
 
+	if (timer >= timeLimit)
+	{
+		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage2);
+	}
 	if (RolebackMenu.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
@@ -231,10 +235,6 @@ void Stage2::Draw()
 	if (stageCleared == true)
 	{
 		doodle::draw_text("Clear!!", doodle::Width / 2.0, doodle::Height / 2.0);
-	}
-	else if (timer >= timeLimit)
-	{
-		doodle::draw_text("Game Over", doodle::Width / 2.0, doodle::Height / 2.0);
 	}
 	doodle::pop_settings();
 

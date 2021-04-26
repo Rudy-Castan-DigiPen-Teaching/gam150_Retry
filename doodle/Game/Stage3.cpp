@@ -97,6 +97,10 @@ void Stage3::Update()
 		}
 		if (player.GetLives() == 0) { gameOver = true; }
 	}
+	else
+	{
+		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage3);
+	}
 }
 
 void Stage3::Draw()
