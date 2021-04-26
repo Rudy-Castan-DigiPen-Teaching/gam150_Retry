@@ -196,8 +196,8 @@ void Stage2::Update()
 	}
 	if (StageNext.IsKeyReleased() == true)
 	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
-		// Engine::GetSceneManager().Shutdown();
+		// Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
+		Engine::GetSceneManager().Shutdown();
 	}
 	if (StageReload.IsKeyReleased() == true)
 	{
@@ -211,7 +211,7 @@ void Stage2::Unload()
 
 void Stage2::Draw()
 {
-	doodle::clear_background(0, 0, 0, 255);
+	doodle::clear_background(150, 150, 150, 255);
 	for (int i = 0; i < dataBoard.size(); ++i) {
 		dataBoard[i].Draw();
 	}

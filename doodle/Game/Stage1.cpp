@@ -188,25 +188,25 @@ void Stage1::Update()
 				switch (num[i].GetNumbering())
 				{
 				case 0:
-					dropspeed += 2;
+					//dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 1:
-					dropspeed += 2;
+					//dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 2:
-					dropspeed += 2;
+					//dropspeed += 2;
 					sound.PlaySound(InsertIncorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 3:
-					dropspeed += 2;
+					//dropspeed += 2;
 					Getnumber(num[i].GetNumbering());
 					sound.PlaySound(InsertIncorrectFIle);
 					file_input.push_back(num[i].GetNumbering());

@@ -2,9 +2,9 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: Player.h
+File Name: Player_Stage2.h
 Project: GAM150_Networker
-Author: Team RETRY - Haeun Park
+Author: Team RETRY - Yeongju Lee
 Creation date: 03/28/2021
 -----------------------------------------------------------------*/
 #pragma once
@@ -36,4 +36,3 @@ public:
 	
 	bool hasDataBox;	// Stage 2
 };
-
