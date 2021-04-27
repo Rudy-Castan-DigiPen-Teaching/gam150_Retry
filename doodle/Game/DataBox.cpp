@@ -28,7 +28,6 @@ void DataBox::Load()
 
 void DataBox::Update() 
 {
-	
 }
 
 void DataBox::Draw() const 
