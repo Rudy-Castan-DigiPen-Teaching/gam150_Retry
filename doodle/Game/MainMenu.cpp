@@ -19,9 +19,11 @@ void MainMenu::Load()
 	int width = 150;
 	int height = 60;
 
-	buttons.push_back(Button("Stage 1", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.7), width, height));
-	buttons.push_back(Button("Stage 2", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.5), width, height));
-	buttons.push_back(Button("Stage 3", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.3), width, height));
+	buttons.push_back(Button("Stage 1", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.4), width, height));
+	buttons.push_back(Button("Stage 2", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
+	buttons.push_back(Button("Stage 3", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
+
+	title_picture.Load("assets/title_picture.png");
 }
 
 void MainMenu::Update()
@@ -62,6 +64,7 @@ void MainMenu::Unload()
 void MainMenu::Draw()
 {
 	doodle::clear_background(0, 0, 0);
+	title_picture.Draw({static_cast<double>(Engine::GetWindow().GetSize().x/2), static_cast<double>(Engine::GetWindow().GetSize().y) - 280.0});
 	for (Button b : buttons)
 	{
 		b.Draw();

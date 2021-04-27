@@ -30,5 +30,5 @@ void Player_Stage1::UpdateStage1()
 	const double easing = 3.0 * doodle::DeltaTime;
 	position.x += easing * (doodle::get_mouse_x() - position.x);
 
-	SetPosition({ position.x, 100 });
+	SetPosition({ position.x, 95 });
 }

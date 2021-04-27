@@ -16,27 +16,23 @@ Creation date: 04/01/2021
 class Stage1_Object : public Retry::Object
 {
 	public:
-		Stage1_Object(math::ivec2 initpos, int w, int h, int number, int dropspeed);
+		Stage1_Object(math::ivec2 initpos, int number, int dropspeed);
 		~Stage1_Object() {}
 
 		void Update() override;
-		void Draw() const override;
+		void Draw_data();
 		void Load() override;
-		void revector(int sp);
-
-		void File_Draw(int file_number);
-		void Heart_Draw(int heart_num);
+	
 		int GetNumbering() { return numbering; }
 		void SetSpeed(int plus) { speed = plus; }
 		bool Yisdown();
 private:
 	int numbering, speed;
 	Player_Stage1 player;
-	Retry::Sprite sprite_file1;
-	Retry::Sprite sprite_file2;
-	Retry::Sprite sprite_file3;
-	Retry::Sprite heart;
+	
+	Retry::Sprite correct_data;
+	Retry::Sprite incorrect_data;
+	
+	
 	
 };
-
-inline std::vector<Stage1_Object> num{};

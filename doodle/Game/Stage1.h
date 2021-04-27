@@ -23,12 +23,18 @@ private:
 	Retry::InputKey RolebackMenu;
 	
 	Player_Stage1 player;
-	Stage1_Object s1;
 	
 	Retry::Sprite sprite_file;
 	Retry::Sprite sprite_c_file;
 	Retry::Sprite sprite_in_file;
 	Retry::Sprite default_file;
+	Retry::Sprite background;
+	Retry::Sprite MousePointer;
+
+	Retry::Sprite sprite_file1;
+	Retry::Sprite sprite_file2;
+	Retry::Sprite sprite_file3;
+	Retry::Sprite sprite_heart;
 
 	int time, score, heart, file, dropspeed, sprite_num;
 	bool GameStart, GameOver, GameClear, IsPreviousFileExist;
@@ -48,7 +54,12 @@ public:
 
 	bool Identify_v();
 	void Getnumber(int number);
+	void File_Draw(int file_number);
+	void Heart_Draw(int heart_num);
+	void revector(int sp);
+	
 	std::string GetName() override { return "Stage1"; };
 };
 
 inline 	std::vector<int> file_input;
+inline std::vector<Stage1_Object> num{};

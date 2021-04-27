@@ -14,10 +14,12 @@ Creation date: 04/15/2021
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
 #include "../Engine/Button.h"
+#include "../Engine/Sprite.h"
 class MainMenu : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
+    Retry::Sprite title_picture;
     Retry::InputKey exitkey;
 
 

@@ -14,7 +14,7 @@ Creation date: 03/23/2021
 
 
 Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
-StageNext(Retry::InputKey::Keyboard::Enter), player(170, 100, 50), s1(0, 10, 10, 0, 0), dropspeed(17),
+StageNext(Retry::InputKey::Keyboard::Enter), player(95, 100, 50), dropspeed(8),
 GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false)
 {
 	time = 0;
@@ -35,15 +35,21 @@ void Stage1::Load()
 	GameOver = false;
 	GameClear = false;
 	IsPreviousFileExist = false;
-	
-	s1.revector(dropspeed);
+
 	player.Load();
-	s1.Load();
+	
 	sprite_file.Load("assets/file.png");
 	sprite_c_file.Load("assets/correct_file.png");
 	sprite_in_file.Load("assets/incorrect_file.png");
 	default_file.Load("assets/default_file.png");
+	background.Load("assets/stage1_background.png");
+	MousePointer.Load("assets/mouse_pointer.png", {0, 30});
 
+	sprite_file1.Load("assets/file_1insert.png");
+	sprite_file2.Load("assets/file_2insert.png");
+	sprite_file3.Load("assets/file_3insert.png");
+	sprite_heart.Load("assets/Sprite-0001.png");
+	
 	sound.LoadSound("assets/drop_004.ogg"); // Insert correct file
 	sound.LoadSound("assets/error_006.ogg");  // Insert incorrect file
 	sound.LoadSound("assets/confirmation_002.ogg"); // make correct file
@@ -53,26 +59,23 @@ void Stage1::Load()
 	sound.SetVolume(CorrectMakeFIle, 30);
 	sound.SetVolume(InsertIncorrectFIle, 50);
 	sound.SetVolume(InsertCorrectFIle, 30);
-	sound.SetVolume(IncorrectMakeFile, 30);
+	sound.SetVolume(IncorrectMakeFile, 30);	
 }
 
 void Stage1::Draw()
 {
-	doodle::clear_background(165, 200, 255, 255);
+	background.Draw({static_cast<double>(Engine::GetWindow().GetSize().x / 2),static_cast<double>(Engine::GetWindow().GetSize().y / 2) });
 	player.Draw();
-	sprite_file.Draw({50, 750});
-	
-	s1.File_Draw(file);
-	s1.Heart_Draw(heart);
+	sprite_file.Draw({50, 730});
 
-	doodle::push_settings();
-	doodle::set_fill_color(0);
-	doodle::draw_ellipse(doodle::get_mouse_x(), doodle::get_mouse_y(), 20, 20);
-	doodle::pop_settings();
+	File_Draw(file);
+	Heart_Draw(heart);
+
+	MousePointer.Draw({ static_cast<double>(doodle::get_mouse_x()), static_cast<double>(doodle::get_mouse_y()) });
 
 	if (IsPreviousFileExist == false)
 	{
-		default_file.Draw({ 450, 680 });
+		default_file.Draw({ 200, 650 });
 	}
 	else if (IsPreviousFileExist == true)
 	{
@@ -80,49 +83,45 @@ void Stage1::Draw()
 		{
 		case 0:
 		case 1:
-			sprite_c_file.Draw({ 450, 680 });
+			sprite_c_file.Draw({ 200, 650 });
 			break;
 		case 2:
 		case 3:
-			sprite_in_file.Draw({ 450, 680 });
+			sprite_in_file.Draw({ 200, 650 });
 			break;
 		default:
 			break;
 		}
 	}
+
+	for (int i = 0; i < num.size(); i++)
+	{
+		num[i].Draw_data();
+	}
 	
 	doodle::push_settings();
-	doodle::set_font_size(30);
-	doodle::draw_text(" :  " + std::to_string(file) + " / 3 ", 80, 720);
-	doodle::draw_text("File previously put :          " + std::to_string(file_input.size()) + " / 3 ", 20, 650);
+	doodle::set_font_size(20);
+	doodle::draw_text(" :  " + std::to_string(file) + " / 7 ", 80, 710);
+	doodle::draw_text("File input :          " + std::to_string(file_input.size()) + " / 7 ", 20, 620);
+	doodle::pop_settings();
+	
 	if(GameStart == false && GameOver == false && GameClear == false)
-	{
-		doodle::draw_text("Move ZERO with the mouse and get the  \t!", 250, Engine::GetWindow().GetSize().y / 2.0 + 20.0);
-		
+	{	
 		doodle::push_settings();
-		doodle::set_fill_color(0, 100, 0);   //green
-		doodle::draw_rectangle(1000, Engine::GetWindow().GetSize().y / 2.0 + 30, 40, 40);
-		doodle::pop_settings();
-		
-		doodle::push_settings();
+		doodle::set_font_size(30);
 		doodle::set_fill_color(33, 255, 78);
 		doodle::draw_text("<<Press Space bar to Start>>", 430, Engine::GetWindow().GetSize().y / 2.0 - 80.0);
 		doodle::pop_settings();
 	}
 	else if (GameOver == true)
 	{
+		doodle::set_font_size(30);
 		doodle::draw_text("Game Over!", 600, Engine::GetWindow().GetSize().y / 2.0);
 	}
 	else if (GameClear == true)
 	{
+		doodle::set_font_size(30);
 		doodle::draw_text("Game Clear!", 600, Engine::GetWindow().GetSize().y / 2.0);
-	}
-	doodle::pop_settings();
-
-	
-	for (int i = 0; i < num.size(); i++)
-	{
-		num[i].Draw();
 	}
 }
 
@@ -163,10 +162,9 @@ void Stage1::Update()
 	{
 		player.Update(Retry::GameScenes::Stage1);
 
-
-		if (time % 20 == 0)
+		if (time % 30 == 0)
 		{
-			s1.revector(dropspeed);
+			revector(dropspeed);
 		}
 
 		time++;
@@ -189,25 +187,21 @@ void Stage1::Update()
 				switch (num[i].GetNumbering())
 				{
 				case 0:
-					//dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 1:
-					//dropspeed += 2;
 					sound.PlaySound(InsertCorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 2:
-					//dropspeed += 2;
 					sound.PlaySound(InsertIncorrectFIle);
 					Getnumber(num[i].GetNumbering());
 					file_input.push_back(num[i].GetNumbering());
 					break;
 				case 3:
-					//dropspeed += 2;
 					Getnumber(num[i].GetNumbering());
 					sound.PlaySound(InsertIncorrectFIle);
 					file_input.push_back(num[i].GetNumbering());
@@ -222,7 +216,7 @@ void Stage1::Update()
 			}
 		}
 
-		if (file_input.size() == 3)
+		if (file_input.size() == 7)
 		{
 			if (Identify_v() == true)
 			{
@@ -247,7 +241,7 @@ void Stage1::Update()
 			GameOver = true;
 			GameStart = false;
 		}
-		else if (file == 3)
+		else if (file == 7)
 		{
 			GameStart = false;
 			GameClear = true;
@@ -273,12 +267,54 @@ bool Stage1::Identify_v()
 			break;
 		}
 	}
-	if (score == 3)
+	if (score == 7)
 	{
 		return true;
 	}
 	return false;
 }
+
+void Stage1::File_Draw(int file_number)
+{
+	switch (file_number)
+	{
+	case 1:
+		sprite_file1.Draw({ 50, 730 });
+		break;
+	case 2:
+		sprite_file2.Draw({ 50, 730 });
+		break;
+	case 3:
+		sprite_file3.Draw({ 50, 730 });
+		break;
+	}
+}
+
+void Stage1::Heart_Draw(int heart_num)
+{
+	switch (heart_num)
+	{
+	case 1:
+		sprite_heart.Draw({ 70, 550 });
+		break;
+	case 2:
+		sprite_heart.Draw({ 70, 550 });
+		sprite_heart.Draw({ 170, 550 });
+		break;
+	case 3:
+		sprite_heart.Draw({ 70, 550 });
+		sprite_heart.Draw({ 170, 550 });
+		sprite_heart.Draw({ 270, 550 });
+		break;
+	}
+}
+
+void Stage1::revector(int sp)
+{
+	num.push_back(Stage1_Object({ doodle::random(100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y + 100 }, doodle::random(0, 4), sp));
+	num[num.size() - 1].Load();
+}
+
 
 void Stage1::Getnumber(int number)
 {
