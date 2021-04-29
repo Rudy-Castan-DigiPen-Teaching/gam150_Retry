@@ -92,7 +92,7 @@ void Stage2::Update()
 		{
 			if (timer > timeLimit - 10)	// if left time is 10 seconds
 			{
-				player.SetSpeed(10);
+				player.SpeedUp();
 			}
 			
 			if (stackedData < maxDataNum)
@@ -181,7 +181,7 @@ void Stage2::Update()
 					{
 						if (dataBoxes[j].isOnBoard == true && dataBoard[i].GetDataType() == dataBoxes[j].GetDataType())
 						{
-							if (dataBoxes[i].isTargetted == true && hacker.IsAppeard() == true)
+							if (dataBoxes[j].isTargetted == true && hacker.IsAppeard() == true)
 							{
 								hacker.hasDataBox = true;
 							}

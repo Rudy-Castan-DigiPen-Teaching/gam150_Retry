@@ -11,10 +11,22 @@ Creation date: 04/01/2021
 #include "Stage2.h"
 #include "DataBoard.h"
 
-DataBox::DataBox(DataType dataType) : Object({ 100, Stage2::floor }, 50, 50),
+DataBox::DataBox(DataType dataType) : Object({ 100, Stage2::floor }, 130, 100),
 dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false), isTargetted(false), isStolen(false)
 {
 	hotspot = { width / 2, 0 };
+	switch(dataType)
+	{
+	case DataType::RED:
+		sprite.Load("assets/data_box_red.png", hotspot);
+		break;
+	case DataType::GREEN:
+		sprite.Load("assets/data_box_green.png", hotspot);
+		break;
+	case DataType::BLUE:
+		sprite.Load("assets/data_box_blue.png", hotspot);
+		break;
+	}
 }
 
 void DataBox::Load() 
@@ -30,20 +42,9 @@ void DataBox::Update()
 {
 }
 
-void DataBox::Draw() const 
+void DataBox::Draw()
 {
 	doodle::push_settings();
-	switch (dataType) {
-	case DataType::RED:
-		doodle::set_fill_color(255, 0, 0, 255);
-		break;
-	case DataType::GREEN:
-		doodle::set_fill_color(0, 255, 0, 255);
-		break;
-	case DataType::BLUE:
-		doodle::set_fill_color(0, 0, 255, 255);
-		break;
-	}
-	doodle::draw_rectangle(position.x, position.y, width, height);
+	sprite.Draw(position);
 	doodle::pop_settings();
 }

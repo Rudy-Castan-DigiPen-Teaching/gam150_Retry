@@ -27,7 +27,7 @@ private:
     int currTransferNum;
 	
     int maxDataNum = 1;
-    static constexpr int goalTranasferNum = 5;
+    static constexpr int goalTranasferNum = 3;
 
     double timer;
     constexpr static int timeLimit = 60;

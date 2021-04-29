@@ -10,9 +10,9 @@ Creation date: 04/05/2021
 #include "DataBoard.h"
 #include <doodle/random.hpp>
 
-DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 150, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
+DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 300, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
 {
-	position.x = static_cast<double>(datatype) * 200 + 500;
+	position.x = static_cast<double>(datatype) * width + 400;
 	goalDataNum = doodle::random(2, 5);
 }
 
