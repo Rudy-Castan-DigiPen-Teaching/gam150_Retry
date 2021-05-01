@@ -17,12 +17,14 @@ Creation date: 03/23/2021
 #include "../Game/Stage3.h"
 #include "../Game/GameOver.h"
 #include "../Game/TestStage.h"
+#include "../Game/Story.h"
 
 namespace Retry 
 {
 	void SceneManager::Setup()
 	{
 		scenes[GameScenes::Splash] = std::make_unique<Splash>();
+		scenes[GameScenes::Story] = std::make_unique<Story>();
 		scenes[GameScenes::MainMenu] = std::make_unique<MainMenu>();
 		scenes[GameScenes::Stage1] = std::make_unique<Stage1>();
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
@@ -30,8 +32,8 @@ namespace Retry
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::MainMenu].get();
-		queuedScene = scenes[GameScenes::MainMenu].get();
+		currentScene = scenes[GameScenes::Story].get();
+		queuedScene = scenes[GameScenes::Story].get();
 	}
 
 	void SceneManager::Update() 
