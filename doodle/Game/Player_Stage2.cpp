@@ -6,7 +6,7 @@
 Player_Stage2::Player_Stage2(math::vec2 position, int width, int height)
 	: Object(position, width, height), initPos(position),
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	hasDataBox(false), speed(7)
+	hasDataBox(false), velocity(0, 0), xAccelerate(800), xMaxVelocity(600), speedUp(false), isFast(false)
 {
 }
 
@@ -23,16 +23,66 @@ void Player_Stage2::Load()
 	width = sprite.getTextureSize().x;
 	height = sprite.getTextureSize().y;
 	hasDataBox = false;
-	speed = 7;
+	velocity = { 0, 0 };
+	xAccelerate = 800;
+	xMaxVelocity = 600;
+	speedUp = false;
+	isFast = false;
 }
 
 void Player_Stage2::Update() {
-	if (moveRightKey.IsKeyDown() == true) { position.x += speed; }
-	else if (moveLeftKey.IsKeyDown() == true) { position.x -= speed; }
+	if (speedUp == true && isFast == false)
+	{
+		MultiplySpeed(1.5);
+		isFast = true;
+	}
+	if (moveRightKey.IsKeyDown() == true)
+	{
+		velocity.x += xAccelerate * doodle::DeltaTime;
+		if (velocity.x < 0)
+		{
+			velocity.x += xDrag * doodle::DeltaTime;
+		}
+		if (velocity.x > xMaxVelocity)
+		{
+			velocity.x = xMaxVelocity;
+		}
+	}
+	else if (moveLeftKey.IsKeyDown() == true)
+	{
+		velocity.x -= xAccelerate * doodle::DeltaTime;
+		if (velocity.x > 0)
+		{
+			velocity.x -= xDrag * doodle::DeltaTime;
+		}
+		if (velocity.x < -xMaxVelocity)
+		{
+			velocity.x = -xMaxVelocity;
+		}
+	}
+	else
+	{
+		if (velocity.x < 0)
+		{
+			velocity.x += xDrag * doodle::DeltaTime;
+			if (velocity.x > doodle::DeltaTime)
+			{
+				velocity.x = 0;
+			}
+		}
+		if (velocity.x > 0)
+		{
+			velocity.x -= xDrag * doodle::DeltaTime;
+			if (velocity.x < doodle::DeltaTime)
+			{
+				velocity.x = 0;
+			}
+		}
+	}
+	position += velocity * doodle::DeltaTime;
 }
 
 void Player_Stage2::Draw()
 {
-	//doodle::draw_rectangle(position.x, position.y, width, height);
 	sprite.Draw(position);
 }

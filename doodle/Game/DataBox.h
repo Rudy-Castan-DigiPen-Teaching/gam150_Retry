@@ -23,7 +23,7 @@ public:
 
 	void Load() override;
 	void Update() override;
-	void Draw() const override;
+	void Draw();
 
 	DataType GetDataType() const { return dataType; }
 
@@ -35,5 +35,6 @@ public:
 
 	DataBox& operator=(const DataBox&) = default;
 private:
+	Retry::Sprite sprite;
 	DataType dataType;
 };
