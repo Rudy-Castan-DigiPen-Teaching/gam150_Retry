@@ -7,11 +7,9 @@ Project: GAM150_Networker
 Author: Team RETRY - Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
-#include <doodle/drawing.hpp>
 #include "Stage3.h"
-
+#include <doodle/drawing.hpp>
 #include <doodle/random.hpp>
-
 #include "../Engine/Engine.h" // GetLogger
 
 Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageNext(Retry::InputKey::Keyboard::Enter), Reload(Retry::InputKey::Keyboard::R), pausekey(Retry::InputKey::Keyboard::Space),
@@ -122,38 +120,38 @@ void Stage3::Draw()
 	doodle::pop_settings();
 
 	hacker.Draw(hackerPos);
-	if (gameOver)
-	{
-		doodle::draw_text("Game Over!", Engine::GetWindow().GetSize().x / 2.0 - 300, Engine::GetWindow().GetSize().y / 2);
-	}
-	else 
-	{
-		for (Bug& b : bugs)
-		{
-			if (b.getStartTime() <= overlapseTime)
-			{
-				b.Draw();
-			}
-		}
-		player.Draw();
 
-		if (isAllDead())
+	for (Bug& b : bugs)
+	{
+		if (b.getStartTime() <= overlapseTime)
 		{
-			switch (player.GetLives())
-			{
-			case 3:
-				doodle::draw_text("perfect clear!", 40, Engine::GetWindow().GetSize().y / 2);
-				break;
-			case 2:
-			case 1:
-				doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y / 2);
-				break;
-			case 0:
-				doodle::draw_text("Fail", 40, Engine::GetWindow().GetSize().y / 2);
-
-			}
+			b.Draw();
 		}
 	}
+	player.Draw();
+
+	if (pause)
+	{
+		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
+	}
+
+	if (isAllDead())
+	{
+		switch (player.GetLives())
+		{
+		case 3:
+			doodle::draw_text("perfect clear!", 40, Engine::GetWindow().GetSize().y / 2);
+			break;
+		case 2:
+		case 1:
+			doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y / 2);
+			break;
+		case 0:
+			doodle::draw_text("Fail", 40, Engine::GetWindow().GetSize().y / 2);
+
+		}
+	}
+
 }
 
 bool Stage3::isAllDead()

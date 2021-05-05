@@ -32,8 +32,6 @@ class Player_Stage3 : public Retry::Object
 private:
 	math::vec2 startPosition;
 
-	Retry::InputKey moveRightKey;
-	Retry::InputKey moveLeftKey;
 	Retry::InputKey moveUpKey;
 	Retry::InputKey moveDownKey;
 
@@ -57,4 +55,40 @@ public:
 
 	void LooseHeart();
 
+private:
+	class State {
+	public:
+		virtual void Enter(Player_Stage3* player) = 0;
+		virtual void Update(Player_Stage3* player) = 0;
+		virtual void TestForExit(Player_Stage3* player) = 0;
+		virtual std::string GetName() = 0;
+	};
+	class State_Idle : public State {
+	public:
+		virtual void Enter(Player_Stage3* player) override;
+		virtual void Update(Player_Stage3* player) override;
+		virtual void TestForExit(Player_Stage3* player) override;
+		std::string GetName() override { return "Idle"; }
+	};
+	class State_Moving : public State {
+	public:
+		virtual void Enter(Player_Stage3* player) override;
+		virtual void Update(Player_Stage3* player) override;
+		virtual void TestForExit(Player_Stage3* player) override;
+		std::string GetName() override { return "Moving"; }
+	};
+	class State_Attacking : public State {
+	public:
+		virtual void Enter(Player_Stage3* player) override;
+		virtual void Update(Player_Stage3* player) override;
+		virtual void TestForExit(Player_Stage3* player) override;
+		std::string GetName() override { return "Attacking"; }
+	};
+	State_Idle stateIdle;
+	State_Moving stateMoving;
+	State_Attacking stateAttacking;
+
+	void UpdatePosition();
+	void ChangeState(State* newState);
+	State* currState;
 };
