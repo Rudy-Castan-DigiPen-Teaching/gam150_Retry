@@ -36,7 +36,7 @@ public:
 
 	void Load() override;
 	void Update() override;
-	void Draw();
+	void Draw() override;
 
 	void MultiplySpeed(double d)
 	{

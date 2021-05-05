@@ -31,7 +31,7 @@ public:
 
 	void Load();
 	void Update(Player_Stage3& player);
-	void Draw() const override;
+	void Draw() override;
 
 	void setAlive(bool alive) { isAlive = alive; }
 

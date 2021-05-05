@@ -23,7 +23,7 @@ public:
 
 	void Load() override;
 	void Update() override;
-	void Draw();
+	void Draw() override;
 
 	DataType GetDataType() const { return dataType; }
 

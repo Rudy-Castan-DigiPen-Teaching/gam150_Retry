@@ -33,7 +33,7 @@ public:
 	Hacker_Stage2(math::vec2 pos);
 	void Load() override;
 	void Update() override;
-	void Draw();
+	void Draw() override;
 
 	void SetBoxPosition(math::vec2 boxPos) { boxPosition = boxPos; }
 

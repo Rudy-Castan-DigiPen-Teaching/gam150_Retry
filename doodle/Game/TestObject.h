@@ -24,5 +24,5 @@ public:
 	TestObject(math::vec2 initpos, int size);
 
 	void Update() override;
-	void Draw() const override;
+	void Draw() override;
 };
