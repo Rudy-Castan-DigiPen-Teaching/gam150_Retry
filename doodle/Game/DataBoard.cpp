@@ -35,7 +35,7 @@ void DataBoard::Update()
 	}
 }
 
-void DataBoard::Draw()
+void DataBoard::Draw() const
 {
 	doodle::push_settings();
 	switch (dataType) {

@@ -11,8 +11,6 @@ Creation date: 03/23/2021
 #pragma once
 #include <string>
 
-#include "SceneManager.h"
-
 namespace Retry {
     class SceneManager;
 
@@ -35,6 +33,6 @@ namespace Retry {
         Scene& operator=(const Scene& other) = default;
         //Scene& operator=(Scene&& other) noexcept = default;
 
-    	GameScenes prevScene = GameScenes::Splash;
+        GameScenes prevScene;
     };
 }

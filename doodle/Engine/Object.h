@@ -33,7 +33,7 @@ namespace Retry
 
 		virtual void Load();
 		virtual void Update();
-		virtual void Draw();
+		virtual void Draw() const;
 
 		bool CollideWith(const Object& obj);
 

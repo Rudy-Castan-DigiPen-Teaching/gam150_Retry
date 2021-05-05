@@ -19,7 +19,7 @@ void TestObject::Update()
 	SetPosition({ static_cast<double>(doodle::get_mouse_x()) - (Object::GetSize().x / 2), static_cast<double>(doodle::get_mouse_y()) - (Object::GetSize().y / 2) });
 }
 
-void TestObject::Draw()
+void TestObject::Draw() const
 {
 	doodle::push_settings();
 	doodle::draw_rectangle(Object::GetPosition().x, Object::GetPosition().y, Object::GetSize().x);

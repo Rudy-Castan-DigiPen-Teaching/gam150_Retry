@@ -17,7 +17,7 @@ namespace Retry
 
 	void Object::Load() {}
 
-	void Object::Draw()
+	void Object::Draw() const
 	{
 		doodle::push_settings();
 		doodle::apply_translate(position.x - hotspot.x, position.y - hotspot.y);

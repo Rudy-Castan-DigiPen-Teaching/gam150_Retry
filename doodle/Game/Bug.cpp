@@ -57,7 +57,7 @@ void Bug::Update(Player_Stage3& player)
 	}
 }
 
-void Bug::Draw()
+void Bug::Draw() const
 {
 	doodle::push_settings();
 	doodle::set_fill_color(100);

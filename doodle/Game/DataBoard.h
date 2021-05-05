@@ -18,7 +18,7 @@ public:
 
 	void Load() override;
 	void Update() override;
-	void Draw() override;
+	void Draw() const override;
 
 	void AddCurrDataNum(int i) { currDataNum += i; }
 	int GetGoalDataNum() const { return goalDataNum; }

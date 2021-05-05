@@ -25,5 +25,5 @@ public:
     void Update() override;
     void Unload() override;
     void Draw() override;
-    std::string GetName() override { return "Game Over"; }
+    std::string GetName() override { return "Main Menu"; }
 };
