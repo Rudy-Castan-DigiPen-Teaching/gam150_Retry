@@ -30,9 +30,9 @@ private:
     static constexpr int goalTranasferNum = 3;
 
     double timer;
-    constexpr static int timeLimit = 50;
+    constexpr static int timeLimit = 60;
 
-    bool gameStarted;
+    bool stageStarted;
     bool stageCleared;
 	
     Retry::InputKey StageNext;
@@ -56,6 +56,7 @@ public:
     void Update() override;
     void Unload() override;
     void Draw() override;
+	
     std::string GetName() override { return "Stage2"; };
 
     static constexpr double floor = 200;

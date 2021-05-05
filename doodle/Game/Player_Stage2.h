@@ -18,11 +18,17 @@ private:
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 
-	double speed;
-
 	math::vec2 initPos;
 
 	Retry::Sprite sprite;
+	
+	math::vec2 velocity;
+	double xAccelerate;
+	double xMaxVelocity;
+	constexpr static double xDrag = 1600;
+
+	bool speedUp;
+	bool isFast;
 
 public:
 	Player_Stage2(math::vec2 position, int width, int height);
@@ -32,7 +38,13 @@ public:
 	void Update() override;
 	void Draw();
 
-	void SetSpeed(double d) { speed = d; }
+	void MultiplySpeed(double d)
+	{
+		xAccelerate *= d;
+		xMaxVelocity *= d;
+	}
+
+	void SpeedUp() { speedUp = true; }
 	
 	bool hasDataBox;	// Stage 2
 };

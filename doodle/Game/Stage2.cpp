@@ -14,7 +14,7 @@ Creation date: 03/23/2021
 
 Stage2::Stage2() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageReload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), StageStart(Retry::InputKey::Keyboard::Space),
 player({200, Stage2::floor}, 50, 50), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
-stackedData(1), currTransferNum(0), timer(0), gameStarted(false), stageCleared(false) {}
+stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(false) {}
 
 void Stage2::Load()
 {
@@ -35,6 +35,10 @@ void Stage2::Load()
 	stackedData = 1;
 	currTransferNum = 0;
 
+	timer = 0;
+	stageStarted = false;
+	stageCleared = false;
+	
 	int num = 0;
 	for (int i = 0; i < stackedData; ++i) 
 	{
@@ -42,31 +46,53 @@ void Stage2::Load()
 		dataBoxes.push_back(DataBox(static_cast<DataBox::DataType>(num)));
 	}
 
-	for (int i = 0; i < static_cast<int>(DataBox::DataType::BLUE) + 1; ++i)
+	for (int i = 0; i <= static_cast<int>(DataBox::DataType::BLUE); ++i)
 	{
 		dataBoard.push_back(DataBoard(Stage2::floor, static_cast<DataBox::DataType>(i)));
 	}
-
-	timer = 0;
-	gameStarted = false;
-	stageCleared = false;
 }
 
 void Stage2::Update()
 {
-	if (gameStarted == false && StageStart.IsKeyReleased() == true )	// Start Game after mouse is released
+	if (timer >= timeLimit)
 	{
-		gameStarted = true;
+		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage2);
 	}
-	else if (gameStarted == true && stageCleared == false)	// Game has started, and stage has not been cleared
+	if (RolebackMenu.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+	}
+	if (StageNext.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().Shutdown();
+	}
+	if (StageReload.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().ReloadScene();
+	}
+
+	if (currTransferNum == goalTranasferNum)
+	{
+		stageCleared = true;
+	}
+	
+	if (stageStarted == false && StageStart.IsKeyReleased() == true)	// Start Game after mouse is released
+	{
+		stageStarted = true;
+	}
+	else if (stageStarted == true && stageCleared == false)	// Game has started, and stage has not been cleared
 	{
 		timer += doodle::DeltaTime;	// Update timer
-		
-		if (timer <= timeLimit)	// If time is not over
+
+		if (timer > timeLimit)
 		{
-			if (timer > timeLimit - 10.0)	// if left time is 10 minutes
+			timer = timeLimit;
+		}
+		else
+		{
+			if (timer > timeLimit - 10)	// if left time is 10 seconds
 			{
-				player.SetSpeed(10);
+				player.SpeedUp();
 			}
 			
 			if (stackedData < maxDataNum)
@@ -78,10 +104,8 @@ void Stage2::Update()
 				++stackedData;
 				Engine::GetLogger().LogDebug("New Data Stacked");
 			}
-
 			for (int i = 0; i < dataBoxes.size(); ++i) 
 			{
-				// player take stacked box
 				if (player.hasDataBox == false && dataBoxes[i].GetPosition().y == floor && dataBoxes[i].isStacked == true &&
 					player.CollideWith(dataBoxes[i]) == true && Engine::GetMouseInput().IsMousePressed() == true)
 				{
@@ -100,20 +124,23 @@ void Stage2::Update()
 					{
 						if (dataBoxes[i].isOnBoard == true)
 						{
-							if (hacker.IsAppeard() == true && hacker.hasDataBox == false && hacker.targettingBox == false && dataBoxes[i].isTargetted == false)
+							if (hacker.hasDataBox == false) 
 							{
-								hacker.SetBoxPosition(dataBoxes[i].GetPosition());
-								hacker.targettingBox = true;
-								dataBoxes[i].isTargetted = true;
-							}
+								if (hacker.IsAppeard() == true && hacker.targettingBox == false && dataBoxes[i].isTargetted == false)
+								{
+									hacker.SetBoxPosition(dataBoxes[i].GetPosition());
+									hacker.targettingBox = true;
+									dataBoxes[i].isTargetted = true;
+								}
 
-							if (dataBoxes[i].isTargetted == true && hacker.targettingBox == true && hacker.hasDataBox == false && hacker.CollideWith(dataBoxes[i]))
-							{
-								sound.PlaySound(SteelData);
-								hacker.hasDataBox = true;
-								dataBoxes[i].isOnBoard = false;
-								dataBoxes[i].isStolen = true;
-								dataBoard[j].AddCurrDataNum(-1);
+								if (dataBoxes[i].isTargetted == true && hacker.targettingBox == true && hacker.CollideWith(dataBoxes[i]))
+								{
+									sound.PlaySound(SteelData);
+									hacker.hasDataBox = true;
+									dataBoxes[i].isOnBoard = false;
+									dataBoxes[i].isStolen = true;
+									dataBoard[j].AddCurrDataNum(-1);
+								}
 							}
 						}
 						else
@@ -122,90 +149,56 @@ void Stage2::Update()
 							{
 								dataBoxes[i].SetPosition(math::vec2(hacker.GetPosition().x + dataBoxes[i].GetSize().x, hacker.GetPosition().y));
 							}
-						}
-						
-						if (dataBoxes[i].isStacked == false && player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
-							Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isOnBoard == false && dataBoxes[i].isStolen == false)
-						{
-							sound.PlaySound(StackBox);
-							player.hasDataBox = false;
-							dataBoxes[i].isOnBoard = true;
-							dataBoxes[i].UpdatePosition(math::vec2(0, dataBoard[j].GetSize().y));
-							dataBoard[j].AddCurrDataNum(1);
-						}
 
-						
+							if (dataBoxes[i].isStacked == false && player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
+								Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isStolen == false)
+							{
+								sound.PlaySound(StackBox);
+								player.hasDataBox = false;
+								dataBoxes[i].isOnBoard = true;
+								dataBoxes[i].UpdatePosition(math::vec2(0, dataBoard[j].GetSize().y));
+								dataBoard[j].AddCurrDataNum(1);
+							}
+						}
 						if (dataBoxes[i].isOnBoard == true && dataBoard[j].GetCurrDataNum() >= dataBoard[j].GetGoalDataNum())
 						{
 							dataBoard[j].reachedGoal = true;
 						}
 					}
-				}
-
-				dataBoxes[i].Update();
-				
+				}				
 				if (dataBoxes[i].isStolen == true && hacker.GetPosition().x >= Engine::GetWindow().GetSize().x)
 				{
 					dataBoxes.erase(dataBoxes.begin() + i);
 					--i;
 				}
 			}
-
+			
 			for (int i = 0; i < dataBoard.size(); ++i)
 			{
 				if (dataBoard[i].reachedGoal == true)
 				{
-					sound.PlaySound(TransferData);
 					for (int j = 0; j < dataBoxes.size(); ++j)
 					{
 						if (dataBoxes[j].isOnBoard == true && dataBoard[i].GetDataType() == dataBoxes[j].GetDataType())
 						{
+							if (dataBoxes[j].isTargetted == true && hacker.IsAppeard() == true)
+							{
+								hacker.hasDataBox = true;
+							}
 							dataBoxes.erase(dataBoxes.begin() + j);
 							Engine::GetLogger().LogDebug("Data box in vector erased");
 							--j;
 						}
 					}
-
+					sound.PlaySound(TransferData);
 					++currTransferNum;
 					dataBoard[i].reachedGoal = false;
 				}
 				dataBoard[i].Update();
-
-
 			}
-			
-			if (currTransferNum >= goalTranasferNum)
-			{
-				stageCleared = true;
-			}
-			
 			hacker.Update();
 			player.Update();
 		}
-
-		if (timer > timeLimit)
-		{
-			timer = timeLimit;
-		}
-
-	}
-
-	if (timer >= timeLimit)
-	{
-		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage2);
-	}
-	if (RolebackMenu.IsKeyReleased() == true)
-	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
-	}
-	if (StageNext.IsKeyReleased() == true)
-	{
-		// Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
-		Engine::GetSceneManager().Shutdown();
-	}
-	if (StageReload.IsKeyReleased() == true)
-	{
-		Engine::GetSceneManager().ReloadScene();
 	}
 }
 
@@ -228,7 +221,7 @@ void Stage2::Draw()
 	doodle::push_settings();
 	doodle::set_font_size(40);
 	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", Engine::GetWindow().GetSize().x * 0.05, Engine::GetWindow().GetSize().y * 0.9);
-	if (gameStarted == false)
+	if (stageStarted == false)
 	{
 		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
 	}
@@ -237,8 +230,6 @@ void Stage2::Draw()
 		doodle::draw_text("Clear!!", doodle::Width / 2.0, doodle::Height / 2.0);
 	}
 	doodle::pop_settings();
-
-	
 	doodle::push_settings();
 	doodle::set_font_size(40);
 	if (timer > timeLimit - 10)
