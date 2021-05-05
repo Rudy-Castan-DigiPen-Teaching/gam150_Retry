@@ -13,7 +13,7 @@ Creation date: 03/23/2021
 #include <doodle/random.hpp>
 
 Stage2::Stage2() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageReload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), StageStart(Retry::InputKey::Keyboard::Space),
-player({200, Stage2::floor}, 50, 50), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
+player({200, Stage2::floor}, 93, 93), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
 stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(false) {}
 
 void Stage2::Load()
@@ -25,7 +25,7 @@ void Stage2::Load()
 
 	sound.SetVolume(StackBox, 30);
 	sound.SetVolume(TransferData, 30);
-	sound.SetVolume(SteelData, 30);
+	sound.SetVolume(StealData, 30);
 	sound.SetVolume(RefillData, 30);
 	
 	player.Load();
@@ -144,7 +144,7 @@ void Stage2::Update(double)
 
 								if (dataBoxes[i].isTargetted == true && hacker.targettingBox == true && hacker.CollideWith(dataBoxes[i]))
 								{
-									sound.PlaySound(SteelData);
+									sound.PlaySound(StealData);
 									hacker.hasDataBox = true;
 									dataBoxes[i].isOnBoard = false;
 									dataBoxes[i].isStolen = true;
@@ -159,7 +159,8 @@ void Stage2::Update(double)
 								dataBoxes[i].SetPosition(math::vec2(hacker.GetPosition().x + dataBoxes[i].GetSize().x, hacker.GetPosition().y));
 							}
 
-							if (dataBoxes[i].isStacked == false && player.hasDataBox == true && player.CollideWith(dataBoard[j]) == true &&
+							if (dataBoxes[i].isStacked == false && player.hasDataBox == true && 
+								player.CollideWith(dataBoard[j]) == true && dataBoxes[i].CollideWith(dataBoard[j]) == true &&
 								Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isStolen == false)
 							{
 								sound.PlaySound(StackBox);

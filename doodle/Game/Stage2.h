@@ -30,7 +30,7 @@ private:
     static constexpr int goalTranasferNum = 3;
 
     double timer;
-    constexpr static int timeLimit = 60;
+    constexpr static int timeLimit = 160;
 
     bool stageStarted;
     bool stageCleared;
@@ -46,7 +46,7 @@ private:
 	{
 		StackBox,
 		TransferData,
-		SteelData,
+		StealData,
 		RefillData
 	};
 public:

@@ -12,7 +12,8 @@ Creation date: 04/05/2021
 
 DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 300, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
 {
-	position.x = static_cast<double>(datatype) * width + 400;
+	hotspot = math::ivec2{ width / 2, 0 };
+	position.x = static_cast<double>(datatype) * width + 500;
 	goalDataNum = doodle::random(2, 5);
 }
 
@@ -49,7 +50,7 @@ void DataBoard::Draw()
 		doodle::set_fill_color(0, 0, 255, 255);
 		break;
 	}
-	doodle::draw_rectangle(position.x, position.y, width, height);
+	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 	doodle::set_font_size(40);
 	doodle::draw_text(std::to_string(currDataNum) + "/" + std::to_string(goalDataNum), position.x + 35, 600);
 	doodle::pop_settings();
