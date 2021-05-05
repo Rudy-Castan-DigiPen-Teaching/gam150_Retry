@@ -16,82 +16,86 @@ Creation date: 05/05/2021
 using namespace doodle;
 
 
-	DialogueManager::DialogueManager(std::initializer_list<std::string> list) :dialogues(list) {}
+DialogueManager::DialogueManager(std::initializer_list<Dialogue> list) :dialogues(list) {}
 
-	void DialogueManager::AddDialogue(std::string&& str)
+void DialogueManager::AddDialogue(Dialogue&& str)
+{
+	dialogues.push_back(std::move(str));
+}
+
+void DialogueManager::AddDialogue(std::initializer_list<Dialogue>&& list)
+{
+	for (auto str : list)
 	{
 		dialogues.push_back(std::move(str));
 	}
+}
 
-	void DialogueManager::AddDialogue(std::initializer_list<std::string>&& list)
+bool DialogueManager::IsDone()
+{
+	return (visible_chars == static_cast<int>(dialogues[index].GetSentence()->size()) && count == static_cast<int>(dialogues.size()) - 1);
+}
+
+void DialogueManager::Load()
+{
+	index = 0;
+}
+
+void DialogueManager::Update()
+{
+	if (!IsDone())
 	{
-		for (auto str : list)
+		timer += doodle::DeltaTime;
+		if (Engine::GetMouseInput().IsMouseReleased())
 		{
-			dialogues.push_back(std::move(str));
-		}
-	}
-
-	bool DialogueManager::IsDone()
-	{
-		return (visible_chars == static_cast<int>(dialogues[index].size()) && count == static_cast<int>(dialogues.size()) - 1);
-	}
-
-	void DialogueManager::Load()
-	{
-		index = 0;
-	}
-
-	void DialogueManager::Update()
-	{
-		if (!IsDone())
-		{
-			timer += doodle::DeltaTime;
-			if (Engine::GetMouseInput().IsMouseReleased())
+			if (visible_chars < static_cast<int>(dialogues[index].GetSentence()->size()))
 			{
-				if (visible_chars < static_cast<int>(dialogues[index].size()))
-				{
-					visible_chars = static_cast<int>(dialogues[index].size());
-				}
-				else if (visible_chars == static_cast<int>(dialogues[index].size()) && count < static_cast<int>(dialogues.size()) - 1)
-				{
-					index++;
-					visible_chars = 0;
-					count++;
-				}
+				visible_chars = static_cast<int>(dialogues[index].GetSentence()->size());
 			}
-
-			if (timer > speed)
+			else if (visible_chars == static_cast<int>(dialogues[index].GetSentence()->size()) && count < static_cast<int>(dialogues.size()) - 1)
 			{
-				if (visible_chars < static_cast<int>(dialogues[index].size()))
-				{
-					visible_chars++;
-				}
-				timer = 0;
+				index++;
+				visible_chars = 0;
+				count++;
 			}
-
-			std::string temp = "";
-			for (int i = 0; i < visible_chars; i++)
-			{
-				temp += dialogues[index][i];
-			}
-			displayString = temp;
 		}
 
-	}
-	void DialogueManager::Draw()
-	{
-		push_settings();
-		set_fill_color(0, 190);
-		doodle::draw_rectangle(
-			dialogueBox.bottomLeft.x, dialogueBox.bottomLeft.y,
-			dialogueBox.topRight.x, dialogueBox.topRight.y);
-		pop_settings();
+		if (timer > speed)
+		{
+			if (visible_chars < static_cast<int>(dialogues[index].GetSentence()->size()))
+			{
+				visible_chars++;
+			}
+			timer = 0;
+		}
 
-		push_settings();
-		set_font_size(fontSize);
-		doodle::draw_text(displayString, dialogueBox.bottomLeft.x + 10.0, dialogueBox.topRight.y - fontSize - 10.0);
-		pop_settings();
+		std::string temp = "";
+		for (int i = 0; i < visible_chars; i++)
+		{
+			temp += dialogues[index].sentence[i];
+		}
+		displayString = temp;
 	}
+
+}
+void DialogueManager::Draw()
+{
+	push_settings();
+	set_fill_color(0, 190);
+	doodle::draw_rectangle(
+		dialogueBox.bottomLeft.x, dialogueBox.bottomLeft.y,
+		dialogueBox.topRight.x, dialogueBox.topRight.y);
+	pop_settings();
+
+	push_settings();
+	set_font_size(fontSize);
+	if (dialogues[index].GetName() != "")
+	{
+		doodle::draw_text('<' + dialogues[index].GetName() + '>', dialogueBox.bottomLeft.x + 10.0, dialogueBox.topRight.y - fontSize - 10.0);
+	}
+	doodle::draw_text(displayString, dialogueBox.bottomLeft.x + 10.0, dialogueBox.topRight.y - fontSize * 2.5 - 10.0);
+	pop_settings();
+}
 
 int DialogueManager::GetDialogueIndex()
 {
@@ -99,6 +103,6 @@ int DialogueManager::GetDialogueIndex()
 }
 
 DialogueManager::~DialogueManager()
-	{
+{
 
-	}
+}
