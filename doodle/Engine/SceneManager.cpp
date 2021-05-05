@@ -7,11 +7,11 @@ Project: GAM150_Networker
 Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
-
 #include "Engine.h"
 #include "SceneManager.h"
 #include "../Game/Splash.h"
 #include "../Game/MainMenu.h"
+#include "../Game/Village.h"
 #include "../Game/Stage1.h"
 #include "../Game/Stage2.h"
 #include "../Game/Stage3.h"
@@ -26,14 +26,19 @@ namespace Retry
 		scenes[GameScenes::Splash] = std::make_unique<Splash>();
 		scenes[GameScenes::Story] = std::make_unique<Story>();
 		scenes[GameScenes::MainMenu] = std::make_unique<MainMenu>();
+		scenes[GameScenes::Village] = std::make_unique<Village>();
 		scenes[GameScenes::Stage1] = std::make_unique<Stage1>();
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::MainMenu].get();
-		queuedScene = scenes[GameScenes::MainMenu].get();
+		currentScene = scenes[GameScenes::Village].get();
+		queuedScene = scenes[GameScenes::Village].get();
+
+		stageCleared[GameScenes::Stage1] = false;
+		stageCleared[GameScenes::Stage2] = false;
+		stageCleared[GameScenes::Stage3] = false;
 	}
 
 	void SceneManager::Update() 
@@ -83,7 +88,6 @@ namespace Retry
 		case State::EXIT:
 			break;
 		}
-		
 	}
 
 	void SceneManager::setNextScene(GameScenes scene) 
@@ -97,6 +101,10 @@ namespace Retry
 		queuedScene->prevScene = currScene;
 	}
 
+	void SceneManager::SetStageClear(GameScenes currScene)
+	{
+		stageCleared[currScene] = true;
+	}
 
 	void SceneManager::Shutdown()
 	{
@@ -107,5 +115,10 @@ namespace Retry
 	{
 		state = State::UNLOAD;
 	}
-	
+
+	bool SceneManager::StageCleared(GameScenes scene)
+	{
+		return stageCleared[scene];
+	}
+
 }

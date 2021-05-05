@@ -1,0 +1,40 @@
+#pragma once
+#include "../Engine/Scene.h"
+#include "../Engine/Input.h"
+#include "../Engine/Vec2.h"
+#include <vector>
+
+class Village : public Retry::Scene
+{
+public:
+	Village();
+	void Load() override;;
+	void Update() override;
+	void Unload() override;
+	void Draw() override;
+	std::string GetName() override { return "Village"; }
+
+private:
+	class QuestButton
+	{
+	public:
+		QuestButton(math::vec2 pos, Retry::GameScenes stage);
+		bool IsMouseOn();
+		bool IsButtonPressed();
+		void Update();
+		void Draw();
+		void SetCleared(bool isCleared) { stageCleared = isCleared; }
+		Retry::GameScenes GetButtonStage() { return stage; }
+	private:
+		Retry::GameScenes stage;
+		math::vec2 position;
+		double width = 200;
+		double height = 200;
+		bool stageCleared;
+		bool buttonPressed = false;
+	};
+	
+	Retry::InputKey shutDownKey;
+
+	std::vector<QuestButton> questButtons;
+};

@@ -7,7 +7,6 @@ Project: GAM150_Networker
 Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
 Creation date: 03/23/2021
 -----------------------------------------------------------------*/
-
 #pragma once
 #include "Scene.h"
 #include <map>
@@ -16,7 +15,7 @@ Creation date: 03/23/2021
 namespace Retry {
 	enum class GameScenes
 	{
-		Splash, MainMenu, Story, Stage1, Stage2, Stage3, GameOver, TestStage, 
+		Splash, MainMenu, Story, Village, Stage1, Stage2, Stage3, GameOver, TestStage, 
 	};
 
 	class SceneManager
@@ -35,7 +34,8 @@ namespace Retry {
 		Scene* currentScene{ nullptr };
 		Scene* queuedScene{ nullptr };
 		std::map<GameScenes, std::unique_ptr<Scene>> scenes{};
-
+		std::map<GameScenes, bool> stageCleared{};
+	
 	public:
 		SceneManager() = default;
 
@@ -43,8 +43,10 @@ namespace Retry {
 		void Update();
 		void setNextScene(GameScenes scene);
 		void setGameOver(GameScenes currScene);
+		void SetStageClear(GameScenes currScene);
 		void Shutdown();
 		void ReloadScene();
 		bool HasGameEnded() { return state == State::EXIT; }
+		bool StageCleared(GameScenes scene);
 	};
 }

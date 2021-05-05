@@ -54,6 +54,11 @@ void Stage2::Load()
 
 void Stage2::Update()
 {
+	if (stageCleared == true)
+	{
+		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage2);
+	}
+	
 	if (timer >= timeLimit)
 	{
 		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage2);
@@ -62,15 +67,19 @@ void Stage2::Update()
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
 	}
-	if (StageNext.IsKeyReleased() == true)
-	{
-		Engine::GetSceneManager().Shutdown();
-	}
+	//if (StageNext.IsKeyReleased() == true)
+	//{
+	//	Engine::GetSceneManager().Shutdown();
+	//}
 	if (StageReload.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().ReloadScene();
 	}
-
+	if (stageCleared == true && StageNext.IsKeyReleased())
+	{
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
+	}
+	
 	if (currTransferNum == goalTranasferNum)
 	{
 		stageCleared = true;

@@ -134,9 +134,10 @@ void Stage1::Update()
 
 	if(GameClear == true)
 	{
+		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage1);
 		if (StageNext.IsKeyReleased() == true)
 		{
-			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
+			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 		}
 	}
 	else if (StageStart.IsKeyReleased() == true)
