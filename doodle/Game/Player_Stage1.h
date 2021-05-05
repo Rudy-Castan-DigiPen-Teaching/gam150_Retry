@@ -21,7 +21,7 @@ class Player_Stage1 : public Retry::Object
 		Player_Stage1(double x, double y, int width, int height);
 		void Load() override;
 		void Update(Retry::GameScenes scene);
-		void Draw();
+		void Draw() override;
 		void UpdateStage1();
 };
 

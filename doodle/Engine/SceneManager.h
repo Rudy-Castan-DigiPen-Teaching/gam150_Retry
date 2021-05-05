@@ -16,7 +16,7 @@ Creation date: 03/23/2021
 namespace Retry {
 	enum class GameScenes
 	{
-		Splash, MainMenu, Story, Stage1, Stage2, Stage3, GameOver, TestStage, 
+		Splash, MainMenu, Story, Village, Stage1, Stage2, Stage3, GameOver, TestStage, 
 	};
 
 	class SceneManager
@@ -35,16 +35,19 @@ namespace Retry {
 		Scene* currentScene{ nullptr };
 		Scene* queuedScene{ nullptr };
 		std::map<GameScenes, std::unique_ptr<Scene>> scenes{};
-
+		std::map<GameScenes, bool> stageCleared{};
+		
 	public:
 		SceneManager() = default;
 
 		void Setup();
 		void Update();
 		void setNextScene(GameScenes scene);
+		void setStageClear(GameScenes currScene);
 		void setGameOver(GameScenes currScene);
 		void Shutdown();
 		void ReloadScene();
 		bool HasGameEnded() { return state == State::EXIT; }
+		bool StageCleared(GameScenes scene);
 	};
 }

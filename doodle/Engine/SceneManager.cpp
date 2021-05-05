@@ -18,6 +18,7 @@ Creation date: 03/23/2021
 #include "../Game/GameOver.h"
 #include "../Game/TestStage.h"
 #include "../Game/Story.h"
+#include "../Game/Village.h"
 
 namespace Retry 
 {
@@ -26,14 +27,19 @@ namespace Retry
 		scenes[GameScenes::Splash] = std::make_unique<Splash>();
 		scenes[GameScenes::Story] = std::make_unique<Story>();
 		scenes[GameScenes::MainMenu] = std::make_unique<MainMenu>();
+		scenes[GameScenes::Village] = std::make_unique<Village>();
 		scenes[GameScenes::Stage1] = std::make_unique<Stage1>();
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::Story].get();
-		queuedScene = scenes[GameScenes::Story].get();
+		currentScene = scenes[GameScenes::Village].get();
+		queuedScene = scenes[GameScenes::Village].get();
+
+		stageCleared[GameScenes::Stage1] = false;
+		stageCleared[GameScenes::Stage2] = false;
+		stageCleared[GameScenes::Stage3] = false;
 	}
 
 	void SceneManager::Update() 
@@ -91,6 +97,12 @@ namespace Retry
 		queuedScene = scenes[scene].get();
 	}
 
+	void SceneManager::setStageClear(GameScenes currScene)
+	{
+		queuedScene = scenes[GameScenes::Village].get();
+		stageCleared[currScene] = true;
+	}
+
 	void SceneManager::setGameOver(GameScenes currScene)
 	{
 		queuedScene = scenes[GameScenes::GameOver].get();
@@ -107,5 +119,17 @@ namespace Retry
 	{
 		state = State::UNLOAD;
 	}
-	
+
+	bool SceneManager::StageCleared(GameScenes scene)
+	{
+		if (stageCleared.find(scene) != stageCleared.end())
+		{
+			return stageCleared[scene];
+		}
+		else
+		{
+			Engine::GetLogger().LogError("");
+		}
+	}
+
 }

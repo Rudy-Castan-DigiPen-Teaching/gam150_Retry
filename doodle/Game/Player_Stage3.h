@@ -49,7 +49,7 @@ public:
 
 	void Load() override;
 	void Update() override;
-	void Draw();
+	void Draw() override;
 
 	const int GetLives() const { return lives; }
 	const Object& GetAttackBox() const { return attackBox; }
