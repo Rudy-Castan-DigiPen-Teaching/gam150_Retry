@@ -112,6 +112,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
   <ItemGroup>
     <ClCompile Include="ConsoleMain.cpp" />
     <ClCompile Include="Engine\Button.cpp" />
+    <ClCompile Include="Engine\DialogueManager.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Input.cpp" />
     <ClCompile Include="Engine\InputDoodle.cpp" />
@@ -148,6 +149,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Button.h" />
+    <ClInclude Include="Engine\DialogueManager.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Input.h" />
     <ClInclude Include="Engine\Logger.h" />

@@ -11,13 +11,14 @@ Creation date: 04/26/2021
 #include "../Engine/Engine.h"   // GetLogger
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
-#include "../Engine/Button.h"
+#include "../Engine/DialogueManager.h"
 
 class Story : public Retry::Scene
 {
 private:
-    Retry::InputKey Mainmenu;
-
+    Retry::InputKey mainmenu;
+    DialogueManager dialogueManager;
+    bool end = false;
 public:
     Story();
     void Load() override;
