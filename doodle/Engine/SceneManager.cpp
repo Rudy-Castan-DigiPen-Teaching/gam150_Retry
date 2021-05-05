@@ -31,17 +31,16 @@ namespace Retry
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
-		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 
-		currentScene = scenes[GameScenes::Village].get();
-		queuedScene = scenes[GameScenes::Village].get();
+		currentScene = scenes[GameScenes::Splash].get();
+		queuedScene = scenes[GameScenes::Splash].get();
 
 		stageCleared[GameScenes::Stage1] = false;
 		stageCleared[GameScenes::Stage2] = false;
 		stageCleared[GameScenes::Stage3] = false;
 	}
 
-	void SceneManager::Update() 
+	void SceneManager::Update(double dt)
 	{
 		switch (state) 
 		{
@@ -61,7 +60,7 @@ namespace Retry
 			state = State::UPDATE;
 			break;
 		case State::UPDATE:
-			currentScene->Update();
+			currentScene->Update(dt);
 			currentScene->Draw();
 			if (currentScene != queuedScene) 
 			{

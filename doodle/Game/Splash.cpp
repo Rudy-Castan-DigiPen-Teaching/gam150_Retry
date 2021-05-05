@@ -9,11 +9,13 @@ void Splash::Load()
 	Logo.Load("assets/DigiPen_BLACK_1024px.png");
 }
 
-void Splash::Update()
+void Splash::Update(double dt)
 {
-	if (StageNext.IsKeyReleased() == true || Engine::GetMouseInput().IsMouseReleased() == true)
+	time += dt;
+
+	if (time > 3.0)
 	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::TestStage);
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
 	}
 }
 

@@ -9,6 +9,7 @@ Creation date: 03/23/2021
 -----------------------------------------------------------------*/
 
 #pragma once
+#include <chrono>
 #include <string>
 #include "Logger.h"
 #include "Window.h"
@@ -39,4 +40,8 @@ private:
 	Retry::SceneManager sceneManager;
 	Retry::Input input;
 	Retry::MouseInput mouseInput;
+
+	std::chrono::system_clock::time_point lastTick;
+	std::chrono::system_clock::time_point fpsCalcTime;
+
 };

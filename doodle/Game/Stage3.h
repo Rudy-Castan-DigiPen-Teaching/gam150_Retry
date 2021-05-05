@@ -39,7 +39,7 @@ private:
 public:
 	Stage3();
 	void Load() override;
-	void Update() override;
+	void Update(double) override;
 	void Unload() override;
 	void Draw() override;
 	std::string GetName() override { return "Stage3"; }

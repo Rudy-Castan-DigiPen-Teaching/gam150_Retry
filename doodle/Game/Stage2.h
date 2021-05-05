@@ -53,7 +53,7 @@ public:
     Stage2();
 
     void Load() override;
-    void Update() override;
+    void Update(double) override;
     void Unload() override;
     void Draw() override;
 	

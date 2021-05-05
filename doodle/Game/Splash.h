@@ -17,10 +17,11 @@ class Splash : public Retry::Scene
 private:
     Retry::Texture Logo;
     Retry::InputKey StageNext;
+    double time = 0.0;
 public:
     Splash();
     void Load() override;
-    void Update() override;
+    void Update(double dt)override;
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Splash"; };

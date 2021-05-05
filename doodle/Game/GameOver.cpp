@@ -26,7 +26,7 @@ void GameOver::Load()
 }
 
 
-void GameOver::Update()
+void GameOver::Update(double)
 {
 	if (exitKey.IsKeyReleased() == true)
 	{

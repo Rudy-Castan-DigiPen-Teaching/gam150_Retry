@@ -41,7 +41,7 @@ void Button::Draw()
 	doodle::set_rectangle_mode(doodle::RectMode::Center);
 	doodle::set_font_size(fnt_size);
 	doodle::draw_rectangle(pos_x, pos_y, button_width, button_height);
-	doodle::draw_text(text, pos_x - text.size() / 2 * (fnt_size - 10), pos_y - fnt_size + 5);
+	doodle::draw_text(text, pos_x - text.size() / 2 * (fnt_size - 5), pos_y - fnt_size + 5);
 	doodle::pop_settings();
 }
 

@@ -61,7 +61,7 @@ void Stage3::Unload()
 	music.setLoop(false);
 }
 
-void Stage3::Update()
+void Stage3::Update(double)
 {
 	if (StageNext.IsKeyReleased() == true)
 	{

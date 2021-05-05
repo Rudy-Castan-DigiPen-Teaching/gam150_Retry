@@ -22,7 +22,7 @@ private:
 public:
     GameOver();
     void Load() override;
-    void Update() override;
+    void Update(double) override;
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Main Menu"; }

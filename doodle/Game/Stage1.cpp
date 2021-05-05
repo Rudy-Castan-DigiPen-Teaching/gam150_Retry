@@ -125,7 +125,7 @@ void Stage1::Draw()
 	}
 }
 
-void Stage1::Update()
+void Stage1::Update(double)
 {
 	if (RolebackMenu.IsKeyReleased() == true)
 	{

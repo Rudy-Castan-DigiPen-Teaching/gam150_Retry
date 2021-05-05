@@ -8,11 +8,11 @@ void Story::Load()
 {
 }
 
-void Story::Update()
+void Story::Update(double)
 {
 	if (Mainmenu.IsKeyReleased() == true)
 	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 	}
 }
 

@@ -23,7 +23,7 @@ void Village::Load()
 	}
 }
 
-void Village::Update()
+void Village::Update(double)
 {
 	if (shutDownKey.IsKeyReleased() == true)
 	{

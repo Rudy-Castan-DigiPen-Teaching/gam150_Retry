@@ -52,7 +52,7 @@ void Stage2::Load()
 	}
 }
 
-void Stage2::Update()
+void Stage2::Update(double)
 {
 	if (stageCleared == true)
 	{

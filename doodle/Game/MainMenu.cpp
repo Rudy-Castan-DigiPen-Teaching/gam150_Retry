@@ -19,14 +19,14 @@ void MainMenu::Load()
 	int width = 150;
 	int height = 60;
 
-	buttons.push_back(Button("Stage 1", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.4), width, height));
-	buttons.push_back(Button("Stage 2", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
-	buttons.push_back(Button("Stage 3", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
+	buttons.push_back(Button("Game Start", math::vec2(Engine::GetWindow().GetSize().x / 2 , Engine::GetWindow().GetSize().y * 0.4), width, height));
+	//buttons.push_back(Button("Stage 2", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
+	//buttons.push_back(Button("Stage 3", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
 
 	title_picture.Load("assets/title_picture.png");
 }
 
-void MainMenu::Update()
+void MainMenu::Update(double)
 {
 	if (exitkey.IsKeyReleased() == true)
 	{
@@ -42,13 +42,13 @@ void MainMenu::Update()
 			switch (i)
 			{
 			case 0:
-				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage1);
+				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Story);
 				break;
 			case 1:
-				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
+			//	Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
 				break;
 			case 2:
-				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
+				//Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
 				break;
 			default:
 				break;

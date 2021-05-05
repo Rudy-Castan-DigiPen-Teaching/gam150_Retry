@@ -15,7 +15,7 @@ Creation date: 03/23/2021
 namespace Retry {
 	enum class GameScenes
 	{
-		Splash, MainMenu, Story, Village, Stage1, Stage2, Stage3, GameOver, TestStage, 
+		Splash, MainMenu, Story, Village, Stage1, Stage2, Stage3, GameOver, 
 	};
 
 	class SceneManager
@@ -40,7 +40,7 @@ namespace Retry {
 		SceneManager() = default;
 
 		void Setup();
-		void Update();
+		void Update(double dt);
 		void setNextScene(GameScenes scene);
 		void setGameOver(GameScenes currScene);
 		void SetStageClear(GameScenes currScene);
