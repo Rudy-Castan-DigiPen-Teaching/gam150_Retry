@@ -18,6 +18,7 @@ Creation date: 03/23/2021
 #include "../Game/GameOver.h"
 #include "../Game/TestStage.h"
 #include "../Game/Story.h"
+#include "../Game/Ending.h"
 
 namespace Retry 
 {
@@ -31,9 +32,10 @@ namespace Retry
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
 		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
+		scenes[GameScenes::Ending] = std::make_unique<Ending>();
 
-		currentScene = scenes[GameScenes::Story].get();
-		queuedScene = scenes[GameScenes::Story].get();
+		currentScene = scenes[GameScenes::Splash].get();
+		queuedScene = scenes[GameScenes::Splash].get();
 	}
 
 	void SceneManager::Update() 

@@ -1,8 +1,10 @@
 #include "Splash.h"
 #include <doodle/drawing.hpp>
+#include <doodle/environment.hpp>
+
 #include "../Engine/Engine.h"
 
-Splash::Splash() : StageNext(Retry::InputKey::Keyboard::Enter) {}
+Splash::Splash() {}
 
 void Splash::Load()
 {
@@ -11,9 +13,10 @@ void Splash::Load()
 
 void Splash::Update()
 {
-	if (StageNext.IsKeyReleased() == true || Engine::GetMouseInput().IsMouseReleased() == true)
+	timer += doodle::DeltaTime;
+	if (timer > 3)
 	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::TestStage);
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
 	}
 }
 

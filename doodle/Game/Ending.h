@@ -2,27 +2,24 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: Splash.h
+File Name: Ending.h
 Project: GAM150_Networker
 Author: Team RETRY - Haeun Park
-Creation date: 03/23/2021
+Creation date: 05/06/2021
 -----------------------------------------------------------------*/
-#pragma once
-#include "../Engine/Scene.h"    // Scene (Base class)
-#include "../Engine/Texture.h"  // Logo
 #include "../Engine/Input.h"
+#include "../Engine/Scene.h"
+#include "../Engine/Sprite.h"
 
-class Splash : public Retry::Scene
+class Ending : public Retry::Scene
 {
 private:
-    Retry::Texture Logo;
-    double timer = 0;
+    Retry::Sprite texture;
 public:
-    Splash();
+    Ending();
     void Load() override;
     void Update() override;
     void Unload() override;
     void Draw() override;
-    std::string GetName() override { return "Splash"; };
+    std::string GetName() override { return "Ending"; }
 };
-	

@@ -16,7 +16,7 @@ Creation date: 03/23/2021
 namespace Retry {
 	enum class GameScenes
 	{
-		Splash, MainMenu, Story, Stage1, Stage2, Stage3, GameOver, TestStage, 
+		Splash, MainMenu, Story, Stage1, Stage2, Stage3, GameOver, TestStage, Ending
 	};
 
 	class SceneManager

@@ -1,6 +1,6 @@
 #include "Player_Stage3.h"
-#include <doodle/random.hpp>
 #include <functional>
+#include <doodle/random.hpp>
 #include "../Engine/Engine.h"
 #include "Stage3.h"
 
