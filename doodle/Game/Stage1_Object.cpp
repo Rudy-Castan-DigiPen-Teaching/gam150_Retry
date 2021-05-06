@@ -41,8 +41,33 @@ void Stage1_Object::Draw_data()
 	}
 }
 
-
 bool Stage1_Object::Yisdown()
+{
+	if (position.y < 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+Stage1_Item::Stage1_Item(math::ivec2 initpos, int dropspeed) : Object(initpos), speed(dropspeed) {}
+
+void Stage1_Item::Load() 
+{
+	scissor.Load("assets/scissor.png");
+}
+
+void Stage1_Item::Update()
+{
+	position.y -= speed;
+}
+
+void Stage1_Item::Draw_Item()
+{
+	scissor.Draw({ position.x - hotspot.x, position.y - hotspot.y });
+}
+
+bool Stage1_Item::Yisdown() 
 {
 	if (position.y < 0)
 	{

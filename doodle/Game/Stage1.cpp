@@ -14,13 +14,15 @@ Creation date: 03/23/2021
 
 
 Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
-StageNext(Retry::InputKey::Keyboard::Enter), player(95, 100, 50), dropspeed(8),
-GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false)
+StageNext(Retry::InputKey::Keyboard::Enter), UseItem(Retry::InputKey::Keyboard::E), player(95, floor, 50), hacker({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) }), dropspeed(8),
+GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false), isHindrance(false)
 {
 	time = 0;
 	score = 0;
 	heart = 3;
 	file = 0;
+	item = 0;
+	hacker_timer = 0;
 	sprite_num = -1;
 }
 
@@ -30,13 +32,17 @@ void Stage1::Load()
 	score = 0;
 	heart = 3;
 	file = 0;
+	item = 0;
+	hacker_timer = 0;
 	sprite_num = -1;
 	GameStart = false;
 	GameOver = false;
 	GameClear = false;
 	IsPreviousFileExist = false;
+	isHindrance = false;
 
 	player.Load();
+	hacker.Load();
 	
 	sprite_file.Load("assets/file.png");
 	sprite_c_file.Load("assets/correct_file.png");
@@ -66,6 +72,12 @@ void Stage1::Draw()
 {
 	background.Draw({static_cast<double>(Engine::GetWindow().GetSize().x / 2),static_cast<double>(Engine::GetWindow().GetSize().y / 2) });
 	player.Draw();
+
+	if (isHindrance == true)
+	{
+		hacker.Draw();
+	}
+
 	sprite_file.Draw({50, 730});
 
 	File_Draw(file);
@@ -94,15 +106,23 @@ void Stage1::Draw()
 		}
 	}
 
-	for (int i = 0; i < num.size(); i++)
+
+
+	for (int i = 0; i < data.size(); i++)
 	{
-		num[i].Draw_data();
+		data[i].Draw_data();
+	}
+
+	for (int i = 0; i < scissor.size(); i++)
+	{
+		scissor[i].Draw_Item();
 	}
 	
 	doodle::push_settings();
 	doodle::set_font_size(20);
-	doodle::draw_text(" :  " + std::to_string(file) + " / 7 ", 80, 710);
-	doodle::draw_text("File input :          " + std::to_string(file_input.size()) + " / 7 ", 20, 620);
+	doodle::draw_text(" :  " + std::to_string(file) + " / 5 ", 80, 710);
+	doodle::draw_text("File input :          " + std::to_string(file_input.size()) + " / 5 ", 20, 620);
+	doodle::draw_text("Item : " + std::to_string(item) + " / 1", 20, 580);
 	doodle::pop_settings();
 	
 	if(GameStart == false && GameOver == false && GameClear == false)
@@ -161,63 +181,117 @@ void Stage1::Update(double)
 	
 	if(GameStart == true)
 	{
+		hacker_timer += doodle::DeltaTime;
+
 		player.Update(Retry::GameScenes::Stage1);
 
 		if (time % 30 == 0)
 		{
-			revector(dropspeed);
+			data_vector(dropspeed);
+		}
+
+		if (time % 600 == 0)
+		{
+			scissor_vector(dropspeed);
+		}
+
+		if (hacker_timer >= 13)
+		{
+			isHindrance = true;
+		}
+
+		if (isHindrance == true)
+		{
+			hacker.Update();
+		}
+
+		if (item = 1 && UseItem.IsKeyReleased() == true && isHindrance == true)
+		{
+			scissor_input.clear();
+			item = 0;
+			hacker_timer = 0;
+			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
+			isHindrance = false;
 		}
 
 		time++;
 
-		for (int i = 0; i < num.size(); i++)
+		for (int i = 0; i < scissor.size(); i++)
 		{
-			num[i].Update();
-
-			if (num[i].Yisdown() == true)
+			scissor[i].Update();
+			
+			if (data[i].Yisdown() == true)
 			{
-				num.erase(num.begin() + i);
+				scissor.erase(scissor.begin() + i);
 			}
 
-			if (player.CollideWith(num[i]) == true)
+			if (player.CollideWith(scissor[i]) == true)
+			{
+				Engine::GetLogger().LogDebug("Collision!");
+				scissor_input.push_back(scissor[i]);
+
+				for (Stage1_Item& s : scissor)
+				{
+					s.SetSpeed(dropspeed);
+				}
+				scissor.erase(scissor.begin() + i);
+			}
+
+		}
+
+		for (int i = 0; i < data.size(); i++)
+		{
+			data[i].Update();
+			
+			if (data[i].Yisdown() == true)
+			{
+				data.erase(data.begin() + i);
+			}
+
+			if (player.CollideWith(data[i]) == true)
 			{
 				Engine::GetLogger().LogDebug("Collision!");
 				
 				IsPreviousFileExist = true;
 				
-				switch (num[i].GetNumbering())
+				switch (data[i].GetNumbering())
 				{
 				case 0:
 					sound.PlaySound(InsertCorrectFIle);
-					Getnumber(num[i].GetNumbering());
-					file_input.push_back(num[i].GetNumbering());
+					Getnumber(data[i].GetNumbering());
+					file_input.push_back(data[i].GetNumbering());
 					break;
 				case 1:
 					sound.PlaySound(InsertCorrectFIle);
-					Getnumber(num[i].GetNumbering());
-					file_input.push_back(num[i].GetNumbering());
+					Getnumber(data[i].GetNumbering());
+					file_input.push_back(data[i].GetNumbering());
 					break;
 				case 2:
 					sound.PlaySound(InsertIncorrectFIle);
-					Getnumber(num[i].GetNumbering());
-					file_input.push_back(num[i].GetNumbering());
+					Getnumber(data[i].GetNumbering());
+					file_input.push_back(data[i].GetNumbering());
 					break;
 				case 3:
-					Getnumber(num[i].GetNumbering());
+					Getnumber(data[i].GetNumbering());
 					sound.PlaySound(InsertIncorrectFIle);
-					file_input.push_back(num[i].GetNumbering());
+					file_input.push_back(data[i].GetNumbering());
 					break;
 				}
 
-				for (Stage1_Object& n : num)
+				for (Stage1_Object& d : data)
 				{
-					n.SetSpeed(dropspeed);
+					d.SetSpeed(dropspeed);
 				}
-				num.erase(num.begin() + i);
+				data.erase(data.begin() + i);
 			}
 		}
 
-		if (file_input.size() == 7)
+		if (scissor_input.size() >= 1)
+		{
+			item = 1;
+		}
+
+		if (file_input.size() == 5)
 		{
 			if (Identify_v() == true)
 			{
@@ -242,7 +316,7 @@ void Stage1::Update(double)
 			GameOver = true;
 			GameStart = false;
 		}
-		else if (file == 7)
+		else if (file == 5)
 		{
 			GameStart = false;
 			GameClear = true;
@@ -268,7 +342,7 @@ bool Stage1::Identify_v()
 			break;
 		}
 	}
-	if (score == 7)
+	if (score == 5)
 	{
 		return true;
 	}
@@ -310,10 +384,16 @@ void Stage1::Heart_Draw(int heart_num)
 	}
 }
 
-void Stage1::revector(int sp)
+void Stage1::data_vector(int speed)
 {
-	num.push_back(Stage1_Object({ doodle::random(100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y + 100 }, doodle::random(0, 4), sp));
-	num[num.size() - 1].Load();
+	data.push_back(Stage1_Object({ doodle::random(100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y + 100 }, doodle::random(0, 4), speed));
+	data[data.size() - 1].Load();
+}
+
+void Stage1::scissor_vector(int speed)
+{
+	scissor.push_back(Stage1_Item({ doodle::random(100, Engine::GetWindow().GetSize().x - 100), Engine::GetWindow().GetSize().y + 100 }, speed));
+	scissor[scissor.size() - 1].Load();
 }
 
 
@@ -326,5 +406,7 @@ void Stage1::Getnumber(int number)
 void Stage1::Unload()
 {
 	doodle::clear_background(165, 200, 255, 255);
-	num.clear();
+	data.clear();
+	scissor.clear();
+	scissor_input.clear();
 }

@@ -32,7 +32,22 @@ private:
 	
 	Retry::Sprite correct_data;
 	Retry::Sprite incorrect_data;
-	
-	
-	
+};
+
+class Stage1_Item : public Retry::Object
+{
+public:
+	Stage1_Item(math::ivec2 initpos, int dropspeed);
+
+	void Update() override;
+	void Draw_Item();
+	void Load() override;
+
+	void SetSpeed(int plus) { speed = plus; }
+	bool Yisdown();
+
+private:
+	int speed;
+	Retry::Sprite scissor;
+
 };

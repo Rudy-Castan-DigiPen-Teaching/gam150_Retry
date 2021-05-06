@@ -13,6 +13,7 @@ Creation date: 03/23/2021
 #include "Stage1_Object.h"
 #include "Player_Stage1.h"
 #include "../Engine/Sound.h"
+#include "Hacker_Stage1.h"
 
 class Stage1 : public Retry::Scene
 {
@@ -21,8 +22,10 @@ private:
 	Retry::InputKey StageReload;
 	Retry::InputKey StageNext;
 	Retry::InputKey RolebackMenu;
+	Retry::InputKey UseItem;
 	
 	Player_Stage1 player;
+	Hacker_Stage1 hacker;
 	
 	Retry::Sprite sprite_file;
 	Retry::Sprite sprite_c_file;
@@ -36,9 +39,11 @@ private:
 	Retry::Sprite sprite_file3;
 	Retry::Sprite sprite_heart;
 
-	int time, score, heart, file, dropspeed, sprite_num;
-	bool GameStart, GameOver, GameClear, IsPreviousFileExist;
+	int time, score, heart, file, dropspeed, sprite_num, item;
+	double hacker_timer;
+	bool GameStart, GameOver, GameClear, IsPreviousFileExist, isHindrance;
 
+	static constexpr int floor = 100;
 	Retry::Sound sound;
 
 	enum SoundIndex {
@@ -56,10 +61,14 @@ public:
 	void Getnumber(int number);
 	void File_Draw(int file_number);
 	void Heart_Draw(int heart_num);
-	void revector(int sp);
+	void data_vector(int speed);
+	void scissor_vector(int speed);
 	
 	std::string GetName() override { return "Stage1"; };
 };
 
 inline 	std::vector<int> file_input;
-inline std::vector<Stage1_Object> num{};
+inline  std::vector<Stage1_Item> scissor_input;
+
+inline std::vector<Stage1_Object> data{};
+inline std::vector<Stage1_Item> scissor{};
