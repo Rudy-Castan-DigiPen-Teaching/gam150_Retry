@@ -14,7 +14,7 @@ Creation date: 03/23/2021
 
 
 Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
-StageNext(Retry::InputKey::Keyboard::Enter), UseItem(Retry::InputKey::Keyboard::E), player(95, floor, 50), hacker({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) }), dropspeed(8),
+StageNext(Retry::InputKey::Keyboard::Enter), UseItem(Retry::InputKey::Keyboard::E), player(95, floor, 50), hacker({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) }), dropspeed(7),
 GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false), isHindrance(false)
 {
 	time = 0;
@@ -72,12 +72,6 @@ void Stage1::Draw()
 {
 	background.Draw({static_cast<double>(Engine::GetWindow().GetSize().x / 2),static_cast<double>(Engine::GetWindow().GetSize().y / 2) });
 	player.Draw();
-
-	if (isHindrance == true)
-	{
-		hacker.Draw();
-	}
-
 	sprite_file.Draw({50, 730});
 
 	File_Draw(file);
@@ -117,6 +111,7 @@ void Stage1::Draw()
 	{
 		scissor[i].Draw_Item();
 	}
+
 	
 	doodle::push_settings();
 	doodle::set_font_size(20);
@@ -143,6 +138,12 @@ void Stage1::Draw()
 		doodle::set_font_size(30);
 		doodle::draw_text("Game Clear!", 600, Engine::GetWindow().GetSize().y / 2.0);
 	}
+
+	if (isHindrance == true)
+	{
+		hacker.Draw();
+	}
+
 }
 
 void Stage1::Update(double)
@@ -185,17 +186,17 @@ void Stage1::Update(double)
 
 		player.Update(Retry::GameScenes::Stage1);
 
-		if (time % 30 == 0)
+		if (time % 45 == 0)
 		{
 			data_vector(dropspeed);
 		}
 
-		if (time % 600 == 0)
+		if (time % 900 == 0)
 		{
 			scissor_vector(dropspeed);
 		}
 
-		if (hacker_timer >= 13)
+		if (hacker_timer >= 7)
 		{
 			isHindrance = true;
 		}
@@ -205,10 +206,17 @@ void Stage1::Update(double)
 			hacker.Update();
 		}
 
-		if (item = 1 && UseItem.IsKeyReleased() == true && isHindrance == true)
+		if (item == 1 && UseItem.IsKeyReleased() == true && isHindrance == true)
 		{
 			scissor_input.clear();
 			item = 0;
+			hacker_timer = 0;
+			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
+			isHindrance = false;
+		}
+
+		if(hacker.GetPosition().y <= -200.0)
+		{
 			hacker_timer = 0;
 			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
 			isHindrance = false;
@@ -219,15 +227,10 @@ void Stage1::Update(double)
 		for (int i = 0; i < scissor.size(); i++)
 		{
 			scissor[i].Update();
-			
-			if (data[i].Yisdown() == true)
-			{
-				scissor.erase(scissor.begin() + i);
-			}
 
 			if (player.CollideWith(scissor[i]) == true)
 			{
-				Engine::GetLogger().LogDebug("Collision!");
+				Engine::GetLogger().LogDebug("Scissor Collision!");
 				scissor_input.push_back(scissor[i]);
 
 				for (Stage1_Item& s : scissor)
@@ -236,7 +239,6 @@ void Stage1::Update(double)
 				}
 				scissor.erase(scissor.begin() + i);
 			}
-
 		}
 
 		for (int i = 0; i < data.size(); i++)
@@ -354,12 +356,14 @@ void Stage1::File_Draw(int file_number)
 	switch (file_number)
 	{
 	case 1:
+	case 2:
 		sprite_file1.Draw({ 50, 730 });
 		break;
-	case 2:
+	case 3:
+	case 4:
 		sprite_file2.Draw({ 50, 730 });
 		break;
-	case 3:
+	case 5:
 		sprite_file3.Draw({ 50, 730 });
 		break;
 	}

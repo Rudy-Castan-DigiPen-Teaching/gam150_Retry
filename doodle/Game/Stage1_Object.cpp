@@ -59,7 +59,7 @@ void Stage1_Item::Load()
 
 void Stage1_Item::Update()
 {
-	position.y -= speed;
+	position.y -= (speed / 2);
 }
 
 void Stage1_Item::Draw_Item()
