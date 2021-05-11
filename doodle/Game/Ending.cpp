@@ -22,7 +22,7 @@ void Ending::Load()
 	texture.Load("assets/Ending.png");
 }
 
-void Ending::Update()
+void Ending::Update(double)
 {
 }
 

@@ -32,7 +32,6 @@ namespace Retry
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();
 		scenes[GameScenes::Stage3] = std::make_unique<Stage3>();
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
-		scenes[GameScenes::TestStage] = std::make_unique<TestStage>();
 		scenes[GameScenes::Ending] = std::make_unique<Ending>();
 
 		currentScene = scenes[GameScenes::Splash].get();

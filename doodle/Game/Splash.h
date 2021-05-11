@@ -16,7 +16,6 @@ class Splash : public Retry::Scene
 {
 private:
     Retry::Texture Logo;
-    Retry::InputKey StageNext;
     double time = 0.0;
 public:
     Splash();
