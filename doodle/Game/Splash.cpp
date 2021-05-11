@@ -1,8 +1,10 @@
 #include "Splash.h"
 #include <doodle/drawing.hpp>
+#include <doodle/environment.hpp>
+
 #include "../Engine/Engine.h"
 
-Splash::Splash() : StageNext(Retry::InputKey::Keyboard::Enter) {}
+Splash::Splash() {}
 
 void Splash::Load()
 {

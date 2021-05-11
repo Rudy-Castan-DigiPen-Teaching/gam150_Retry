@@ -114,6 +114,10 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Hacker_Stage1.cpp">
+    <ClCompile Include="Engine\DialogueManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Ending.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -212,6 +216,10 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Hacker_Stage1.h">
+    <ClInclude Include="Engine\DialogueManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Ending.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

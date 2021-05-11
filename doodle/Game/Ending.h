@@ -2,28 +2,24 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: GameOver.h
+File Name: Ending.h
 Project: GAM150_Networker
-Author: Team RETRY - Yeongju Lee
-Creation date: 04/26/2021
+Author: Team RETRY - Haeun Park
+Creation date: 05/06/2021
 -----------------------------------------------------------------*/
-#pragma once
-#include "../Engine/Engine.h"   // GetLogger
-#include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
-#include "../Engine/DialogueManager.h"
+#include "../Engine/Scene.h"
+#include "../Engine/Sprite.h"
 
-class Story : public Retry::Scene
+class Ending : public Retry::Scene
 {
 private:
-    Retry::InputKey mainmenu;
-    DialogueManager dialogueManager;
-    bool end = false;
+    Retry::Sprite texture;
 public:
-    Story();
+    Ending();
     void Load() override;
-    void Update(double) override;
+    void Update() override;
     void Unload() override;
     void Draw() override;
-    std::string GetName() override { return "Story"; }
+    std::string GetName() override { return "Ending"; }
 };
