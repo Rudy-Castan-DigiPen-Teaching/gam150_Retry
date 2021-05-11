@@ -24,6 +24,7 @@ public:
 	void Load() override;
 	void Update() override;
 	void Draw() override;
+	void SetFloor(double newFloor) { floor = newFloor; }
 
 	DataType GetDataType() const { return dataType; }
 
@@ -37,4 +38,8 @@ public:
 private:
 	Retry::Sprite sprite;
 	DataType dataType;
+
+	math::vec2 velocity;
+	double floor;
+	constexpr static double gravity = 2100;
 };

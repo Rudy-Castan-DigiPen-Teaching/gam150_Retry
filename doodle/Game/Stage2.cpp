@@ -52,13 +52,12 @@ void Stage2::Load()
 	}
 }
 
-void Stage2::Update(double)
+void Stage2::Update(double dt)
 {
 	if (stageCleared == true)
 	{
 		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage2);
 	}
-	
 	if (timer >= timeLimit)
 	{
 		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage2);
@@ -67,10 +66,6 @@ void Stage2::Update(double)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 	}
-	//if (StageNext.IsKeyReleased() == true)
-	//{
-	//	Engine::GetSceneManager().Shutdown();
-	//}
 	if (StageReload.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().ReloadScene();
@@ -91,7 +86,7 @@ void Stage2::Update(double)
 	}
 	else if (stageStarted == true && stageCleared == false)	// Game has started, and stage has not been cleared
 	{
-		timer += doodle::DeltaTime;	// Update timer
+		timer += dt;	// Update timer
 
 		if (timer > timeLimit)
 		{
@@ -115,6 +110,7 @@ void Stage2::Update(double)
 			}
 			for (int i = 0; i < dataBoxes.size(); ++i) 
 			{
+				dataBoxes[i].Update();
 				if (player.hasDataBox == false && dataBoxes[i].GetPosition().y == floor && dataBoxes[i].isStacked == true &&
 					player.CollideWith(dataBoxes[i]) == true && Engine::GetMouseInput().IsMousePressed() == true)
 				{

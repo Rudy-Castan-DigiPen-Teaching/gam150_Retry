@@ -10,8 +10,9 @@ Creation date: 04/01/2021
 #include "DataBox.h"
 #include "Stage2.h"
 #include "DataBoard.h"
+#include "../Engine/Engine.h"
 
-DataBox::DataBox(DataType dataType) : Object({ 100, Stage2::floor }, 130, 100),
+DataBox::DataBox(DataType dataType) : Object({ 100, static_cast<double>(Engine::GetWindow().GetSize().y) }, 130, 100), floor(Stage2::floor), velocity({0, 0}),
 dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false), isTargetted(false), isStolen(false)
 {
 	hotspot = { width / 2, 0 };
@@ -42,6 +43,15 @@ void DataBox::Load()
 
 void DataBox::Update() 
 {
+	if (isStacked == true && position.y > floor)
+	{
+		velocity.y -= gravity * doodle::DeltaTime;
+		position += velocity * doodle::DeltaTime;
+	}
+	if (isStacked == true && position.y <= floor)
+	{
+		position.y = floor;
+	}
 }
 
 void DataBox::Draw()
