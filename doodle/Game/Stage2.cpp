@@ -65,7 +65,7 @@ void Stage2::Update(double)
 	}
 	if (RolebackMenu.IsKeyReleased() == true)
 	{
-		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 	}
 	//if (StageNext.IsKeyReleased() == true)
 	//{
