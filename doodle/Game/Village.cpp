@@ -1,18 +1,28 @@
+/*--------------------------------------------------------------
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
+File Name: Village.cpp
+Project: GAM150_Networker
+Author: Yeongju Lee
+Creation date: 05/06/2021
+-----------------------------------------------------------------*/
 #include "Village.h"
 #include "../Engine/Engine.h"
 #include <doodle/Input.hpp>
 #include <doodle/drawing.hpp>
 
-Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape)
+Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape),
+endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindow().GetSize().y * 0.3 }, Retry::GameScenes::Ending)
 {
 	
 }
 
 void Village::Load()
 {
-	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
-	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage2));
-	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage3));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage3));
 
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
@@ -21,6 +31,8 @@ void Village::Load()
 			questButtons[i].SetCleared(true);
 		}
 	}
+
+	endingButton.SetCleared(true);
 }
 
 void Village::Update(double)
@@ -32,9 +44,33 @@ void Village::Update(double)
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		questButtons[i].Update();
-		if (questButtons[i].IsButtonPressed() == true)
+		if (questButtons[i].GetButtonStage() != Retry::GameScenes::Stage2)
 		{
-			Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
+			if (questButtons[i].IsButtonPressed() == true)
+			{
+				Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
+			}
+		}
+		else 
+		{
+			if (Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true && Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3))
+			{
+				if (questButtons[i].IsButtonPressed() == true)
+				{
+					Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
+				}
+			}
+		}
+	}
+	endingButton.Update();
+	if (Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true &&
+		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage2) == true &&
+		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3) == true)
+	{
+		endingButton.SetCleared(false);
+		if (endingButton.IsButtonPressed() == true)
+		{
+			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Ending);
 		}
 	}
 }
@@ -80,7 +116,7 @@ void Village::Draw()
 		}
 	}
 
-
+	endingButton.Draw();
 }
 
 Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage) : position(pos), stage(stage), stageCleared(false)

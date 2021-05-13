@@ -24,6 +24,7 @@ class Stage3 : public Retry::Scene
 public:
 	static constexpr double lineX = 200;
 private:
+	Retry::InputKey StageNext;
 	Retry::InputKey Reload;
 	Retry::InputKey RolebackMenu;
 	Retry::InputKey pausekey;

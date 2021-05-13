@@ -13,6 +13,7 @@ Creation date: 03/23/2021
 #include <doodle/random.hpp>
 
 Stage2::Stage2() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageReload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), StageStart(Retry::InputKey::Keyboard::Space),
+CheatKey(Retry::InputKey::Keyboard::Q),
 player({200, Stage2::floor}, 93, 93), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
 stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(false) {}
 
@@ -56,6 +57,12 @@ void Stage2::Load()
 
 void Stage2::Update(double dt)
 {
+#ifdef _DEBUG
+	if (CheatKey.IsKeyReleased() == true)
+	{
+		stageCleared = true;
+	}
+#endif
 	if (stageCleared == true)
 	{
 		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage2);

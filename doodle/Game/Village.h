@@ -1,3 +1,12 @@
+/*--------------------------------------------------------------
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
+File Name: Village.h
+Project: GAM150_Networker
+Author: Yeongju Lee
+Creation date: 05/06/2021
+-----------------------------------------------------------------*/
 #pragma once
 #include "../Engine/Scene.h"
 #include "../Engine/Input.h"
@@ -37,4 +46,5 @@ private:
 	Retry::InputKey shutDownKey;
 
 	std::vector<QuestButton> questButtons;
+	QuestButton endingButton;
 };

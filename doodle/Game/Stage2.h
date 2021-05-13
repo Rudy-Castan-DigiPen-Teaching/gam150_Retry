@@ -41,6 +41,7 @@ private:
     Retry::InputKey StageReload;
     Retry::InputKey StageStart;
     Retry::InputKey RolebackMenu;
+    Retry::InputKey CheatKey;
 
     Retry::Sound sound;
 
