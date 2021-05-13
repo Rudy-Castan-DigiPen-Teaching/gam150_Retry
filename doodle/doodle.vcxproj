@@ -124,6 +124,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Window.cpp" />
     <ClCompile Include="Game\Bug.cpp" />
+    <ClCompile Include="Game\Credit.cpp" />
     <ClCompile Include="Game\DataBoard.cpp" />
     <ClCompile Include="Game\DataBox.cpp" />
     <ClCompile Include="Game\Ending.cpp" />
@@ -171,6 +172,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Engine\Vec2.h" />
     <ClInclude Include="Engine\Window.h" />
     <ClInclude Include="Game\Bug.h" />
+    <ClInclude Include="Game\Credit.h" />
     <ClInclude Include="Game\DataBoard.h" />
     <ClInclude Include="Game\DataBox.h" />
     <ClInclude Include="Game\Ending.h" />

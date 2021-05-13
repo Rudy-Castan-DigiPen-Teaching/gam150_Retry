@@ -172,10 +172,6 @@ void Stage1::Update(double)
 
 	if(GameOver == true)
 	{
-		//if (StageReload.IsKeyReleased() == true)
-		//{
-		//	Engine::GetSceneManager().ReloadScene();
-		//}
 		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage1);
 	}
 
@@ -196,7 +192,7 @@ void Stage1::Update(double)
 			scissor_vector(dropspeed);
 		}
 
-		if (hacker_timer >= 7)
+		if (hacker_timer >= 12)
 		{
 			isHindrance = true;
 		}

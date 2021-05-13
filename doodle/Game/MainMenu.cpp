@@ -20,8 +20,8 @@ void MainMenu::Load()
 	int height = 60;
 
 	buttons.push_back(Button("Game Start", math::vec2(Engine::GetWindow().GetSize().x / 2 , Engine::GetWindow().GetSize().y * 0.4), width, height));
-	//buttons.push_back(Button("Stage 2", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
-	//buttons.push_back(Button("Stage 3", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
+	buttons.push_back(Button("Credit", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
+	buttons.push_back(Button("Option", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
 
 	title_picture.Load("assets/title_picture.png");
 }
@@ -45,7 +45,7 @@ void MainMenu::Update(double)
 				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Story);
 				break;
 			case 1:
-			//	Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage2);
+			    Engine::GetSceneManager().setNextScene(Retry::GameScenes::Credit);
 				break;
 			case 2:
 				//Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);

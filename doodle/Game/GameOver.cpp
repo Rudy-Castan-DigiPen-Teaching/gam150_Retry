@@ -18,11 +18,12 @@ GameOver::GameOver() : exitKey(Retry::InputKey::Keyboard::Escape)
 
 void GameOver::Load()
 {
-	int width = 150;
+	int width = 230;
 	int height = 60;
 
 	buttons.push_back(Button("RETRY?", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.3), width, height));
-	buttons.push_back(Button("Main", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2), width, height));
+	buttons.push_back(Button("Back", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2), width, height));
+	buttons[1].setFontSize(40);
 }
 
 
@@ -45,7 +46,7 @@ void GameOver::Update(double)
 				Engine::GetSceneManager().setNextScene(prevScene);
 				break;
 			case 1:
-				Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
+				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 				break;
 			default:
 				break;

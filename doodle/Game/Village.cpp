@@ -10,9 +10,9 @@ Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape)
 
 void Village::Load()
 {
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage2));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage3));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage2));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage3));
 
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
@@ -50,7 +50,25 @@ void Village::Draw()
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		questButtons[i].Draw();
+
+		if (questButtons[i].IsMouseOn() == true)
+		{
+			switch (i)
+			{
+			case 0:
+				doodle::draw_rectangle(50, 100, 1000, 610);
+				break;
+			case 1:
+				doodle::draw_rectangle(50, 100, 1000, 610);
+				break;
+			case 2:
+				doodle::draw_rectangle(50, 100, 1000, 610);
+				break;
+			}
+		}
 	}
+
+
 }
 
 Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage) : position(pos), stage(stage), stageCleared(false)
