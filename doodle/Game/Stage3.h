@@ -28,6 +28,7 @@ private:
 	Retry::InputKey Reload;
 	Retry::InputKey RolebackMenu;
 	Retry::InputKey pausekey;
+	Retry::InputKey CheatKey;
 	Player_Stage3 player;
 	std::vector<Bug> bugs;
 	double overlapseTime = 0;

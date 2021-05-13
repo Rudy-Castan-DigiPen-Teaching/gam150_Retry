@@ -95,21 +95,21 @@ void Village::Draw()
 				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
 				doodle::set_font_size(35);
-				doodle::draw_text("Quest 1 - Collect data and create files!\n\nPlay Stage 1 and retrieve the file!", 80, static_cast<double>(Engine::GetWindow().GetSize().y)- 200);
+				doodle::draw_text("Quest 1 - Collect data and create files!\n\nRetrieve the file!", 80, static_cast<double>(Engine::GetWindow().GetSize().y)- 200);
 				doodle::pop_settings();
 				break;
 			case 1:
 				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
 				doodle::set_font_size(35);
-				doodle::draw_text("Quest 2 - Transfer the data!\n\nPlay Stage 2 and retrieve the data Boxes!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
+				doodle::draw_text("Quest 2 - Transfer the data!\n\nRetrieve the data Boxes!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
 				doodle::pop_settings();
 				break;
 			case 2:
 				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
 				doodle::set_font_size(35);
-				doodle::draw_text("Quest 3 - Kill the Virus!\n\nPlay Stage 3 and retrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
+				doodle::draw_text("Quest 3 - Kill the Virus!\n\nRetrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
 				doodle::pop_settings();
 				break;
 			}

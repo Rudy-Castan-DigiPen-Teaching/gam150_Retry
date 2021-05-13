@@ -23,6 +23,7 @@ private:
 	Retry::InputKey StageNext;
 	Retry::InputKey RolebackMenu;
 	Retry::InputKey UseItem;
+	Retry::InputKey CheatKey;
 	
 	Player_Stage1 player;
 	Hacker_Stage1 hacker;

@@ -13,7 +13,7 @@ Creation date: 03/23/2021
 #include "../Engine/Engine.h"
 
 
-Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R),
+Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(Retry::InputKey::Keyboard::Space), StageReload(Retry::InputKey::Keyboard::R), CheatKey(Retry::InputKey::Keyboard::Q),
 StageNext(Retry::InputKey::Keyboard::Enter), UseItem(Retry::InputKey::Keyboard::E), player(95, floor, 50), hacker({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) }), dropspeed(7),
 GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false), isHindrance(false)
 {
@@ -148,6 +148,13 @@ void Stage1::Draw()
 
 void Stage1::Update(double)
 {
+#ifdef _DEBUG
+	if (CheatKey.IsKeyReleased() == true)
+	{
+		GameClear = true;
+		GameStart = false;
+	}
+#endif
 	if (RolebackMenu.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);

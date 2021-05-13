@@ -12,7 +12,7 @@ Creation date: 03/23/2021
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h" // GetLogger
 
-Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Enter), RolebackMenu(Retry::InputKey::Keyboard::Escape), Reload(Retry::InputKey::Keyboard::R), pausekey(Retry::InputKey::Keyboard::Space),
+Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Enter), RolebackMenu(Retry::InputKey::Keyboard::Escape), Reload(Retry::InputKey::Keyboard::R), pausekey(Retry::InputKey::Keyboard::Space), CheatKey(Retry::InputKey::Keyboard::Q),
 player(Engine::GetWindow().GetSize() / 2.0)
 {
 	bugs.clear();
@@ -61,6 +61,12 @@ void Stage3::Unload()
 
 void Stage3::Update(double)
 {
+#ifdef _DEBUG
+	if (CheatKey.IsKeyReleased() == true)
+	{
+		//stageCleared = true;
+	}
+#endif
 	if (Reload.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().ReloadScene();
