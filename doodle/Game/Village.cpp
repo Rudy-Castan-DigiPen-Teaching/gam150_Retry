@@ -10,9 +10,9 @@ Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape)
 
 void Village::Load()
 {
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage2));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage3));
+	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
+	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage2));
+	questButtons.push_back(QuestButton(math::vec2(static_cast<double>(Engine::GetWindow().GetSize().x) - 150.0, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage3));
 
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
@@ -56,13 +56,25 @@ void Village::Draw()
 			switch (i)
 			{
 			case 0:
+				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
+				doodle::set_font_size(35);
+				doodle::draw_text("Quest 1 - Collect data and create files!\n\nPlay Stage 1 and retrieve the file!", 80, static_cast<double>(Engine::GetWindow().GetSize().y)- 200);
+				doodle::pop_settings();
 				break;
 			case 1:
+				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
+				doodle::set_font_size(35);
+				doodle::draw_text("Quest 2 - Transfer the data!\n\nPlay Stage 2 and retrieve the data Boxes!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
+				doodle::pop_settings();
 				break;
 			case 2:
+				doodle::push_settings();
 				doodle::draw_rectangle(50, 100, 1000, 610);
+				doodle::set_font_size(35);
+				doodle::draw_text("Quest 3 - Kill the Virus!\n\nPlay Stage 3 and retrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
+				doodle::pop_settings();
 				break;
 			}
 		}
