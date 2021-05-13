@@ -26,6 +26,7 @@ void Stage3::Load()
 
 	hacker.Load("assets/hacker_standing.png");
 	heart.Load("assets/Heart.png");
+	background.Load("assets/stage3_background.png");
 	music.openFromFile("assets/dambient_8-bit-loop.wav");
 	gameOver = false;
 	overlapseTime = 0;
@@ -48,7 +49,7 @@ void Stage3::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(0);
+	music.setVolume(5);
 	music.play();
 }
 
@@ -56,7 +57,7 @@ void Stage3::Unload()
 {
 	doodle::clear_background(100, 100, 255);
 	bugs.clear();
-	music.setLoop(false);
+	music.stop();
 }
 
 void Stage3::Update(double)
@@ -104,6 +105,7 @@ void Stage3::Update(double)
 void Stage3::Draw()
 {
 	doodle::clear_background(100, 100, 255, 150);
+	background.Draw(Engine::GetWindow().GetSize() * 0.5);
 	for (int i = 1; i <= player.GetLives(); i++)
 	{
 		heart.Draw({ static_cast<double>(i * heart.getTextureSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.getTextureSize().y) });

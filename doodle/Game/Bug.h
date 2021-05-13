@@ -13,6 +13,7 @@ Creation date: 04/05/2021
 
 class Bug : public Retry::Object
 {
+	Retry::Sprite sprite;
 	Retry::Sound sound;
 	enum SoundIndex { dead };
 private:

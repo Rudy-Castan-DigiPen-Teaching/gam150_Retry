@@ -34,8 +34,8 @@ namespace Retry
 		scenes[GameScenes::GameOver] = std::make_unique<GameOver>();
 		scenes[GameScenes::Ending] = std::make_unique<Ending>();
 
-		currentScene = scenes[GameScenes::Splash].get();
-		queuedScene = scenes[GameScenes::Splash].get();
+		currentScene = scenes[GameScenes::Stage3].get();
+		queuedScene = scenes[GameScenes::Stage3].get();
 
 		stageCleared[GameScenes::Stage1] = false;
 		stageCleared[GameScenes::Stage2] = false;

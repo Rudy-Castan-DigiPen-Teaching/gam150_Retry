@@ -20,6 +20,7 @@ class Stage3 : public Retry::Scene
 	sf::Music music;
 	Retry::Sprite hacker;
 	Retry::Sprite heart;
+	Retry::Sprite background;
 
 public:
 	static constexpr double lineX = 200;

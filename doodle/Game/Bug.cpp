@@ -31,6 +31,7 @@ Bug::Bug(NetworkLine line, double sTime, int speed) : currLine(line), startTime(
 
 void Bug::Load()
 {
+	sprite.Load("assets/Bug1.png");
 	sound.LoadSound("assets/confirmation_004.ogg");
 	sound.SetVolume(dead, 20);
 }
@@ -62,7 +63,8 @@ void Bug::Draw()
 	doodle::push_settings();
 	doodle::set_fill_color(100);
 	if (isAlive) {
-		doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+		//doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
+		sprite.Draw(position);
 	}
 	doodle::pop_settings();
 }
