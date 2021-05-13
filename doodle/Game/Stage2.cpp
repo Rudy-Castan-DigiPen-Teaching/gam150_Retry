@@ -18,6 +18,8 @@ stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(
 
 void Stage2::Load()
 {
+	background.Load("assets/stage2_background.png");
+	
 	sound.LoadSound("assets/tone1.ogg");
 	sound.LoadSound("assets/powerUp7.ogg");
 	sound.LoadSound("assets/pepSound1.ogg");
@@ -210,23 +212,34 @@ void Stage2::Update(double dt)
 
 void Stage2::Unload()
 {
+	dataBoxes.clear();
+	dataBoard.clear();
 }
 
 void Stage2::Draw()
 {
-	doodle::clear_background(150, 150, 150, 255);
+	background.Draw({0, 0});
 	for (int i = 0; i < dataBoard.size(); ++i) {
 		dataBoard[i].Draw();
 	}
 	for (int i = 0; i < dataBoxes.size(); ++i) {
-		dataBoxes[i].Draw();
+		if (dataBoxes[i].isOnBoard == true || dataBoxes[i].isStacked == true || dataBoxes[i].isStolen == false)
+		{
+			dataBoxes[i].Draw();
+		}
+	}
+	for (int i = 0; i < dataBoxes.size(); ++i)
+	{
+		if (dataBoxes[i].isOnBoard == false && dataBoxes[i].isStacked == false || dataBoxes[i].isStolen == true)
+		{
+			dataBoxes[i].Draw();
+		}
 	}
 	hacker.Draw();
 	player.Draw();
 
 	doodle::push_settings();
 	doodle::set_font_size(40);
-	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", Engine::GetWindow().GetSize().x * 0.05, Engine::GetWindow().GetSize().y * 0.9);
 	if (stageStarted == false)
 	{
 		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
@@ -242,6 +255,7 @@ void Stage2::Draw()
 	{
 		doodle::set_fill_color(255, 0, 0);
 	}
-	doodle::draw_text("Time : " + std::to_string(timeLimit - static_cast<int>(timer)), Engine::GetWindow().GetSize().x * 0.8, Engine::GetWindow().GetSize().y * 0.9);
+	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", 490, Engine::GetWindow().GetSize().y * 0.8);
+	doodle::draw_text("Time : " + std::to_string(timeLimit - static_cast<int>(timer)), 490, Engine::GetWindow().GetSize().y * 0.7);
 	doodle::pop_settings();
 }

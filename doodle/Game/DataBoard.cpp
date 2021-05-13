@@ -10,10 +10,12 @@ Creation date: 04/05/2021
 #include "DataBoard.h"
 #include <doodle/random.hpp>
 
+#include "../Engine/Engine.h"
+
 DataBoard::DataBoard(double y, DataBox::DataType datatype) : Object({ 0, y }, 300, 25), dataType(datatype), reachedGoal(false), currDataNum(0) 
 {
 	hotspot = math::ivec2{ width / 2, 0 };
-	position.x = static_cast<double>(datatype) * width + 500;
+	position.x = static_cast<double>(datatype) * width + 540;
 	goalDataNum = doodle::random(2, 5);
 }
 
@@ -52,6 +54,6 @@ void DataBoard::Draw()
 	}
 	doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 	doodle::set_font_size(40);
-	doodle::draw_text(std::to_string(currDataNum) + "/" + std::to_string(goalDataNum), position.x + 35, 600);
+	doodle::draw_text(std::to_string(currDataNum) + "/" + std::to_string(goalDataNum), position.x - 50, Engine::GetWindow().GetSize().y * 0.6);
 	doodle::pop_settings();
 }

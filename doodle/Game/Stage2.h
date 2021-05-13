@@ -19,6 +19,8 @@ Creation date: 03/23/2021
 class Stage2 : public Retry::Scene
 {
 private:
+    Retry::Texture background;
+	
     Player_Stage2 player;
     Hacker_Stage2 hacker;
     std::vector<DataBox> dataBoxes;
