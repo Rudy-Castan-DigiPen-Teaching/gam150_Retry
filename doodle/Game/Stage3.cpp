@@ -48,7 +48,7 @@ void Stage3::Load()
 	bugs.push_back(new Bug(NetworkLine::Bottom, 14.2 + time_offset, 15));
 
 	double time = 15;
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		int speed = 0;
 		switch (doodle::random(3))
@@ -101,7 +101,7 @@ void Stage3::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(5);
+	music.setVolume(3);
 	music.play();
 }
 
@@ -189,6 +189,11 @@ void Stage3::Draw()
 		heart.Draw({ static_cast<double>(i * heart.getTextureSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.getTextureSize().y) });
 	}
 	doodle::push_settings();
+	doodle::set_font_size(30);
+	doodle::draw_text("Left Bugs: " + std::to_string(GetNumberOfAliveBug()), 30, 30);
+	doodle::pop_settings();
+
+	doodle::push_settings();
 	doodle::set_outline_width(7);
 	doodle::set_outline_color(210, 253, 255);
 
@@ -212,7 +217,7 @@ void Stage3::Draw()
 
 	if (pause)
 	{
-		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
+		doodle::draw_text("Pause\nPress Space Bar to Start", 370, Engine::GetWindow().GetSize().y * 0.75);
 	}
 
 	if (isAllDead())
@@ -251,18 +256,16 @@ void Stage3::Cheat()
 	}
 }
 
-void Stage3::ScreenShake()
+int Stage3::GetNumberOfAliveBug()
 {
-	const int shakeAmount = 30;
-	if (Engine::GetMouseInput().IsMousePressed() && player.GetIsPlayerHitting() && !screenShake)
+	int result = 0;
+	for (Bug* bug : bugs)
 	{
-		screenShake = true;
-		doodle::apply_translate(
-			doodle::random(-shakeAmount, shakeAmount),
-			doodle::random(-shakeAmount, shakeAmount));
+		if (bug->GetAlive())
+		{
+			result++;
+		}
 	}
-	else if (Engine::GetMouseInput().IsMouseReleased())
-	{
-		screenShake = false;
-	}
+	return result;
 }
+

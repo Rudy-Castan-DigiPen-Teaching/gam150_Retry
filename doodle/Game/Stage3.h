@@ -46,10 +46,9 @@ public:
 	void Draw() override;
 	std::string GetName() override { return "Stage3"; }
 
-	void ScreenShake();
-
 private:
 	bool isAllDead();
 	void Cheat();
+	int GetNumberOfAliveBug();
 
 };
