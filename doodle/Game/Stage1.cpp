@@ -70,7 +70,7 @@ void Stage1::Load()
 
 void Stage1::Draw()
 {
-	background.Draw({static_cast<double>(Engine::GetWindow().GetSize().x / 2),static_cast<double>(Engine::GetWindow().GetSize().y / 2) });
+	background.Draw({0,0});
 	player.Draw();
 	sprite_file.Draw({50, 730});
 

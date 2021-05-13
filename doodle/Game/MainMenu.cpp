@@ -24,6 +24,7 @@ void MainMenu::Load()
 	buttons.push_back(Button("Option", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
 
 	title_picture.Load("assets/title_picture.png");
+	title_logo.Load("assets/Title_logo.png");
 }
 
 void MainMenu::Update(double)
@@ -65,6 +66,8 @@ void MainMenu::Draw()
 {
 	doodle::clear_background(0, 0, 0);
 	title_picture.Draw({static_cast<double>(Engine::GetWindow().GetSize().x/2), static_cast<double>(Engine::GetWindow().GetSize().y) - 280.0});
+	title_logo.Draw({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) , static_cast<double>(Engine::GetWindow().GetSize().y) - 100.0 });
+	
 	for (Button b : buttons)
 	{
 		b.Draw();
