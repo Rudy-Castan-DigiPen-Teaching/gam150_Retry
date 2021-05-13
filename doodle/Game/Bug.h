@@ -13,9 +13,11 @@ Creation date: 04/05/2021
 
 class Bug : public Retry::Object
 {
+	Retry::Sprite sprite;
 	Retry::Sound sound;
 	enum SoundIndex { dead };
-private:
+
+protected:
 	NetworkLine currLine;
 
 	double startTime = 0;
@@ -29,14 +31,16 @@ public:
 	Bug(NetworkLine line, double sTime) : Bug(line, sTime, 10) {}
 	Bug(NetworkLine line, double sTime, int speed);
 
-	void Load();
-	void Update(Player_Stage3& player);
-	void Draw() override;
+	virtual void Load();
+	virtual void Update(Player_Stage3& player);
+	virtual void Draw() override;
 
 	void setAlive(bool alive) { isAlive = alive; }
 
-	double getStartTime() { return startTime; }
-	bool getAlive() { return isAlive; }
-	bool getCrossedTheLine() { return crossedTheLine; }
+	int GetSpeed() { return speed; }
+	double GetStartTime() { return startTime; }
+	bool GetAlive() { return isAlive; }
 	void HitByPlayer();
+
+
 };

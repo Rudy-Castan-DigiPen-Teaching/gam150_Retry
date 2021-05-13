@@ -20,6 +20,7 @@ class Stage3 : public Retry::Scene
 	sf::Music music;
 	Retry::Sprite hacker;
 	Retry::Sprite heart;
+	Retry::Sprite background;
 
 public:
 	static constexpr double lineX = 200;
@@ -29,8 +30,9 @@ private:
 	Retry::InputKey RolebackMenu;
 	Retry::InputKey pausekey;
 	Retry::InputKey CheatKey;
+	Retry::InputKey StageNext;
 	Player_Stage3 player;
-	std::vector<Bug> bugs;
+	std::vector<Bug*> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;
 	bool screenShake = false;
