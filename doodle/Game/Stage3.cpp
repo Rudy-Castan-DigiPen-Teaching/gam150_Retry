@@ -135,7 +135,13 @@ void Stage3::Update(double dt)
 	if (pausekey.IsKeyReleased() == true)
 	{
 		pause = !pause;
-	}if (isAllDead() && StageNext.IsKeyReleased())
+	}if (CheatKey.IsKeyReleased() == true)
+	{
+		Cheat();
+	}
+	
+	
+	if (isAllDead() && StageNext.IsKeyReleased())
 	{
 		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage3);
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
@@ -235,6 +241,14 @@ bool Stage3::isAllDead()
 		if (b->GetAlive()) { return false; }
 	}
 	return true;
+}
+
+void Stage3::Cheat()
+{
+	for (Bug* bug : bugs)
+	{
+		bug->setAlive(false);
+	}
 }
 
 void Stage3::ScreenShake()

@@ -30,7 +30,6 @@ private:
 	Retry::InputKey RolebackMenu;
 	Retry::InputKey pausekey;
 	Retry::InputKey CheatKey;
-	Retry::InputKey StageNext;
 	Player_Stage3 player;
 	std::vector<Bug*> bugs;
 	double overlapseTime = 0;
@@ -51,5 +50,6 @@ public:
 
 private:
 	bool isAllDead();
+	void Cheat();
 
 };
