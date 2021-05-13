@@ -53,7 +53,7 @@ void Bug::Update(Player_Stage3& player)
 		{
 			sound.PlaySound(dead);
 			HitByPlayer();
-			Engine::GetLogger().LogDebug("Hit the Bug");
+			Engine::GetLogger().LogDebug("Hit the Bad Bug");
 		}
 	}
 }

@@ -11,7 +11,7 @@ Creation date: 03/23/2021
 #include <doodle/drawing.hpp>
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h" // GetLogger
-
+#include "GoodBug.h"
 Stage3::Stage3() : RolebackMenu(Retry::InputKey::Keyboard::Escape), Reload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), pausekey(Retry::InputKey::Keyboard::Space),
 player(Engine::GetWindow().GetSize() / 2.0)
 {
@@ -34,18 +34,70 @@ void Stage3::Load()
 	hackerPos = math::vec2{ Engine::GetWindow().GetSize().x - static_cast<double>(hacker.getTextureSize().x), Engine::GetWindow().GetSize().y * 0.5 };
 	player.Load();
 	const double time_offset = 1;
-	bugs.push_back(Bug(NetworkLine::Middle, time_offset));
-	bugs.push_back(Bug(NetworkLine::Bottom, 5 + time_offset));
-	bugs.push_back(Bug(NetworkLine::Top, 10 + time_offset));
-	bugs.push_back(Bug(NetworkLine::Bottom, 20 + time_offset));
-	bugs.push_back(Bug(NetworkLine::Middle, 35 + time_offset, 2));
-	bugs.push_back(Bug(NetworkLine::Top, 68 + time_offset, 18));
-	bugs.push_back(Bug(NetworkLine::Top, 70 + time_offset, 18));
-	bugs.push_back(Bug(NetworkLine::Bottom, 75 + time_offset, 20));
+	bugs.push_back(new Bug(NetworkLine::Middle, time_offset));
+	bugs.push_back(new GoodBug(NetworkLine::Bottom, 2 + time_offset));
+	bugs.push_back(new Bug(NetworkLine::Top, 3 + time_offset));
+	bugs.push_back(new Bug(NetworkLine::Bottom, 4 + time_offset));
+	bugs.push_back(new Bug(NetworkLine::Middle, 4.3 + time_offset, 2));
+	bugs.push_back(new GoodBug(NetworkLine::Top, 7 + time_offset, 18));
+	bugs.push_back(new Bug(NetworkLine::Top, 7.2 + time_offset, 18));
+	bugs.push_back(new Bug(NetworkLine::Bottom, 9 + time_offset, 20));
+	bugs.push_back(new GoodBug(NetworkLine::Middle, 13 + time_offset));
+	bugs.push_back(new Bug(NetworkLine::Top, 13.4 + time_offset, 15));
+	bugs.push_back(new GoodBug(NetworkLine::Bottom, 14 + time_offset, 15));
+	bugs.push_back(new Bug(NetworkLine::Bottom, 14.2 + time_offset, 15));
 
-	for (Bug& bug : bugs)
+	double time = 15;
+	for (int i = 0; i < 15; i++)
 	{
-		bug.Load();
+		int speed = 0;
+		switch (doodle::random(3))
+		{
+		case 0:
+			speed = 5;
+			break;
+		case 1:
+			speed = 15;
+			break;
+		case 2:
+			speed = 17;
+			break;
+		}
+
+		NetworkLine addLine = NetworkLine::Middle;
+		switch (doodle::random(3))
+		{
+		case 0:
+			addLine = NetworkLine::Top;
+			break;
+		case 1:
+			addLine = NetworkLine::Middle;
+			break;
+		case 2:
+			addLine = NetworkLine::Bottom;
+			break;
+		default:
+			break;
+		}
+
+		switch (doodle::random(2))
+		{
+		case 0:
+			bugs.push_back(new Bug(addLine, time + time_offset, speed));
+			break;
+		case 1:
+			bugs.push_back(new GoodBug(addLine, time + time_offset, speed));
+			break;
+		default:
+			break;
+		}
+
+		time += 0.8;
+	}
+
+	for (Bug* bug : bugs)
+	{
+		bug->Load();
 	}
 
 	music.setLoop(true);
@@ -56,11 +108,15 @@ void Stage3::Load()
 void Stage3::Unload()
 {
 	doodle::clear_background(100, 100, 255);
+	for (Bug* bug : bugs)
+	{
+		delete bug;
+	}
 	bugs.clear();
 	music.stop();
 }
 
-void Stage3::Update(double)
+void Stage3::Update(double dt)
 {
 	if (Reload.IsKeyReleased() == true)
 	{
@@ -83,14 +139,14 @@ void Stage3::Update(double)
 		player.Update();
 		if (!pause)
 		{
-			overlapseTime += 0.1;
+			overlapseTime += dt;
 
-			for (Bug& bug : bugs)
+			for (Bug* bug : bugs)
 			{
-				if (bug.getStartTime() <= overlapseTime && bug.getAlive() == true)
+				if (bug->GetStartTime() <= overlapseTime && bug->GetAlive() == true)
 				{
-					bug.Update(player);
-					hackerPos = { hackerPos.x ,bug.GetPosition().y };
+					bug->Update(player);
+					hackerPos = { hackerPos.x ,bug->GetPosition().y };
 				}
 			}
 		}
@@ -105,7 +161,9 @@ void Stage3::Update(double)
 void Stage3::Draw()
 {
 	doodle::clear_background(100, 100, 255, 150);
+	doodle::set_tint_color(230 + sin(doodle::ElapsedTime) * 25, 180 + cos(doodle::ElapsedTime) * 25, 255);
 	background.Draw(Engine::GetWindow().GetSize() * 0.5);
+	doodle::no_tint();
 	for (int i = 1; i <= player.GetLives(); i++)
 	{
 		heart.Draw({ static_cast<double>(i * heart.getTextureSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.getTextureSize().y) });
@@ -123,11 +181,11 @@ void Stage3::Draw()
 
 	hacker.Draw(hackerPos);
 
-	for (Bug& b : bugs)
+	for (Bug* b : bugs)
 	{
-		if (b.getStartTime() <= overlapseTime)
+		if (b->GetStartTime() <= overlapseTime)
 		{
-			b.Draw();
+			b->Draw();
 		}
 	}
 	player.Draw();
@@ -158,9 +216,9 @@ void Stage3::Draw()
 
 bool Stage3::isAllDead()
 {
-	for (Bug& b : bugs)
+	for (Bug* b : bugs)
 	{
-		if (b.getAlive()) { return false; }
+		if (b->GetAlive()) { return false; }
 	}
 	return true;
 }

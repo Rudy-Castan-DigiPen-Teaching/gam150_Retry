@@ -30,7 +30,7 @@ private:
 	Retry::InputKey pausekey;
 	Retry::InputKey StageNext;
 	Player_Stage3 player;
-	std::vector<Bug> bugs;
+	std::vector<Bug*> bugs;
 	double overlapseTime = 0;
 	bool gameOver = false;
 	bool screenShake = false;
