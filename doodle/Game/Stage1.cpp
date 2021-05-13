@@ -117,7 +117,7 @@ void Stage1::Draw()
 	doodle::set_font_size(20);
 	doodle::draw_text(" :  " + std::to_string(file) + " / 5 ", 80, 710);
 	doodle::draw_text("File input :          " + std::to_string(file_input.size()) + " / 5 ", 20, 620);
-	doodle::draw_text("Item : " + std::to_string(item) + " / 1", 20, 580);
+	doodle::draw_text("Scissor : " + std::to_string(item) + " / 1", 20, 570);
 	doodle::pop_settings();
 	
 	if(GameStart == false && GameOver == false && GameClear == false)
@@ -370,16 +370,16 @@ void Stage1::Heart_Draw(int heart_num)
 	switch (heart_num)
 	{
 	case 1:
-		sprite_heart.Draw({ 70, 550 });
+		sprite_heart.Draw({ 70, 530 });
 		break;
 	case 2:
-		sprite_heart.Draw({ 70, 550 });
-		sprite_heart.Draw({ 170, 550 });
+		sprite_heart.Draw({ 70, 530 });
+		sprite_heart.Draw({ 200, 530 });
 		break;
 	case 3:
-		sprite_heart.Draw({ 70, 550 });
-		sprite_heart.Draw({ 170, 550 });
-		sprite_heart.Draw({ 270, 550 });
+		sprite_heart.Draw({ 70, 530 });
+		sprite_heart.Draw({ 200, 530 });
+		sprite_heart.Draw({ 330, 530 });
 		break;
 	}
 }
