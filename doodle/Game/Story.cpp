@@ -1,3 +1,13 @@
+/*--------------------------------------------------------------
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
+File Name: Story.cpp
+Project: GAM150_Networker
+Author: Team RETRY - Haeun Park, Yujin Park
+Creation date: 04/26/2021
+-----------------------------------------------------------------*/
+
 #include "Story.h"
 #include <doodle/drawing.hpp>
 #include "../Engine/Engine.h"
