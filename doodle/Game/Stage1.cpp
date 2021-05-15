@@ -44,16 +44,16 @@ void Stage1::Load()
 	player.Load();
 	hacker.Load();
 	
-	sprite_file.Load("assets/file.png");
+	sprite_file.Load("assets/folder.png");
 	sprite_c_file.Load("assets/correct_file.png");
 	sprite_in_file.Load("assets/incorrect_file.png");
 	default_file.Load("assets/default_file.png");
 	background.Load("assets/stage1_background.png");
 	MousePointer.Load("assets/mouse_pointer.png", {0, 30});
 
-	sprite_file1.Load("assets/file_1insert.png");
-	sprite_file2.Load("assets/file_2insert.png");
-	sprite_file3.Load("assets/file_3insert.png");
+	sprite_file1.Load("assets/folder_1insert.png");
+	sprite_file2.Load("assets/folder_2insert.png");
+	sprite_file3.Load("assets/folder_3insert.png");
 	sprite_heart.Load("assets/Sprite-0001.png");
 	
 	sound.LoadSound("assets/drop_004.ogg"); // Insert correct file
