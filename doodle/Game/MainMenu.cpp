@@ -19,16 +19,21 @@ void MainMenu::Load()
 	int width = 150;
 	int height = 60;
 
-	buttons.push_back(Button("Game Start", math::vec2(Engine::GetWindow().GetSize().x / 2 , Engine::GetWindow().GetSize().y * 0.4), width, height));
+	buttons.push_back(Button("Game Start", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.4), width, height));
 	buttons.push_back(Button("Credit", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
 	buttons.push_back(Button("Option", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
 
-	title_picture.Load("assets/title_picture.png");
-	title_logo.Load("assets/Title_logo.png");
+	title_picture.Load("assets/main_screen.png");
+
 }
 
-void MainMenu::Update(double)
+void MainMenu::Update(double dt)
 {
+	for (Star& s : stars)
+	{
+		s.Update(dt);
+	}
+
 	if (exitkey.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().Shutdown();
@@ -46,7 +51,7 @@ void MainMenu::Update(double)
 				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Story);
 				break;
 			case 1:
-			    Engine::GetSceneManager().setNextScene(Retry::GameScenes::Credit);
+				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Credit);
 				break;
 			case 2:
 				//Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
@@ -64,12 +69,20 @@ void MainMenu::Unload()
 
 void MainMenu::Draw()
 {
-	doodle::clear_background(0, 0, 0);
-	title_picture.Draw({static_cast<double>(Engine::GetWindow().GetSize().x/2), static_cast<double>(Engine::GetWindow().GetSize().y) - 280.0});
-	title_logo.Draw({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) , static_cast<double>(Engine::GetWindow().GetSize().y) - 100.0 });
-	
+
+	doodle::clear_background(0, 0, 0, 210);
+
+	for (Star& s : stars)
+	{
+		s.Draw();
+	}
+
+	title_picture.Draw(Engine::GetWindow().GetSize() / 2);
+
 	for (Button b : buttons)
 	{
 		b.Draw();
 	}
+
+
 }
