@@ -11,6 +11,7 @@ Creation date: 05/06/2021
 #include "../Engine/Scene.h"
 #include "../Engine/Input.h"
 #include "../Engine/Vec2.h"
+#include "../Engine/Texture.h"
 #include <vector>
 
 class Village : public Retry::Scene
@@ -24,6 +25,8 @@ public:
 	std::string GetName() override { return "Village"; }
 
 private:
+	Retry::Texture howToPlay_Security;
+
 	class QuestButton
 	{
 	public:
