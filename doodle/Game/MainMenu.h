@@ -19,8 +19,7 @@ class MainMenu : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
-    Retry::Sprite title_picture;
-    Retry::Sprite title_logo;
+    Retry::Texture title;
     Retry::InputKey exitkey;
 
 
