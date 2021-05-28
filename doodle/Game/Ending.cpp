@@ -13,7 +13,7 @@ Creation date: 05/06/2021
 
 #include "../Engine/Engine.h"
 
-Ending::Ending()
+Ending::Ending() : exitkey(Retry::InputKey::Keyboard::Escape)
 {
 }
 
@@ -24,6 +24,10 @@ void Ending::Load()
 
 void Ending::Update(double)
 {
+	if (exitkey.IsKeyReleased() == true)
+	{
+		Engine::GetSceneManager().Shutdown();
+	}
 }
 
 void Ending::Unload()

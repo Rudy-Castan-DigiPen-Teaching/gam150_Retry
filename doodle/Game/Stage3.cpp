@@ -121,7 +121,7 @@ void Stage3::Update(double dt)
 #ifdef _DEBUG
 	if (CheatKey.IsKeyReleased() == true)
 	{
-		//stageCleared = true;
+		Cheat();
 	}
 #endif
 	if (Reload.IsKeyReleased() == true)
@@ -135,11 +135,7 @@ void Stage3::Update(double dt)
 	if (pausekey.IsKeyReleased() == true)
 	{
 		pause = !pause;
-	}if (CheatKey.IsKeyReleased() == true)
-	{
-		Cheat();
-	}
-	
+	}	
 	
 	if (isAllDead() && StageNext.IsKeyReleased())
 	{

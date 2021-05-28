@@ -15,6 +15,7 @@ class Ending : public Retry::Scene
 {
 private:
     Retry::Sprite texture;
+    Retry::InputKey exitkey;
 public:
     Ending();
     void Load() override;
