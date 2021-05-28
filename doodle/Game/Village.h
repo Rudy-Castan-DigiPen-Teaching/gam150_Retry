@@ -32,8 +32,11 @@ private:
 	class QuestButton
 	{
 	public:
-		QuestButton(const std::filesystem::path& filePath, math::vec2 pos);
-		QuestButton(math::vec2 pos, Retry::GameScenes stage);
+		QuestButton(math::vec2 pos, Retry::GameScenes stage, bool isLocked);
+
+		void UnlockButton() { isLocked = false; }
+		bool IsLocked() { return isLocked; }
+		
 		bool IsMouseOn();
 		bool IsButtonPressed();
 		void Update();
@@ -43,11 +46,14 @@ private:
 	private:
 		Retry::GameScenes stage;
 		math::vec2 position;
-		Retry::Texture texture;
+		Retry::Texture posibleTexture;
+		Retry::Texture lockedTexture;
+		Retry::Texture completeTexture;
 		double width = 200;
 		double height = 200;
 		bool stageCleared;
 		bool buttonPressed = false;
+		bool isLocked;
 	};
 	
 	Retry::InputKey shutDownKey;

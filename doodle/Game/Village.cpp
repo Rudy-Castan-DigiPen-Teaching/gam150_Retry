@@ -13,7 +13,7 @@ Creation date: 05/06/2021
 #include <doodle/drawing.hpp>
 
 Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape),
-endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindow().GetSize().y * 0.3 }, Retry::GameScenes::Ending)
+endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindow().GetSize().y * 0.3 }, Retry::GameScenes::Ending, true)
 {
 	
 }
@@ -24,20 +24,28 @@ void Village::Load()
 	howToPlay_Security.Load("assets/htp_security.png");
 	dataTransferHowToPlay.Load("assets/data_transfer_howtoplay.png");
 	
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage3));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1, false));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2, true));
+	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage3, false));
 
+	if (Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true &&
+		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage2) == true &&
+		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3) == true)
+	{
+		endingButton.UnlockButton();
+	}
+	
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		if (Engine::GetSceneManager().StageCleared(questButtons[i].GetButtonStage()) == true)
 		{
 			questButtons[i].SetCleared(true);
 		}
+		if (questButtons[i].IsLocked() == true && Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true && Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3))
+		{
+			questButtons[i].UnlockButton();
+		}
 	}
-
-	endingButton.SetCleared(true);
-
 }
 
 void Village::Update(double)
@@ -49,22 +57,9 @@ void Village::Update(double)
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		questButtons[i].Update();
-		if (questButtons[i].GetButtonStage() != Retry::GameScenes::Stage2)
+		if (questButtons[i].IsButtonPressed() == true && questButtons[i].IsLocked() == false)
 		{
-			if (questButtons[i].IsButtonPressed() == true)
-			{
-				Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
-			}
-		}
-		else 
-		{
-			if (Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true && Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3))
-			{
-				if (questButtons[i].IsButtonPressed() == true)
-				{
-					Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
-				}
-			}
+			Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
 		}
 	}
 	endingButton.Update();
@@ -72,7 +67,6 @@ void Village::Update(double)
 		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage2) == true &&
 		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage3) == true)
 	{
-		endingButton.SetCleared(false);
 		if (endingButton.IsButtonPressed() == true)
 		{
 			Engine::GetSceneManager().setNextScene(Retry::GameScenes::Ending);
@@ -112,16 +106,14 @@ void Village::Draw()
 	endingButton.Draw();
 }
 
-Village::QuestButton::QuestButton(const std::filesystem::path& filePath, math::vec2 pos) : position(pos)
+Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage, bool isLocked) : position(pos), stage(stage), stageCleared(false), isLocked(isLocked)
 {
-	texture.Load(filePath);
-	//button_width = texture.getSize().x;
-	//button_height = texture.getSize().y;
-}
+	posibleTexture.Load("assets/questbutton_possible.png");
+	lockedTexture.Load("assets/questbutton_lock.png");
+	completeTexture.Load("assets/questbutton_complete.png");
 
-Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage) : position(pos), stage(stage), stageCleared(false)
-{
-	
+	width = posibleTexture.getSize().x;
+	height = posibleTexture.getSize().y;
 }
 
 bool Village::QuestButton::IsMouseOn()
@@ -162,19 +154,19 @@ void Village::QuestButton::Draw()
 	doodle::set_rectangle_mode(doodle::RectMode::Center);
 	if (stageCleared == false)
 	{
-		if (IsMouseOn() == true)
-		{
-			doodle::set_fill_color(200);
+		if (isLocked == true)
+		{			
+			lockedTexture.Draw(position - math::vec2{width, height} / 2);
 		}
 		else
 		{
-			doodle::set_fill_color(255);
+			posibleTexture.Draw(position - math::vec2{ width, height } / 2);
 		}
 	}
 	else
 	{
-		doodle::set_fill_color(100);
+		completeTexture.Draw(position - math::vec2{ width, height } / 2);
 	}
-	doodle::draw_rectangle(position.x, position.y, width, height);
+	// doodle::draw_rectangle(position.x, position.y, width, height);
 	doodle::pop_settings();
 }
