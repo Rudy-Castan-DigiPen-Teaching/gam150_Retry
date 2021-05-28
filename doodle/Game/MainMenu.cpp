@@ -24,7 +24,7 @@ void MainMenu::Load()
 	buttons.push_back(Button("Option", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
 
 	title_picture.Load("assets/main_screen.png");
-
+	title.Load("assets/main_screen.png");
 }
 
 void MainMenu::Update(double dt)
@@ -79,6 +79,9 @@ void MainMenu::Draw()
 
 	title_picture.Draw(Engine::GetWindow().GetSize() / 2);
 
+	doodle::clear_background(0, 0, 0);
+	title.Draw(0);
+	
 	for (Button b : buttons)
 	{
 		b.Draw();

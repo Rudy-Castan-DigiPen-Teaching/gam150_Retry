@@ -21,7 +21,7 @@ class MainMenu : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
-    Retry::Sprite title_picture;
+    Retry::Texture title;
     Retry::InputKey exitkey;
     
     constexpr static int starNum = 600;

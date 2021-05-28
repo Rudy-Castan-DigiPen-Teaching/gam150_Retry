@@ -14,6 +14,8 @@ Creation date: 05/06/2021
 #include "../Engine/Texture.h"
 #include <vector>
 
+#include "../Engine/Sprite.h"
+
 class Village : public Retry::Scene
 {
 public:
@@ -52,4 +54,5 @@ private:
 
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
+	Retry::Texture how_to_quest1;
 };

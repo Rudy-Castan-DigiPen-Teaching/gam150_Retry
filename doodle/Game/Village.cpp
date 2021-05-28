@@ -37,6 +37,7 @@ void Village::Load()
 	}
 
 	endingButton.SetCleared(true);
+	how_to_quest1.Load("assets/quest_window1.png");
 }
 
 void Village::Update(double)
@@ -96,11 +97,7 @@ void Village::Draw()
 			switch (i)
 			{
 			case 0:
-				doodle::push_settings();
-				doodle::draw_rectangle(50, 100, 1000, 610);
-				doodle::set_font_size(35);
-				doodle::draw_text("Quest 1 - Collect data and create files!\n\nRetrieve the file!", 80, static_cast<double>(Engine::GetWindow().GetSize().y)- 200);
-				doodle::pop_settings();
+				how_to_quest1.Draw({ 80, 80 });
 				break;
 			case 1:
 				dataTransferHowToPlay.Draw({ 50, 100 });
