@@ -103,12 +103,7 @@ void Village::Draw()
 				dataTransferHowToPlay.Draw({ 50, 100 });
 				break;
 			case 2:
-				doodle::push_settings();
 				howToPlay_Security.Draw({ 50, 100 });
-				//doodle::draw_rectangle(50, 100, 1000, 610);
-				//doodle::set_font_size(35);
-				//doodle::draw_text("Quest 3 - Kill the Virus!\n\nRetrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
-				doodle::pop_settings();
 				break;
 			}
 		}
