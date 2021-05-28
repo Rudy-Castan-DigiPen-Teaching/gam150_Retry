@@ -20,6 +20,8 @@ endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindo
 
 void Village::Load()
 {
+	howToPlay_Security.Load("assets/htp_security.png");
+
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2));
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage3));
@@ -107,9 +109,10 @@ void Village::Draw()
 				break;
 			case 2:
 				doodle::push_settings();
-				doodle::draw_rectangle(50, 100, 1000, 610);
-				doodle::set_font_size(35);
-				doodle::draw_text("Quest 3 - Kill the Virus!\n\nRetrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
+				howToPlay_Security.Draw({ 50, 100 });
+				//doodle::draw_rectangle(50, 100, 1000, 610);
+				//doodle::set_font_size(35);
+				//doodle::draw_text("Quest 3 - Kill the Virus!\n\nRetrieve the Pill!", 80, static_cast<double>(Engine::GetWindow().GetSize().y) - 200);
 				doodle::pop_settings();
 				break;
 			}

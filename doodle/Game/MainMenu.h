@@ -15,19 +15,22 @@ Creation date: 04/15/2021
 #include "../Engine/Input.h"
 #include "../Engine/Button.h"
 #include "../Engine/Sprite.h"
+#include "Star.h"
+
 class MainMenu : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
     Retry::Sprite title_picture;
-    Retry::Sprite title_logo;
     Retry::InputKey exitkey;
-
+    
+    constexpr static int starNum = 600;
+    std::vector<Star> stars{ starNum };
 
 public:
     MainMenu();
     void Load() override;
-    void Update(double) override;
+    void Update(double dt) override;
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Main Menu"; };

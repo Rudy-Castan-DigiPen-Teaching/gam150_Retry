@@ -42,6 +42,7 @@ void Player_Stage2::Update() {
 		if (velocity.x < 0)
 		{
 			velocity.x += xDrag * doodle::DeltaTime;
+			velocity.x += xAccelerate * doodle::DeltaTime;
 		}
 		if (velocity.x > xMaxVelocity)
 		{
@@ -54,6 +55,7 @@ void Player_Stage2::Update() {
 		if (velocity.x > 0)
 		{
 			velocity.x -= xDrag * doodle::DeltaTime;
+			velocity.x -= xAccelerate * doodle::DeltaTime;
 		}
 		if (velocity.x < -xMaxVelocity)
 		{

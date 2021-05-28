@@ -247,7 +247,7 @@ void Stage2::Draw()
 
 	doodle::push_settings();
 	doodle::set_font_size(40);
-	if (stageStarted == false)
+	if (stageStarted == false && stageCleared == false)
 	{
 		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
 	}
