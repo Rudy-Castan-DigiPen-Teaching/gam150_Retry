@@ -16,12 +16,9 @@ MainMenu::MainMenu() : exitkey(Retry::InputKey::Keyboard::Escape)
 
 void MainMenu::Load()
 {
-	int width = 150;
-	int height = 60;
-
-	buttons.push_back(Button("Game Start", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.4), width, height));
-	buttons.push_back(Button("Credit", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25), width, height));
-	buttons.push_back(Button("Option", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1), width, height));
+	buttons.push_back(Button("assets/button_start.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.4)));
+	buttons.push_back(Button("assets/button_credit.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.25)));
+	buttons.push_back(Button("assets/button_option.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1)));
 
 	title.Load("assets/main_screen.png");
 }

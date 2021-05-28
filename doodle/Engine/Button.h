@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
 #include "Vec2.h"
+#include "Texture.h"
 class Button {
 
 public:
+	Button(const std::filesystem::path& filePath, math::vec2 pos);
 	Button(std::string tex, math::vec2 pos, double width, double height);
 	Button(std::string tex, double x, double y, double width, double height);
 	Button(std::string tex, double x, double y, double width, double height, double fnt_size);
@@ -21,5 +23,5 @@ private:
 	double button_height = 30;
 	double fnt_size = button_width / text.size();
 	bool buttonPressed = false;
-
+	Retry::Texture texture;
 };

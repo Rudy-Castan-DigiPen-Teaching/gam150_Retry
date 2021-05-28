@@ -3,6 +3,13 @@
 #include "Button.h"
 #include "Engine.h"
 
+Button::Button(const std::filesystem::path& filePath, math::vec2 pos) : pos_x{ pos.x }, pos_y{ pos.y }
+{
+	texture.Load(filePath);
+	button_width = texture.getSize().x;
+	button_height = texture.getSize().y;
+}
+
 Button::Button(std::string tex, math::vec2 pos, double width, double height) : Button(tex, pos.x, pos.y, width, height)
 {
 }
@@ -40,8 +47,8 @@ void Button::Draw()
 		doodle::set_fill_color(255);
 	doodle::set_rectangle_mode(doodle::RectMode::Center);
 	doodle::set_font_size(fnt_size);
-	doodle::draw_rectangle(pos_x, pos_y, button_width, button_height);
 	doodle::draw_text(text, pos_x - text.size() / 2 * (fnt_size - 5), pos_y - fnt_size + 5);
+	texture.Draw({ pos_x - button_width/2, pos_y - button_height/2});
 	doodle::pop_settings();
 }
 
