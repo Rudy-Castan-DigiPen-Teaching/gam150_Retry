@@ -42,6 +42,7 @@ void Button::Draw()
 	if (this->isMouseOnButton())
 	{
 		doodle::set_fill_color(180);
+		doodle::set_tint_color(150, 150, 230);
 	}
 	else
 		doodle::set_fill_color(255);
