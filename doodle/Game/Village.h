@@ -48,6 +48,8 @@ private:
 	
 	Retry::InputKey shutDownKey;
 
+	Retry::Texture dataTransferHowToPlay;
+
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
 };
