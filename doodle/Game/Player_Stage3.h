@@ -40,6 +40,7 @@ private:
 	bool isMoved = false;
 	bool isHitting = false;
 	Object attackBox;
+	Retry::Sprite attackSprite;
 
 public:
 	Player_Stage3(math::vec2 position);

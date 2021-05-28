@@ -14,15 +14,16 @@ Player_Stage3::Player_Stage3(math::vec2 position)
 
 void Player_Stage3::Load()
 {
-	sprite.Load("assets/zero_standing.png");
+	sprite.Load("assets/zero_security.png");
+	attackSprite.Load("assets/attack_security.png");
 	width = sprite.getTextureSize().x;
 	height = sprite.getTextureSize().y;
 	hotspot = { width / 2, height / 2 };
 
 	sound.LoadSound("assets/error_002.ogg");
 	sound.LoadSound("assets/scratch_001.ogg");
-	sound.SetVolume(looseHeart, 30);
-	sound.SetVolume(attack, 20);
+	sound.SetVolume(looseHeart, 20);
+	sound.SetVolume(attack, 10);
 
 	position = startPosition;
 	currLine = NetworkLine::Middle;
@@ -47,7 +48,7 @@ void Player_Stage3::Draw()
 	{
 		doodle::push_settings();
 		doodle::set_fill_color(0, 255, 0);
-		attackBox.Draw();
+		attackSprite.Draw(attackBox.GetPosition());
 		doodle::pop_settings();
 	}
 	sprite.Draw(position);
