@@ -11,6 +11,7 @@ Creation date: 05/06/2021
 #include "../Engine/Scene.h"
 #include "../Engine/Input.h"
 #include "../Engine/Vec2.h"
+#include "../Engine/Texture.h"
 #include <vector>
 
 class Village : public Retry::Scene
@@ -44,6 +45,8 @@ private:
 	};
 	
 	Retry::InputKey shutDownKey;
+
+	Retry::Texture dataTransferHowToPlay;
 
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
