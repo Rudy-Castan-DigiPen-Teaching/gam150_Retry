@@ -18,12 +18,8 @@ GameOver::GameOver() : exitKey(Retry::InputKey::Keyboard::Escape)
 
 void GameOver::Load()
 {
-	int width = 230;
-	int height = 60;
-
-	buttons.push_back(Button("RETRY?", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.3), width, height));
-	buttons.push_back(Button("Back", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2), width, height));
-	buttons[1].setFontSize(40);
+	buttons.push_back(Button("assets/button_restart.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.35)));
+	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2)));
 }
 
 

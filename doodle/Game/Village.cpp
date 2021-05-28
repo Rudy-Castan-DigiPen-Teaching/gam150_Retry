@@ -20,9 +20,9 @@ endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindo
 
 void Village::Load()
 {
-	how_to_quest1.Load("assets/quest_window1.png");
-	howToPlay_Security.Load("assets/htp_security.png");
-	dataTransferHowToPlay.Load("assets/data_transfer_howtoplay.png");
+	collecting_HowToPlay.Load("assets/quest_window1.png");
+	Security_HowToPlay.Load("assets/htp_security.png");
+	dataTransfer_HowToPlay.Load("assets/data_transfer_howtoplay.png");
 	
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1, false));
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2, true));
@@ -91,13 +91,13 @@ void Village::Draw()
 			switch (i)
 			{
 			case 0:
-				how_to_quest1.Draw({ 80, 80 });
+				collecting_HowToPlay.Draw({ 50, 100 });
 				break;
 			case 1:
-				dataTransferHowToPlay.Draw({ 50, 100 });
+				dataTransfer_HowToPlay.Draw({ 50, 100 });
 				break;
 			case 2:
-				howToPlay_Security.Draw({ 50, 100 });
+				Security_HowToPlay.Draw({ 50, 100 });
 				break;
 			}
 		}

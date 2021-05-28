@@ -27,7 +27,6 @@ public:
 	std::string GetName() override { return "Village"; }
 
 private:
-	Retry::Texture howToPlay_Security;
 
 	class QuestButton
 	{
@@ -58,9 +57,11 @@ private:
 	
 	Retry::InputKey shutDownKey;
 
-	Retry::Texture dataTransferHowToPlay;
-
+	Retry::Texture dataTransfer_HowToPlay;
+	Retry::Texture collecting_HowToPlay;
+	Retry::Texture Security_HowToPlay;
+	
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
-	Retry::Texture how_to_quest1;
+
 };

@@ -16,10 +16,7 @@ Credit::Credit(){}
 
 void Credit::Load()
 {
-	int width = 150;
-	int height = 60;
-
-	buttons.push_back(Button("Back", math::vec2(Engine::GetWindow().GetSize().x - 200, Engine::GetWindow().GetSize().y * 0.1), width, height));
+	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x - 200, Engine::GetWindow().GetSize().y * 0.1)));
 }
 
 void Credit::Update(double)
