@@ -19,7 +19,7 @@ try
     Engine& engine = Engine::Instance();
     engine.Init("NetWorker");
 
-    while (engine.hasGameEnded() == false)
+    while (engine.hasGameEnded() == false && !doodle::is_window_closed())
     {
         engine.Update();
     }
