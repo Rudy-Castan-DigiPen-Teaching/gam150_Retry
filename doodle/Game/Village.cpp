@@ -20,8 +20,8 @@ endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindo
 
 void Village::Load()
 {
+	how_to_quest1.Load("assets/quest_window1.png");
 	howToPlay_Security.Load("assets/htp_security.png");
-
 	dataTransferHowToPlay.Load("assets/data_transfer_howtoplay.png");
 	
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1));
@@ -37,7 +37,7 @@ void Village::Load()
 	}
 
 	endingButton.SetCleared(true);
-	how_to_quest1.Load("assets/quest_window1.png");
+
 }
 
 void Village::Update(double)
@@ -110,6 +110,13 @@ void Village::Draw()
 	}
 
 	endingButton.Draw();
+}
+
+Village::QuestButton::QuestButton(const std::filesystem::path& filePath, math::vec2 pos) : position(pos)
+{
+	texture.Load(filePath);
+	//button_width = texture.getSize().x;
+	//button_height = texture.getSize().y;
 }
 
 Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage) : position(pos), stage(stage), stageCleared(false)

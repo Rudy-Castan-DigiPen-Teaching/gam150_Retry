@@ -32,6 +32,7 @@ private:
 	class QuestButton
 	{
 	public:
+		QuestButton(const std::filesystem::path& filePath, math::vec2 pos);
 		QuestButton(math::vec2 pos, Retry::GameScenes stage);
 		bool IsMouseOn();
 		bool IsButtonPressed();
@@ -42,6 +43,7 @@ private:
 	private:
 		Retry::GameScenes stage;
 		math::vec2 position;
+		Retry::Texture texture;
 		double width = 200;
 		double height = 200;
 		bool stageCleared;
