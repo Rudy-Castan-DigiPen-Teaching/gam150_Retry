@@ -20,7 +20,7 @@ endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindo
 
 void Village::Load()
 {
-	collecting_HowToPlay.Load("assets/quest_window1.png");
+	collecting_HowToPlay.Load("assets/data_collect_howtoplay.png");
 	Security_HowToPlay.Load("assets/htp_security.png");
 	dataTransfer_HowToPlay.Load("assets/data_transfer_howtoplay.png");
 	
