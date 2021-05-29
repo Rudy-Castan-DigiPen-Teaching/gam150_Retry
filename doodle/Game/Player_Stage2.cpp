@@ -18,7 +18,7 @@ Player_Stage2::Player_Stage2(double x, double y, int width, int height)
 void Player_Stage2::Load()
 {
 	hotspot = math::ivec2(48, 0);
-	sprite.Load("assets/zero_standing.png", hotspot);
+	sprite.Load("assets/zero_datatransfer.png", hotspot);
 	position = initPos;
 	width = sprite.getTextureSize().x;
 	height = sprite.getTextureSize().y;
