@@ -15,7 +15,7 @@ Creation date: 05/06/2021
 Village::Village() : shutDownKey(Retry::InputKey::Keyboard::Escape),
 endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindow().GetSize().y * 0.3 }, Retry::GameScenes::Ending, true)
 {
-	
+	prevScene = Retry::GameScenes::MainMenu;
 }
 
 void Village::Load()

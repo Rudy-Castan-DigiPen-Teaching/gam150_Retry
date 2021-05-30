@@ -14,8 +14,11 @@ Creation date: 03/23/2021
 
 Stage2::Stage2() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageReload(Retry::InputKey::Keyboard::R), StageNext(Retry::InputKey::Keyboard::Enter), StageStart(Retry::InputKey::Keyboard::Space),
 CheatKey(Retry::InputKey::Keyboard::Q),
-player({200, Stage2::floor}, 93, 93), hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)),
-stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(false) {}
+hacker(math::vec2(Engine::GetWindow().GetSize().x, Stage2::floor)), player({ 200, Stage2::floor }, 93, 93, &hacker),
+stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(false)
+{
+	prevScene = Retry::GameScenes::Village;
+}
 
 void Stage2::Load()
 {
@@ -130,7 +133,7 @@ void Stage2::Update(double dt)
 				
 				if (dataBoxes[i].isStacked == false && dataBoxes[i].isOnBoard == false && dataBoxes[i].isStolen == false && player.hasDataBox == true) 
 				{
-					dataBoxes[i].SetPosition(math::vec2{ player.GetPosition().x + dataBoxes[i].GetSize().x, Stage2::floor });
+					dataBoxes[i].SetPosition(math::vec2{ player.GetPosition().x + 62 + dataBoxes[i].GetSize().x / 2, player.GetPosition().y + 27 });
 				}
 
 				for (int j = 0; j < dataBoard.size(); ++j) {
@@ -165,13 +168,13 @@ void Stage2::Update(double dt)
 							}
 
 							if (dataBoxes[i].isStacked == false && player.hasDataBox == true && 
-								player.CollideWith(dataBoard[j]) == true && dataBoxes[i].CollideWith(dataBoard[j]) == true &&
+								player.CollideWith(dataBoard[j]) == true &&
 								Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isStolen == false)
 							{
 								sound.PlaySound(StackBox);
 								player.hasDataBox = false;
 								dataBoxes[i].isOnBoard = true;
-								dataBoxes[i].UpdatePosition(math::vec2(0, dataBoard[j].GetSize().y));
+								dataBoxes[i].SetPosition(math::vec2(dataBoxes[i].GetPosition().x, dataBoard[j].GetPosition().y + dataBoard[j].GetSize().y));
 								dataBoard[j].AddCurrDataNum(1);
 							}
 						}

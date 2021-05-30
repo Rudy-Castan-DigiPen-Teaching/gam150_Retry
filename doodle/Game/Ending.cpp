@@ -15,6 +15,7 @@ Creation date: 05/06/2021
 
 Ending::Ending() : exitkey(Retry::InputKey::Keyboard::Escape)
 {
+	prevScene = Retry::GameScenes::Village;
 }
 
 void Ending::Load()

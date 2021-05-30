@@ -12,14 +12,12 @@ Creation date: 03/23/2021
 #include <string>
 
 namespace Retry {
-    class SceneManager;
-
     enum class GameScenes;
 	
     class Scene
     {
     public:
-        Scene(){}
+        Scene() {}
 
         virtual void Load() = 0;
         virtual void Update(double) = 0;

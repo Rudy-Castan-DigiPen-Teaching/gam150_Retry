@@ -3,15 +3,12 @@
 #include "DataBoard.h"
 #include "../Engine/Engine.h"
 
-Player_Stage2::Player_Stage2(math::vec2 position, int width, int height)
-	: Object(position, width, height), initPos(position),
+Player_Stage2::Player_Stage2(math::vec2 position, int width, int height, Hacker_Stage2* hacker)
+	: Object(position, width, height), initPos(position), 
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	hasDataBox(false), velocity(0, 0), xAccelerate(800), xMaxVelocity(600), speedUp(false), isFast(false)
-{
-}
-
-Player_Stage2::Player_Stage2(double x, double y, int width, int height)
-	: Player_Stage2({ x,y }, width, height)
+	attackBox({position.x + width / 2, position.y}, 100, 100, {0, 0}),
+	velocity(0, 0), xAccelerate(800), xMaxVelocity(600), hacker(hacker),
+	speedUp(false), isFast(false), isFilpped(false), isHitting(false), hasDataBox(false)
 {
 }
 
@@ -28,9 +25,38 @@ void Player_Stage2::Load()
 	xMaxVelocity = 600;
 	speedUp = false;
 	isFast = false;
+	isFilpped = false;
+	isHitting = false;
+
+	attackBox.SetSize({ sprite.getTextureSize().x * 2, sprite.getTextureSize().y });
 }
 
 void Player_Stage2::Update() {
+	if (hasDataBox == false && Engine::GetMouseInput().IsMousePressed() == true)
+	{
+		isHitting = true;
+		if (isFilpped == true)
+		{
+			attackBox.SetPosition({ position.x - attackBox.GetSize().x - width / 2, position.y });
+		}
+		else
+		{
+			attackBox.SetPosition({ position.x + width / 2, position.y });
+		}
+	}
+	else
+	{
+		isHitting = false;
+	}
+	if (isHitting == true)
+	{
+		attackBox.SetPosition({ -100, -100 });
+		if (attackBox.CollideWith(*hacker))
+		{
+			hacker->hasDataBox = true;
+		}
+	}
+
 	if (speedUp == true && isFast == false)
 	{
 		MultiplySpeed(1.5);
@@ -38,6 +64,7 @@ void Player_Stage2::Update() {
 	}
 	if (moveRightKey.IsKeyDown() == true)
 	{
+		isFilpped = false;
 		velocity.x += xAccelerate * doodle::DeltaTime;
 		if (velocity.x < 0)
 		{
@@ -51,6 +78,7 @@ void Player_Stage2::Update() {
 	}
 	else if (moveLeftKey.IsKeyDown() == true)
 	{
+		isFilpped = true;
 		velocity.x -= xAccelerate * doodle::DeltaTime;
 		if (velocity.x > 0)
 		{
@@ -87,4 +115,8 @@ void Player_Stage2::Update() {
 void Player_Stage2::Draw()
 {
 	sprite.Draw(position);
+	if (isHitting == true)
+	{
+		attackBox.Draw();
+	}
 }

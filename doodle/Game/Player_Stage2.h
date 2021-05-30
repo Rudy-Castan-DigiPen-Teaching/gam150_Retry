@@ -10,7 +10,7 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
-#include "../Engine/SceneManager.h"
+#include "Hacker_Stage2.h"
 
 class Player_Stage2 : public Retry::Object
 {
@@ -30,9 +30,15 @@ private:
 	bool speedUp;
 	bool isFast;
 
+	bool isFilpped;
+	bool isHitting;
+
+	Object attackBox;
+
+	Hacker_Stage2* hacker;
+
 public:
-	Player_Stage2(math::vec2 position, int width, int height);
-	Player_Stage2(double x, double y, int width, int height);
+	Player_Stage2(math::vec2 position, int width, int height, Hacker_Stage2* hacker);
 
 	void Load() override;
 	void Update() override;

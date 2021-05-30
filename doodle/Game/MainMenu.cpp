@@ -12,7 +12,9 @@ Creation date: 04/15/2021
 #include <string>
 
 MainMenu::MainMenu() : exitkey(Retry::InputKey::Keyboard::Escape)
-{}
+{
+	prevScene = Retry::GameScenes::MainMenu;
+}
 
 void MainMenu::Load()
 {

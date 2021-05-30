@@ -17,6 +17,7 @@ Stage1::Stage1() : RolebackMenu(Retry::InputKey::Keyboard::Escape), StageStart(R
 StageNext(Retry::InputKey::Keyboard::Enter), UseItem(Retry::InputKey::Keyboard::E), player(95, floor, 50), hacker({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) }), dropspeed(7),
 GameStart(false), GameOver(false), GameClear(false), IsPreviousFileExist(false), isHindrance(false)
 {
+	prevScene = Retry::GameScenes::Village;
 	time = 0;
 	score = 0;
 	heart = 3;
