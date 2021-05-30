@@ -38,7 +38,7 @@ private:
 	Hacker_Stage2* hacker;
 
 public:
-	Player_Stage2(math::vec2 position, int width, int height, Hacker_Stage2* hacker);
+	Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage2* hacker);
 
 	void Load() override;
 	void Update() override;

@@ -168,7 +168,9 @@ void Stage2::Update(double dt)
 							}
 
 							if (dataBoxes[i].isStacked == false && player.hasDataBox == true && 
-								player.CollideWith(dataBoard[j]) == true &&
+								player.CollideWith(dataBoard[j]) == true && 
+								(dataBoxes[i].GetPosition().x - static_cast<double>(dataBoxes[i].GetSize().x)/2 > dataBoard[j].GetPosition().x - static_cast<double>(dataBoard[j].GetSize().x)/2 &&
+								dataBoxes[i].GetPosition().x + static_cast<double>(dataBoxes[i].GetSize().x)/2 < dataBoard[j].GetPosition().x + static_cast<double>(dataBoard[j].GetSize().x)/2) &&
 								Engine::GetMouseInput().IsMousePressed() == true && dataBoxes[i].isStolen == false)
 							{
 								sound.PlaySound(StackBox);

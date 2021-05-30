@@ -3,13 +3,14 @@
 #include "DataBoard.h"
 #include "../Engine/Engine.h"
 
-Player_Stage2::Player_Stage2(math::vec2 position, int width, int height, Hacker_Stage2* hacker)
-	: Object(position, width, height), initPos(position), 
+Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage2* hacker)
+	: Object(pos, width, height), initPos(pos), 
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	attackBox({position.x + width / 2, position.y}, 100, 100, {0, 0}),
+	attackBox({0, 0}, 100, 100, {0, 0}),
 	velocity(0, 0), xAccelerate(800), xMaxVelocity(600), hacker(hacker),
 	speedUp(false), isFast(false), isFilpped(false), isHitting(false), hasDataBox(false)
 {
+	
 }
 
 void Player_Stage2::Load()
@@ -28,11 +29,12 @@ void Player_Stage2::Load()
 	isFilpped = false;
 	isHitting = false;
 
+	attackBox.SetPosition(position);
 	attackBox.SetSize({ sprite.getTextureSize().x * 2, sprite.getTextureSize().y });
 }
 
 void Player_Stage2::Update() {
-	if (hasDataBox == false && Engine::GetMouseInput().IsMousePressed() == true)
+	if (isHitting == false && hasDataBox == false && Engine::GetMouseInput().IsMousePressed() == true)
 	{
 		isHitting = true;
 		if (isFilpped == true)
@@ -48,14 +50,18 @@ void Player_Stage2::Update() {
 	{
 		isHitting = false;
 	}
-	if (isHitting == true)
-	{
-		attackBox.SetPosition({ -100, -100 });
-		if (attackBox.CollideWith(*hacker))
-		{
-			hacker->hasDataBox = true;
-		}
-	}
+	//if (hasDataBox == true || Engine::GetMouseInput().IsMouseReleased() == true)
+	//{
+	//	isHitting = false;
+	//}
+	//if (isHitting == true)
+	//{
+	//	// attackBox.SetPosition({ -100, -100 });
+	//	if (attackBox.CollideWith(*hacker))
+	//	{
+	//		hacker->hasDataBox = true;
+	//	}
+	//}
 
 	if (speedUp == true && isFast == false)
 	{
@@ -110,6 +116,7 @@ void Player_Stage2::Update() {
 		}
 	}
 	position += velocity * doodle::DeltaTime;
+	attackBox.UpdatePosition(velocity * doodle::DeltaTime);
 }
 
 void Player_Stage2::Draw()
@@ -117,6 +124,8 @@ void Player_Stage2::Draw()
 	sprite.Draw(position);
 	if (isHitting == true)
 	{
-		attackBox.Draw();
+		doodle::push_settings();
+		doodle::draw_rectangle(attackBox.GetPosition().x, attackBox.GetPosition().y, attackBox.GetSize().x, attackBox.GetSize().y);
+		doodle::pop_settings();
 	}
 }
