@@ -13,7 +13,7 @@ Creation date: 04/26/2021
 
 GameOver::GameOver() : exitKey(Retry::InputKey::Keyboard::Escape)
 {
-	
+	prevScene = Retry::GameScenes::Village;
 }
 
 void GameOver::Load()

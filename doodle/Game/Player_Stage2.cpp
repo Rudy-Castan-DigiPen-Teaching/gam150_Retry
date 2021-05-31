@@ -3,22 +3,21 @@
 #include "DataBoard.h"
 #include "../Engine/Engine.h"
 
-Player_Stage2::Player_Stage2(math::vec2 position, int width, int height)
-	: Object(position, width, height), initPos(position),
+Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage2* hacker)
+	: Object(pos, width, height), initPos(pos), 
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
-	hasDataBox(false), velocity(0, 0), xAccelerate(800), xMaxVelocity(600), speedUp(false), isFast(false)
+	attackBox({0, 0}, 100, 100, {0, 0}),
+	velocity(0, 0), xAccelerate(800), xMaxVelocity(600), hacker(hacker),
+	speedUp(false), isFast(false), isFilpped(false), isHitting(false), hasDataBox(false), currState(nullptr), attackTime(0)
 {
-}
-
-Player_Stage2::Player_Stage2(double x, double y, int width, int height)
-	: Player_Stage2({ x,y }, width, height)
-{
+	
 }
 
 void Player_Stage2::Load()
 {
 	hotspot = math::ivec2(48, 0);
 	sprite.Load("assets/zero_datatransfer.png", hotspot);
+	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
 	position = initPos;
 	width = sprite.getTextureSize().x;
 	height = sprite.getTextureSize().y;
@@ -26,22 +25,60 @@ void Player_Stage2::Load()
 	velocity = { 0, 0 };
 	xAccelerate = 800;
 	xMaxVelocity = 600;
+	attackTime = 0;
 	speedUp = false;
 	isFast = false;
+	isFilpped = false;
+	isHitting = false;
+
+	attackBox.SetPosition(position);
+	attackBox.SetSize({ attackSprite.getTextureSize().x, attackSprite.getTextureSize().y });
+
+	currState = &stateIdle;
+	currState->Enter(this);
 }
 
-void Player_Stage2::Update() {
+void Player_Stage2::Update()
+{
+	
+	if (isHitting == true && attackBox.CollideWith(*hacker))
+	{
+		// add sound effect
+		hacker->hasDataBox = true;
+	}
+	
+
+	currState->Update(this);
+	currState->TestForExit(this);
+	
 	if (speedUp == true && isFast == false)
 	{
 		MultiplySpeed(1.5);
 		isFast = true;
 	}
+
+	position += velocity * doodle::DeltaTime;
+	attackBox.UpdatePosition(velocity * doodle::DeltaTime);
+}
+
+void Player_Stage2::Draw()
+{
+	sprite.Draw(position);
+	if (isHitting == true)
+	{
+		attackSprite.Draw(attackBox.GetPosition());
+	}
+}
+
+void Player_Stage2::UpdateXVelocity()
+{
 	if (moveRightKey.IsKeyDown() == true)
 	{
+		isFilpped = false;
 		velocity.x += xAccelerate * doodle::DeltaTime;
 		if (velocity.x < 0)
 		{
-			velocity.x += xDrag * doodle::DeltaTime;
+			velocity.x += Player_Stage2::xDrag * doodle::DeltaTime;
 			velocity.x += xAccelerate * doodle::DeltaTime;
 		}
 		if (velocity.x > xMaxVelocity)
@@ -51,10 +88,11 @@ void Player_Stage2::Update() {
 	}
 	else if (moveLeftKey.IsKeyDown() == true)
 	{
+		isFilpped = true;
 		velocity.x -= xAccelerate * doodle::DeltaTime;
 		if (velocity.x > 0)
 		{
-			velocity.x -= xDrag * doodle::DeltaTime;
+			velocity.x -= Player_Stage2::xDrag * doodle::DeltaTime;
 			velocity.x -= xAccelerate * doodle::DeltaTime;
 		}
 		if (velocity.x < -xMaxVelocity)
@@ -66,7 +104,7 @@ void Player_Stage2::Update() {
 	{
 		if (velocity.x < 0)
 		{
-			velocity.x += xDrag * doodle::DeltaTime;
+			velocity.x += Player_Stage2::xDrag * doodle::DeltaTime;
 			if (velocity.x > doodle::DeltaTime)
 			{
 				velocity.x = 0;
@@ -81,10 +119,139 @@ void Player_Stage2::Update() {
 			}
 		}
 	}
-	position += velocity * doodle::DeltaTime;
+
 }
 
-void Player_Stage2::Draw()
+void Player_Stage2::State_Idle::Enter(Player_Stage2*)
 {
-	sprite.Draw(position);
+	Engine::GetMouseInput().setMousePressed(false);
+}
+
+void Player_Stage2::State_Idle::Update(Player_Stage2*)
+{
+}
+
+void Player_Stage2::State_Idle::TestForExit(Player_Stage2* player)
+{
+	if (player->moveLeftKey.IsKeyDown() == true || player->moveRightKey.IsKeyDown() == true)
+	{
+		player->ChangeState(&player->stateMoving);
+	}
+	if (player->hasDataBox == true)
+	{
+		player->ChangeState(&player->stateCarrying);
+	}
+	else if (Engine::GetMouseInput().IsMousePressed() == true)
+	{
+		player->ChangeState(&player->stateAttacking);
+	}
+}
+
+void Player_Stage2::State_Attacking::Enter(Player_Stage2*)
+{
+}
+
+void Player_Stage2::State_Attacking::Update(Player_Stage2* player)
+{
+	player->attackTime += doodle::DeltaTime;
+	if (player->attackTime >= Player_Stage2::attackTimer)
+	{
+		Engine::GetMouseInput().setMousePressed(false);
+	}
+	player->UpdateXVelocity();
+	if (player->isHitting == false && player->hasDataBox == false && Engine::GetMouseInput().IsMousePressed() == true)
+	{
+		player->isHitting = true;
+		if (player->isFilpped == true)
+		{
+			player->attackBox.SetPosition({ player->position.x - player->attackBox.GetSize().x - player->GetHotspot().x, player->position.y });
+		}
+		else
+		{
+			player->attackBox.SetPosition({ player->position.x + player->GetHotspot().x, player->position.y });
+		}
+	}
+}
+
+void Player_Stage2::State_Attacking::TestForExit(Player_Stage2* player)
+{
+	if (Engine::GetMouseInput().IsMousePressed() == false)
+	{
+		player->isHitting = false;
+		player->attackTime = 0;
+		if (player->velocity.x == 0)
+		{
+			player->ChangeState(&player->stateIdle);
+		}
+		else
+		{
+			player->ChangeState(&player->stateMoving);
+		}
+	}
+}
+
+void Player_Stage2::State_Moving::Enter(Player_Stage2* player)
+{
+	Engine::GetMouseInput().setMousePressed(false);
+	if (player->moveLeftKey.IsKeyDown() == true)
+	{
+		player->isFilpped = true;
+	}
+	else if (player->moveRightKey.IsKeyDown() == true)
+	{
+		player->isFilpped = false;
+	}
+}
+
+void Player_Stage2::State_Moving::Update(Player_Stage2* player)
+{
+	player->UpdateXVelocity();
+}
+
+void Player_Stage2::State_Moving::TestForExit(Player_Stage2* player)
+{
+	if (player->hasDataBox == true)
+	{
+		player->ChangeState(&player->stateCarrying);
+	}
+	else if (Engine::GetMouseInput().IsMousePressed())
+	{
+		player->ChangeState(&player->stateAttacking);
+	}
+	else if (player->velocity.x == 0)
+	{
+		player->ChangeState(&player->stateIdle);
+	}
+}
+
+void Player_Stage2::State_Carrying::Enter(Player_Stage2*)
+{
+	Engine::GetMouseInput().setMousePressed(false);
+}
+
+void Player_Stage2::State_Carrying::Update(Player_Stage2* player)
+{
+	player->UpdateXVelocity();
+}
+
+void Player_Stage2::State_Carrying::TestForExit(Player_Stage2* player)
+{
+	if (player->hasDataBox == false)
+	{
+		if (player->velocity.x == 0)
+		{
+			player->ChangeState(&player->stateIdle);
+		}
+		else
+		{
+			player->ChangeState(&player->stateMoving);
+		}
+	}
+}
+
+void Player_Stage2::ChangeState(State* newState)
+{
+	Engine::GetLogger().LogDebug("Leaving State: " + currState->GetName() + " Entering State: " + newState->GetName());
+	currState = newState;
+	currState->Enter(this);
 }

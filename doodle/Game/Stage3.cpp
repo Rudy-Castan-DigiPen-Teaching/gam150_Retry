@@ -15,6 +15,7 @@ Creation date: 03/23/2021
 Stage3::Stage3() : StageNext(Retry::InputKey::Keyboard::Enter), RolebackMenu(Retry::InputKey::Keyboard::Escape), Reload(Retry::InputKey::Keyboard::R), pausekey(Retry::InputKey::Keyboard::Space), CheatKey(Retry::InputKey::Keyboard::Q),
 player(Engine::GetWindow().GetSize() / 2.0)
 {
+	prevScene = Retry::GameScenes::Village;
 	bugs.clear();
 }
 
