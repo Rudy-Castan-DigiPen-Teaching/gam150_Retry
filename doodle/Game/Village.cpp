@@ -20,6 +20,7 @@ endingButton(math::vec2{ Engine::GetWindow().GetSize().x * 0.7, Engine::GetWindo
 
 void Village::Load()
 {
+	background.Load("assets/quest_background.png");
 	collecting_HowToPlay.Load("assets/data_collect_howtoplay.png");
 	Security_HowToPlay.Load("assets/htp_security.png");
 	dataTransfer_HowToPlay.Load("assets/data_transfer_howtoplay.png");
@@ -81,7 +82,7 @@ void Village::Unload()
 
 void Village::Draw()
 {
-	doodle::clear_background(133, 230, 255);
+	background.Draw({0,0});
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		questButtons[i].Draw();

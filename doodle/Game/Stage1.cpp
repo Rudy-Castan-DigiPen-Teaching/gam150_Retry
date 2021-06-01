@@ -183,6 +183,14 @@ void Stage1::Update(double)
 		Engine::GetSceneManager().setGameOver(Retry::GameScenes::Stage1);
 	}
 
+	if(player.GetPosition().x - player.GetSize().x / 2 <= 0)
+	{
+		player.SetPosition({ static_cast<double>(player.GetSize().x) / 2.0 ,player.GetPosition().y });
+	}
+	if(player.GetPosition().x + player.GetSize().x / 2 >= static_cast<double>(Engine::GetWindow().GetSize().x))
+	{
+		player.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x) - static_cast<double>(player.GetSize().x) / 2.0, player.GetPosition().y });
+	}
 	
 	if(GameStart == true)
 	{
