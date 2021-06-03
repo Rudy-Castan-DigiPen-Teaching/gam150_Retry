@@ -29,6 +29,7 @@ namespace Retry
 		bool IsAnimationDone();
 		math::ivec2 GetHotSpot();
 		math::ivec2 GetFrameSize();
+		math::ivec2 GetTextureSize();
 	private:
 		math::ivec2 GetFrameTexel(int frameNum) const;
 

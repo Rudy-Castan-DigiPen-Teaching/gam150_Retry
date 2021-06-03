@@ -114,10 +114,15 @@ namespace Retry
 	{
 		return hotSpot;
 	}
-	
-	math::ivec2 Sprite::GetFrameSize()
+
+	math::ivec2 Sprite::GetTextureSize()
 	{
 		return texture.getSize();
+	}
+
+	math::ivec2 Sprite::GetFrameSize()
+	{
+		return frameSize;
 	}
 
 	math::ivec2 Sprite::GetFrameTexel(int frameNum) const
