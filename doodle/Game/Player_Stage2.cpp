@@ -35,7 +35,7 @@ void Player_Stage2::Load()
 	isHitting = false;
 
 	attackBox.SetPosition(position);
-	attackBox.SetSize({ attackSprite.GetFrameSize().x, attackSprite.GetFrameSize().y });
+	attackBox.SetSize({ attackSprite.GetTextureSize().x, attackSprite.GetTextureSize().y });
 
 	currState = &stateIdle;
 	currState->Enter(this);

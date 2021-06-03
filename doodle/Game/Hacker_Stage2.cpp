@@ -27,8 +27,8 @@ void Hacker_Stage2::Load()
 	boxPosition = Engine::GetWindow().GetSize();
 	hotspot = math::ivec2(48, 0);
 	sprite.Load("assets/hacker_standing.png", hotspot);
-	width = sprite.GetFrameSize().x;
-	height = sprite.GetFrameSize().y;
+	width = sprite.GetTextureSize().x;
+	height = sprite.GetTextureSize().y;
 }
 
 void Hacker_Stage2::Update()
