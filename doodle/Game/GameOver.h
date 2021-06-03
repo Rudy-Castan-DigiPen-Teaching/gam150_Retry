@@ -12,6 +12,7 @@ Creation date: 04/26/2021
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
 #include "../Engine/Button.h"
+#include "../Engine/Sound.h"
 
 class GameOver : public Retry::Scene
 {
@@ -19,6 +20,11 @@ private:
     std::vector<Button> buttons;
     Retry::InputKey exitKey;
 
+    Retry::Sound sound;
+
+    enum SoundIndex {
+        click,
+    };
 public:
     GameOver();
     void Load() override;
