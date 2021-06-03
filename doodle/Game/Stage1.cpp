@@ -71,7 +71,7 @@ void Stage1::Load()
 	sound.SetVolume(InsertCorrectFIle, 30);
 	sound.SetVolume(IncorrectMakeFile, 30);
 	sound.SetVolume(scissorInput, 50);
-	sound.SetVolume(scissorUse, 60);
+	sound.SetVolume(scissorUse, 100);
 
 	music.setLoop(true);
 	music.setVolume(50);
