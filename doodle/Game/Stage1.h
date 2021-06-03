@@ -46,9 +46,10 @@ private:
 
 	static constexpr int floor = 100;
 	Retry::Sound sound;
+	sf::Music music;
 
 	enum SoundIndex {
-		InsertCorrectFIle, InsertIncorrectFIle, CorrectMakeFIle, IncorrectMakeFile, scissorInput, scissorUse, bgm
+		InsertCorrectFIle, InsertIncorrectFIle, CorrectMakeFIle, IncorrectMakeFile, scissorInput, scissorUse
 	};
 
 public:
