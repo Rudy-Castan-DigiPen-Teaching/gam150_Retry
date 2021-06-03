@@ -99,6 +99,16 @@ namespace Retry
 	void Sprite::Update(double dt) {
 		animations[currAnim]->Update(dt);
 	}
+
+	bool Sprite::IsAnimationDone()
+	{
+		if (animations[currAnim]->IsAnimationDone() == true)
+		{
+			return true;
+		}
+
+		return false;
+	}
 	
 	void Sprite::Draw(math::vec2 position)
 	{
