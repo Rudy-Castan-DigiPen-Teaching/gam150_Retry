@@ -8,7 +8,7 @@ Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage
 	moveRightKey(Retry::InputKey::Keyboard::D), moveLeftKey(Retry::InputKey::Keyboard::A),
 	attackBox({0, 0}, 100, 100, {0, 0}),
 	velocity(0, 0), xAccelerate(800), xMaxVelocity(600), hacker(hacker),
-	speedUp(false), isFast(false), isFilpped(false), isHitting(false), hasDataBox(false), currState(nullptr), attackTime(0)
+	speedUp(false), isFast(false), isFlipped(false), isHitting(false), hasDataBox(false), currState(nullptr), attackTime(0)
 {
 	
 }
@@ -18,6 +18,9 @@ void Player_Stage2::Load()
 	hotspot = math::ivec2(48, 0);
 	sprite.Load("assets/zero_datatransfer.png", hotspot);
 	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
+	flippedAttackSprite.Load("assets/attack_flipped.png", attackBox.GetHotspot());
+	sound.LoadSound("assets/scratch_001.ogg");
+	sound.SetVolume(Attack, 20);
 	position = initPos;
 	width = sprite.getTextureSize().x;
 	height = sprite.getTextureSize().y;
@@ -28,7 +31,7 @@ void Player_Stage2::Load()
 	attackTime = 0;
 	speedUp = false;
 	isFast = false;
-	isFilpped = false;
+	isFlipped = false;
 	isHitting = false;
 
 	attackBox.SetPosition(position);
@@ -66,7 +69,14 @@ void Player_Stage2::Draw()
 	sprite.Draw(position);
 	if (isHitting == true)
 	{
-		attackSprite.Draw(attackBox.GetPosition());
+		if (isFlipped == true)
+		{
+			flippedAttackSprite.Draw(attackBox.GetPosition());
+		}
+		else
+		{
+			attackSprite.Draw(attackBox.GetPosition());
+		}
 	}
 }
 
@@ -74,7 +84,7 @@ void Player_Stage2::UpdateXVelocity()
 {
 	if (moveRightKey.IsKeyDown() == true)
 	{
-		isFilpped = false;
+		isFlipped = false;
 		velocity.x += xAccelerate * doodle::DeltaTime;
 		if (velocity.x < 0)
 		{
@@ -88,7 +98,7 @@ void Player_Stage2::UpdateXVelocity()
 	}
 	else if (moveLeftKey.IsKeyDown() == true)
 	{
-		isFilpped = true;
+		isFlipped = true;
 		velocity.x -= xAccelerate * doodle::DeltaTime;
 		if (velocity.x > 0)
 		{
@@ -147,8 +157,9 @@ void Player_Stage2::State_Idle::TestForExit(Player_Stage2* player)
 	}
 }
 
-void Player_Stage2::State_Attacking::Enter(Player_Stage2*)
+void Player_Stage2::State_Attacking::Enter(Player_Stage2* player)
 {
+	player->sound.PlaySound(player->Attack);
 }
 
 void Player_Stage2::State_Attacking::Update(Player_Stage2* player)
@@ -162,7 +173,7 @@ void Player_Stage2::State_Attacking::Update(Player_Stage2* player)
 	if (player->isHitting == false && player->hasDataBox == false && Engine::GetMouseInput().IsMousePressed() == true)
 	{
 		player->isHitting = true;
-		if (player->isFilpped == true)
+		if (player->isFlipped == true)
 		{
 			player->attackBox.SetPosition({ player->position.x - player->attackBox.GetSize().x - player->GetHotspot().x, player->position.y });
 		}
@@ -195,11 +206,11 @@ void Player_Stage2::State_Moving::Enter(Player_Stage2* player)
 	Engine::GetMouseInput().setMousePressed(false);
 	if (player->moveLeftKey.IsKeyDown() == true)
 	{
-		player->isFilpped = true;
+		player->isFlipped = true;
 	}
 	else if (player->moveRightKey.IsKeyDown() == true)
 	{
-		player->isFilpped = false;
+		player->isFlipped = false;
 	}
 }
 

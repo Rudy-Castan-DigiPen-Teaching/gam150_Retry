@@ -267,7 +267,7 @@ void Stage2::Draw()
 	{
 		doodle::set_fill_color(255, 0, 0);
 	}
-	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", 490, Engine::GetWindow().GetSize().y * 0.8);
+	doodle::draw_text("Transfered : " + std::to_string(currTransferNum) + " / " + std::to_string(goalTranasferNum), 490, Engine::GetWindow().GetSize().y * 0.8);
 	doodle::draw_text("Time : " + std::to_string(timeLimit - static_cast<int>(timer)), 490, Engine::GetWindow().GetSize().y * 0.7);
 	doodle::pop_settings();
 }

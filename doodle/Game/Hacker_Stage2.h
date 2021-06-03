@@ -17,7 +17,7 @@ class Hacker_Stage2 : public Retry::Object
 private:
 	math::vec2 initPos;
 	
-	constexpr static double appearTime = 10;
+	constexpr static double appearTime = 8;
 	double timer;
 
 	bool isAppeard;
