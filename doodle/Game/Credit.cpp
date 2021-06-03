@@ -32,9 +32,18 @@ void Credit::Update(double)
 void Credit::Draw()
 {
 	doodle::clear_background(0);
-	doodle::draw_text("Producer : Yujin Park", 100, Engine::GetWindow().GetSize().y * 0.7);
+	doodle::push_settings();
+	doodle::set_font_size(30);
+	doodle::draw_text("President: Claude Comair", 100, Engine::GetWindow().GetSize().y * 0.9);
+	doodle::draw_text("Instructor : KiKyeong Lim, David Ly", 100, Engine::GetWindow().GetSize().y * 0.8);
+	doodle::draw_text("Teaching Assistant : Jina Hyun, Haewon Shon", 100, Engine::GetWindow().GetSize().y * 0.7);
+
+	doodle::draw_text("Producer : Yujin Park", 100, Engine::GetWindow().GetSize().y * 0.6);
 	doodle::draw_text("Lead Designer : Yeonju Lee", 100, Engine::GetWindow().GetSize().y * 0.5);
-	doodle::draw_text("Technical Director : Haeun Park", 100, Engine::GetWindow().GetSize().y * 0.3);
+	doodle::draw_text("Technical Director : Haeun Park", 100, Engine::GetWindow().GetSize().y * 0.4);
+
+	doodle::draw_text("Special Thanks for security stage bgm : dAmbient", 100, Engine::GetWindow().GetSize().y * 0.3);
+	doodle::pop_settings();
 	buttons[0].Draw();
 }
 

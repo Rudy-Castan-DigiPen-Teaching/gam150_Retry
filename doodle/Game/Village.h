@@ -60,6 +60,7 @@ private:
 	Retry::Texture dataTransfer_HowToPlay;
 	Retry::Texture collecting_HowToPlay;
 	Retry::Texture Security_HowToPlay;
+	Retry::Texture background;
 	
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
