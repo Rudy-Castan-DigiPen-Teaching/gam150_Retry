@@ -22,8 +22,8 @@ void Player_Stage2::Load()
 	sound.LoadSound("assets/scratch_001.ogg");
 	sound.SetVolume(Attack, 20);
 	position = initPos;
-	width = sprite.getTextureSize().x;
-	height = sprite.getTextureSize().y;
+	width = sprite.GetFrameSize().x;
+	height = sprite.GetFrameSize().y;
 	hasDataBox = false;
 	velocity = { 0, 0 };
 	xAccelerate = 800;
@@ -35,7 +35,7 @@ void Player_Stage2::Load()
 	isHitting = false;
 
 	attackBox.SetPosition(position);
-	attackBox.SetSize({ attackSprite.getTextureSize().x, attackSprite.getTextureSize().y });
+	attackBox.SetSize({ attackSprite.GetFrameSize().x, attackSprite.GetFrameSize().y });
 
 	currState = &stateIdle;
 	currState->Enter(this);

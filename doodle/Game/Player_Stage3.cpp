@@ -16,8 +16,8 @@ void Player_Stage3::Load()
 {
 	sprite.Load("assets/zero_security.png");
 	attackSprite.Load("assets/attack_security.png");
-	width = sprite.getTextureSize().x;
-	height = sprite.getTextureSize().y;
+	width = sprite.GetFrameSize().x;
+	height = sprite.GetFrameSize().y;
 	hotspot = { width / 2, height / 2 };
 
 	sound.LoadSound("assets/error_002.ogg");

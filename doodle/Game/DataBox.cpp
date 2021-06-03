@@ -28,8 +28,8 @@ dataType(dataType), isStacked(true), isOnBoard(false), isTransfered(false), isTa
 		sprite.Load("assets/data_box_blue.png", hotspot);
 		break;
 	}
-	width = sprite.getTextureSize().x;
-	height = sprite.getTextureSize().y;
+	width = sprite.GetFrameSize().x;
+	height = sprite.GetFrameSize().y;
 }
 
 void DataBox::Load() 
