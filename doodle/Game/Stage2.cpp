@@ -33,7 +33,9 @@ void Stage2::Load()
 	sound.SetVolume(TransferData, 30);
 	sound.SetVolume(StealData, 30);
 	sound.SetVolume(RefillData, 30);
-	
+
+	music.openFromFile("assets/suburbanwizard__8bit-sample.ogg");
+
 	player.Load();
 	hacker.Load();
 	dataBoxes.clear();
@@ -56,6 +58,10 @@ void Stage2::Load()
 	{
 		dataBoard.push_back(DataBoard(Stage2::floor, static_cast<DataBox::DataType>(i)));
 	}
+
+	music.setLoop(true);
+	music.setVolume(50);
+	music.play();
 }
 
 void Stage2::Update(double dt)
@@ -226,6 +232,7 @@ void Stage2::Unload()
 {
 	dataBoxes.clear();
 	dataBoard.clear();
+	music.stop();
 }
 
 void Stage2::Draw()
