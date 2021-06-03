@@ -3,6 +3,7 @@
 #include <doodle/random.hpp>
 #include "../Engine/Engine.h"
 #include "Stage3.h"
+#include "zero_stage3_Anims.h"
 
 Player_Stage3::Player_Stage3(math::vec2 position)
 	: Object(position), startPosition{ position },
@@ -34,10 +35,12 @@ void Player_Stage3::Load()
 	currState = &stateIdle;
 	currState->Enter(this);
 	UpdatePosition();
+	sprite.PlayAnimation(static_cast<int>(Security_Anim::Stand_Anim));
 }
 
 void Player_Stage3::Update()
 {
+	sprite.Update(doodle::DeltaTime);
 	currState->Update(this);
 	currState->TestForExit(this);
 }
@@ -90,8 +93,9 @@ void Player_Stage3::ChangeState(State* newState)
 	currState->Enter(this);
 }
 
-void Player_Stage3::State_Idle::Enter(Player_Stage3*)
+void Player_Stage3::State_Idle::Enter(Player_Stage3* player)
 {
+	player->sprite.PlayAnimation(static_cast<int>(Security_Anim::Stand_Anim));
 }
 
 void Player_Stage3::State_Idle::Update(Player_Stage3*)
@@ -153,8 +157,9 @@ void Player_Stage3::State_Moving::TestForExit(Player_Stage3* player)
 }
 
 
-void Player_Stage3::State_Attacking::Enter(Player_Stage3*)
+void Player_Stage3::State_Attacking::Enter(Player_Stage3* player)
 {
+	player->sprite.PlayAnimation(static_cast<int>(Security_Anim::Attack_Anim));
 }
 
 void Player_Stage3::State_Attacking::Update(Player_Stage3* player)

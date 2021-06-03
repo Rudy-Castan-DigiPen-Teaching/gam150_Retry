@@ -102,7 +102,7 @@ void Stage3::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(0);
+	music.setVolume(10);
 	music.play();
 }
 

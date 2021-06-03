@@ -81,6 +81,7 @@
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Game\zero_stage1_Anims.h" />
     <ClInclude Include="Game\zero_datatransfer_Anims.h" />
+    <ClInclude Include="Game\zero_stage3_Anims.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="doodle.rc" />

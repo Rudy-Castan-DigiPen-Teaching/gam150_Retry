@@ -209,6 +209,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
     <ClInclude Include="Game\Village.h" />
     <ClInclude Include="Game\zero_datatransfer_Anims.h" />
     <ClInclude Include="Game\zero_stage1_Anims.h" />
+    <ClInclude Include="Game\zero_stage3_Anims.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
