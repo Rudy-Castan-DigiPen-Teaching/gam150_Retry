@@ -44,6 +44,7 @@ private:
     Retry::InputKey CheatKey;
 
     Retry::Sound sound;
+    sf::Music music;
 
 	enum SoundIndex
 	{

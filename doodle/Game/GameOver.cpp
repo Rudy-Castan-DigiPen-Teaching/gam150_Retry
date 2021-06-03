@@ -20,6 +20,9 @@ void GameOver::Load()
 {
 	buttons.push_back(Button("assets/button_restart.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.35)));
 	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2)));
+
+	sound.LoadSound("assets/select_003.ogg");
+	sound.SetVolume(click, 100);
 }
 
 
@@ -39,9 +42,11 @@ void GameOver::Update(double)
 			switch (i)
 			{
 			case 0:
+				sound.PlaySound(click);
 				Engine::GetSceneManager().setNextScene(prevScene);
 				break;
 			case 1:
+				sound.PlaySound(click);
 				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 				break;
 			default:

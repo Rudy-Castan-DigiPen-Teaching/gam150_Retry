@@ -10,6 +10,7 @@ Creation date: 03/28/2021
 #pragma once
 #include "../Engine/Object.h"
 #include "../Engine/Input.h"
+#include "../Engine/Sound.h"
 #include "Hacker_Stage2.h"
 
 class Player_Stage2 : public Retry::Object
@@ -61,7 +62,7 @@ private:
 	void ChangeState(State* newState);
 
 	void UpdateXVelocity();
-	
+
 	Retry::InputKey moveRightKey;
 	Retry::InputKey moveLeftKey;
 
@@ -69,6 +70,14 @@ private:
 
 	Retry::Sprite sprite;
 	Retry::Sprite attackSprite;
+	Retry::Sprite flippedAttackSprite;
+
+	Retry::Sound sound;
+
+	enum SoundIndex
+	{
+		Attack
+	};
 	
 	math::vec2 velocity;
 	double xAccelerate;
@@ -81,7 +90,7 @@ private:
 	bool speedUp;
 	bool isFast;
 
-	bool isFilpped;
+	bool isFlipped;
 	bool isHitting;
 
 	Object attackBox;

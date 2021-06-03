@@ -33,7 +33,9 @@ void Stage2::Load()
 	sound.SetVolume(TransferData, 30);
 	sound.SetVolume(StealData, 30);
 	sound.SetVolume(RefillData, 30);
-	
+
+	music.openFromFile("assets/suburbanwizard__8bit-sample.ogg");
+
 	player.Load();
 	hacker.Load();
 	dataBoxes.clear();
@@ -56,6 +58,10 @@ void Stage2::Load()
 	{
 		dataBoard.push_back(DataBoard(Stage2::floor, static_cast<DataBox::DataType>(i)));
 	}
+
+	music.setLoop(true);
+	music.setVolume(50);
+	music.play();
 }
 
 void Stage2::Update(double dt)
@@ -226,6 +232,7 @@ void Stage2::Unload()
 {
 	dataBoxes.clear();
 	dataBoard.clear();
+	music.stop();
 }
 
 void Stage2::Draw()
@@ -267,7 +274,7 @@ void Stage2::Draw()
 	{
 		doodle::set_fill_color(255, 0, 0);
 	}
-	doodle::draw_text(std::to_string(currTransferNum) + " Times Transfered", 490, Engine::GetWindow().GetSize().y * 0.8);
+	doodle::draw_text("Transfered : " + std::to_string(currTransferNum) + " / " + std::to_string(goalTranasferNum), 490, Engine::GetWindow().GetSize().y * 0.8);
 	doodle::draw_text("Time : " + std::to_string(timeLimit - static_cast<int>(timer)), 490, Engine::GetWindow().GetSize().y * 0.7);
 	doodle::pop_settings();
 }
