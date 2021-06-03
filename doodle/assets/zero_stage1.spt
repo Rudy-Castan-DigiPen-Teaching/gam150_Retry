@@ -1,5 +1,7 @@
 assets/zero_stage1.png
-HotSpot 23 15
 FrameSize 46 93
 NumFrames 2
+Frame 0 0
+Frame 46 0
+HotSpot 23 15
 Anim assets/none.anm
