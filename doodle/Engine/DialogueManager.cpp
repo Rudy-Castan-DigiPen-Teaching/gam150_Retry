@@ -81,7 +81,7 @@ void DialogueManager::Update()
 void DialogueManager::Draw()
 {
 	push_settings();
-	set_fill_color(0, 190);
+	set_fill_color(255, 240);
 	doodle::draw_rectangle(
 		dialogueBox.bottomLeft.x, dialogueBox.bottomLeft.y,
 		dialogueBox.topRight.x, dialogueBox.topRight.y);

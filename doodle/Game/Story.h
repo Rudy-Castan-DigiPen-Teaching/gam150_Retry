@@ -12,6 +12,22 @@ Creation date: 04/26/2021
 #include "../Engine/Scene.h"    // Scene (Base class)
 #include "../Engine/Input.h"
 #include "../Engine/DialogueManager.h"
+#include "../Engine/Texture.h"
+#include <vector>
+
+enum class cutscene
+{   
+    boring,
+    surprise,
+    number_fall,
+    number_surprise,
+    number,
+    calling,
+    calling_hello,
+    what,
+    network,
+    count
+};
 
 class Story : public Retry::Scene
 {
@@ -26,4 +42,6 @@ public:
     void Unload() override;
     void Draw() override;
     std::string GetName() override { return "Story"; }
+    std::vector<Retry::Texture> cutscenes;
+    Retry::Texture* currscene = nullptr;
 };

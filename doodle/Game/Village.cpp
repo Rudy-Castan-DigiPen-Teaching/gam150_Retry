@@ -83,6 +83,7 @@ void Village::Unload()
 void Village::Draw()
 {
 	background.Draw({0,0});
+	endingButton.Draw();
 	for (int i = 0; i < questButtons.size(); ++i)
 	{
 		questButtons[i].Draw();
@@ -104,7 +105,6 @@ void Village::Draw()
 		}
 	}
 
-	endingButton.Draw();
 }
 
 Village::QuestButton::QuestButton(math::vec2 pos, Retry::GameScenes stage, bool isLocked) : position(pos), stage(stage), stageCleared(false), isLocked(isLocked)

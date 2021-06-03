@@ -38,7 +38,7 @@ public:
 
 class DialogueManager {
 private:
-	Rect dialogueBox = { {10,10},{1260,210} };
+	Rect dialogueBox = { {10,10},{1420,210} };
 	std::vector<Dialogue> dialogues;
 	std::string displayString = " ";
 
@@ -60,6 +60,6 @@ public:
 	void Update();
 	void Draw();
 	int GetDialogueIndex();
-
+	Rect GetRect() { return dialogueBox; }
 	~DialogueManager();
 };
