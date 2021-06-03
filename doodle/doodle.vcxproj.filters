@@ -88,5 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Vec2.inl" />
+    <None Include="assets\zero_stage1.spt" />
+    <None Include="assets\none.anm" />
   </ItemGroup>
 </Project>
