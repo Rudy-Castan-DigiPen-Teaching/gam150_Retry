@@ -61,12 +61,18 @@ void Stage1::Load()
 	sound.LoadSound("assets/error_006.ogg");  // Insert incorrect file
 	sound.LoadSound("assets/confirmation_002.ogg"); // make correct file
 	sound.LoadSound("assets/error_003.ogg"); // Make incorrect file
+	sound.LoadSound("assets/threeTone2.ogg"); // Input scissor
+	sound.LoadSound("assets/dersuperanton__scissors-mc.ogg"); // use scissor
+	sound.LoadSound("assets/foolboymedia__video-game-land.ogg"); // bgm
 
 
 	sound.SetVolume(CorrectMakeFIle, 30);
 	sound.SetVolume(InsertIncorrectFIle, 50);
 	sound.SetVolume(InsertCorrectFIle, 30);
-	sound.SetVolume(IncorrectMakeFile, 30);	
+	sound.SetVolume(IncorrectMakeFile, 30);
+	sound.SetVolume(scissorInput, 50);
+	sound.SetVolume(scissorUse, 60);
+	sound.SetVolume(bgm, 50);
 }
 
 void Stage1::Draw()
@@ -192,6 +198,8 @@ void Stage1::Update(double)
 		player.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x) - static_cast<double>(player.GetSize().x) / 2.0, player.GetPosition().y });
 	}
 	
+	sound.PlaySound(bgm);
+
 	if(GameStart == true)
 	{
 		hacker_timer += doodle::DeltaTime;
@@ -221,6 +229,7 @@ void Stage1::Update(double)
 		if (item == 1 && UseItem.IsKeyReleased() == true && isHindrance == true)
 		{
 			scissor_input.clear();
+			sound.PlaySound(scissorUse);
 			item = 0;
 			hacker_timer = 0;
 			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
@@ -244,6 +253,8 @@ void Stage1::Update(double)
 			{
 				Engine::GetLogger().LogDebug("Scissor Collision!");
 				scissor_input.push_back(scissor[i]);
+
+				sound.PlaySound(scissorInput);
 
 				for (Stage1_Item& s : scissor)
 				{

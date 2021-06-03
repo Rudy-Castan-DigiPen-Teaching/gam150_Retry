@@ -48,7 +48,7 @@ private:
 	Retry::Sound sound;
 
 	enum SoundIndex {
-		InsertCorrectFIle, InsertIncorrectFIle, CorrectMakeFIle, IncorrectMakeFile
+		InsertCorrectFIle, InsertIncorrectFIle, CorrectMakeFIle, IncorrectMakeFile, scissorInput, scissorUse, bgm
 	};
 
 public:
