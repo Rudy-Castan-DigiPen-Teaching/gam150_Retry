@@ -95,7 +95,6 @@
     <None Include="assets\zero_datatransfer.spt" />
     <None Include="assets\zero_security.spt" />
     <None Include="assets\zero_stage1.anm" />
-    <None Include="assets\zero_datatransfer.anm" />
-    <None Include="assets\zero_datafransfer_pull.anm" />
+    <None Include="assets\zero_datatransfer_push.anm" />
   </ItemGroup>
 </Project>
