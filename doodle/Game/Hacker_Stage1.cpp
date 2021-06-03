@@ -18,8 +18,8 @@ void Hacker_Stage1::Load()
 	hotspot = math::ivec2( 720,0 );
 	sprite.Load("assets/hacker_hindrance.png", hotspot);
 
-	width = sprite.getTextureSize().x;
-	height = sprite.getTextureSize().y;
+	width = sprite.GetTextureSize().x;
+	height = sprite.GetTextureSize().y;
 }
 
 void Hacker_Stage1::Update()

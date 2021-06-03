@@ -12,6 +12,7 @@ Creation date: 03/23/2021
 
 #include <string>
 #include "Texture.h"
+#include "Animation.h"
 
 namespace Retry 
 {
@@ -19,14 +20,25 @@ namespace Retry
 	{
 	public:
 		Sprite();
-		void Load(const std::filesystem::path& texturePath);
-		void Load(const std::filesystem::path& texturePath, math::ivec2 hotspotPos);
+		~Sprite();
+		void Load(const std::filesystem::path& texturePath, math::ivec2 hotspot);
+		void Load(const std::filesystem::path& spriteInfoFile);
 		void Draw(math::vec2 position);
-		math::ivec2 getTextureSize();
+		void PlayAnimation(int anim);
+		void Update(double dt);
+		bool IsAnimationDone();
+		math::ivec2 GetHotSpot();
+		math::ivec2 GetFrameSize();
+		math::ivec2 GetTextureSize();
 	private:
+		math::ivec2 GetFrameTexel(int frameNum) const;
+
+		int currAnim;
+		std::vector<Animation*> animations;
+		math::ivec2 frameSize;
+		std::vector<math::ivec2> frameTexel;
+
 		Texture texture;
 		math::ivec2 hotSpot;
 	};
-
-
 }

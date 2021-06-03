@@ -38,6 +38,7 @@
     <ClCompile Include="Game\Credit.cpp" />
     <ClCompile Include="Game\GoodBug.cpp" />
     <ClCompile Include="Game\Star.cpp" />
+    <ClCompile Include="Engine\Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Button.h" />
@@ -77,6 +78,9 @@
     <ClInclude Include="Game\Credit.h" />
     <ClInclude Include="Game\GoodBug.h" />
     <ClInclude Include="Game\Star.h" />
+    <ClInclude Include="Engine\Animation.h" />
+    <ClInclude Include="Game\zero_stage1_Anims.h" />
+    <ClInclude Include="Game\zero_datatransfer_Anims.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="doodle.rc" />
@@ -86,5 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Vec2.inl" />
+    <None Include="assets\zero_stage1.spt" />
+    <None Include="assets\none.anm" />
+    <None Include="assets\zero_datatransfer.spt" />
+    <None Include="assets\zero_security.spt" />
+    <None Include="assets\zero_stage1.anm" />
+    <None Include="assets\zero_datatransfer_push.anm" />
   </ItemGroup>
 </Project>

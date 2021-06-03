@@ -1,5 +1,14 @@
+/*--------------------------------------------------------------
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
+File Name: Player_Stage2.cpp
+Project: GAM150_Networker
+Author: Team RETRY - Yeongju Lee
+Creation date: 03/28/2021
+-----------------------------------------------------------------*/
 #include "Player_Stage2.h"
-
+#include "zero_datatransfer_Anims.h"
 #include "DataBoard.h"
 #include "../Engine/Engine.h"
 
@@ -15,15 +24,15 @@ Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage
 
 void Player_Stage2::Load()
 {
-	hotspot = math::ivec2(48, 0);
-	sprite.Load("assets/zero_datatransfer.png", hotspot);
+	//hotspot = math::ivec2(48, 0);
+	sprite.Load("assets/zero_datatransfer.spt");
 	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
 	flippedAttackSprite.Load("assets/attack_flipped.png", attackBox.GetHotspot());
 	sound.LoadSound("assets/scratch_001.ogg");
 	sound.SetVolume(Attack, 20);
 	position = initPos;
-	width = sprite.getTextureSize().x;
-	height = sprite.getTextureSize().y;
+	width = sprite.GetFrameSize().x;
+	height = sprite.GetFrameSize().y;
 	hasDataBox = false;
 	velocity = { 0, 0 };
 	xAccelerate = 800;
@@ -35,10 +44,12 @@ void Player_Stage2::Load()
 	isHitting = false;
 
 	attackBox.SetPosition(position);
-	attackBox.SetSize({ attackSprite.getTextureSize().x, attackSprite.getTextureSize().y });
+	attackBox.SetSize({ attackSprite.GetTextureSize().x, attackSprite.GetTextureSize().y });
 
 	currState = &stateIdle;
 	currState->Enter(this);
+
+	sprite.PlayAnimation(static_cast<int>(static_cast<int>(DataTransfer_Anim::Stand_Anim)));
 }
 
 void Player_Stage2::Update()
@@ -46,13 +57,12 @@ void Player_Stage2::Update()
 	
 	if (isHitting == true && attackBox.CollideWith(*hacker))
 	{
-		// add sound effect
 		hacker->hasDataBox = true;
 	}
-	
 
 	currState->Update(this);
 	currState->TestForExit(this);
+	sprite.Update(doodle::DeltaTime);
 	
 	if (speedUp == true && isFast == false)
 	{
@@ -132,9 +142,10 @@ void Player_Stage2::UpdateXVelocity()
 
 }
 
-void Player_Stage2::State_Idle::Enter(Player_Stage2*)
+void Player_Stage2::State_Idle::Enter(Player_Stage2* player)
 {
 	Engine::GetMouseInput().setMousePressed(false);
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Stand_Anim));
 }
 
 void Player_Stage2::State_Idle::Update(Player_Stage2*)
@@ -212,6 +223,8 @@ void Player_Stage2::State_Moving::Enter(Player_Stage2* player)
 	{
 		player->isFlipped = false;
 	}
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Pull_Anim));
+	// player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 }
 
 void Player_Stage2::State_Moving::Update(Player_Stage2* player)
@@ -235,7 +248,7 @@ void Player_Stage2::State_Moving::TestForExit(Player_Stage2* player)
 	}
 }
 
-void Player_Stage2::State_Carrying::Enter(Player_Stage2*)
+void Player_Stage2::State_Carrying::Enter(Player_Stage2* )
 {
 	Engine::GetMouseInput().setMousePressed(false);
 }
