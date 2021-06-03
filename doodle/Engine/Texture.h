@@ -20,6 +20,7 @@ namespace Retry
 		Texture();
 		void Load(const std::filesystem::path& filePath);
 		void Draw(math::vec2 position);
+        void Draw(math::vec2 position, math::ivec2 texelPos, math::ivec2 frameSize);
 		math::ivec2 getSize();
 	private:
 		doodle::Image image;

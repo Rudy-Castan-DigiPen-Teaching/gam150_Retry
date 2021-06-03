@@ -10,21 +10,69 @@ Creation date: 03/23/2021
 
 #include "Sprite.h"
 #include <doodle/drawing.hpp>
+#include <fstream>
 
 namespace Retry
 {
 	Sprite::Sprite() {}
 
-	void Sprite::Load(const std::filesystem::path& texturePath) 
+	//void Sprite::Load(const std::filesystem::path& texturePath) 
+	//{
+	//	texture.Load(texturePath);
+	//	hotSpot = texture.getSize() / 2;
+	//}
+
+	void Sprite::Load(const std::filesystem::path& spriteInfoFile)
 	{
-		texture.Load(texturePath);
-		hotSpot = texture.getSize() / 2;
+		frameTexel.clear();
+
+		if (spriteInfoFile.extension() != ".spt") {
+			throw std::runtime_error("Bad Filetype.  " + spriteInfoFile.generic_string() + " not a sprite info file (.spt)");
+		}
+		std::ifstream inFile(spriteInfoFile);
+
+		if (inFile.is_open() == false) {
+			throw std::runtime_error("Failed to load " + spriteInfoFile.generic_string());
+		}
+
+		std::string text;
+		inFile >> text;
+		texture.Load(text);
+		frameSize = texture.GetSize();
+
+		inFile >> text;
+		while (inFile.eof() == false) {
+			if (text == "FrameSize") {
+				inFile >> frameSize.x;
+				inFile >> frameSize.y;
+			} else if (text == "NumFrames") {
+				int numFrames;
+				inFile >> numFrames;
+				for (int i = 0; i < numFrames; i++) {
+					frameTexel.push_back({ frameSize.x * i, 0 });
+				}
+			} else if (text == "Frame") {
+				int frameLocationX, frameLocationY;
+				inFile >> frameLocationX;
+				inFile >> frameLocationY;
+				frameTexel.push_back({ frameLocationX, frameLocationY });
+			} else if (text == "HotSpot") {
+				int hotSpotX, hotSpotY;
+				inFile >> hotSpotX;
+				inFile >> hotSpotY;
+				hotSpot = { hotSpotX, hotSpotY };
+			} else {
+				Engine::GetLogger().LogError("Unknown spt command " + text);
+			}
+			inFile >> text;
+		}
+		if (frameTexel.empty() == true) {
+			frameTexel.push_back({ 0,0 });
+		}
 	}
 
-	void Sprite::Load(const std::filesystem::path& texturePath, math::ivec2 hotspotPos)
-	{
-		texture.Load(texturePath);
-		hotSpot = hotspotPos;
+	void Sprite::Update(double dt) {
+		animations[currAnim]->Update(dt);
 	}
 	
 	void Sprite::Draw(math::vec2 position)
@@ -32,8 +80,37 @@ namespace Retry
 		texture.Draw(position - hotSpot);
 	}
 
-	math::ivec2 Sprite::getTextureSize()
+	void Sprite::PlayAnimation(int anim) {
+		if (anim >= 0 && anim < animations.size()) {
+			currAnim = anim;
+			animations[currAnim]->ResetAnimation();
+		}
+		else {
+			currAnim = 0;
+			Engine::GetLogger().LogError("Given animation is not valid");
+		}
+	}
+	
+	math::ivec2 Sprite::GetHotSpot()
+	{
+		return hotSpot;
+	}
+	
+	math::ivec2 Sprite::GetFrameSize() const
 	{
 		return texture.getSize();
+	}
+
+	math::ivec2 Sprite::GetFrameTexel(int frameNum) const
+	{
+		if (frameNum >= 0 && frameNum < frameTexel.size())
+		{
+			return frameTexel[frameNum];
+		}
+		else
+		{
+			Engine::GetLogger().LogDebug("Invalid FrameTexel index");
+			return frameTexel[0];
+		}
 	}
 }

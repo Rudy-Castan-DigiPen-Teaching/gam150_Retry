@@ -25,7 +25,13 @@ namespace Retry {
 		doodle::apply_translate(position.x, position.y);
 		doodle::draw_image(image, 0,0);
 		doodle::pop_settings();
+	}
 
+	void Texture::Draw(math::vec2 position, math::ivec2 texelPos, math::ivec2 frameSize) {
+	    doodle::push_settings();
+		doodle::apply_translate(position.x, position.y);
+	    doodle::draw_image(image, 0, 0, static_cast<double>(frameSize.x), static_cast<double>(frameSize.y), texelPos.x, texelPos.y);
+	    doodle::pop_settings();
 	}
 
 	math::ivec2 Texture::getSize() 

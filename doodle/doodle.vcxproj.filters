@@ -38,6 +38,7 @@
     <ClCompile Include="Game\Credit.cpp" />
     <ClCompile Include="Game\GoodBug.cpp" />
     <ClCompile Include="Game\Star.cpp" />
+    <ClCompile Include="Engine\Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Button.h" />
@@ -77,6 +78,7 @@
     <ClInclude Include="Game\Credit.h" />
     <ClInclude Include="Game\GoodBug.h" />
     <ClInclude Include="Game\Star.h" />
+    <ClInclude Include="Engine\Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="doodle.rc" />
