@@ -47,6 +47,9 @@ void Village::Load()
 			questButtons[i].UnlockButton();
 		}
 	}
+
+	sound.LoadSound("assets/select_003.ogg");
+	sound.SetVolume(click, 100);
 }
 
 void Village::Update(double)
@@ -60,6 +63,7 @@ void Village::Update(double)
 		questButtons[i].Update();
 		if (questButtons[i].IsButtonPressed() == true && questButtons[i].IsLocked() == false)
 		{
+			sound.PlaySound(click);
 			Engine::GetSceneManager().setNextScene(questButtons[i].GetButtonStage());
 		}
 	}

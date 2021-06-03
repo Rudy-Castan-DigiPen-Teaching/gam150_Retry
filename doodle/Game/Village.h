@@ -15,6 +15,7 @@ Creation date: 05/06/2021
 #include <vector>
 
 #include "../Engine/Sprite.h"
+#include "../Engine/Sound.h"
 
 class Village : public Retry::Scene
 {
@@ -65,4 +66,9 @@ private:
 	std::vector<QuestButton> questButtons;
 	QuestButton endingButton;
 
+	Retry::Sound sound;
+
+	enum SoundIndex {
+		click,
+	};
 };

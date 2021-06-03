@@ -15,10 +15,16 @@ Creation date: 05/13/2021
 #include "../Engine/Input.h"
 #include "../Engine/Button.h"
 #include "../Engine/Sprite.h"
+#include "../Engine/Sound.h"
 class Credit : public Retry::Scene
 {
 private:
     std::vector<Button> buttons;
+    Retry::Sound sound;
+
+    enum SoundIndex {
+        click,
+    };
 public:
     Credit();
     void Load() override;
