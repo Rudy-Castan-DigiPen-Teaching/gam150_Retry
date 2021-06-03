@@ -22,7 +22,7 @@ void Village::Load()
 {
 	background.Load("assets/quest_background.png");
 	collecting_HowToPlay.Load("assets/data_collect_howtoplay.png");
-	Security_HowToPlay.Load("assets/htp_security.png");
+	Security_HowToPlay.Load("assets/security_howtoplay.png");
 	dataTransfer_HowToPlay.Load("assets/data_transfer_howtoplay.png");
 	
 	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1, false));
