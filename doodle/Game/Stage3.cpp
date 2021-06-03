@@ -32,7 +32,7 @@ void Stage3::Load()
 	gameOver = false;
 	overlapseTime = 0;
 	screenShake = false;
-	hackerPos = math::vec2{ Engine::GetWindow().GetSize().x - static_cast<double>(hacker.GetFrameSize().x), Engine::GetWindow().GetSize().y * 0.5 };
+	hackerPos = math::vec2{ Engine::GetWindow().GetSize().x - static_cast<double>(hacker.getTextureSize().x), Engine::GetWindow().GetSize().y * 0.5 };
 	player.Load();
 	const double time_offset = 1;
 	bugs.push_back(new Bug(NetworkLine::Middle, time_offset));
@@ -183,7 +183,7 @@ void Stage3::Draw()
 	doodle::no_tint();
 	for (int i = 1; i <= player.GetLives(); i++)
 	{
-		heart.Draw({ static_cast<double>(i * heart.GetFrameSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.GetFrameSize().y) });
+		heart.Draw({ static_cast<double>(i * heart.getTextureSize().x) , static_cast<double>(Engine::GetWindow().GetSize().y - heart.getTextureSize().y) });
 	}
 	doodle::push_settings();
 	doodle::set_font_size(30);

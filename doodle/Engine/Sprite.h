@@ -21,14 +21,14 @@ namespace Retry
 	public:
 		Sprite();
 		~Sprite();
-		void Load(const std::filesystem::path& texturePath, math::ivec2 hotspot);
 		void Load(const std::filesystem::path& spriteInfoFile);
 		void Draw(math::vec2 position);
 		void PlayAnimation(int anim);
 		void Update(double dt);
 		bool IsAnimationDone();
 		math::ivec2 GetHotSpot();
-		math::ivec2 GetFrameSize();
+		math::ivec2 GetFrameSize() const;
+		void PlayAnimation(int anim);
 	private:
 		math::ivec2 GetFrameTexel(int frameNum) const;
 

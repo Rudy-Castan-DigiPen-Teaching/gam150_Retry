@@ -1,6 +1,5 @@
-#include "Animation.h"
+#include "Animation.cpp"
 #include "Engine.h"
-#include <fstream>
 
 namespace Retry {
 	Animation::Animation() : Animation("./assets/none.anm") { }
