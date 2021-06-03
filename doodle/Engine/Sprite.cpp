@@ -11,6 +11,7 @@ Creation date: 03/23/2021
 #include "Sprite.h"
 #include <doodle/drawing.hpp>
 #include <fstream>
+#include "Engine.h"
 
 namespace Retry
 {
@@ -22,10 +23,28 @@ namespace Retry
 	//	hotSpot = texture.getSize() / 2;
 	//}
 
+	Sprite::~Sprite() {
+		for (Animation* anim : animations) {
+			delete anim;
+		}
+		animations.clear();
+	}
+
+	void Sprite::Load(const std::filesystem::path& texturePath, math::ivec2 hotspot)
+	{
+		texture.Load(texturePath);
+		hotSpot = hotspot;
+	}
+
 	void Sprite::Load(const std::filesystem::path& spriteInfoFile)
 	{
 		frameTexel.clear();
-
+		if (spriteInfoFile.extension() == ".png")
+		{
+			texture.Load(spriteInfoFile);
+			hotSpot = texture.getSize() / 2;
+			return;
+		}
 		if (spriteInfoFile.extension() != ".spt") {
 			throw std::runtime_error("Bad Filetype.  " + spriteInfoFile.generic_string() + " not a sprite info file (.spt)");
 		}
@@ -38,7 +57,7 @@ namespace Retry
 		std::string text;
 		inFile >> text;
 		texture.Load(text);
-		frameSize = texture.GetSize();
+		frameSize = texture.getSize();
 
 		inFile >> text;
 		while (inFile.eof() == false) {
@@ -96,7 +115,7 @@ namespace Retry
 		return hotSpot;
 	}
 	
-	math::ivec2 Sprite::GetFrameSize() const
+	math::ivec2 Sprite::GetFrameSize()
 	{
 		return texture.getSize();
 	}
