@@ -15,8 +15,8 @@ Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage
 
 void Player_Stage2::Load()
 {
-	hotspot = math::ivec2(48, 0);
-	sprite.Load("assets/zero_datatransfer.png", hotspot);
+	//hotspot = math::ivec2(48, 0);
+	sprite.Load("assets/zero_datatransfer.spt");
 	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
 	flippedAttackSprite.Load("assets/attack_flipped.png", attackBox.GetHotspot());
 	sound.LoadSound("assets/scratch_001.ogg");

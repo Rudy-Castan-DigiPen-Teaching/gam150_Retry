@@ -14,7 +14,7 @@ Player_Stage3::Player_Stage3(math::vec2 position)
 
 void Player_Stage3::Load()
 {
-	sprite.Load("assets/zero_security.png");
+	sprite.Load("assets/zero_security.spt");
 	attackSprite.Load("assets/attack_security.png");
 	width = sprite.GetFrameSize().x;
 	height = sprite.GetFrameSize().y;
