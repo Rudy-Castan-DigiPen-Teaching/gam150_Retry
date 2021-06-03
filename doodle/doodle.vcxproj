@@ -207,6 +207,7 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Game\Village.h" />
+    <ClInclude Include="Game\zero_datatransfer_Anims.h" />
     <ClInclude Include="Game\zero_stage1_Anims.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -218,6 +219,8 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\none.anm" />
+    <None Include="assets\zero_datafransfer_pull.anm" />
+    <None Include="assets\zero_datatransfer.anm" />
     <None Include="assets\zero_datatransfer.spt" />
     <None Include="assets\zero_security.spt" />
     <None Include="assets\zero_stage1.anm" />

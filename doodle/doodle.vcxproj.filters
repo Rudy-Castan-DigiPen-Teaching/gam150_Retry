@@ -80,6 +80,7 @@
     <ClInclude Include="Game\Star.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Game\zero_stage1_Anims.h" />
+    <ClInclude Include="Game\zero_datatransfer_Anims.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="doodle.rc" />
@@ -94,5 +95,7 @@
     <None Include="assets\zero_datatransfer.spt" />
     <None Include="assets\zero_security.spt" />
     <None Include="assets\zero_stage1.anm" />
+    <None Include="assets\zero_datatransfer.anm" />
+    <None Include="assets\zero_datafransfer_pull.anm" />
   </ItemGroup>
 </Project>
