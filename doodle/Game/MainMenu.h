@@ -16,6 +16,8 @@ Creation date: 04/15/2021
 #include "../Engine/Button.h"
 #include "../Engine/Sprite.h"
 #include "Star.h"
+#include <SFML/Audio/Music.hpp>
+#include "../Engine/Sound.h"
 
 class MainMenu : public Retry::Scene
 {
@@ -23,7 +25,12 @@ private:
     std::vector<Button> buttons;
     Retry::Texture title;
     Retry::InputKey exitkey;
-    
+    sf::Music music;
+    Retry::Sound sound;
+
+    enum SoundIndex {
+        click,
+    };
     constexpr static int starNum = 600;
     std::vector<Star> stars{ starNum };
 

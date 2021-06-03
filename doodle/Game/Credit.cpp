@@ -17,6 +17,9 @@ Credit::Credit(){}
 void Credit::Load()
 {
 	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x - 200, Engine::GetWindow().GetSize().y * 0.1)));
+
+	sound.LoadSound("assets/select_003.ogg");
+	sound.SetVolume(click, 100);
 }
 
 void Credit::Update(double)
@@ -25,6 +28,7 @@ void Credit::Update(double)
 
 	if (buttons[0].isButtonPressed() == true)
 	{
+		sound.PlaySound(click);
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::MainMenu);
 	}
 }

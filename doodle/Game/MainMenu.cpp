@@ -23,6 +23,15 @@ void MainMenu::Load()
 	buttons.push_back(Button("assets/button_option.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.1)));
 
 	title.Load("assets/main_screen.png");
+
+	music.openFromFile("assets/josefpres__rap-loops-001-simple-mix-long-loop-90-bpm.ogg");
+
+	sound.LoadSound("assets/select_003.ogg");
+	sound.SetVolume(click, 100);
+
+	music.setLoop(true);
+	music.setVolume(50);
+	music.play();
 }
 
 void MainMenu::Update(double dt)
@@ -46,12 +55,15 @@ void MainMenu::Update(double dt)
 			switch (i)
 			{
 			case 0:
+				sound.PlaySound(click);
 				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Story);
 				break;
 			case 1:
+				sound.PlaySound(click);
 				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Credit);
 				break;
 			case 2:
+				sound.PlaySound(click);
 				//Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
 				break;
 			default:
@@ -63,6 +75,7 @@ void MainMenu::Update(double dt)
 
 void MainMenu::Unload()
 {
+	music.stop();
 }
 
 void MainMenu::Draw()
