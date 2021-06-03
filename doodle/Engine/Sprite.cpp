@@ -80,7 +80,13 @@ namespace Retry
 				inFile >> hotSpotX;
 				inFile >> hotSpotY;
 				hotSpot = { hotSpotX, hotSpotY };
-			} else {
+			}
+			else if (text == "Anim") {
+				std::string anim = "";
+				inFile >> anim;
+				animations.push_back(new Animation(anim));
+			}
+			else {
 				Engine::GetLogger().LogError("Unknown spt command " + text);
 			}
 			inFile >> text;
@@ -96,7 +102,14 @@ namespace Retry
 	
 	void Sprite::Draw(math::vec2 position)
 	{
-		texture.Draw(position - hotSpot);
+		if (frameTexel.empty())
+		{
+			texture.Draw(position - hotSpot);
+		}
+		else
+		{
+			texture.Draw(position - hotSpot, frameTexel[animations[currAnim]->GetDisplayFrame()], frameSize);
+		}
 	}
 
 	void Sprite::PlayAnimation(int anim) {
