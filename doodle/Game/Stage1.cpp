@@ -55,7 +55,7 @@ void Stage1::Load()
 	sprite_file1.Load("assets/folder_1insert.png");
 	sprite_file2.Load("assets/folder_2insert.png");
 	sprite_file3.Load("assets/folder_3insert.png");
-	sprite_heart.Load("assets/Sprite-0001.png");
+	sprite_heart.Load("assets/Heart.png");
 	
 	sound.LoadSound("assets/drop_004.ogg"); // Insert correct file
 	sound.LoadSound("assets/error_006.ogg");  // Insert incorrect file
