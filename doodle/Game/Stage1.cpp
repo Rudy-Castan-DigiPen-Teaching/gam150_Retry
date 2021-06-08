@@ -51,6 +51,8 @@ void Stage1::Load()
 	default_file.Load("assets/default_file.png");
 	background.Load("assets/stage1_background.png");
 	MousePointer.Load("assets/mouse_pointer.png", {0, 30});
+	start_phrase.Load("assets/Press_space.png");
+	end_phrase.Load("assets/game_clear_collect.png");
 
 	sprite_file1.Load("assets/folder_1insert.png");
 	sprite_file2.Load("assets/folder_2insert.png");
@@ -63,8 +65,7 @@ void Stage1::Load()
 	sound.LoadSound("assets/error_003.ogg"); // Make incorrect file
 	sound.LoadSound("assets/threeTone2.ogg"); // Input scissor
 	sound.LoadSound("assets/dersuperanton__scissors-mc.ogg"); // use scissor
-	music.openFromFile("assets/foolboymedia__video-game-land.ogg");
-
+	music.openFromFile("assets/foolboymedia__video-game-land.ogg"); // background music
 
 	sound.SetVolume(CorrectMakeFIle, 30);
 	sound.SetVolume(InsertIncorrectFIle, 50);
@@ -110,8 +111,6 @@ void Stage1::Draw()
 		}
 	}
 
-
-
 	for (int i = 0; i < data.size(); i++)
 	{
 		data[i].Draw_data();
@@ -132,21 +131,16 @@ void Stage1::Draw()
 	
 	if(GameStart == false && GameOver == false && GameClear == false)
 	{	
-		doodle::push_settings();
-		doodle::set_font_size(30);
-		doodle::set_fill_color(33, 255, 78);
-		doodle::draw_text("<<Press Space bar to Start>>", 430, Engine::GetWindow().GetSize().y / 2.0 - 80.0);
-		doodle::pop_settings();
+		start_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0});
 	}
 	else if (GameOver == true)
 	{
 		doodle::set_font_size(30);
-		doodle::draw_text("Game Over!", 600, Engine::GetWindow().GetSize().y / 2.0);
+		doodle::draw_text("Game Over!", 600, doodle::Height / 2.0);
 	}
 	else if (GameClear == true)
 	{
-		doodle::set_font_size(30);
-		doodle::draw_text("Game Clear!", 600, Engine::GetWindow().GetSize().y / 2.0);
+		end_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 - 50});
 	}
 
 	if (isHindrance == true)
@@ -196,9 +190,9 @@ void Stage1::Update(double)
 	{
 		player.SetPosition({ static_cast<double>(player.GetSize().x) / 2.0 ,player.GetPosition().y });
 	}
-	if(player.GetPosition().x + player.GetSize().x / 2 >= static_cast<double>(Engine::GetWindow().GetSize().x))
+	if(player.GetPosition().x + player.GetSize().x / 2 >= doodle::Width)
 	{
-		player.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x) - static_cast<double>(player.GetSize().x) / 2.0, player.GetPosition().y });
+		player.SetPosition({ doodle::Width / 2.0 - static_cast<double>(player.GetSize().x) / 2.0, player.GetPosition().y });
 	}
 
 
@@ -234,14 +228,14 @@ void Stage1::Update(double)
 			scissor_input.clear();
 			item = 0;
 			hacker_timer = 0;
-			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
+			hacker.SetPosition({ doodle::Width / 2.0 ,  doodle::Height / 1.0 });
 			isHindrance = false;
 		}
 
 		if(hacker.GetPosition().y <= -200.0)
 		{
 			hacker_timer = 0;
-			hacker.SetPosition({ static_cast<double>(Engine::GetWindow().GetSize().x / 2) ,  static_cast<double>(Engine::GetWindow().GetSize().y) });
+			hacker.SetPosition({ doodle::Width / 2.0 ,  doodle::Height / 1.0 });
 			isHindrance = false;
 		}
 

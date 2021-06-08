@@ -20,6 +20,8 @@ class Stage2 : public Retry::Scene
 {
 private:
     Retry::Texture background;
+    Retry::Texture start_phrase;
+    Retry::Texture end_phrase;
 	
     Player_Stage2 player;
     Hacker_Stage2 hacker;

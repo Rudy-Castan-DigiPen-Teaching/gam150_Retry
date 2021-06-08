@@ -34,6 +34,8 @@ private:
 	Retry::Sprite default_file;
 	Retry::Texture background;
 	Retry::Sprite MousePointer;
+	Retry::Texture start_phrase;
+	Retry::Texture end_phrase;
 
 	Retry::Sprite sprite_file1;
 	Retry::Sprite sprite_file2;

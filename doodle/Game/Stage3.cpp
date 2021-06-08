@@ -28,6 +28,8 @@ void Stage3::Load()
 	hacker.Load("assets/hacker_standing.png");
 	heart.Load("assets/Heart.png");
 	background.Load("assets/stage3_background.png");
+	start_phrase.Load("assets/Press_space.png");
+	end_phrase.Load("assets/game_clear_security.png");
 	music.openFromFile("assets/dambient_8-bit-loop.wav");
 	gameOver = false;
 	overlapseTime = 0;
@@ -214,7 +216,8 @@ void Stage3::Draw()
 
 	if (pause)
 	{
-		doodle::draw_text("Pause\nPress Space Bar to Start", 370, Engine::GetWindow().GetSize().y * 0.75);
+		start_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 });
+		//doodle::draw_text("Pause\nPress Space Bar to Start", 370, Engine::GetWindow().GetSize().y * 0.75);
 	}
 
 	if (isAllDead())
@@ -226,7 +229,8 @@ void Stage3::Draw()
 			break;
 		case 2:
 		case 1:
-			doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y / 2);
+			end_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 - 50 });
+			//doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y / 2);
 			break;
 		case 0:
 			doodle::draw_text("Fail", 40, Engine::GetWindow().GetSize().y / 2);

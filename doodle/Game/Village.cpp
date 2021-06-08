@@ -24,10 +24,13 @@ void Village::Load()
 	collecting_HowToPlay.Load("assets/data_collect_howtoplay.png");
 	Security_HowToPlay.Load("assets/security_howtoplay.png");
 	dataTransfer_HowToPlay.Load("assets/data_transfer_howtoplay.png");
+
+	double win_x = static_cast<double>(Engine::GetWindow().GetSize().x);
+	double win_y = static_cast<double>(Engine::GetWindow().GetSize().y);
 	
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.8), Retry::GameScenes::Stage1, false));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.2), Retry::GameScenes::Stage2, true));
-	questButtons.push_back(QuestButton(math::vec2(Engine::GetWindow().GetSize().x - 150, Engine::GetWindow().GetSize().y * 0.5), Retry::GameScenes::Stage3, false));
+	questButtons.push_back(QuestButton(math::vec2(win_x - 150, win_y * 0.8), Retry::GameScenes::Stage1, false));
+	questButtons.push_back(QuestButton(math::vec2(win_x - 150, win_y * 0.2), Retry::GameScenes::Stage2, true));
+	questButtons.push_back(QuestButton(math::vec2(win_x - 150, win_y * 0.5), Retry::GameScenes::Stage3, false));
 
 	if (Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage1) == true &&
 		Engine::GetSceneManager().StageCleared(Retry::GameScenes::Stage2) == true &&

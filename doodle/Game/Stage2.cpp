@@ -23,6 +23,8 @@ stackedData(1), currTransferNum(0), timer(0), stageStarted(false), stageCleared(
 void Stage2::Load()
 {
 	background.Load("assets/stage2_background.png");
+	start_phrase.Load("assets/Press_space.png");
+	end_phrase.Load("assets/game_clear_transfer.png");
 	
 	sound.LoadSound("assets/tone1.ogg");
 	sound.LoadSound("assets/powerUp7.ogg");
@@ -257,17 +259,14 @@ void Stage2::Draw()
 	hacker.Draw();
 	player.Draw();
 
-	doodle::push_settings();
-	doodle::set_font_size(40);
 	if (stageStarted == false && stageCleared == false)
 	{
-		doodle::draw_text("Press Space Bar to Start", 370, doodle::Height / 2);
+		start_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 });
 	}
 	if (stageCleared == true)
 	{
-		doodle::draw_text("Clear!!", doodle::Width / 2.0, doodle::Height / 2.0);
+		end_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 - 50 });
 	}
-	doodle::pop_settings();
 	doodle::push_settings();
 	doodle::set_font_size(40);
 	if (timer > timeLimit - 10)

@@ -21,6 +21,8 @@ class Stage3 : public Retry::Scene
 	Retry::Sprite hacker;
 	Retry::Sprite heart;
 	Retry::Sprite background;
+	Retry::Texture start_phrase;
+	Retry::Texture end_phrase;
 
 public:
 	static constexpr double lineX = 200;
