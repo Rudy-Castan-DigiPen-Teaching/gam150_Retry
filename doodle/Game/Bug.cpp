@@ -63,7 +63,6 @@ void Bug::Draw()
 	doodle::push_settings();
 	doodle::set_fill_color(100);
 	if (isAlive) {
-		//doodle::draw_rectangle(position.x - hotspot.x, position.y - hotspot.y, width, height);
 		sprite.Draw(position);
 	}
 	doodle::pop_settings();

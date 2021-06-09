@@ -197,7 +197,6 @@ void Village::QuestButton::Draw()
 	{
 		completeTexture.Draw(position - math::vec2{ width, height } / 2);
 	}
-	// doodle::draw_rectangle(position.x, position.y, width, height);
 	doodle::pop_settings();
 }
 

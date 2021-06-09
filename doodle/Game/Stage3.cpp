@@ -217,7 +217,6 @@ void Stage3::Draw()
 	if (pause)
 	{
 		start_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 });
-		//doodle::draw_text("Pause\nPress Space Bar to Start", 370, Engine::GetWindow().GetSize().y * 0.75);
 	}
 
 	if (isAllDead())
@@ -230,7 +229,6 @@ void Stage3::Draw()
 		case 2:
 		case 1:
 			end_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 - 50 });
-			//doodle::draw_text("clear!", 40, Engine::GetWindow().GetSize().y / 2);
 			break;
 		case 0:
 			doodle::draw_text("Fail", 40, Engine::GetWindow().GetSize().y / 2);
