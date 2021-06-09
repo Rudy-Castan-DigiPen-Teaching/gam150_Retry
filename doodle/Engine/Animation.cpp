@@ -1,3 +1,13 @@
+/*--------------------------------------------------------------
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
+File Name: Animation.cpp
+Project: GAM150_Networker
+Author: Team RETRY - Yujin Park / Yeongju Lee / Haeun Park
+Creation date: 06/03/2021
+-----------------------------------------------------------------*/
+
 #include "Animation.h"
 #include "Engine.h"
 #include <fstream>
