@@ -36,14 +36,15 @@ private:
 
 		void UnlockButton() { isLocked = false; }
 		bool IsLocked() { return isLocked; }
-		
+
 		bool IsMouseOn();
 		bool IsButtonPressed();
 		void Update();
 		void Draw();
 		void SetCleared(bool isCleared) { stageCleared = isCleared; }
+		bool GetCleared() { return stageCleared; }
 		Retry::GameScenes GetButtonStage() { return stage; }
-	private:
+	protected:
 		Retry::GameScenes stage;
 		math::vec2 position;
 		Retry::Texture posibleTexture;
@@ -55,16 +56,30 @@ private:
 		bool buttonPressed = false;
 		bool isLocked;
 	};
+
+	class EndingButton : public QuestButton
+	{
+	public:
+		EndingButton(math::vec2 pos, Retry::GameScenes stage, bool isLocked);
+	};
 	
 	Retry::InputKey shutDownKey;
 
 	Retry::Texture dataTransfer_HowToPlay;
 	Retry::Texture collecting_HowToPlay;
-	Retry::Texture Security_HowToPlay;
+	Retry::Texture security_HowToPlay;
+	Retry::Texture helpme;
+	std::vector<Retry::Texture> items{3};
+	enum class Item{
+		file,
+		pill,
+		box,
+		count
+	};
 	Retry::Texture background;
 	
 	std::vector<QuestButton> questButtons;
-	QuestButton endingButton;
+	EndingButton endingButton;
 
 	Retry::Sound sound;
 
