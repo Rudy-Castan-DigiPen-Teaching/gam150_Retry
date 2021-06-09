@@ -29,33 +29,57 @@ private:
 		virtual void Enter(Player_Stage2* player) override;
 		virtual void Update(Player_Stage2* player) override;
 		virtual void TestForExit(Player_Stage2* player) override;
-		std::string GetName() override { return "Idle"; };
+		std::string GetName() override { return "Idle"; }
 	};
 	class State_Attacking : public State
 	{
 		virtual void Enter(Player_Stage2* player) override;
 		virtual void Update(Player_Stage2* player) override;
 		virtual void TestForExit(Player_Stage2* player) override;
-		std::string GetName() override { return "Attack"; };
+		std::string GetName() override { return "Attack"; }
 	};
-	class State_Moving : public State
+	class State_Pushing : public State
 	{
 		virtual void Enter(Player_Stage2* player) override;
 		virtual void Update(Player_Stage2* player) override;
 		virtual void TestForExit(Player_Stage2* player) override;
-		std::string GetName() override { return "Move"; };
+		std::string GetName() override { return "Push"; }
 	};
-	class State_Carrying : public State
+	class State_Pulling : public State
 	{
 		virtual void Enter(Player_Stage2* player) override;
 		virtual void Update(Player_Stage2* player) override;
 		virtual void TestForExit(Player_Stage2* player) override;
-		std::string GetName() override { return "Carry"; };
+		std::string GetName() override { return "Pull"; }
+	};
+	class State_Carrying_Idle : public State
+	{
+		virtual void Enter(Player_Stage2* player) override;
+		virtual void Update(Player_Stage2* player) override;
+		virtual void TestForExit(Player_Stage2* player) override;
+		std::string GetName() override { return "Carry-Idle"; };
+	};
+	class State_Carrying_Push : public State
+	{
+		virtual void Enter(Player_Stage2* player) override;
+		virtual void Update(Player_Stage2* player) override;
+		virtual void TestForExit(Player_Stage2* player) override;
+		std::string GetName() override { return "Carry-Push"; };
+	};
+	class State_Carrying_Pull : public State
+	{
+		virtual void Enter(Player_Stage2* player) override;
+		virtual void Update(Player_Stage2* player) override;
+		virtual void TestForExit(Player_Stage2* player) override;
+		std::string GetName() override { return "Carry-Pull"; };
 	};
 	State_Idle stateIdle;
 	State_Attacking stateAttacking;
-	State_Moving stateMoving;
-	State_Carrying stateCarrying;
+	State_Pushing statePushing;
+	State_Pulling statePulling;
+	State_Carrying_Idle stateCarryingIdle;
+	State_Carrying_Push stateCarryingPush;
+	State_Carrying_Pull stateCarryingPull;
 
 	State* currState;
 

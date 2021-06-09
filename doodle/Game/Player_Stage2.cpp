@@ -154,13 +154,13 @@ void Player_Stage2::State_Idle::Update(Player_Stage2*)
 
 void Player_Stage2::State_Idle::TestForExit(Player_Stage2* player)
 {
-	if (player->moveLeftKey.IsKeyDown() == true || player->moveRightKey.IsKeyDown() == true)
+	if (player->moveRightKey.IsKeyDown() == true)
 	{
-		player->ChangeState(&player->stateMoving);
+		player->ChangeState(&player->statePushing);
 	}
-	if (player->hasDataBox == true)
+	else if (player->moveLeftKey.IsKeyDown() == true)
 	{
-		player->ChangeState(&player->stateCarrying);
+		player->ChangeState(&player->statePulling);
 	}
 	else if (Engine::GetMouseInput().IsMousePressed() == true)
 	{
@@ -205,40 +205,45 @@ void Player_Stage2::State_Attacking::TestForExit(Player_Stage2* player)
 		{
 			player->ChangeState(&player->stateIdle);
 		}
-		else
+		if (player->velocity.x < 0)
 		{
-			player->ChangeState(&player->stateMoving);
+			player->ChangeState(&player->statePulling);
 		}
+		if (player->velocity.x > 0)
+		{
+			player->ChangeState(&player->statePushing);
+		}
+		//else
+		//{
+		//	player->ChangeState(&player->stateMoving);
+		//}
 	}
 }
 
-void Player_Stage2::State_Moving::Enter(Player_Stage2* player)
+void Player_Stage2::State_Pushing::Enter(Player_Stage2* player)
 {
 	Engine::GetMouseInput().setMousePressed(false);
-	if (player->moveLeftKey.IsKeyDown() == true)
-	{
-		player->isFlipped = true;
-	}
-	else if (player->moveRightKey.IsKeyDown() == true)
-	{
-		player->isFlipped = false;
-	}
-	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Pull_Anim));
+	player->isFlipped = false;
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 	// player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 }
 
-void Player_Stage2::State_Moving::Update(Player_Stage2* player)
+void Player_Stage2::State_Pushing::Update(Player_Stage2* player)
 {
 	player->UpdateXVelocity();
 }
 
-void Player_Stage2::State_Moving::TestForExit(Player_Stage2* player)
+void Player_Stage2::State_Pushing::TestForExit(Player_Stage2* player)
 {
 	if (player->hasDataBox == true)
 	{
-		player->ChangeState(&player->stateCarrying);
+		player->ChangeState(&player->stateCarryingPush);
 	}
-	else if (Engine::GetMouseInput().IsMousePressed())
+	if (player->velocity.x < 0)
+	{
+		player->ChangeState(&player->statePulling);
+	}
+	else if (player->hasDataBox == false && Engine::GetMouseInput().IsMousePressed())
 	{
 		player->ChangeState(&player->stateAttacking);
 	}
@@ -248,28 +253,138 @@ void Player_Stage2::State_Moving::TestForExit(Player_Stage2* player)
 	}
 }
 
-void Player_Stage2::State_Carrying::Enter(Player_Stage2* )
+void Player_Stage2::State_Pulling::Enter(Player_Stage2* player)
 {
 	Engine::GetMouseInput().setMousePressed(false);
+	player->isFlipped = true;
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Pull_Anim));
+	// player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 }
 
-void Player_Stage2::State_Carrying::Update(Player_Stage2* player)
+void Player_Stage2::State_Pulling::Update(Player_Stage2* player)
 {
 	player->UpdateXVelocity();
 }
 
-void Player_Stage2::State_Carrying::TestForExit(Player_Stage2* player)
+void Player_Stage2::State_Pulling::TestForExit(Player_Stage2* player)
+{
+	if (player->hasDataBox == true)
+	{
+		player->ChangeState(&player->stateCarryingPull);
+	}
+	if (player->velocity.x > 0)
+	{
+		player->ChangeState(&player->statePushing);
+	}
+	else if (player->hasDataBox == false && Engine::GetMouseInput().IsMousePressed())
+	{
+	player->ChangeState(&player->stateAttacking);
+	}
+	else if (player->velocity.x == 0)
+	{
+	player->ChangeState(&player->stateIdle);
+	}
+}
+
+void Player_Stage2::State_Carrying_Idle::Enter(Player_Stage2* player)
+{
+	Engine::GetMouseInput().setMousePressed(false);
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Stand_Anim));
+}
+
+void Player_Stage2::State_Carrying_Idle::Update(Player_Stage2*)
+{
+}
+
+void Player_Stage2::State_Carrying_Idle::TestForExit(Player_Stage2* player)
 {
 	if (player->hasDataBox == false)
 	{
-		if (player->velocity.x == 0)
+		player->ChangeState(&player->stateIdle);
+	}
+	if (player->moveRightKey.IsKeyDown() == true)
+	{
+		player->ChangeState(&player->stateCarryingPush);
+	}
+	else if (player->moveLeftKey.IsKeyDown() == true)
+	{
+		player->ChangeState(&player->stateCarryingPull);
+	}
+}
+
+void Player_Stage2::State_Carrying_Push::Enter(Player_Stage2* player)
+{
+	Engine::GetMouseInput().setMousePressed(false);
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
+}
+
+void Player_Stage2::State_Carrying_Push::Update(Player_Stage2* player)
+{
+	player->UpdateXVelocity();
+}
+
+void Player_Stage2::State_Carrying_Push::TestForExit(Player_Stage2* player)
+{
+	if (player->hasDataBox == false)
+	{
+		if (player->velocity.x > 0)
 		{
-			player->ChangeState(&player->stateIdle);
+			player->ChangeState(&player->statePushing);
+		}
+		else if (player->velocity.x < 0)
+		{
+			player->ChangeState(&player->statePulling);
 		}
 		else
 		{
-			player->ChangeState(&player->stateMoving);
+			player->ChangeState(&player->stateIdle);
 		}
+	}
+	if (player->velocity.x < 0)
+	{
+		player->ChangeState(&player->stateCarryingPull);
+	}
+	else if (player->velocity.x == 0)
+	{
+		player->ChangeState(&player->stateCarryingIdle);
+	}
+}
+
+void Player_Stage2::State_Carrying_Pull::Enter(Player_Stage2* player)
+{
+	Engine::GetMouseInput().setMousePressed(false);
+	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Pull_Anim));
+}
+
+void Player_Stage2::State_Carrying_Pull::Update(Player_Stage2* player)
+{
+	player->UpdateXVelocity();
+}
+
+void Player_Stage2::State_Carrying_Pull::TestForExit(Player_Stage2* player)
+{
+	if (player->hasDataBox == false)
+	{
+		if (player->velocity.x > 0)
+		{
+			player->ChangeState(&player->statePushing);
+		}
+		else if (player->velocity.x < 0)
+		{
+			player->ChangeState(&player->statePulling);
+		}
+		else
+		{
+			player->ChangeState(&player->stateIdle);
+		}
+	}
+	if (player->velocity.x > 0)
+	{
+		player->ChangeState(&player->stateCarryingPush);
+	}
+	else if (player->velocity.x == 0)
+	{
+		player->ChangeState(&player->stateCarryingIdle);
 	}
 }
 
