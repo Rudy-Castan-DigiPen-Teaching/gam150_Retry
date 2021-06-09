@@ -23,8 +23,8 @@ void Player_Stage3::Load()
 
 	sound.LoadSound("assets/error_002.ogg");
 	sound.LoadSound("assets/scratch_001.ogg");
-	sound.SetVolume(looseHeart, 20);
-	sound.SetVolume(attack, 10);
+	sound.SetVolume(looseHeart, Retry::SoundOption::sfxVolume * 0.2f);
+	sound.SetVolume(attack, Retry::SoundOption::sfxVolume * 0.1f);
 
 	position = startPosition;
 	currLine = NetworkLine::Middle;

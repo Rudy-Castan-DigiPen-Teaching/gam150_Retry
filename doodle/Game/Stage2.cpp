@@ -31,10 +31,10 @@ void Stage2::Load()
 	sound.LoadSound("assets/pepSound1.ogg");
 	sound.LoadSound("assets/phaserUp5.ogg");
 
-	sound.SetVolume(StackBox, 30);
-	sound.SetVolume(TransferData, 30);
-	sound.SetVolume(StealData, 30);
-	sound.SetVolume(RefillData, 30);
+	sound.SetVolume(StackBox, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(TransferData, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(StealData, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(RefillData, Retry::SoundOption::sfxVolume * 0.3f);
 
 	music.openFromFile("assets/suburbanwizard__8bit-sample.ogg");
 
@@ -62,7 +62,7 @@ void Stage2::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(50);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.5f);
 	music.play();
 }
 

@@ -29,7 +29,7 @@ void Player_Stage2::Load()
 	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
 	flippedAttackSprite.Load("assets/attack_flipped.png", attackBox.GetHotspot());
 	sound.LoadSound("assets/scratch_001.ogg");
-	sound.SetVolume(Attack, 20);
+	sound.SetVolume(Attack, Retry::SoundOption::sfxVolume * 0.2f);
 	position = initPos;
 	width = sprite.GetFrameSize().x;
 	height = sprite.GetFrameSize().y;

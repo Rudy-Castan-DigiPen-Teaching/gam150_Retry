@@ -20,6 +20,7 @@ Creation date: 03/23/2021
 #include "../Game/Story.h"
 #include "../Game/Ending.h"
 #include "../Game/Credit.h"
+#include "../Game/Option.h"
 
 namespace Retry 
 {
@@ -29,6 +30,7 @@ namespace Retry
 		scenes[GameScenes::Story] = std::make_unique<Story>();
 		scenes[GameScenes::MainMenu] = std::make_unique<MainMenu>();
 		scenes[GameScenes::Credit] = std::make_unique<Credit>();
+		scenes[GameScenes::Option] = std::make_unique<Option>();
 		scenes[GameScenes::Village] = std::make_unique<Village>();
 		scenes[GameScenes::Stage1] = std::make_unique<Stage1>();
 		scenes[GameScenes::Stage2] = std::make_unique<Stage2>();

@@ -67,15 +67,15 @@ void Stage1::Load()
 	sound.LoadSound("assets/dersuperanton__scissors-mc.ogg"); // use scissor
 	music.openFromFile("assets/foolboymedia__video-game-land.ogg"); // background music
 
-	sound.SetVolume(CorrectMakeFIle, 30);
-	sound.SetVolume(InsertIncorrectFIle, 50);
-	sound.SetVolume(InsertCorrectFIle, 30);
-	sound.SetVolume(IncorrectMakeFile, 30);
-	sound.SetVolume(scissorInput, 50);
-	sound.SetVolume(scissorUse, 100);
+	sound.SetVolume(CorrectMakeFIle, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(InsertIncorrectFIle, Retry::SoundOption::sfxVolume * 0.5f);
+	sound.SetVolume(InsertCorrectFIle, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(IncorrectMakeFile, Retry::SoundOption::sfxVolume * 0.3f);
+	sound.SetVolume(scissorInput, Retry::SoundOption::sfxVolume * 0.5f);
+	sound.SetVolume(scissorUse, Retry::SoundOption::sfxVolume);
 
 	music.setLoop(true);
-	music.setVolume(50);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.5f);
 	music.play();
 }
 
