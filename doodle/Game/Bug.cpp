@@ -33,7 +33,7 @@ void Bug::Load()
 {
 	sprite.Load("assets/Bug1.png");
 	sound.LoadSound("assets/confirmation_004.ogg");
-	sound.SetVolume(dead, 20);
+	sound.SetVolume(dead, Retry::SoundOption::sfxVolume * 0.2f);
 }
 
 void Bug::Update(Player_Stage3& player)

@@ -19,7 +19,7 @@ void Credit::Load()
 	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x - 200, Engine::GetWindow().GetSize().y * 0.1)));
 
 	sound.LoadSound("assets/select_003.ogg");
-	sound.SetVolume(click, 100);
+	sound.SetVolume(click, Retry::SoundOption::sfxVolume);
 }
 
 void Credit::Update(double)

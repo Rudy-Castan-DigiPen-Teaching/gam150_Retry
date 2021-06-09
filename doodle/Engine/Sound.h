@@ -10,8 +10,15 @@ Creation date: 04/10/2021
 #pragma once
 #include <SFML/Audio.hpp>
 #include <vector>
+
 namespace Retry
 {
+	namespace SoundOption
+	{
+		inline float sfxVolume = 100;
+		inline float musicVolume = 100;
+	}
+	
 	class Sound
 	{
 		std::vector<sf::SoundBuffer> soundBuffers{};

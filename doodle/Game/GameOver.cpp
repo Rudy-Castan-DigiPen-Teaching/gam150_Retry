@@ -22,7 +22,7 @@ void GameOver::Load()
 	buttons.push_back(Button("assets/button_back.png", math::vec2(Engine::GetWindow().GetSize().x / 2, Engine::GetWindow().GetSize().y * 0.2)));
 
 	sound.LoadSound("assets/select_003.ogg");
-	sound.SetVolume(click, 100);
+	sound.SetVolume(click, Retry::SoundOption::sfxVolume);
 }
 
 

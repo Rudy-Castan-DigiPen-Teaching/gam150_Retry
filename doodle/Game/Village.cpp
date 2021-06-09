@@ -52,7 +52,7 @@ void Village::Load()
 	}
 
 	sound.LoadSound("assets/select_003.ogg");
-	sound.SetVolume(click, 100);
+	sound.SetVolume(click, Retry::SoundOption::sfxVolume);
 }
 
 void Village::Update(double)

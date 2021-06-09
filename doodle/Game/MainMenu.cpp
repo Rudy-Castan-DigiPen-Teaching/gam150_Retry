@@ -27,10 +27,10 @@ void MainMenu::Load()
 	music.openFromFile("assets/josefpres__rap-loops-001-simple-mix-long-loop-90-bpm.ogg");
 
 	sound.LoadSound("assets/select_003.ogg");
-	sound.SetVolume(click, 100);
+	sound.SetVolume(click, Retry::SoundOption::sfxVolume);
 
 	music.setLoop(true);
-	music.setVolume(50);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.5f);
 	music.play();
 }
 
@@ -64,7 +64,7 @@ void MainMenu::Update(double dt)
 				break;
 			case 2:
 				sound.PlaySound(click);
-				//Engine::GetSceneManager().setNextScene(Retry::GameScenes::Stage3);
+				Engine::GetSceneManager().setNextScene(Retry::GameScenes::Option);
 				break;
 			default:
 				break;
