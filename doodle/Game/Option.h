@@ -27,6 +27,9 @@ private:
 	static constexpr double maximum = 1080;
 	static constexpr double length = maximum - minimum;
 
+	Retry::Texture sfxLetterTexture;
+	Retry::Texture musicLetterTexture;
+	
 	Retry::Texture sfxBarTexture;
 	Retry::Texture musicBarTexture;
 

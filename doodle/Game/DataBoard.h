@@ -27,6 +27,7 @@ public:
 
 	bool reachedGoal;
 private:
+	Retry::Sprite sprite;
 	DataBox::DataType dataType;
 	int goalDataNum;
 	int currDataNum;
