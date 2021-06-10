@@ -30,6 +30,7 @@ void Stage3::Load()
 	background.Load("assets/stage3_background.png");
 	start_phrase.Load("assets/Press_space.png");
 	end_phrase.Load("assets/game_clear_security.png");
+	end_phrase_perfect.Load("assets/game_clear_security_perfect.png");
 	music.openFromFile("assets/dambient_8-bit-loop.wav");
 	gameOver = false;
 	overlapseTime = 0;
@@ -121,12 +122,12 @@ void Stage3::Unload()
 
 void Stage3::Update(double dt)
 {
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	if (CheatKey.IsKeyReleased() == true)
 	{
 		Cheat();
 	}
-#endif
+//#endif
 	if (Reload.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().ReloadScene();
@@ -224,7 +225,7 @@ void Stage3::Draw()
 		switch (player.GetLives())
 		{
 		case 3:
-			doodle::draw_text("perfect clear!", 40, Engine::GetWindow().GetSize().y / 2);
+			end_phrase_perfect.Draw({ doodle::Width / 2.0 - static_cast<double>(end_phrase_perfect.getSize().x) / 2.0, doodle::Height / 2.0 - 50 });
 			break;
 		case 2:
 		case 1:

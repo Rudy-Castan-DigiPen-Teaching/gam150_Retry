@@ -23,6 +23,7 @@ class Stage3 : public Retry::Scene
 	Retry::Sprite background;
 	Retry::Texture start_phrase;
 	Retry::Texture end_phrase;
+	Retry::Texture end_phrase_perfect;
 
 public:
 	static constexpr double lineX = 200;

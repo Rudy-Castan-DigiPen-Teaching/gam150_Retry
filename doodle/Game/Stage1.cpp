@@ -152,13 +152,13 @@ void Stage1::Draw()
 
 void Stage1::Update(double)
 {
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	if (CheatKey.IsKeyReleased() == true)
 	{
 		GameClear = true;
 		GameStart = false;
 	}
-#endif
+//#endif
 	if (RolebackMenu.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
