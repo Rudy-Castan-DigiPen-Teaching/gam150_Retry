@@ -19,6 +19,7 @@ sfxVolumeKey(math::vec2{maximum, Engine::GetWindow().GetSize().y * 0.8}, 50, 100
 
 void Option::Load()
 {
+	optionLetterTexture.Load("assets/option_word.png");
 	sfxLetterTexture.Load("assets/option_sfx.png");
 	musicLetterTexture.Load("assets/option_music.png");
 	sfxBarTexture.Load("assets/sound_bar.png");
@@ -80,6 +81,7 @@ void Option::Draw()
 {
 	doodle::clear_background(0);
 	doodle::push_settings();
+	optionLetterTexture.Draw(math::vec2{minimum - optionLetterTexture.getSize().x - 25, minimum * 1.9});
 	sfxLetterTexture.Draw(math::vec2(minimum - sfxLetterTexture.getSize().x - 50, sfxVolumeKey.GetPosition().y - sfxLetterTexture.getSize().y / 2));
 	musicLetterTexture.Draw(math::vec2(minimum - musicLetterTexture.getSize().x - 50, musicVolumeKey.GetPosition().y - musicLetterTexture.getSize().y / 2));
 	sfxBarTexture.Draw(math::vec2(minimum, sfxVolumeKey.GetPosition().y - sfxBarTexture.getSize().y / 2));
