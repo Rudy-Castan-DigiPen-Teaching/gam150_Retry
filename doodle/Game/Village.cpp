@@ -107,10 +107,10 @@ void Village::Draw()
 				collecting_HowToPlay.Draw({ 50, 100 });
 				break;
 			case 1:
-				dataTransfer_HowToPlay.Draw({ 50, 100 });
+				security_HowToPlay.Draw({ 50, 100 });
 				break;
 			case 2:
-				security_HowToPlay.Draw({ 50, 100 });
+				dataTransfer_HowToPlay.Draw({ 50, 100 });
 				break;
 			}
 		}
