@@ -19,6 +19,10 @@ sfxVolumeKey(math::vec2{maximum, Engine::GetWindow().GetSize().y * 0.8}, 50, 100
 
 void Option::Load()
 {
+	sfxBarTexture.Load("assets/sound_bar.png");
+	musicBarTexture.Load("assets/sound_bar.png");
+	sfxButtonSprite.Load("assets/sound_button.png");
+	musicButtonSprite.Load("assets/sound_button.png");
 	sound.LoadSound("assets/select_003.ogg");
 	sound.SetVolume(Click, Retry::SoundOption::sfxVolume);
 }
@@ -74,11 +78,10 @@ void Option::Draw()
 {
 	doodle::clear_background(0);
 	doodle::push_settings();
-	//doodle::set_rectangle_mode(doodle::RectMode::Center);
-	doodle::draw_rectangle(minimum, sfxVolumeKey.GetPosition().y, length, 100);
-	doodle::draw_rectangle(minimum, musicVolumeKey.GetPosition().y, length, 100);
-	sfxVolumeKey.Draw();
-	musicVolumeKey.Draw();
+	sfxBarTexture.Draw(math::vec2(minimum, sfxVolumeKey.GetPosition().y - sfxBarTexture.getSize().y / 2));
+	musicBarTexture.Draw(math::vec2(minimum, musicVolumeKey.GetPosition().y - musicBarTexture.getSize().y / 2));
+	sfxButtonSprite.Draw(sfxVolumeKey.GetPosition());
+	musicButtonSprite.Draw(musicVolumeKey.GetPosition());
 	backButton.Draw();
 	doodle::pop_settings();
 }

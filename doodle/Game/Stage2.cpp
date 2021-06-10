@@ -94,6 +94,17 @@ void Stage2::Update(double dt)
 	{
 		Engine::GetSceneManager().setNextScene(Retry::GameScenes::Village);
 	}
+
+	if (player.GetPosition().x - player.GetHotspot().x < 0)
+	{
+		player.SetPosition(math::vec2(player.GetHotspot().x, player.GetPosition().y));
+		player.SetVelocity(math::vec2{ 0, 0 });
+	}
+	if (player.GetPosition().x - player.GetHotspot().x + player.GetSize().x > Engine::GetWindow().GetSize().x)
+	{
+		player.SetPosition(math::vec2(Engine::GetWindow().GetSize().x - player.GetSize().x + player.GetHotspot().x, player.GetPosition().y));
+		player.SetVelocity(math::vec2{ 0, 0 });
+	}
 	
 	if (currTransferNum == goalTranasferNum)
 	{

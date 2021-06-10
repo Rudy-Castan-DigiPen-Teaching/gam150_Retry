@@ -128,6 +128,8 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void SetVelocity(math::vec2 newVel) { velocity = newVel; }
+	
 	void MultiplySpeed(double d)
 	{
 		xAccelerate *= d;
