@@ -1,103 +1,312 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ConsoleMain.cpp" />
-    <ClCompile Include="Engine\Button.cpp" />
-    <ClCompile Include="Engine\DialogueManager.cpp" />
-    <ClCompile Include="Engine\Engine.cpp" />
-    <ClCompile Include="Engine\Input.cpp" />
-    <ClCompile Include="Engine\InputDoodle.cpp" />
-    <ClCompile Include="Engine\Logger.cpp" />
-    <ClCompile Include="Engine\Object.cpp" />
-    <ClCompile Include="Engine\SceneManager.cpp" />
-    <ClCompile Include="Engine\Sound.cpp" />
-    <ClCompile Include="Engine\Sprite.cpp" />
-    <ClCompile Include="Engine\Texture.cpp" />
-    <ClCompile Include="Engine\Window.cpp" />
-    <ClCompile Include="Game\Bug.cpp" />
-    <ClCompile Include="Game\DataBoard.cpp" />
-    <ClCompile Include="Game\DataBox.cpp" />
-    <ClCompile Include="Game\Ending.cpp" />
-    <ClCompile Include="Game\GameOver.cpp" />
-    <ClCompile Include="Game\Hacker_Stage1.cpp" />
-    <ClCompile Include="Game\Hacker_Stage2.cpp" />
-    <ClCompile Include="Game\MainMenu.cpp" />
-    <ClCompile Include="Game\Player_Stage1.cpp" />
-    <ClCompile Include="Game\Player_Stage2.cpp" />
-    <ClCompile Include="Game\Player_Stage3.cpp" />
-    <ClCompile Include="Game\Splash.cpp" />
-    <ClCompile Include="Game\Stage1.cpp" />
-    <ClCompile Include="Game\Stage1_Object.cpp" />
-    <ClCompile Include="Game\Stage2.cpp" />
-    <ClCompile Include="Game\Stage3.cpp" />
-    <ClCompile Include="Game\Story.cpp" />
-    <ClCompile Include="Game\TestObject.cpp" />
-    <ClCompile Include="Game\TestStage.cpp" />
-    <ClCompile Include="Game\Village.cpp" />
-    <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="Game\Credit.cpp" />
-    <ClCompile Include="Game\GoodBug.cpp" />
-    <ClCompile Include="Game\Star.cpp" />
-    <ClCompile Include="Engine\Animation.cpp" />
-    <ClCompile Include="Game\Option.cpp" />
+    <ClCompile Include="Engine\Animation.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Button.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\DialogueManager.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Input.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Logger.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\InputDoodle.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SceneManager.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sound.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sprite.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Window.cpp">
+      <Filter>Engine\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Bug.cpp">
+      <Filter>Game\Security</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Credit.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\DataBoard.cpp">
+      <Filter>Game\DataTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\DataBox.cpp">
+      <Filter>Game\DataTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Ending.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameOver.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GoodBug.cpp">
+      <Filter>Game\Security</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Hacker_Stage1.cpp">
+      <Filter>Game\DataCollect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Hacker_Stage2.cpp">
+      <Filter>Game\DataTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MainMenu.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Option.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player_Stage1.cpp">
+      <Filter>Game\DataCollect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player_Stage2.cpp">
+      <Filter>Game\DataTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player_Stage3.cpp">
+      <Filter>Game\Security</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Splash.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage1.cpp">
+      <Filter>Game\DataCollect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage1_Object.cpp">
+      <Filter>Game\DataCollect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage2.cpp">
+      <Filter>Game\DataTransfer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage3.cpp">
+      <Filter>Game\Security</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Star.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Story.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Village.cpp">
+      <Filter>Game\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleMain.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestObject.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestStage.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Button.h" />
-    <ClInclude Include="Engine\DialogueManager.h" />
-    <ClInclude Include="Engine\Engine.h" />
-    <ClInclude Include="Engine\Input.h" />
-    <ClInclude Include="Engine\Logger.h" />
-    <ClInclude Include="Engine\Object.h" />
-    <ClInclude Include="Engine\Scene.h" />
-    <ClInclude Include="Engine\SceneManager.h" />
-    <ClInclude Include="Engine\Sound.h" />
-    <ClInclude Include="Engine\Sprite.h" />
-    <ClInclude Include="Engine\Texture.h" />
-    <ClInclude Include="Engine\Vec2.h" />
-    <ClInclude Include="Engine\Window.h" />
-    <ClInclude Include="Game\Bug.h" />
-    <ClInclude Include="Game\DataBoard.h" />
-    <ClInclude Include="Game\DataBox.h" />
-    <ClInclude Include="Game\Ending.h" />
-    <ClInclude Include="Game\GameOver.h" />
-    <ClInclude Include="Game\Hacker_Stage1.h" />
-    <ClInclude Include="Game\Hacker_Stage2.h" />
-    <ClInclude Include="Game\MainMenu.h" />
-    <ClInclude Include="Game\Player_Stage1.h" />
-    <ClInclude Include="Game\Player_Stage2.h" />
-    <ClInclude Include="Game\Player_Stage3.h" />
-    <ClInclude Include="Game\Splash.h" />
-    <ClInclude Include="Game\Stage1.h" />
-    <ClInclude Include="Game\Stage1_Object.h" />
-    <ClInclude Include="Game\Stage2.h" />
-    <ClInclude Include="Game\Stage3.h" />
-    <ClInclude Include="Game\Story.h" />
-    <ClInclude Include="Game\TestObject.h" />
-    <ClInclude Include="Game\TestStage.h" />
-    <ClInclude Include="Game\Village.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Game\Credit.h" />
-    <ClInclude Include="Game\GoodBug.h" />
-    <ClInclude Include="Game\Star.h" />
-    <ClInclude Include="Engine\Animation.h" />
-    <ClInclude Include="Game\zero_stage1_Anims.h" />
-    <ClInclude Include="Game\zero_datatransfer_Anims.h" />
-    <ClInclude Include="Game\zero_stage3_Anims.h" />
-    <ClInclude Include="Game\Option.h" />
+    <ClInclude Include="Engine\Animation.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Button.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DialogueManager.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Logger.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SceneManager.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sound.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sprite.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vec2.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Window.h">
+      <Filter>Engine\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Bug.h">
+      <Filter>Game\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Credit.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\DataBoard.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\DataBox.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Ending.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameOver.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GoodBug.h">
+      <Filter>Game\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hacker_Stage1.h">
+      <Filter>Game\DataCollect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hacker_Stage2.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MainMenu.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Option.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player_Stage1.h">
+      <Filter>Game\DataCollect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player_Stage2.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player_Stage3.h">
+      <Filter>Game\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Splash.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage1.h">
+      <Filter>Game\DataCollect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage1_Object.h">
+      <Filter>Game\DataCollect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage2.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage3.h">
+      <Filter>Game\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Star.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Story.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Village.h">
+      <Filter>Game\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\zero_stage1_Anims.h">
+      <Filter>Game\DataCollect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\zero_datatransfer_Anims.h">
+      <Filter>Game\DataTransfer</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\zero_stage3_Anims.h">
+      <Filter>Game\Security</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestObject.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestStage.h">
+      <Filter>Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="doodle.rc" />
+    <None Include="Engine\Vec2.inl">
+      <Filter>Engine\h</Filter>
+    </None>
+    <None Include="assets\zero_datatransfer_push.anm">
+      <Filter>Game\DataTransfer</Filter>
+    </None>
+    <None Include="assets\zero_datatransfer.spt">
+      <Filter>Game\DataTransfer</Filter>
+    </None>
+    <None Include="assets\zero_security.spt">
+      <Filter>Game\Security</Filter>
+    </None>
+    <None Include="assets\zero_stage1.anm">
+      <Filter>Game\DataCollect</Filter>
+    </None>
+    <None Include="assets\zero_stage1.spt">
+      <Filter>Game\DataCollect</Filter>
+    </None>
+    <None Include="assets\none.anm">
+      <Filter>Game\GameUI</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d2152a4f-3291-44f2-a889-dce0a71ebc37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\cpp">
+      <UniqueIdentifier>{e4c2a3cc-97ca-436d-b462-5b14dff78b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\h">
+      <UniqueIdentifier>{d6eb07ea-b5c7-41f3-8e01-09ef7f76b177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{3c74ec80-18ba-449d-b505-e2f75115579a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameUI">
+      <UniqueIdentifier>{d5a36467-9180-4224-9de6-3d5e09d7ef3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\DataCollect">
+      <UniqueIdentifier>{ee19f5db-42fc-4031-83ad-40a5e71129c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Security">
+      <UniqueIdentifier>{142e90c2-edd9-4752-9cb0-d0a92719c518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\DataTransfer">
+      <UniqueIdentifier>{71273efe-9474-4e54-9081-98fb0b8c6dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{4b66c1f9-d7e5-4a1c-8ddc-1542e0d3a057}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Engine\Vec2.inl" />
-    <None Include="assets\zero_stage1.spt" />
-    <None Include="assets\none.anm" />
-    <None Include="assets\zero_datatransfer.spt" />
-    <None Include="assets\zero_security.spt" />
-    <None Include="assets\zero_stage1.anm" />
-    <None Include="assets\zero_datatransfer_push.anm" />
+    <ResourceCompile Include="doodle.rc">
+      <Filter>Other</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Other</Filter>
+    </Image>
   </ItemGroup>
 </Project>
