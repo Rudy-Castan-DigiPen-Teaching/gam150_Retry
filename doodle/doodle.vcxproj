@@ -222,10 +222,8 @@ xcopy /y /d "$(SolutionDir)external\SFML\$(Platform)\bin\sfml-system-2.dll" "$(T
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\none.anm" />
-    <None Include="assets\zero_datatransfer_push.anm" />
     <None Include="assets\zero_datatransfer.spt" />
     <None Include="assets\zero_security.spt" />
-    <None Include="assets\zero_stage1.anm" />
     <None Include="assets\zero_stage1.spt" />
     <None Include="Engine\Vec2.inl" />
   </ItemGroup>

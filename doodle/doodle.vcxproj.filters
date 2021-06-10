@@ -251,17 +251,11 @@
     <None Include="Engine\Vec2.inl">
       <Filter>Engine\h</Filter>
     </None>
-    <None Include="assets\zero_datatransfer_push.anm">
-      <Filter>Game\DataTransfer</Filter>
-    </None>
     <None Include="assets\zero_datatransfer.spt">
       <Filter>Game\DataTransfer</Filter>
     </None>
     <None Include="assets\zero_security.spt">
       <Filter>Game\Security</Filter>
-    </None>
-    <None Include="assets\zero_stage1.anm">
-      <Filter>Game\DataCollect</Filter>
     </None>
     <None Include="assets\zero_stage1.spt">
       <Filter>Game\DataCollect</Filter>
