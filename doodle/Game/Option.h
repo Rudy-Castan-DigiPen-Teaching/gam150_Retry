@@ -26,6 +26,12 @@ private:
 	static constexpr double minimum = 360;
 	static constexpr double maximum = 1080;
 	static constexpr double length = maximum - minimum;
+
+	Retry::Texture sfxBarTexture;
+	Retry::Texture musicBarTexture;
+
+	Retry::Sprite sfxButtonSprite;
+	Retry::Sprite musicButtonSprite;
 	
 	enum SoundIndex
 	{
