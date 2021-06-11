@@ -75,7 +75,7 @@ void Stage1::Load()
 	sound.SetVolume(scissorUse, Retry::SoundOption::sfxVolume);
 
 	music.setLoop(true);
-	music.setVolume(Retry::SoundOption::musicVolume * 0.5f+10);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.6f);
 	music.play();
 }
 

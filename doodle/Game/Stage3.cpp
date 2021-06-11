@@ -105,7 +105,7 @@ void Stage3::Load()
 	}
 
 	music.setLoop(true);
-	music.setVolume(Retry::SoundOption::sfxVolume * 0.1f);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.1f);
 	music.play();
 }
 
