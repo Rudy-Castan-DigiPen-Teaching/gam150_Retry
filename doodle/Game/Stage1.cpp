@@ -75,7 +75,7 @@ void Stage1::Load()
 	sound.SetVolume(scissorUse, Retry::SoundOption::sfxVolume);
 
 	music.setLoop(true);
-	music.setVolume(Retry::SoundOption::musicVolume * 0.5f);
+	music.setVolume(Retry::SoundOption::musicVolume * 0.5f+10);
 	music.play();
 }
 
@@ -129,23 +129,18 @@ void Stage1::Draw()
 	doodle::draw_text("Scissor : " + std::to_string(item) + " / 1", 20, 570);
 	doodle::pop_settings();
 	
+	if (isHindrance == true)
+	{
+		hacker.Draw();
+	}
+
 	if(GameStart == false && GameOver == false && GameClear == false)
 	{	
 		start_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0});
 	}
-	else if (GameOver == true)
-	{
-		doodle::set_font_size(30);
-		doodle::draw_text("Game Over!", 600, doodle::Height / 2.0);
-	}
 	else if (GameClear == true)
 	{
 		end_phrase.Draw({ doodle::Width / 2.0 - static_cast<double>(start_phrase.getSize().x) / 2.0, doodle::Height / 2.0 - 50});
-	}
-
-	if (isHindrance == true)
-	{
-		hacker.Draw();
 	}
 
 }
