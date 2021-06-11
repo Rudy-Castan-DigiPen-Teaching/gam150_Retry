@@ -109,15 +109,6 @@
     <ClCompile Include="ConsoleMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
-    <ClCompile Include="Game\TestObject.cpp">
-      <Filter>Other</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\TestStage.cpp">
-      <Filter>Other</Filter>
-    </ClCompile>
-    <ClCompile Include="WinMain.cpp">
-      <Filter>Other</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -238,12 +229,6 @@
       <Filter>Game\Security</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Other</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\TestObject.h">
-      <Filter>Other</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\TestStage.h">
       <Filter>Other</Filter>
     </ClInclude>
   </ItemGroup>

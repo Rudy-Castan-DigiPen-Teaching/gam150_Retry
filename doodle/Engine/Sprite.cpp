@@ -17,12 +17,6 @@ namespace Retry
 {
 	Sprite::Sprite() {}
 
-	//void Sprite::Load(const std::filesystem::path& texturePath) 
-	//{
-	//	texture.Load(texturePath);
-	//	hotSpot = texture.getSize() / 2;
-	//}
-
 	Sprite::~Sprite() {
 		for (Animation* anim : animations) {
 			delete anim;
