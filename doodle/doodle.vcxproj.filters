@@ -109,6 +109,9 @@
     <ClCompile Include="ConsoleMain.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
