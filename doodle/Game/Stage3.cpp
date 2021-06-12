@@ -122,12 +122,12 @@ void Stage3::Unload()
 
 void Stage3::Update(double dt)
 {
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	if (CheatKey.IsKeyReleased() == true)
 	{
 		Cheat();
 	}
-//#endif
+#endif
 	if (Reload.IsKeyReleased() == true)
 	{
 		Engine::GetSceneManager().ReloadScene();

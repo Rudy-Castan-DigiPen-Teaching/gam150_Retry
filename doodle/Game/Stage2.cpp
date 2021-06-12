@@ -68,12 +68,12 @@ void Stage2::Load()
 
 void Stage2::Update(double dt)
 {
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	if (CheatKey.IsKeyReleased() == true)
 	{
 		stageCleared = true;
 	}
-//#endif
+#endif
 	if (stageCleared == true)
 	{
 		Engine::GetSceneManager().SetStageClear(Retry::GameScenes::Stage2);
