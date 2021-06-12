@@ -16,7 +16,6 @@ Creation date: 03/23/2021
 #include "../Game/Stage2.h"
 #include "../Game/Stage3.h"
 #include "../Game/GameOver.h"
-#include "../Game/TestStage.h"
 #include "../Game/Story.h"
 #include "../Game/Ending.h"
 #include "../Game/Credit.h"

@@ -27,9 +27,7 @@ namespace Retry {
 
         virtual ~Scene() = default;
         Scene(const Scene& other) = default;
-        //Scene(Scene&& other) noexcept = default;
         Scene& operator=(const Scene& other) = default;
-        //Scene& operator=(Scene&& other) noexcept = default;
 
         GameScenes prevScene;
     };
