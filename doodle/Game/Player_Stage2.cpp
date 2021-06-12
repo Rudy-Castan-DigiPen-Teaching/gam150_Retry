@@ -24,7 +24,6 @@ Player_Stage2::Player_Stage2(math::vec2 pos, int width, int height, Hacker_Stage
 
 void Player_Stage2::Load()
 {
-	//hotspot = math::ivec2(48, 0);
 	sprite.Load("assets/zero_datatransfer.spt");
 	attackSprite.Load("assets/attack_security.png", attackBox.GetHotspot());
 	flippedAttackSprite.Load("assets/attack_flipped.png", attackBox.GetHotspot());
@@ -213,10 +212,6 @@ void Player_Stage2::State_Attacking::TestForExit(Player_Stage2* player)
 		{
 			player->ChangeState(&player->statePushing);
 		}
-		//else
-		//{
-		//	player->ChangeState(&player->stateMoving);
-		//}
 	}
 }
 
@@ -225,7 +220,6 @@ void Player_Stage2::State_Pushing::Enter(Player_Stage2* player)
 	Engine::GetMouseInput().setMousePressed(false);
 	player->isFlipped = false;
 	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
-	// player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 }
 
 void Player_Stage2::State_Pushing::Update(Player_Stage2* player)
@@ -258,7 +252,6 @@ void Player_Stage2::State_Pulling::Enter(Player_Stage2* player)
 	Engine::GetMouseInput().setMousePressed(false);
 	player->isFlipped = true;
 	player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Pull_Anim));
-	// player->sprite.PlayAnimation(static_cast<int>(DataTransfer_Anim::Push_Anim));
 }
 
 void Player_Stage2::State_Pulling::Update(Player_Stage2* player)

@@ -23,11 +23,9 @@ void Story::Load()
 			Dialogue("Boring.....  ","Zero"),
 			Dialogue("(A piece of paper has fallen in front of you.)"),
 			Dialogue("What is that?","Zero"),
-			//("(You pick up that paper.)"),
 			Dialogue("Huh. Phone number...?","Zero"),
 			Dialogue("Good. I was just boring now. Let's make a prank call!","Zero"),
 			Dialogue("(Beep. Beep. Beep. Beep)"),
-			//Dialogue("(ring....ring....ring....)"),
 			Dialogue("H...ell........o...?","..."),
 			Dialogue("..........................?....!","Zero"),
 			Dialogue("W...where am I? I should go back to home!","Zero")
